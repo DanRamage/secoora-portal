@@ -157,196 +157,84 @@ class metafields(object):
   publish_date = models.DateTimeField(null=True, blank=True)
   title = models.TextField(blank=True)
 
-class Provider(models.Model):
-  id = models.IntegerField(primary_key=True)
-  row_entry_date = models.DateTimeField()
-  row_update_date = models.DateTimeField(null=True, blank=True)
-  source_name = models.CharField(max_length=200, blank=True)
-  source_link = models.CharField(max_length=500, blank=True)
-  thumbnail_source = models.CharField(max_length=500, blank=True)
-  contact_email_list = models.CharField(max_length=2000, blank=True)
-  use_constraints = models.CharField(max_length=2000, blank=True)
-  links = models.TextField(blank=True)
-
-  DATA_TYPE_CHOICES = (
-    ('observed', 'Observed'),
-    ('model', 'Model')
-  )
-
-  SPATIAL_TYPE_CHOICES = (
-    ('point', 'Point'),
-    ('coverage', 'Coverage')
-  )
-
-  MODEL_DATA_TYPE_CHOICES = (
-    ('grid', 'Grid'),
-    ('ugrid', 'Unstructured Grid'),
-    ('point', 'Point')
-  )
-
-  TIME_TYPE_CHOICES = (
-    ('realtime', 'Real Time'),
-    ('archival', 'Archival')
-  )
-
-  data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
-  spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)
-  model_data_type = models.CharField(max_length=50, choices=MODEL_DATA_TYPE_CHOICES)
-
-  getcap_link = models.TextField(blank=True)
-  bbox_extent = models.TextField(blank=True)
-  wkt_geometry = models.TextField(blank=True)
-  spatial_resolution = models.TextField(blank=True)
-
-  time_type = models.CharField(max_length=50, choices=TIME_TYPE_CHOICES)
-  time_begin = models.DateTimeField(null=True, blank=True)
-  time_end = models.DateTimeField(null=True, blank=True)
-  time_interval_minutes = models.IntegerField(null=True, blank=True)
-  get_capabilities_url = models.TextField(blank=True)
-
-  keywords_project = topics = models.ManyToManyField("ProjectName", blank=True, null=True)
-  keywords_funding = topics = models.ManyToManyField("Funding", blank=True, null=True)
-  keywords_topic = models.ManyToManyField("Topic", blank=True, null=True)
-  keywords_theme = models.ManyToManyField("Theme", blank=True, null=True)
-
-  keywords_instrumentation = models.TextField(blank=True)
-  keywords_obs = models.ManyToManyField("Observation", blank=True, null=True)
-  keywords_place = models.ManyToManyField("Place", blank=True, null=True)
-  keywords_other = models.TextField(blank=True)
-
-  anytext = models.TextField(blank=True)
-
-  thumbnail_product = models.TextField(blank=True)
-  abstract = models.TextField(blank=True)
-  description_short = models.TextField(blank=True)
-  metadata_link = models.TextField(blank=True)
-  xml = models.TextField(blank=True)
-  identifiers = models.TextField(blank=True)
-  publish_date = models.DateTimeField(null=True, blank=True)
-  title = models.TextField(blank=True)
-
-class Layer(models.Model):
-
-  TYPE_CHOICES = (
-      ('XYZ', 'XYZ'),
-      ('WMS', 'WMS'),
-      ('ArcRest', 'ArcRest'),
-      ('radio', 'radio'),
-      ('checkbox', 'checkbox'),
-      ('Vector', 'Vector'),
-      ('placeholder', 'placeholder'),
-  )
-  name = models.CharField(max_length=100)
-  slug_name = models.CharField(max_length=100, blank=True, null=True)
-  layer_type = models.CharField(max_length=50, choices=TYPE_CHOICES)
-  url = models.CharField(max_length=2000, blank=True, null=True)
-  shareable_url = models.BooleanField(default=True)
-  arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
-  sublayers = models.ManyToManyField('self', blank=True, null=True)
-  themes = models.ManyToManyField("Theme", blank=True, null=True)
-  topics = models.ManyToManyField("Topic", blank=True, null=True)
-  is_sublayer = models.BooleanField(default=False)
-  legend = models.CharField(max_length=255, blank=True, null=True)
-  legend_title = models.CharField(max_length=255, blank=True, null=True)
-  legend_subtitle = models.CharField(max_length=255, blank=True, null=True)
-  utfurl = models.CharField(max_length=255, blank=True, null=True)
-
-  #tooltip
-  description = models.TextField(blank=True, null=True)
-
-  #data description (updated fact sheet) (now the Learn pages)
-  data_overview = models.TextField(blank=True, null=True)
-  data_status = models.CharField(max_length=255, blank=True, null=True)
-  data_source = models.CharField(max_length=255, blank=True, null=True)
-  data_notes = models.TextField(blank=True, null=True)
-
-  #data catalog links
-  bookmark = models.CharField(max_length=755, blank=True, null=True)
-  map_tiles = models.CharField(max_length=255, blank=True, null=True)
-  kml = models.CharField(max_length=255, blank=True, null=True)
-  data_download = models.CharField(max_length=255, blank=True, null=True)
-  learn_more = models.CharField(max_length=255, blank=True, null=True)
-  metadata = models.CharField(max_length=255, blank=True, null=True)
-  fact_sheet = models.CharField(max_length=255, blank=True, null=True)
-  source = models.CharField(max_length=255, blank=True, null=True)
-  thumbnail = models.URLField(max_length=255, blank=True, null=True)
-
-  #geojson javascript attribution
-  EVENT_CHOICES = (
-      ('click', 'click'),
-      ('mouseover', 'mouseover')
-  )
-  attribute_title = models.CharField(max_length=255, blank=True, null=True)
-  attribute_fields = models.ManyToManyField('AttributeInfo', blank=True, null=True)
-  compress_display = models.BooleanField(default=False)
-  attribute_event = models.CharField(max_length=35, choices=EVENT_CHOICES, default='click')
-  lookup_field = models.CharField(max_length=255, blank=True, null=True)
-  lookup_table = models.ManyToManyField('LookupInfo', blank=True, null=True)
-  vector_color = models.CharField(max_length=7, blank=True, null=True)
-  vector_fill = models.FloatField(blank=True, null=True)
-  vector_graphic = models.CharField(max_length=255, blank=True, null=True)
-  opacity = models.FloatField(default=.5, blank=True, null=True)
+class Provider(metafields, models.Model):
+    id = models.IntegerField(primary_key=True)
+    row_entry_date = models.DateTimeField()
+    row_update_date = models.DateTimeField(null=True, blank=True)
+    source_name = models.CharField(max_length=200, blank=True)
+    source_link = models.CharField(max_length=500, blank=True)
+    thumbnail_source = models.CharField(max_length=500, blank=True)
+    contact_email_list = models.CharField(max_length=2000, blank=True)
+    use_constraints = models.CharField(max_length=2000, blank=True)
+    links = models.TextField(blank=True)
 
 
-  row_entry_date = models.DateTimeField()
-  row_update_date = models.DateTimeField(null=True, blank=True)
-  DATA_TYPE_CHOICES = (
-    ('observed', 'Observed'),
-    ('model', 'Model')
-  )
+class Layer(metafields, models.Model):
 
-  SPATIAL_TYPE_CHOICES = (
-    ('point', 'Point'),
-    ('coverage', 'Coverage')
-  )
+    TYPE_CHOICES = (
+        ('XYZ', 'XYZ'),
+        ('WMS', 'WMS'),
+        ('ArcRest', 'ArcRest'),
+        ('radio', 'radio'),
+        ('checkbox', 'checkbox'),
+        ('Vector', 'Vector'),
+        ('placeholder', 'placeholder'),
+    )
+    name = models.CharField(max_length=100)
+    slug_name = models.CharField(max_length=100, blank=True, null=True)
+    layer_type = models.CharField(max_length=50, choices=TYPE_CHOICES)
+    url = models.CharField(max_length=2000, blank=True, null=True)
+    shareable_url = models.BooleanField(default=True)
+    arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
+    sublayers = models.ManyToManyField('self', blank=True, null=True)
+    themes = models.ManyToManyField("Theme", blank=True, null=True)
+    topics = models.ManyToManyField("Topic", blank=True, null=True)
+    is_sublayer = models.BooleanField(default=False)
+    legend = models.CharField(max_length=255, blank=True, null=True)
+    legend_title = models.CharField(max_length=255, blank=True, null=True)
+    legend_subtitle = models.CharField(max_length=255, blank=True, null=True)
+    utfurl = models.CharField(max_length=255, blank=True, null=True)
 
-  MODEL_DATA_TYPE_CHOICES = (
-    ('grid', 'Grid'),
-    ('ugrid', 'Unstructured Grid'),
-    ('point', 'Point')
-  )
+    #tooltip
+    description = models.TextField(blank=True, null=True)
 
-  TIME_TYPE_CHOICES = (
-    ('realtime', 'Real Time'),
-    ('archival', 'Archival')
-  )
+    #data description (updated fact sheet) (now the Learn pages)
+    data_overview = models.TextField(blank=True, null=True)
+    data_status = models.CharField(max_length=255, blank=True, null=True)
+    data_source = models.CharField(max_length=255, blank=True, null=True)
+    data_notes = models.TextField(blank=True, null=True)
 
-  data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
-  spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)
-  model_data_type = models.CharField(max_length=50, choices=MODEL_DATA_TYPE_CHOICES)
+    #data catalog links
+    bookmark = models.CharField(max_length=755, blank=True, null=True)
+    map_tiles = models.CharField(max_length=255, blank=True, null=True)
+    kml = models.CharField(max_length=255, blank=True, null=True)
+    data_download = models.CharField(max_length=255, blank=True, null=True)
+    learn_more = models.CharField(max_length=255, blank=True, null=True)
+    metadata = models.CharField(max_length=255, blank=True, null=True)
+    fact_sheet = models.CharField(max_length=255, blank=True, null=True)
+    source = models.CharField(max_length=255, blank=True, null=True)
+    thumbnail = models.URLField(max_length=255, blank=True, null=True)
 
-  getcap_link = models.TextField(blank=True)
-  bbox_extent = models.TextField(blank=True)
-  wkt_geometry = models.TextField(blank=True)
-  spatial_resolution = models.TextField(blank=True)
+    #geojson javascript attribution
+    EVENT_CHOICES = (
+        ('click', 'click'),
+        ('mouseover', 'mouseover')
+    )
+    attribute_title = models.CharField(max_length=255, blank=True, null=True)
+    attribute_fields = models.ManyToManyField('AttributeInfo', blank=True, null=True)
+    compress_display = models.BooleanField(default=False)
+    attribute_event = models.CharField(max_length=35, choices=EVENT_CHOICES, default='click')
+    lookup_field = models.CharField(max_length=255, blank=True, null=True)
+    lookup_table = models.ManyToManyField('LookupInfo', blank=True, null=True)
+    vector_color = models.CharField(max_length=7, blank=True, null=True)
+    vector_fill = models.FloatField(blank=True, null=True)
+    vector_graphic = models.CharField(max_length=255, blank=True, null=True)
+    opacity = models.FloatField(default=.5, blank=True, null=True)
 
-  time_type = models.CharField(max_length=50, choices=TIME_TYPE_CHOICES)
-  time_begin = models.DateTimeField(null=True, blank=True)
-  time_end = models.DateTimeField(null=True, blank=True)
-  time_interval_minutes = models.IntegerField(null=True, blank=True)
-  get_capabilities_url = models.TextField(blank=True)
 
-  keywords_project = topics = models.ManyToManyField("ProjectName", blank=True, null=True)
-  keywords_funding = topics = models.ManyToManyField("Funding", blank=True, null=True)
-  keywords_topic = models.ManyToManyField("Topic", blank=True, null=True)
-  keywords_theme = models.ManyToManyField("Theme", blank=True, null=True)
-
-  keywords_instrumentation = models.TextField(blank=True)
-  keywords_obs = models.ManyToManyField("Observation", blank=True, null=True)
-  keywords_place = models.ManyToManyField("Place", blank=True, null=True)
-  keywords_other = models.TextField(blank=True)
-
-  anytext = models.TextField(blank=True)
-
-  thumbnail_product = models.TextField(blank=True)
-  abstract = models.TextField(blank=True)
-  description_short = models.TextField(blank=True)
-  metadata_link = models.TextField(blank=True)
-  xml = models.TextField(blank=True)
-  identifiers = models.TextField(blank=True)
-  publish_date = models.DateTimeField(null=True, blank=True)
-  title = models.TextField(blank=True)
-  openlayers_options = models.CharField(max_length=1000, blank=True)
+    row_entry_date = models.DateTimeField()
+    row_update_date = models.DateTimeField(null=True, blank=True)
+    openlayers_options = models.CharField(max_length=1000, blank=True)
 
 
 """
