@@ -85,7 +85,7 @@ class Theme(models.Model):
 
 
 
-class DataManagerLayerProvider(models.Model):
+class LayerProvider(models.Model):
     layer_id = models.IntegerField()
     provider_id = models.IntegerField()
 
@@ -157,7 +157,7 @@ class metafields(object):
   publish_date = models.DateTimeField(null=True, blank=True)
   title = models.TextField(blank=True)
 
-class DataManagerProvider(models.Model, metafields):
+class Provider(models.Model, metafields):
     id = models.IntegerField(primary_key=True)
     row_entry_date = models.DateTimeField()
     row_update_date = models.DateTimeField(null=True, blank=True)
@@ -169,7 +169,7 @@ class DataManagerProvider(models.Model, metafields):
     links = models.TextField(blank=True)
 
 
-class DataManagerLayer(models.Model, metafields):
+class Layer(models.Model, metafields):
 
     TYPE_CHOICES = (
         ('XYZ', 'XYZ'),
