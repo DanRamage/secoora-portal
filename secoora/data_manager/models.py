@@ -170,9 +170,6 @@ class DataManagerProvider(models.Model, metafields):
 
 
 class DataManagerLayer(models.Model, metafields):
-    row_entry_date = models.DateTimeField()
-    row_update_date = models.DateTimeField(null=True, blank=True)
-    openlayers_options = models.CharField(max_length=1000, blank=True)
 
     TYPE_CHOICES = (
         ('XYZ', 'XYZ'),
@@ -233,6 +230,12 @@ class DataManagerLayer(models.Model, metafields):
     vector_fill = models.FloatField(blank=True, null=True)
     vector_graphic = models.CharField(max_length=255, blank=True, null=True)
     opacity = models.FloatField(default=.5, blank=True, null=True)
+
+
+    row_entry_date = models.DateTimeField()
+    row_update_date = models.DateTimeField(null=True, blank=True)
+    openlayers_options = models.CharField(max_length=1000, blank=True)
+
 
 """
 class Layer(models.Model):
@@ -520,7 +523,7 @@ class LookupInfo(models.Model):
     def __unicode__(self):
         return unicode('%s' % (self.value)) 
     
-        
+"""
 class DataNeed(models.Model):
     name = models.CharField(max_length=100)
     archived = models.BooleanField(default=False)
@@ -539,3 +542,4 @@ class DataNeed(models.Model):
     
     def __unicode__(self):
         return unicode('%s' % (self.name))
+"""
