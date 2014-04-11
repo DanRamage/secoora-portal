@@ -21,10 +21,9 @@
         </div>
     </div>
 
+    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
 
     <div class="span8 theme catalog-page accordion" id="theme-list">
-        {% debug %}
-
         {% for theme_dict in themes %}
 
         <div class="accordion-group theme-group">
