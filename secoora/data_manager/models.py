@@ -166,7 +166,7 @@ class Provider(models.Model):
     contact_email_list = models.CharField(max_length=2000, blank=True)
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
-    MetadataBlock = models.OneToOneField('Metadata', related_name='provider')
+    metadata = models.OneToOneField('Metadata', related_name='provider')
 
 
 class Layer(models.Model):
@@ -236,7 +236,7 @@ class Layer(models.Model):
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.TextField(blank=True)
 
-    metadatafields = models.OneToOneField('Metadata', related_name='layer')
+    metadata = models.OneToOneField('Metadata', related_name='layer')
     provider = models.ManyToManyField('Provider', blank=True, null=True)
 
     def __unicode__(self):
