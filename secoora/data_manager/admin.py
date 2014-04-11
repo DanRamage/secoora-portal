@@ -17,6 +17,13 @@ class AttributeInfoAdmin(admin.ModelAdmin):
 class LookupInfoAdmin(admin.ModelAdmin):
     list_display = ('value', 'color', 'dashstyle', 'fill', 'graphic')
 
+'''
+class metadatafieldsAdmin(admin.ModelAdmin):
+    list_display = ('value', 'color', 'dashstyle', 'fill', 'graphic')
+
+class ProviderAdmin(admin.ModelAdmin):
+    list_display = ('value', 'color', 'dashstyle', 'fill', 'graphic')
+'''
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
 
@@ -24,5 +31,7 @@ admin.site.register(Theme, ThemeAdmin)
 admin.site.register(Layer, LayerAdmin)
 admin.site.register(AttributeInfo, AttributeInfoAdmin)
 admin.site.register(LookupInfo, LookupInfoAdmin)
+admin.site.register(metadatafields)
+admin.site.register(Provider)
 #admin.site.register(DataNeed, DataNeedAdmin)
 
