@@ -1,7 +1,6 @@
 {% extends 'base_with_sidebar.html' %}
 {% block main %}
 {% load flatblock_tags %}
-{% debug %}
 
 <div class="row-fluid">
     <div class="span4 pull-right">
@@ -24,7 +23,10 @@
 
 
     <div class="span8 theme catalog-page accordion" id="theme-list">
+        {% debug %}
+
         {% for theme_dict in themes %}
+
         <div class="accordion-group theme-group">
             <div class="accordion-heading theme-heading">
                 <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
