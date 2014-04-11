@@ -98,7 +98,7 @@ class Funding(models.Model):
     name = models.TextField()
 
 
-class metadatafields(models.Model):
+class Metadata(models.Model):
   DATA_TYPE_CHOICES = (
     ('Observed', 'Observed'),
     ('Model', 'Model')
@@ -135,14 +135,14 @@ class metadatafields(models.Model):
   time_interval_minutes = models.IntegerField(null=True, blank=True)
   get_capabilities_url = models.TextField(blank=True)
 
-  keywords_project = models.ManyToManyField("ProjectName", blank=True, null=True)
-  keywords_funding = models.ManyToManyField("Funding", blank=True, null=True)
-  keywords_topic = models.ManyToManyField("Topic", blank=True, null=True)
-  keywords_theme = models.ManyToManyField("Theme", blank=True, null=True)
+  keywords_project = models.ManyToManyField('ProjectName', blank=True, null=True)
+  keywords_funding = models.ManyToManyField('Funding', blank=True, null=True)
+  keywords_topic = models.ManyToManyField('Topic', blank=True, null=True)
+  keywords_theme = models.ManyToManyField('Theme', blank=True, null=True)
 
   keywords_instrumentation = models.TextField(blank=True)
-  keywords_obs = models.ManyToManyField("Observation", blank=True, null=True)
-  keywords_place = models.ManyToManyField("Place", blank=True, null=True)
+  keywords_obs = models.ManyToManyField('Observation', blank=True, null=True)
+  keywords_place = models.ManyToManyField('Place', blank=True, null=True)
   keywords_other = models.TextField(blank=True)
 
   anytext = models.TextField(blank=True)
@@ -166,7 +166,7 @@ class Provider(models.Model):
     contact_email_list = models.CharField(max_length=2000, blank=True)
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
-    metadatafields = models.OneToOneField(metadatafields, related_name='provider')
+    MetadataBlock = models.OneToOneField('Metadata', related_name='provider')
 
 
 class Layer(models.Model):
@@ -187,8 +187,8 @@ class Layer(models.Model):
     shareable_url = models.BooleanField(default=True)
     arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
     sublayers = models.ManyToManyField('self', blank=True, null=True)
-    themes = models.ManyToManyField("Theme", blank=True, null=True)
-    topics = models.ManyToManyField("Topic", blank=True, null=True)
+    themes = models.ManyToManyField('Theme', blank=True, null=True)
+    topics = models.ManyToManyField('Topic', blank=True, null=True)
     is_sublayer = models.BooleanField(default=False)
     legend = models.CharField(max_length=255, blank=True, null=True)
     legend_title = models.CharField(max_length=255, blank=True, null=True)
@@ -236,9 +236,9 @@ class Layer(models.Model):
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.TextField(blank=True)
 
-    metadatafields = models.OneToOneField(metadatafields, related_name='layer')
+    metadatafields = models.OneToOneField('Metadata', related_name='layer')
     provider = models.ManyToManyField('Provider', blank=True, null=True)
-    
+
     def __unicode__(self):
         return unicode('%s' % (self.name))
 
