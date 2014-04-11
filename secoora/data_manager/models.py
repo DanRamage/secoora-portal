@@ -85,10 +85,6 @@ class Theme(models.Model):
 
 
 
-class LayerProvider(models.Model):
-    layer_id = models.IntegerField()
-    provider_id = models.IntegerField()
-
 class Observation(models.Model):
     name = models.TextField()
 
@@ -99,7 +95,7 @@ class Funding(models.Model):
     name = models.TextField()
 
 
-class metafields(object):
+class metadatafields(models.Model):
   DATA_TYPE_CHOICES = (
     ('observed', 'Observed'),
     ('model', 'Model')
@@ -167,6 +163,7 @@ class Provider(metafields, models.Model):
     contact_email_list = models.CharField(max_length=2000, blank=True)
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
+    metadatafields = models.OneToOneField(metadatafields, related_field='provider')
 
 
 class Layer(metafields, models.Model):
@@ -236,6 +233,8 @@ class Layer(metafields, models.Model):
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.CharField(max_length=1000, blank=True)
 
+    metadatafields = models.OneToOneField(metadatafields, related_field='layer')
+    provider = models.ManyToManyField('Provider', blank=True, null=True)
 
 """
 class Layer(models.Model):
