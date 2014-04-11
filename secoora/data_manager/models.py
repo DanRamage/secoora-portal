@@ -100,24 +100,24 @@ class Funding(models.Model):
 
 class metadatafields(models.Model):
   DATA_TYPE_CHOICES = (
-    ('observed', 'Observed'),
-    ('model', 'Model')
+    ('Observed', 'Observed'),
+    ('Model', 'Model')
   )
 
   SPATIAL_TYPE_CHOICES = (
-    ('point', 'Point'),
-    ('coverage', 'Coverage')
+    ('Point', 'Point'),
+    ('Coverage', 'Coverage')
   )
 
   MODEL_DATA_TYPE_CHOICES = (
-    ('grid', 'Grid'),
-    ('ugrid', 'Unstructured Grid'),
-    ('point', 'Point')
+    ('Grid', 'Grid'),
+    ('Unstructured Grid', 'Unstructured Grid'),
+    ('Point', 'Point')
   )
 
   TIME_TYPE_CHOICES = (
-    ('realtime', 'Real Time'),
-    ('archival', 'Archival')
+    ('Real Time', 'Real Time'),
+    ('Archival', 'Archival')
   )
 
   data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
@@ -238,7 +238,203 @@ class Layer(models.Model):
 
     metadatafields = models.OneToOneField(metadatafields, related_name='layer')
     provider = models.ManyToManyField('Provider', blank=True, null=True)
+    
+    def __unicode__(self):
+        return unicode('%s' % (self.name))
 
+    @property
+    def is_parent(self):
+        return self.sublayers.all().count() > 0 and not self.is_sublayer
+
+    @property
+    def parent(self):
+        if self.is_sublayer:
+            return self.sublayers.all()[0]
+        return self
+
+    @property
+    def sublayer_list(self):
+        if self.is_parent:
+            return self.sublayers.all().order_by('name')
+        else:
+            return None
+
+    @property
+    def slug(self):
+        return slugify(self.name)
+
+    @property
+    def data_overview_text(self):
+        if not self.data_overview and self.is_sublayer:
+            return self.parent.data_overview
+        else:
+            return self.data_overview
+
+    @property
+    def data_source_text(self):
+        if not self.data_source and self.is_sublayer:
+            return self.parent.data_source
+        else:
+            return self.data_source
+
+    @property
+    def data_notes_text(self):
+        if not self.data_notes and self.is_sublayer:
+            return self.parent.data_notes
+        else:
+            return self.data_notes
+
+    @property
+    def bookmark_link(self):
+        if not self.bookmark and self.is_sublayer and self.parent.bookmark:
+            return self.parent.bookmark.replace('<layer_id>', str(self.id))
+        else:
+            return self.bookmark
+
+    @property
+    def data_download_link(self):
+        if self.data_download and self.data_download.lower() == 'none':
+            return None
+        if not self.data_download and self.is_sublayer:
+            return self.parent.data_download
+        else:
+            return self.data_download
+
+    @property
+    def metadata_link(self):
+        if self.metadata and self.metadata.lower() == 'none':
+            return None
+        if not self.metadata and self.is_sublayer:
+            return self.parent.metadata
+        else:
+            return self.metadata
+
+    @property
+    def source_link(self):
+        if self.source and self.source.lower() == 'none':
+            return None
+        if not self.source and self.is_sublayer:
+            return self.parent.source
+        else:
+            return self.source
+
+    @property
+    def learn_link(self):
+        if self.learn_more:
+            return self.learn_more
+        else:
+            theme = self.themes.all()[0]
+            return "%s#%s" %(theme.learn_link, self.slug)
+
+    @property
+    def description_link(self):
+        theme_name = self.themes.all()[0].name
+        domain = get_domain(8000)
+        return '%s/learn/%s#%s' %(domain, theme_name, self.slug)
+
+    @property
+    def tiles_link(self):
+        if self.is_shareable and self.layer_type in ['XYZ', 'ArcRest', 'WMS']:
+            domain = get_domain(8000)
+            return '%s/explore/%s' %(domain, self.slug)
+        return None
+
+    @property
+    def tooltip(self):
+        if self.description and self.description.strip() != '':
+            return self.description
+        elif self.parent.description and self.parent.description.strip() != '':
+            return self.parent.description
+        else:
+            return None
+
+    @property
+    def is_shareable(self):
+        if self.shareable_url == False:
+            return False
+        if self.parent and self.parent.shareable_url == False:
+            return False
+        return True
+
+    @property
+    def serialize_attributes(self):
+        return {'title': self.attribute_title,
+                'compress_attributes': self.compress_display,
+                'event': self.attribute_event,
+                'attributes': [{'display': attr.display_name, 'field': attr.field_name, 'precision': attr.precision} for attr in self.attribute_fields.all().order_by('order')]}
+
+    @property
+    def serialize_lookups(self):
+        return {'field': self.lookup_field,
+                'details': [{'value': lookup.value, 'color': lookup.color, 'dashstyle': lookup.dashstyle, 'fill': lookup.fill, 'graphic': lookup.graphic} for lookup in self.lookup_table.all()]}
+
+    @property
+    def toDict(self):
+        sublayers = [
+            {
+                'id': layer.id,
+                'name': layer.name,
+                'type': layer.layer_type,
+                'url': layer.url,
+                'arcgis_layers': layer.arcgis_layers,
+                'utfurl': layer.utfurl,
+                'parent': self.id,
+                'legend': layer.legend,
+                'legend_title': layer.legend_title,
+                'legend_subtitle': layer.legend_subtitle,
+                'description': layer.tooltip,
+                'overview': layer.data_overview_text,
+                'data_source': layer.data_source,
+                'data_notes': layer.data_notes,
+                'kml': layer.kml,
+                'data_download': layer.data_download_link,
+                'metadata': layer.metadata_link,
+                'source': layer.source_link,
+                'tiles': layer.tiles_link,
+                'learn_link': layer.learn_link,
+                'attributes': layer.serialize_attributes,
+                'lookups': layer.serialize_lookups,
+                'color': layer.vector_color,
+                'fill_opacity': layer.vector_fill,
+                'graphic': layer.vector_graphic,
+                'opacity': layer.opacity
+            }
+            for layer in self.sublayers.all()
+        ]
+        layers_dict = {
+            'id': self.id,
+            'name': self.name,
+            'type': self.layer_type,
+            'url': self.url,
+            'arcgis_layers': self.arcgis_layers,
+            'utfurl': self.utfurl,
+            'subLayers': sublayers,
+            'legend': self.legend,
+            'legend_title': self.legend_title,
+            'legend_subtitle': self.legend_subtitle,
+            #'description': self.description,
+            'description': self.data_overview,
+            'overview': self.data_overview,
+            'data_source': self.data_source,
+            'data_notes': self.data_notes,
+            'kml': self.kml,
+            'data_download': self.data_download_link,
+            'metadata': self.metadata_link,
+            'source': self.source_link,
+            'tiles': self.tiles_link,
+            'learn_link': self.learn_link,
+            'attributes': self.serialize_attributes,
+            'lookups': self.serialize_lookups,
+            'color': self.vector_color,
+            'fill_opacity': self.vector_fill,
+            'graphic': self.vector_graphic,
+            'opacity': self.opacity
+        }
+        return layers_dict
+
+    def save(self, *args, **kwargs):
+        self.slug_name = self.slug
+        super(Layer, self).save(*args, **kwargs)
 """
 class Layer(models.Model):
     TYPE_CHOICES = (
