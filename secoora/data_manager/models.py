@@ -88,6 +88,9 @@ class Theme(models.Model):
 class Observation(models.Model):
     name = models.TextField()
 
+class ProjectName(models.Model):
+    name = models.TextField()
+
 class Place(models.Model):
     name = models.TextField()
 
