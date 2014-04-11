@@ -153,7 +153,7 @@ class metadatafields(models.Model):
   publish_date = models.DateTimeField(null=True, blank=True)
   title = models.TextField(blank=True)
 
-class Provider(metafields, models.Model):
+class Provider(models.Model):
     id = models.IntegerField(primary_key=True)
     row_entry_date = models.DateTimeField()
     row_update_date = models.DateTimeField(null=True, blank=True)
@@ -166,7 +166,7 @@ class Provider(metafields, models.Model):
     metadatafields = models.OneToOneField(metadatafields, related_field='provider')
 
 
-class Layer(metafields, models.Model):
+class Layer(models.Model):
 
     TYPE_CHOICES = (
         ('XYZ', 'XYZ'),
