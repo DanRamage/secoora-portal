@@ -231,7 +231,7 @@ class Layer(metafields, models.Model):
 
     row_entry_date = models.DateTimeField()
     row_update_date = models.DateTimeField(null=True, blank=True)
-    openlayers_options = models.CharField(max_length=1000, blank=True)
+    openlayers_options = models.TextField(blank=True)
 
     metadatafields = models.OneToOneField(metadatafields, related_field='layer')
     provider = models.ManyToManyField('Provider', blank=True, null=True)
