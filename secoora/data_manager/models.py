@@ -163,7 +163,7 @@ class Provider(models.Model):
     contact_email_list = models.CharField(max_length=2000, blank=True)
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
-    metadatafields = models.OneToOneField(metadatafields, related_field='provider')
+    metadatafields = models.OneToOneField(metadatafields, related_name='provider')
 
 
 class Layer(models.Model):
@@ -233,7 +233,7 @@ class Layer(models.Model):
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.TextField(blank=True)
 
-    metadatafields = models.OneToOneField(metadatafields, related_field='layer')
+    metadatafields = models.OneToOneField(metadatafields, related_name='layer')
     provider = models.ManyToManyField('Provider', blank=True, null=True)
 
 """
