@@ -155,6 +155,7 @@ class Metadata(models.Model):
   identifiers = models.TextField(blank=True)
   publish_date = models.DateTimeField(null=True, blank=True)
   title = models.TextField(blank=True)
+  links = models.TextField(blank=True)
 
   def __unicode__(self):
       return unicode('%s' % (self.title))
@@ -162,17 +163,17 @@ class Metadata(models.Model):
 
 
 class Provider(models.Model):
-    row_entry_date = models.DateTimeField(default=datetime.datetime.now)
-    row_update_date = models.DateTimeField(null=True, blank=True)
-    source_name = models.CharField(max_length=200, blank=True)
-    source_link = models.CharField(max_length=500, blank=True)
-    thumbnail_source = models.CharField(max_length=500, blank=True)
-    contact_email_list = models.CharField(max_length=2000, blank=True)
-    use_constraints = models.CharField(max_length=2000, blank=True)
-    links = models.TextField(blank=True)
-    catalog_name = models.CharField(max_length=200, blank=True)
-    catalog_link = models.CharField(max_length=500, blank=True)
-    metadatatable = models.OneToOneField('Metadata', related_name='provider', blank=True, null=True)
+  row_entry_date = models.DateTimeField(default=datetime.datetime.now)
+  row_update_date = models.DateTimeField(null=True, blank=True)
+  source_name = models.CharField(max_length=200, blank=True)
+  source_link = models.CharField(max_length=500, blank=True)
+  thumbnail_source = models.CharField(max_length=500, blank=True)
+  contact_email_list = models.CharField(max_length=2000, blank=True)
+  use_constraints = models.CharField(max_length=2000, blank=True)
+  #links = models.TextField(blank=True)
+  catalog_name = models.CharField(max_length=200, blank=True)
+  catalog_link = models.CharField(max_length=500, blank=True)
+  metadatatable = models.OneToOneField('Metadata', related_name='provider', blank=True, null=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.source_name))
