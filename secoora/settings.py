@@ -27,10 +27,10 @@ COMPRESS_JS['application']['source_filenames'] += (
 LOG_FILE =  os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'marco.log'))
 
 
-INSTALLED_APPS += ( 'clipping',
+INSTALLED_APPS += ( i#'clipping',
                     'general',
-                    'scenarios',
-                    'drawing',
+                    #'scenarios',
+                    #'drawing',
                     'reports',
                     'data_manager',
                     'learn',
