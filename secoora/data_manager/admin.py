@@ -19,7 +19,7 @@ class LookupInfoAdmin(admin.ModelAdmin):
 
 
 class MetadataAdmin(admin.ModelAdmin):
-    list_display = ('title')
+    list_display = ('title', 'id')
 
 '''
 class ProviderAdmin(admin.ModelAdmin):
