@@ -1,35 +1,35 @@
 from django.db import models
 from madrona.features import register
 from madrona.features.models import FeatureCollection
-from drawing.models import AOI, WindEnergySite
-from scenarios.models import Scenario
+#from drawing.models import AOI, WindEnergySite
+#from scenarios.models import Scenario
 
 @register
 class Folder(FeatureCollection):
     
     @property
-    def aoi_set(self):
-        return self.get_feature_set(AOI)
+    #def aoi_set(self):
+    #    return self.get_feature_set(AOI)
     
     @property
-    def wind_site_set(self):
-        return self.get_feature_set(WindEnergySite)
+    #def wind_site_set(self):
+    #    return self.get_feature_set(WindEnergySite)
         
     @property
-    def scenario_set(self):
-        return self.get_feature_set(Scenario)
+    #def scenario_set(self):
+    #    return self.get_feature_set(Scenario)
     
     @property
-    def num_aois(self):
-        return self.num_features(AOI)
+    #def num_aois(self):
+    #    return self.num_features(AOI)
 
     @property
-    def num_wind_sites(self):
-        return self.num_features(WindEnergySite)
+    #def num_wind_sites(self):
+    #    return self.num_features(WindEnergySite)
 
     @property
-    def num_scenarios(self):
-        return self.num_features(Scenario)
+    #def num_scenarios(self):
+    #    return self.num_features(Scenario)
 
     def get_feature_set(self, model_class):
         sites = []
