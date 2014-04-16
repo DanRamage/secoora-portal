@@ -133,7 +133,6 @@ class Metadata(models.Model):
   time_begin = models.DateTimeField(null=True, blank=True)
   time_end = models.DateTimeField(null=True, blank=True)
   time_interval_minutes = models.IntegerField(null=True, blank=True)
-  get_capabilities_url = models.TextField(blank=True)
 
   keywords_project = models.ManyToManyField('ProjectName', blank=True, null=True)
   keywords_funding = models.ManyToManyField('Funding', blank=True, null=True)
@@ -162,7 +161,6 @@ class Metadata(models.Model):
 
 
 class Provider(models.Model):
-    id = models.IntegerField(primary_key=True)
     row_entry_date = models.DateTimeField()
     row_update_date = models.DateTimeField(null=True, blank=True)
     source_name = models.CharField(max_length=200, blank=True)
@@ -171,6 +169,8 @@ class Provider(models.Model):
     contact_email_list = models.CharField(max_length=2000, blank=True)
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
+    catalog_name = models.CharField(max_length=200, blank=True)
+    catalog_link = models.CharField(max_length=500, blank=True)
     metadatatable = models.OneToOneField('Metadata', related_name='provider')
 
     def __unicode__(self):
