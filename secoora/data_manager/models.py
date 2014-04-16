@@ -1,6 +1,7 @@
 from django.db import models
 from utils import get_domain
 from django.template.defaultfilters import slugify
+import datetime
 #from sorl.thumbnail import ImageField
 
 
