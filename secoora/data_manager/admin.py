@@ -21,10 +21,9 @@ class LookupInfoAdmin(admin.ModelAdmin):
 class MetadataAdmin(admin.ModelAdmin):
     list_display = ('title', 'id')
 
-'''
 class ProviderAdmin(admin.ModelAdmin):
-    list_display = ('value', 'color', 'dashstyle', 'fill', 'graphic')
-'''
+    list_display = ('source_name', 'id')
+
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
 
@@ -33,6 +32,6 @@ admin.site.register(Layer, LayerAdmin)
 admin.site.register(AttributeInfo, AttributeInfoAdmin)
 admin.site.register(LookupInfo, LookupInfoAdmin)
 admin.site.register(Metadata, MetadataAdmin)
-admin.site.register(Provider)
+admin.site.register(Provider, ProviderAdmin)
 #admin.site.register(DataNeed, DataNeedAdmin)
 
