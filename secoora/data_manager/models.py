@@ -156,6 +156,10 @@ class Metadata(models.Model):
   publish_date = models.DateTimeField(null=True, blank=True)
   title = models.TextField(blank=True)
 
+  def __unicode__(self):
+      return unicode('%s' % (self.title))
+
+
 class Provider(models.Model):
     id = models.IntegerField(primary_key=True)
     row_entry_date = models.DateTimeField()
@@ -167,6 +171,9 @@ class Provider(models.Model):
     use_constraints = models.CharField(max_length=2000, blank=True)
     links = models.TextField(blank=True)
     metadatatable = models.OneToOneField('Metadata', related_name='provider')
+
+    def __unicode__(self):
+        return unicode('%s' % (self.source_name))
 
 
 class Layer(models.Model):
