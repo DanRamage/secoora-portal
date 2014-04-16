@@ -175,8 +175,8 @@ class Provider(models.Model):
   catalog_link = models.CharField(max_length=500, blank=True)
   metadatatable = models.OneToOneField('Metadata', related_name='provider', blank=True, null=True)
 
-    def __unicode__(self):
-        return unicode('%s' % (self.source_name))
+  def __unicode__(self):
+      return unicode('%s' % (self.source_name))
 
 
 class Layer(models.Model):
