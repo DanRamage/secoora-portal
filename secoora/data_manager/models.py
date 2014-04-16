@@ -172,7 +172,7 @@ class Provider(models.Model):
     links = models.TextField(blank=True)
     catalog_name = models.CharField(max_length=200, blank=True)
     catalog_link = models.CharField(max_length=500, blank=True)
-    metadatatable = models.OneToOneField('Metadata', related_name='provider')
+    metadatatable = models.OneToOneField('Metadata', related_name='provider', blank=True, null=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.source_name))
@@ -245,7 +245,7 @@ class Layer(models.Model):
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.TextField(blank=True)
 
-    metadatatable = models.OneToOneField('Metadata', related_name='layer')
+    metadatatable = models.OneToOneField('Metadata', related_name='layer', blank=True, null=True)
     provider = models.ManyToManyField('Provider', blank=True, null=True)
 
     def __unicode__(self):
