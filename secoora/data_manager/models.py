@@ -161,7 +161,7 @@ class Metadata(models.Model):
 
 
 class Provider(models.Model):
-    row_entry_date = models.DateTimeField()
+    row_entry_date = models.DateTimeField(default=datetime.datetime.now)
     row_update_date = models.DateTimeField(null=True, blank=True)
     source_name = models.CharField(max_length=200, blank=True)
     source_link = models.CharField(max_length=500, blank=True)
@@ -240,7 +240,7 @@ class Layer(models.Model):
     opacity = models.FloatField(default=.5, blank=True, null=True)
 
 
-    row_entry_date = models.DateTimeField()
+    row_entry_date = models.DateTimeField(default=datetime.datetime.now)
     row_update_date = models.DateTimeField(null=True, blank=True)
     openlayers_options = models.TextField(blank=True)
 
