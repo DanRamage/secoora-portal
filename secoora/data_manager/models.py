@@ -118,6 +118,7 @@ class Metadata(models.Model):
 
   TIME_TYPE_CHOICES = (
     ('Real Time', 'Real Time'),
+    ('Forecast_Hindcast', 'Forecast/Hindcast'),
     ('Archival', 'Archival')
   )
 
@@ -200,7 +201,7 @@ class Layer(models.Model):
     themes = models.ManyToManyField('Theme', blank=True, null=True)
     topics = models.ManyToManyField('Topic', blank=True, null=True)
     is_sublayer = models.BooleanField(default=False)
-    legend = models.CharField(max_length=255, blank=True, null=True)
+    legend = models.CharField(max_length=2000, blank=True, null=True)
     legend_title = models.CharField(max_length=255, blank=True, null=True)
     legend_subtitle = models.CharField(max_length=255, blank=True, null=True)
     utfurl = models.CharField(max_length=255, blank=True, null=True)
