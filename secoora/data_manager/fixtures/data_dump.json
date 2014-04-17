@@ -379,6 +379,187 @@
     }
   },
   {
+    "pk": 39,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (USC)"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (UNC)"
+    }
+  },
+  {
+    "pk": 41,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (SKIO)"
+    }
+  },
+  {
+    "pk": 42,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (USF)"
+    }
+  },
+  {
+    "pk": 43,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (UM)"
+    }
+  },
+  {
     "pk": 19,
     "model": "data_manager.metadata",
     "fields": {
@@ -1383,6 +1564,70 @@
     }
   },
   {
+    "pk": 9,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "UNC",
+      "source_link": "",
+      "thumbnail_source": "",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:30:41",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
+    "pk": 10,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "USC",
+      "source_link": "",
+      "thumbnail_source": "",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:31:24",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
+    "pk": 11,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "SKIO",
+      "source_link": "",
+      "thumbnail_source": "",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:32:07",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
+    "pk": 12,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "UM",
+      "source_link": "",
+      "thumbnail_source": "",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:32:45",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
     "pk": 1,
     "model": "data_manager.provider",
     "fields": {
@@ -2171,6 +2416,61 @@
     }
   },
   {
+    "pk": 52,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:29:59",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        9
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "outer-banks-unc",
+      "metadatatable": 40,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Outer Banks (UNC)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        51
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 33,
     "model": "data_manager.layer",
     "fields": {
@@ -2438,6 +2738,61 @@
       "row_update_date": null,
       "sublayers": [
         34
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 53,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:31:02",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        10
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "long-bay-usc",
+      "metadatatable": 39,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Long Bay (USC)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        51
       ],
       "attribute_title": ""
     }
@@ -2712,7 +3067,64 @@
       "arcgis_layers": "",
       "legend_title": "Relative Humidity",
       "row_update_date": null,
-      "sublayers": [],
+      "sublayers": [
+        50
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 54,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:31:45",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        11
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "savannah-skio",
+      "metadatatable": 41,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Savannah (SKIO)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        51
+      ],
       "attribute_title": ""
     }
   },
@@ -2770,6 +3182,61 @@
         39,
         26,
         38
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 55,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:32:21",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        12
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "miami-um",
+      "metadatatable": 43,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Miami (UM)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        51
       ],
       "attribute_title": ""
     }
@@ -3152,6 +3619,61 @@
     }
   },
   {
+    "pk": 56,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:33:07",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        4
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "tampa-usf",
+      "metadatatable": 42,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Tampa (USF)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        51
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 9,
     "model": "data_manager.layer",
     "fields": {
@@ -3420,6 +3942,59 @@
       "row_update_date": null,
       "sublayers": [
         35
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 48,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T14:12:29",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "air-pressure",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Air Pressure",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        49
       ],
       "attribute_title": ""
     }
@@ -3803,6 +4378,61 @@
     }
   },
   {
+    "pk": 49,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "WMS",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T14:16:22",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [
+        8
+      ],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "Modeled air pressure. Forecast out 6 days, hindcast back 364 days.",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "Modeled air pressure. Forecast out 6 days, hindcast back 364 days.",
+      "slug_name": "air-pressure-ncep",
+      "metadatatable": 37,
+      "is_sublayer": true,
+      "lookup_field": "",
+      "legend": "http://129.252.139.124/ncWMS/wms?LAYER=ncep_global%2Fprmslmsl&COLORSCALERANGE=95000%2C105000&PALETTE=occam&NUMCOLORBANDS=254&LOGSCALE=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=image%2Fpng&WIDTH=20&HEIGHT=100",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Air Pressure (NCEP)",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "Air Pressure",
+      "row_update_date": null,
+      "sublayers": [
+        48
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 42,
     "model": "data_manager.layer",
     "fields": {
@@ -3906,6 +4536,116 @@
       "row_update_date": null,
       "sublayers": [
         46
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 50,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T14:18:13",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "humidity",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Humidity",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        45
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 51,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        1
+      ],
+      "row_entry_date": "2014-04-17T14:25:40",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "",
+      "slug_name": "high-frequency-radar",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "High Frequency Radar",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        52,
+        53,
+        54,
+        55,
+        56
       ],
       "attribute_title": ""
     }
