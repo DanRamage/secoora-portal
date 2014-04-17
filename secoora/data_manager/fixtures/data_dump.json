@@ -2732,7 +2732,7 @@
       "utfurl": "",
       "thumbnail": "",
       "data_download": "",
-      "metadata": "",
+      "metadata": null,
       "opacity": 0.5,
       "vector_color": "",
       "attribute_event": "click",
