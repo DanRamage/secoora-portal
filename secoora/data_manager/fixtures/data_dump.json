@@ -3545,7 +3545,7 @@
       "data_overview": "Modeled Wave data.",
       "slug_name": "waves",
       "metadatatable": null,
-      "is_sublayer": true,
+      "is_sublayer": false,
       "lookup_field": "",
       "legend": "",
       "data_status": "",
