@@ -1126,6 +1126,60 @@
     }
   },
   {
+    "pk": 32,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T10:00:06",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "Modeled Current Data.",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "Modeled Current Data.",
+      "slug_name": "currents",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Currents",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        22,
+        30
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 6,
     "model": "data_manager.layer",
     "fields": {
@@ -1230,6 +1284,60 @@
         24,
         23,
         25
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
+    "pk": 33,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T10:01:24",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "Modeled Salinity Data.",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "Modeled Salinity Data.",
+      "slug_name": "salinity",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Salinity",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        25,
+        28
       ],
       "attribute_title": ""
     }
@@ -1343,6 +1451,60 @@
     }
   },
   {
+    "pk": 34,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T10:02:54",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "Modeled Water Temperatures.",
+      "slug_name": "water-temperature",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "Modeled Water Temperatures.",
+      "name": "Water Temperature",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        24,
+        29
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 2,
     "model": "data_manager.layer",
     "fields": {
@@ -1402,6 +1564,60 @@
     }
   },
   {
+    "pk": 35,
+    "model": "data_manager.layer",
+    "fields": {
+      "layer_type": "checkbox",
+      "fact_sheet": "",
+      "topics": [],
+      "themes": [
+        2
+      ],
+      "row_entry_date": "2014-04-17T10:03:48",
+      "compress_display": false,
+      "map_tiles": "",
+      "legend_subtitle": "",
+      "bookmark": "",
+      "vector_graphic": "",
+      "kml": "",
+      "source": "",
+      "lookup_table": [],
+      "shareable_url": true,
+      "provider": [],
+      "utfurl": "",
+      "thumbnail": "",
+      "data_download": "",
+      "metadata": "",
+      "opacity": 0.5,
+      "vector_color": "",
+      "attribute_event": "click",
+      "description": "Modeled Ocean Heights.",
+      "attribute_fields": [],
+      "learn_more": "",
+      "data_overview": "Modeled Ocean Heights.",
+      "slug_name": "ocean-height",
+      "metadatatable": null,
+      "is_sublayer": false,
+      "lookup_field": "",
+      "legend": "",
+      "data_status": "",
+      "vector_fill": null,
+      "data_source": "",
+      "data_notes": "",
+      "name": "Ocean Height",
+      "url": "",
+      "openlayers_options": "",
+      "arcgis_layers": "",
+      "legend_title": "",
+      "row_update_date": null,
+      "sublayers": [
+        23,
+        26
+      ],
+      "attribute_title": ""
+    }
+  },
+  {
     "pk": 22,
     "model": "data_manager.layer",
     "fields": {
@@ -1449,6 +1665,7 @@
       "legend_title": "Current",
       "row_update_date": null,
       "sublayers": [
+        32,
         21
       ],
       "attribute_title": ""
@@ -1504,7 +1721,8 @@
       "legend_title": "Water Temperature",
       "row_update_date": null,
       "sublayers": [
-        21
+        21,
+        34
       ],
       "attribute_title": ""
     }
@@ -2433,7 +2651,8 @@
       "legend_title": "",
       "row_update_date": null,
       "sublayers": [
-        21
+        21,
+        35
       ],
       "attribute_title": ""
     }
@@ -2488,7 +2707,8 @@
       "legend_title": "Salinity",
       "row_update_date": null,
       "sublayers": [
-        21
+        21,
+        33
       ],
       "attribute_title": ""
     }
@@ -2543,6 +2763,7 @@
       "legend_title": "Ocean Height",
       "row_update_date": null,
       "sublayers": [
+        35,
         31
       ],
       "attribute_title": ""
@@ -2598,6 +2819,7 @@
       "legend_title": "Salinity",
       "row_update_date": null,
       "sublayers": [
+        33,
         31
       ],
       "attribute_title": ""
@@ -2653,6 +2875,7 @@
       "legend_title": "Current",
       "row_update_date": null,
       "sublayers": [
+        32,
         31
       ],
       "attribute_title": ""
@@ -2708,6 +2931,7 @@
       "legend_title": "Water Temperature",
       "row_update_date": null,
       "sublayers": [
+        34,
         31
       ],
       "attribute_title": ""
