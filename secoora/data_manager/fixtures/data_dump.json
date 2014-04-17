@@ -2548,7 +2548,7 @@
     }
   },
   {
-    "pk": 28,
+    "pk": 27,
     "model": "data_manager.layer",
     "fields": {
       "layer_type": "WMS",
@@ -2601,7 +2601,7 @@
     }
   },
   {
-    "pk": 29,
+    "pk": 28,
     "model": "data_manager.layer",
     "fields": {
       "layer_type": "WMS",
@@ -2654,7 +2654,7 @@
     }
   },
   {
-    "pk": 30,
+    "pk": 29,
     "model": "data_manager.layer",
     "fields": {
       "layer_type": "WMS",
@@ -2707,7 +2707,7 @@
     }
   },
   {
-    "pk": 31,
+    "pk": 30,
     "model": "data_manager.layer",
     "fields": {
       "layer_type": "checkbox",
@@ -2755,7 +2755,7 @@
       "arcgis_layers": "",
       "legend_title": "",
       "row_update_date": null,
-      "sublayers": [26,27,28,29,30],
+      "sublayers": [26,27,28,29],
       "attribute_title": ""
     }
   }
