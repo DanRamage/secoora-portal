@@ -87,16 +87,17 @@ class Theme(models.Model):
 
 
 class Observation(models.Model):
-    name = models.TextField()
+  name = models.CharField(max_length=100)
+  display_name = models.CharField(max_length=100)
 
 class ProjectName(models.Model):
-    name = models.TextField()
+  name = models.CharField(max_length=100)
 
 class Place(models.Model):
-    name = models.TextField()
+  name = models.CharField(max_length=100)
 
 class Funding(models.Model):
-    name = models.TextField()
+  name = models.CharField(max_length=100)
 
 
 class Metadata(models.Model):
