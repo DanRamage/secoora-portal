@@ -28,9 +28,9 @@ def buildObsEntries(filename, modelData):
     obsTypeFile.close()
 
 def buildKeywordsAny():
-  print "Building Keywords Any\n"
+  print "Building Keywords Any"
   for layer in Layer.objects.all().order_by('name'):
-    print "Layer: name\n"
+    print "Layer: %s" % (layer.name)
 
 #def main():
 class Command(BaseCommand):
@@ -56,13 +56,14 @@ class Command(BaseCommand):
     if(options['buildKeywordsAny']):
       buildKeywordsAny()
 
-    try:
-      outFile = open(options['initialJsonFile'], 'w')
-    except IOError,e:
-      traceback.print_exc(e)
-    else:
-      outFile.write(json.dumps(modelData, sort_keys=True, indent=4))
-      outFile.close()
+    if(len(modelData)):
+      try:
+        outFile = open(options['initialJsonFile'], 'w')
+      except IOError,e:
+        traceback.print_exc(e)
+      else:
+        outFile.write(json.dumps(modelData, sort_keys=True, indent=4))
+        outFile.close()
 
 '''
 if __name__ == '__main__':
