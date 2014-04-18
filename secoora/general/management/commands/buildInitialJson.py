@@ -33,7 +33,7 @@ def buildKeywordsAny():
     print "Layer: %s" % (layer.name)
     keywords_any = []
     if(layer.metadatatable):
-      for obsKeyWord in layer.metadatatable.keywords_obs:
+      for obsKeyWord in layer.metadatatable.keywords_obs.all():
         keywords_any.append(obsKeyWord)
       if(len(keywords_any)):
         layer.metadatatable.anytext = ';'.join(keywords_any)
