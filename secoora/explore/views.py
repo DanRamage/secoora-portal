@@ -81,6 +81,7 @@ def linkify(text):
     
 def catalog_search(request, template='catalog_search_results.html'):
   logger = logging.getLogger(__name__)
+  print "here"
   if logger:
     logger.info("Begin catalog_search")
 
