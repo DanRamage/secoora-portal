@@ -39,7 +39,7 @@ def buildKeywordsAny():
         print keywords_any
         layer.metadatatable.anytext = ';'.join(keywords_any)
         print layer.metadatatable.anytext
-        layer.save()
+        layer.metadatatable.save()
     else:
       print "No metadata record found."
 
