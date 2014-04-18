@@ -11,7 +11,7 @@
       <div style="margin: 15px 0;">
         <form id="catalog-search-form" class="form-search layer-search" method="get" accept-charset="utf-8" action="/search_catalog/" autocomplete="off">
             <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
-            <input type="text" name="catalog-q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
+            <input type="text" name="gsaa-q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
         </form>
         <!--
         <form id="catalog-search-form" class="form-search layer-search">
@@ -23,9 +23,6 @@
 
     </div>
   </div>
-    <!--
-    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
-    -->
   <div class="span8 theme catalog-page accordion" id="theme-list">
     {% for theme_dict in themes %}
 
