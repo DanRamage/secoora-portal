@@ -44,15 +44,15 @@ class Command(BaseCommand):
   (options, args) = parser.parse_args()
   '''
   def handle(self, *args, **options):
-    options = BaseCommand.option_list  + (
+    option_list = BaseCommand.option_list  + (
         make_option("--ObsTypeFile", dest="obsTypeFile"),
         make_option("--InitialJSONFile", dest="initialJsonFile"),
         make_option("--BuildKeywordsAny", dest="buildKeywordsAny") )
 
     modelData = []
-    if(options.obsTypeFile):
-      buildObsEntries(options.obsTypeFile, modelData)
-    if(options.buildKeywordsAny):
+    if(option_list.obsTypeFile):
+      buildObsEntries(option_list.obsTypeFile, modelData)
+    if(option_list.buildKeywordsAny):
       buildKeywordsAny()
 
     try:
