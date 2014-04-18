@@ -4,6 +4,8 @@ from django.template import RequestContext
 from data_manager.models import *
 from utils import get_domain
 import settings
+import logging
+import logging.config
 
 def explore_page(request, template='explore_page.html'):
     context = {'domain': get_domain(8000), 'domain8010': get_domain()}
