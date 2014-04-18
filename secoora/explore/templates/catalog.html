@@ -9,15 +9,18 @@
 
     <div class="search-row">
       <div style="margin: 15px 0;">
+        <form id="catalog-search-form" class="form-search layer-search" method="get" accept-charset="utf-8" action="/search/" autocomplete="off">
+            <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
+            <input type="text" name="gsaa-q"/>
+        </form>
+        <!--
         <form id="catalog-search-form" class="form-search layer-search">
             <button class="catalog-search-button" type="submit"><i class="icon-search icon-large"></i></button>
-            <!--<input type="text" name="gsaa-q"/>-->
             <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
-            <!--<a class="btn">
-                <i class="icon-remove icon-large"></i>
-            </a>-->
         </form>
-    </div>
+        -->
+      </div>
+
     </div>
   </div>
     <!--
