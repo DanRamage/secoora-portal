@@ -84,7 +84,6 @@ def linkify(text):
     return text.lower().replace(' ', '-')
     
 def catalog_search(request, catalog_q, template='catalog_search_results.html'):
-  print "here"
   if logger:
     logger.info("Begin catalog_search")
 
