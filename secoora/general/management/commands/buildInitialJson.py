@@ -1,6 +1,6 @@
 
 import sys
-import optparse
+from optparse import make_option
 import simplejson as json
 import traceback
 from data_manager.models import *
@@ -32,7 +32,9 @@ def buildKeywordsAny():
   for layer in Layer.objects.all().order_by('name'):
     print "Layer: name\n"
 
-def main():
+#def main():
+class Command(BaseCommand):
+  '''
   parser = optparse.OptionParser()
   parser.add_option("-o", "--ObsTypeFile", dest="obsTypeFile",
                     help="" )
@@ -40,20 +42,28 @@ def main():
                     help="" )
   parser.add_option('b', '--BuildKeywordsAny', dest="buildKeywordsAny")
   (options, args) = parser.parse_args()
+  '''
+  def handle(self, *args, **options):
+    options = BaseCommand.option_list  + (
+        make_option("--ObsTypeFile", dest="obsTypeFile"),
+        make_option("--InitialJSONFile", dest="initialJsonFile"),
+        make_option("--BuildKeywordsAny", dest="buildKeywordsAny") )
 
-  modelData = []
-  if(options.obsTypeFile):
-    buildObsEntries(options.obsTypeFile, modelData)
-  if(options.buildKeywordsAny):
-    buildKeywordsAny()
+    modelData = []
+    if(options.obsTypeFile):
+      buildObsEntries(options.obsTypeFile, modelData)
+    if(options.buildKeywordsAny):
+      buildKeywordsAny()
 
-  try:
-    outFile = open(options.initialJsonFile, 'w')
-  except IOError,e:
-    traceback.print_exc(e)
-  else:
-    outFile.write(json.dumps(modelData, sort_keys=True, indent=4))
-    outFile.close()
+    try:
+      outFile = open(options.initialJsonFile, 'w')
+    except IOError,e:
+      traceback.print_exc(e)
+    else:
+      outFile.write(json.dumps(modelData, sort_keys=True, indent=4))
+      outFile.close()
 
+'''
 if __name__ == '__main__':
   main()
+'''
