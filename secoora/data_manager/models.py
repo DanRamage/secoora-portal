@@ -88,7 +88,7 @@ class Theme(models.Model):
 
 class Observation(models.Model):
   name = models.CharField(max_length=100)
-  display_name = models.CharField(max_length=100)
+  display_name = models.CharField(max_length=100, blank=True, null=True)
 
 class ProjectName(models.Model):
   name = models.CharField(max_length=100)
