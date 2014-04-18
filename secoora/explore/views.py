@@ -5,13 +5,15 @@ from data_manager.models import *
 from utils import get_domain
 import settings
 import logging
-import logging.config
+
+logger = logging.getLogger(__name__)
 
 def explore_page(request, template='explore_page.html'):
     context = {'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
 def data_catalog(request, template='catalog.html'):
+    logger.debug("data_catalog")
     themes = Theme.objects.all().order_by('display_name')
     themes_with_links = add_learn_links(themes)
     add_ordered_layers_lists(themes_with_links)
@@ -82,7 +84,6 @@ def linkify(text):
     return text.lower().replace(' ', '-')
     
 def catalog_search(request, catalog_q, template='catalog_search_results.html'):
-  logger = logging.getLogger(__name__)
   print "here"
   if logger:
     logger.info("Begin catalog_search")
