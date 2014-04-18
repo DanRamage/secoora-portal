@@ -46,7 +46,7 @@ class Command(BaseCommand):
   option_list = BaseCommand.option_list  + (
       make_option("--ObsTypeFile", dest="obsTypeFile"),
       make_option("--InitialJSONFile", dest="initialJsonFile"),
-      make_option("--BuildKeywordsAny", dest="buildKeywordsAny"), )
+      make_option("--BuildKeywordsAny", dest="buildKeywordsAny", action='store_true', default='false'), )
 
   def handle(self, *args, **options):
 
