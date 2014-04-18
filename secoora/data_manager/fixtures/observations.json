@@ -1,0 +1,523 @@
+
+[
+    {
+        "fields": {
+            "display_name": "Air Pressure",
+            "name": "air_pressure"
+        },
+        "model": "data_manager.observation",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "display_name": "Air Temperature",
+            "name": "air_temperature"
+        },
+        "model": "data_manager.observation",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "display_name": "Average Wave Period",
+            "name": "average_wave_period"
+        },
+        "model": "data_manager.observation",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "display_name": "Bandwidths",
+            "name": "bandwidths"
+        },
+        "model": "data_manager.observation",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "display_name": "Blue Green Algae",
+            "name": "blue_green_algae"
+        },
+        "model": "data_manager.observation",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "display_name": "Bottom Chlorophyll",
+            "name": "bottom_chlorophyll"
+        },
+        "model": "data_manager.observation",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "display_name": "Bottom Water Salinity",
+            "name": "bottom_water_salinity"
+        },
+        "model": "data_manager.observation",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "display_name": "Cdom",
+            "name": "cdom"
+        },
+        "model": "data_manager.observation",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "display_name": "Center Frequencies",
+            "name": "center_frequencies"
+        },
+        "model": "data_manager.observation",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "display_name": "Check Factor",
+            "name": "check_factor"
+        },
+        "model": "data_manager.observation",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "display_name": "Chl Concentration",
+            "name": "chl_concentration"
+        },
+        "model": "data_manager.observation",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "display_name": "Current Speed",
+            "name": "current_speed"
+        },
+        "model": "data_manager.observation",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "display_name": "Current To Direction",
+            "name": "current_to_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "display_name": "Depth",
+            "name": "depth"
+        },
+        "model": "data_manager.observation",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "display_name": "Directional Wave Parameter",
+            "name": "directional_wave_parameter"
+        },
+        "model": "data_manager.observation",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "display_name": "Discharge",
+            "name": "discharge"
+        },
+        "model": "data_manager.observation",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "display_name": "Dominant Wave Period",
+            "name": "dominant_wave_period"
+        },
+        "model": "data_manager.observation",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "display_name": "Drifter Direction",
+            "name": "drifter_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "display_name": "Drifter Speed",
+            "name": "drifter_speed"
+        },
+        "model": "data_manager.observation",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "display_name": "Eastward Current",
+            "name": "eastward_current"
+        },
+        "model": "data_manager.observation",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "display_name": "Gage Height",
+            "name": "gage_height"
+        },
+        "model": "data_manager.observation",
+        "pk": 21
+    },
+    {
+        "fields": {
+            "display_name": "Mean Wave Direction Peak Period",
+            "name": "mean_wave_direction_peak_period"
+        },
+        "model": "data_manager.observation",
+        "pk": 22
+    },
+    {
+        "fields": {
+            "display_name": "Nitrate",
+            "name": "nitrate"
+        },
+        "model": "data_manager.observation",
+        "pk": 23
+    },
+    {
+        "fields": {
+            "display_name": "Northward Current",
+            "name": "northward_current"
+        },
+        "model": "data_manager.observation",
+        "pk": 24
+    },
+    {
+        "fields": {
+            "display_name": "Oxygen Concentration",
+            "name": "oxygen_concentration"
+        },
+        "model": "data_manager.observation",
+        "pk": 25
+    },
+    {
+        "fields": {
+            "display_name": "Oxygen Saturation",
+            "name": "oxygen_saturation"
+        },
+        "model": "data_manager.observation",
+        "pk": 26
+    },
+    {
+        "fields": {
+            "display_name": "Ph",
+            "name": "ph"
+        },
+        "model": "data_manager.observation",
+        "pk": 27
+    },
+    {
+        "fields": {
+            "display_name": "Phosphate",
+            "name": "phosphate"
+        },
+        "model": "data_manager.observation",
+        "pk": 28
+    },
+    {
+        "fields": {
+            "display_name": "Photosynthetic Active Radiation",
+            "name": "photosynthetic_active_radiation"
+        },
+        "model": "data_manager.observation",
+        "pk": 29
+    },
+    {
+        "fields": {
+            "display_name": "Precipitation",
+            "name": "precipitation"
+        },
+        "model": "data_manager.observation",
+        "pk": 30
+    },
+    {
+        "fields": {
+            "display_name": "Precipitation Accumulated Daily",
+            "name": "precipitation_accumulated_daily"
+        },
+        "model": "data_manager.observation",
+        "pk": 31
+    },
+    {
+        "fields": {
+            "display_name": "Precipitation Accumulated Storm",
+            "name": "precipitation_accumulated_storm"
+        },
+        "model": "data_manager.observation",
+        "pk": 32
+    },
+    {
+        "fields": {
+            "display_name": "Predicted Water Level",
+            "name": "predicted_water_level"
+        },
+        "model": "data_manager.observation",
+        "pk": 33
+    },
+    {
+        "fields": {
+            "display_name": "Principal Wave Direction",
+            "name": "principal_wave_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 34
+    },
+    {
+        "fields": {
+            "display_name": "Relative Humidity",
+            "name": "relative_humidity"
+        },
+        "model": "data_manager.observation",
+        "pk": 35
+    },
+    {
+        "fields": {
+            "display_name": "Salinity",
+            "name": "salinity"
+        },
+        "model": "data_manager.observation",
+        "pk": 36
+    },
+    {
+        "fields": {
+            "display_name": "Sea Bottom Temperature",
+            "name": "sea_bottom_temperature"
+        },
+        "model": "data_manager.observation",
+        "pk": 37
+    },
+    {
+        "fields": {
+            "display_name": "Sea Surface Eastward Current",
+            "name": "sea_surface_eastward_current"
+        },
+        "model": "data_manager.observation",
+        "pk": 38
+    },
+    {
+        "fields": {
+            "display_name": "Sea Surface Northward Current",
+            "name": "sea_surface_northward_current"
+        },
+        "model": "data_manager.observation",
+        "pk": 39
+    },
+    {
+        "fields": {
+            "display_name": "Sea Surface Temperature",
+            "name": "sea_surface_temperature"
+        },
+        "model": "data_manager.observation",
+        "pk": 40
+    },
+    {
+        "fields": {
+            "display_name": "Significant Wave Height",
+            "name": "significant_wave_height"
+        },
+        "model": "data_manager.observation",
+        "pk": 41
+    },
+    {
+        "fields": {
+            "display_name": "Significant Wave To Direction",
+            "name": "significant_wave_to_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 42
+    },
+    {
+        "fields": {
+            "display_name": "Solar Radiation",
+            "name": "solar_radiation"
+        },
+        "model": "data_manager.observation",
+        "pk": 43
+    },
+    {
+        "fields": {
+            "display_name": "Spectral Energy",
+            "name": "spectral_energy"
+        },
+        "model": "data_manager.observation",
+        "pk": 44
+    },
+    {
+        "fields": {
+            "display_name": "Stream Velocity",
+            "name": "stream_velocity"
+        },
+        "model": "data_manager.observation",
+        "pk": 45
+    },
+    {
+        "fields": {
+            "display_name": "Surface Chlorophyll",
+            "name": "surface_chlorophyll"
+        },
+        "model": "data_manager.observation",
+        "pk": 46
+    },
+    {
+        "fields": {
+            "display_name": "Surface Water Salinity",
+            "name": "surface_water_salinity"
+        },
+        "model": "data_manager.observation",
+        "pk": 47
+    },
+    {
+        "fields": {
+            "display_name": "Swell Direction",
+            "name": "swell_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 48
+    },
+    {
+        "fields": {
+            "display_name": "Swell Height",
+            "name": "swell_height"
+        },
+        "model": "data_manager.observation",
+        "pk": 49
+    },
+    {
+        "fields": {
+            "display_name": "Swell Period",
+            "name": "swell_period"
+        },
+        "model": "data_manager.observation",
+        "pk": 50
+    },
+    {
+        "fields": {
+            "display_name": "Swell Wave Direction",
+            "name": "swell_wave_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 51
+    },
+    {
+        "fields": {
+            "display_name": "Turbidity",
+            "name": "turbidity"
+        },
+        "model": "data_manager.observation",
+        "pk": 52
+    },
+    {
+        "fields": {
+            "display_name": "Visibility",
+            "name": "visibility"
+        },
+        "model": "data_manager.observation",
+        "pk": 53
+    },
+    {
+        "fields": {
+            "display_name": "Water Conductivity",
+            "name": "water_conductivity"
+        },
+        "model": "data_manager.observation",
+        "pk": 54
+    },
+    {
+        "fields": {
+            "display_name": "Water Level",
+            "name": "water_level"
+        },
+        "model": "data_manager.observation",
+        "pk": 55
+    },
+    {
+        "fields": {
+            "display_name": "Water Pressure",
+            "name": "water_pressure"
+        },
+        "model": "data_manager.observation",
+        "pk": 56
+    },
+    {
+        "fields": {
+            "display_name": "Water Salinity",
+            "name": "water_salinity"
+        },
+        "model": "data_manager.observation",
+        "pk": 57
+    },
+    {
+        "fields": {
+            "display_name": "Water Temperature",
+            "name": "water_temperature"
+        },
+        "model": "data_manager.observation",
+        "pk": 58
+    },
+    {
+        "fields": {
+            "display_name": "Wave From Direction",
+            "name": "wave_from_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 59
+    },
+    {
+        "fields": {
+            "display_name": "Wind From Direction",
+            "name": "wind_from_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 60
+    },
+    {
+        "fields": {
+            "display_name": "Wind Gust",
+            "name": "wind_gust"
+        },
+        "model": "data_manager.observation",
+        "pk": 61
+    },
+    {
+        "fields": {
+            "display_name": "Wind Speed",
+            "name": "wind_speed"
+        },
+        "model": "data_manager.observation",
+        "pk": 62
+    },
+    {
+        "fields": {
+            "display_name": "Wind Wave Direction",
+            "name": "wind_wave_direction"
+        },
+        "model": "data_manager.observation",
+        "pk": 63
+    },
+    {
+        "fields": {
+            "display_name": "Wind Wave Height",
+            "name": "wind_wave_height"
+        },
+        "model": "data_manager.observation",
+        "pk": 64
+    },
+    {
+        "fields": {
+            "display_name": "Wind Wave Period",
+            "name": "wind_wave_period"
+        },
+        "model": "data_manager.observation",
+        "pk": 65
+    }
+]
