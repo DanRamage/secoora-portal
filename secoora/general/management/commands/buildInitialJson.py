@@ -43,20 +43,21 @@ class Command(BaseCommand):
   parser.add_option('b', '--BuildKeywordsAny', dest="buildKeywordsAny")
   (options, args) = parser.parse_args()
   '''
+  option_list = BaseCommand.option_list  + (
+      make_option("--ObsTypeFile", dest="obsTypeFile"),
+      make_option("--InitialJSONFile", dest="initialJsonFile"),
+      make_option("--BuildKeywordsAny", dest="buildKeywordsAny"), )
+
   def handle(self, *args, **options):
-    option_list = BaseCommand.option_list  + (
-        make_option("--ObsTypeFile", dest="obsTypeFile"),
-        make_option("--InitialJSONFile", dest="initialJsonFile"),
-        make_option("--BuildKeywordsAny", dest="buildKeywordsAny") )
 
     modelData = []
-    if(option_list.obsTypeFile):
-      buildObsEntries(option_list.obsTypeFile, modelData)
-    if(option_list.buildKeywordsAny):
+    if(options['obsTypeFile']):
+      buildObsEntries(options['obsTypeFile'], modelData)
+    if(options['buildKeywordsAny']):
       buildKeywordsAny()
 
     try:
-      outFile = open(options.initialJsonFile, 'w')
+      outFile = open(options['initialJsonFile'], 'w')
     except IOError,e:
       traceback.print_exc(e)
     else:
