@@ -54,7 +54,527 @@
     }
   },
   {
+    "pk": 1,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Air Pressure",
+      "name": "air_pressure"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Air Temperature",
+      "name": "air_temperature"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Average Wave Period",
+      "name": "average_wave_period"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Bandwidths",
+      "name": "bandwidths"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Blue Green Algae",
+      "name": "blue_green_algae"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Bottom Chlorophyll",
+      "name": "bottom_chlorophyll"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Bottom Water Salinity",
+      "name": "bottom_water_salinity"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Cdom",
+      "name": "cdom"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Center Frequencies",
+      "name": "center_frequencies"
+    }
+  },
+  {
     "pk": 10,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Check Factor",
+      "name": "check_factor"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Chl Concentration",
+      "name": "chl_concentration"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Current Speed",
+      "name": "current_speed"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Current To Direction",
+      "name": "current_to_direction"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Depth",
+      "name": "depth"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Directional Wave Parameter",
+      "name": "directional_wave_parameter"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Discharge",
+      "name": "discharge"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Dominant Wave Period",
+      "name": "dominant_wave_period"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Drifter Direction",
+      "name": "drifter_direction"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Drifter Speed",
+      "name": "drifter_speed"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Eastward Current",
+      "name": "eastward_current"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Gage Height",
+      "name": "gage_height"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Mean Wave Direction Peak Period",
+      "name": "mean_wave_direction_peak_period"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Nitrate",
+      "name": "nitrate"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Northward Current",
+      "name": "northward_current"
+    }
+  },
+  {
+    "pk": 25,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Oxygen Concentration",
+      "name": "oxygen_concentration"
+    }
+  },
+  {
+    "pk": 26,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Oxygen Saturation",
+      "name": "oxygen_saturation"
+    }
+  },
+  {
+    "pk": 27,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Ph",
+      "name": "ph"
+    }
+  },
+  {
+    "pk": 28,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Phosphate",
+      "name": "phosphate"
+    }
+  },
+  {
+    "pk": 29,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Photosynthetic Active Radiation",
+      "name": "photosynthetic_active_radiation"
+    }
+  },
+  {
+    "pk": 30,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Precipitation",
+      "name": "precipitation"
+    }
+  },
+  {
+    "pk": 31,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Precipitation Accumulated Daily",
+      "name": "precipitation_accumulated_daily"
+    }
+  },
+  {
+    "pk": 32,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Precipitation Accumulated Storm",
+      "name": "precipitation_accumulated_storm"
+    }
+  },
+  {
+    "pk": 33,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Predicted Water Level",
+      "name": "predicted_water_level"
+    }
+  },
+  {
+    "pk": 34,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Principal Wave Direction",
+      "name": "principal_wave_direction"
+    }
+  },
+  {
+    "pk": 35,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Relative Humidity",
+      "name": "relative_humidity"
+    }
+  },
+  {
+    "pk": 36,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Salinity",
+      "name": "salinity"
+    }
+  },
+  {
+    "pk": 37,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Sea Bottom Temperature",
+      "name": "sea_bottom_temperature"
+    }
+  },
+  {
+    "pk": 38,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Sea Surface Eastward Current",
+      "name": "sea_surface_eastward_current"
+    }
+  },
+  {
+    "pk": 39,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Sea Surface Northward Current",
+      "name": "sea_surface_northward_current"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Sea Surface Temperature",
+      "name": "sea_surface_temperature"
+    }
+  },
+  {
+    "pk": 41,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Significant Wave Height",
+      "name": "significant_wave_height"
+    }
+  },
+  {
+    "pk": 42,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Significant Wave To Direction",
+      "name": "significant_wave_to_direction"
+    }
+  },
+  {
+    "pk": 43,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Solar Radiation",
+      "name": "solar_radiation"
+    }
+  },
+  {
+    "pk": 44,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Spectral Energy",
+      "name": "spectral_energy"
+    }
+  },
+  {
+    "pk": 45,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Stream Velocity",
+      "name": "stream_velocity"
+    }
+  },
+  {
+    "pk": 46,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Surface Chlorophyll",
+      "name": "surface_chlorophyll"
+    }
+  },
+  {
+    "pk": 47,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Surface Water Salinity",
+      "name": "surface_water_salinity"
+    }
+  },
+  {
+    "pk": 48,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Swell Direction",
+      "name": "swell_direction"
+    }
+  },
+  {
+    "pk": 49,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Swell Height",
+      "name": "swell_height"
+    }
+  },
+  {
+    "pk": 50,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Swell Period",
+      "name": "swell_period"
+    }
+  },
+  {
+    "pk": 51,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Swell Wave Direction",
+      "name": "swell_wave_direction"
+    }
+  },
+  {
+    "pk": 52,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Turbidity",
+      "name": "turbidity"
+    }
+  },
+  {
+    "pk": 53,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Visibility",
+      "name": "visibility"
+    }
+  },
+  {
+    "pk": 54,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Water Conductivity",
+      "name": "water_conductivity"
+    }
+  },
+  {
+    "pk": 55,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Water Level",
+      "name": "water_level"
+    }
+  },
+  {
+    "pk": 56,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Water Pressure",
+      "name": "water_pressure"
+    }
+  },
+  {
+    "pk": 57,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Water Salinity",
+      "name": "water_salinity"
+    }
+  },
+  {
+    "pk": 58,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Water Temperature",
+      "name": "water_temperature"
+    }
+  },
+  {
+    "pk": 59,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wave From Direction",
+      "name": "wave_from_direction"
+    }
+  },
+  {
+    "pk": 60,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind From Direction",
+      "name": "wind_from_direction"
+    }
+  },
+  {
+    "pk": 61,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind Gust",
+      "name": "wind_gust"
+    }
+  },
+  {
+    "pk": 62,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind Speed",
+      "name": "wind_speed"
+    }
+  },
+  {
+    "pk": 63,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind Wave Direction",
+      "name": "wind_wave_direction"
+    }
+  },
+  {
+    "pk": 64,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind Wave Height",
+      "name": "wind_wave_height"
+    }
+  },
+  {
+    "pk": 65,
+    "model": "data_manager.observation",
+    "fields": {
+      "display_name": "Wind Wave Period",
+      "name": "wind_wave_period"
+    }
+  },
+  {
+    "pk": 5,
     "model": "data_manager.metadata",
     "fields": {
       "keywords_other": "",
@@ -68,7 +588,9 @@
       "links": "",
       "time_begin": null,
       "wkt_geometry": "",
-      "keywords_obs": [],
+      "keywords_obs": [
+        58
+      ],
       "keywords_topic": [],
       "spatial_resolution": "",
       "description_short": "",
@@ -76,7 +598,9 @@
       "data_type": "Observed",
       "thumbnail_product": "",
       "metadata_link": "",
-      "keywords_theme": [],
+      "keywords_theme": [
+        1
+      ],
       "keywords_project": [],
       "getcap_link": "",
       "keywords_instrumentation": "",
@@ -85,7 +609,7 @@
       "bbox_extent": "",
       "keywords_place": [],
       "publish_date": null,
-      "title": "SECOORA Data Partners In-Situ"
+      "title": "SECOORA Sea Surface Temperature"
     }
   },
   {
@@ -379,43 +903,6 @@
     }
   },
   {
-    "pk": 39,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Coverage",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Grid",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [
-        1
-      ],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "HF Radar (USC)"
-    }
-  },
-  {
     "pk": 40,
     "model": "data_manager.metadata",
     "fields": {
@@ -528,7 +1015,7 @@
     "fields": {
       "keywords_other": "",
       "time_interval_minutes": null,
-      "abstract": "",
+      "abstract": "The University of Miami uses the WERA HF radar system. The WERA system transmits a frequency modulated continuous wave (FMCW) chirp and avoids the 3 km blind range in front of the radar (Essen et al., 2000). The horizontal resolution of WERA is a function of the the chirp characteristics as listed in the Table~2 for both a high-resolution and low-resolution version. For a transmission frequency of 16 and 30 MHz, Bragg wavelengths are 9.4 and 5 m, respectively. The transmitter is arranged to encompass about a 60 deg swath. WERA also has the flexibility to be configured into a DF array (such as CODAR) where 4 antennae may be set up in a square or a linear array can be set up consisting of 4n antennae or channels using BF techniques. According to representatives from the company, a long-range, high horizontal resolution version can be designed where the range would be O(100 km) and the horizontal resolution would be 600 to 750 m. This higher spatial resolution requires bandwidth of 200 to 250 KHz, and approval from the Federal Communication Center (FCC). Temporal sampling can be as low a few minutes as the system is FMCW as opposed to a pulsed radar (i.e. OSCR). This sampling feature make WERA particularly attractive in high current gradient regimes where time scales of surface current variability are less than an hour. ",
       "time_end": null,
       "keywords_funding": [],
       "time_type": "Real Time",
@@ -540,8 +1027,69 @@
       "keywords_obs": [],
       "keywords_topic": [],
       "spatial_resolution": "",
-      "description_short": "",
+      "description_short": "The University of Miami/Rosenstiel School of Marine and Atmospheric Sciences is currently operating three WERA High Frequency radars in Crandon Park on Key Biscayne, Virginia Key and John U Lloyd Park on Dania Beach. The radars at Crandon Park transmit at 16MHz, Virginia Key and Dania Beach transmit at 12MHz and provide measurement of currents on the ocean's surface over a large area of the ocean off Miami, FL.",
       "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "http://iwave.rsmas.miami.edu/wera/info.php",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (University of Miami/Rosenstiel School of Marine and Atmospheric Sciences)"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        1,
+        2,
+        3,
+        12,
+        13,
+        15,
+        17,
+        20,
+        22,
+        24,
+        35,
+        38,
+        40,
+        41,
+        42,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
       "data_type": "Observed",
       "thumbnail_product": "",
       "metadata_link": "",
@@ -556,7 +1104,341 @@
       "bbox_extent": "",
       "keywords_place": [],
       "publish_date": null,
-      "title": "HF Radar (UM)"
+      "title": "NDBC In-Situ"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        1,
+        2,
+        11,
+        14,
+        23,
+        25,
+        26,
+        27,
+        30,
+        35,
+        36,
+        43,
+        52,
+        54,
+        60,
+        61,
+        62
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "NERRS In-Situ"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        1,
+        2,
+        60,
+        61,
+        62
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "NWS In-Situ"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        16,
+        21,
+        45,
+        54,
+        58
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "USGS In-Situ"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        1,
+        2,
+        3,
+        11,
+        12,
+        13,
+        14,
+        15,
+        17,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        34,
+        35,
+        36,
+        41,
+        42,
+        43,
+        48,
+        49,
+        50,
+        51,
+        52,
+        54,
+        55,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "SECOORA Data Partners In-Situ"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        55
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "SECOORA Water Level"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        60,
+        62
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "SECOORA Winds"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Point",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [
+        2
+      ],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "",
+      "model_data_type": "Point",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "SECOORA Air Temperature"
     }
   },
   {
@@ -891,257 +1773,6 @@
     }
   },
   {
-    "pk": 2,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "SECOORA Air Temperature"
-    }
-  },
-  {
-    "pk": 3,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [
-        1
-      ],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "SECOORA Winds"
-    }
-  },
-  {
-    "pk": 4,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "SECOORA Water Level"
-    }
-  },
-  {
-    "pk": 5,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [
-        1
-      ],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "SECOORA Sea Surface Temperature"
-    }
-  },
-  {
-    "pk": 6,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "NWS In-Situ"
-    }
-  },
-  {
-    "pk": 7,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [
-        1
-      ],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "NDBC In-Situ"
-    }
-  },
-  {
-    "pk": 8,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "NERRS In-Situ"
-    }
-  },
-  {
     "pk": 27,
     "model": "data_manager.metadata",
     "fields": {
@@ -1174,43 +1805,6 @@
       "keywords_place": [],
       "publish_date": null,
       "title": "Ocean Height - East Coast (UF)"
-    }
-  },
-  {
-    "pk": 9,
-    "model": "data_manager.metadata",
-    "fields": {
-      "keywords_other": "",
-      "time_interval_minutes": null,
-      "abstract": "",
-      "time_end": null,
-      "keywords_funding": [],
-      "time_type": "Real Time",
-      "xml": "",
-      "spatial_type": "Point",
-      "links": "",
-      "time_begin": null,
-      "wkt_geometry": "",
-      "keywords_obs": [],
-      "keywords_topic": [],
-      "spatial_resolution": "",
-      "description_short": "",
-      "model_data_type": "Point",
-      "data_type": "Observed",
-      "thumbnail_product": "",
-      "metadata_link": "",
-      "keywords_theme": [
-        1
-      ],
-      "keywords_project": [],
-      "getcap_link": "",
-      "keywords_instrumentation": "",
-      "identifiers": "",
-      "anytext": "",
-      "bbox_extent": "",
-      "keywords_place": [],
-      "publish_date": null,
-      "title": "USGS In-Situ"
     }
   },
   {
@@ -1564,11 +2158,96 @@
     }
   },
   {
+    "pk": 39,
+    "model": "data_manager.metadata",
+    "fields": {
+      "keywords_other": "",
+      "time_interval_minutes": null,
+      "abstract": "The University of South Carolina (Department of Geological Sciences / Marine Science Program) and the Skidaway Institute of Oceanography (SKIO, GA) have installed two shore-based HF-radars along the South Carolina - Georgia coastline to measure surface currents across the continental shelf. The USC radar was installed with SEACOOS funding (through ONR) and the systems have been operational since April 2006.\r\n\r\nThese HF-radars are long-range WERA installations manufactured by Helzel MessTechnik  of Germany. They operate at a frequency of 8.3 MHz, and measure near surface currents (upper ~one-meter depth) along radials towards or away from each installation. Each radial extends over 120km (during daytime) and the radials span a region +/-60 degrees from the perpendicular of the linear antenna array. In the region where the USC and SKIO installations overlap at a sufficient angle, 2-D vector velocities can be constructed from the radial velocities.\r\n\r\nThe USC installation if located at Pritchard's Island, a pristine barrier island on the South Carolina coast. The electronics are housed on the Marine Laboratory operated by the University of South Carolina, Beaufort, while the SKIO installation is on St. Catherine's Island GA.\r\n\r\n",
+      "time_end": null,
+      "keywords_funding": [],
+      "time_type": "Real Time",
+      "xml": "",
+      "spatial_type": "Coverage",
+      "links": "",
+      "time_begin": null,
+      "wkt_geometry": "",
+      "keywords_obs": [],
+      "keywords_topic": [],
+      "spatial_resolution": "",
+      "description_short": "The University of South Carolina (Department of Geological Sciences / Marine Science Program) and the Skidaway Institute of Oceanography (SKIO, GA) have installed two shore-based HF-radars along the South Carolina - Georgia coastline to measure surface currents across the continental shelf. The USC radar was installed with SEACOOS funding (through ONR) and the systems have been operational since April 2006.",
+      "model_data_type": "Grid",
+      "data_type": "Observed",
+      "thumbnail_product": "",
+      "metadata_link": "http://www.geol.sc.edu/gvoulgar/WERA_link.html",
+      "keywords_theme": [
+        1
+      ],
+      "keywords_project": [],
+      "getcap_link": "",
+      "keywords_instrumentation": "",
+      "identifiers": "",
+      "anytext": "",
+      "bbox_extent": "",
+      "keywords_place": [],
+      "publish_date": null,
+      "title": "HF Radar (University of South Carolina, Coastal Processes & Sediment Dynamics Lab)"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "University of South Carolina, Coastal Processes & Sediment Dynamics Lab",
+      "source_link": "http://www.geol.sc.edu/gvoulgar/WERA_link.html",
+      "thumbnail_source": "http://www.geol.sc.edu/gvoulgar/pictures/cpsd_logobest.jpg",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:31:24",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
+    "pk": 12,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "University of Miami, Rosenstiel School of Marine and Atmospheric Sciences ",
+      "source_link": "http://iwave.rsmas.miami.edu/wera/",
+      "thumbnail_source": "http://iwave.rsmas.miami.edu/wera/rsmas.gif",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-17T14:32:45",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
+    "pk": 4,
+    "model": "data_manager.provider",
+    "fields": {
+      "source_name": "University of South Florida, College of Marine Science",
+      "source_link": "http://seacoos.marine.usf.edu/HFRadar/",
+      "thumbnail_source": "http://seacoos.marine.usf.edu/HFRadar/img/clg1.gif",
+      "catalog_name": "",
+      "contact_email_list": "",
+      "row_entry_date": "2014-04-16T15:14:00",
+      "row_update_date": null,
+      "metadatatable": null,
+      "catalog_link": "",
+      "use_constraints": ""
+    }
+  },
+  {
     "pk": 9,
     "model": "data_manager.provider",
     "fields": {
-      "source_name": "UNC",
-      "source_link": "",
+      "source_name": "University of North Carolina",
+      "source_link": "http://nccoos.org/platforms/hfradar/",
       "thumbnail_source": "",
       "catalog_name": "",
       "contact_email_list": "",
@@ -1580,47 +2259,15 @@
     }
   },
   {
-    "pk": 10,
-    "model": "data_manager.provider",
-    "fields": {
-      "source_name": "USC",
-      "source_link": "",
-      "thumbnail_source": "",
-      "catalog_name": "",
-      "contact_email_list": "",
-      "row_entry_date": "2014-04-17T14:31:24",
-      "row_update_date": null,
-      "metadatatable": null,
-      "catalog_link": "",
-      "use_constraints": ""
-    }
-  },
-  {
     "pk": 11,
     "model": "data_manager.provider",
     "fields": {
-      "source_name": "SKIO",
-      "source_link": "",
+      "source_name": "Skidaway Institute of Oceanography",
+      "source_link": "http://www.skio.uga.edu/?p=research/phy/sabsoon/wera/wera",
       "thumbnail_source": "",
       "catalog_name": "",
       "contact_email_list": "",
       "row_entry_date": "2014-04-17T14:32:07",
-      "row_update_date": null,
-      "metadatatable": null,
-      "catalog_link": "",
-      "use_constraints": ""
-    }
-  },
-  {
-    "pk": 12,
-    "model": "data_manager.provider",
-    "fields": {
-      "source_name": "UM",
-      "source_link": "",
-      "thumbnail_source": "",
-      "catalog_name": "",
-      "contact_email_list": "",
-      "row_entry_date": "2014-04-17T14:32:45",
       "row_update_date": null,
       "metadatatable": null,
       "catalog_link": "",
@@ -1669,22 +2316,6 @@
       "catalog_name": "",
       "contact_email_list": "",
       "row_entry_date": "2014-04-16T15:13:20",
-      "row_update_date": null,
-      "metadatatable": null,
-      "catalog_link": "",
-      "use_constraints": ""
-    }
-  },
-  {
-    "pk": 4,
-    "model": "data_manager.provider",
-    "fields": {
-      "source_name": "USF",
-      "source_link": "",
-      "thumbnail_source": "",
-      "catalog_name": "",
-      "contact_email_list": "",
-      "row_entry_date": "2014-04-16T15:14:00",
       "row_update_date": null,
       "metadatatable": null,
       "catalog_link": "",
