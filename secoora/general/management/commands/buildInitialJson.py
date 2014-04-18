@@ -31,6 +31,11 @@ def buildKeywordsAny():
   print "Building Keywords Any"
   for layer in Layer.objects.all().order_by('name'):
     print "Layer: %s" % (layer.name)
+    keywords_any = []
+    for obsKeyWord in layer.metadatatable.keywords_obs:
+      keywords_any.append(obsKeyWord)
+    layer.metadatatable.anytext = ';'.join(keywords_any)
+    print layer.metadatatable.anytext
 
 #def main():
 class Command(BaseCommand):
