@@ -90,14 +90,27 @@ class Observation(models.Model):
   name = models.CharField(max_length=100)
   display_name = models.CharField(max_length=100, blank=True, null=True)
 
+  def __unicode__(self):
+      return unicode('%s' % (self.display_name))
+
 class ProjectName(models.Model):
   name = models.CharField(max_length=100)
+
+  def __unicode__(self):
+      return unicode('%s' % (self.name))
+
 
 class Place(models.Model):
   name = models.CharField(max_length=100)
 
+  def __unicode__(self):
+      return unicode('%s' % (self.name))
+
 class Funding(models.Model):
   name = models.CharField(max_length=100)
+
+  def __unicode__(self):
+      return unicode('%s' % (self.name))
 
 
 class Metadata(models.Model):
