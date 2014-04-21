@@ -13,7 +13,6 @@ def explore_page(request, template='explore_page.html'):
     return render_to_response(template, RequestContext(request, context)) 
 
 def data_catalog(request, template='catalog.html'):
-    logger.debug("data_catalog")
     themes = Theme.objects.all().order_by('display_name')
     themes_with_links = add_learn_links(themes)
     add_ordered_layers_lists(themes_with_links)
@@ -87,9 +86,12 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   if logger:
     logger.info("Begin catalog_search: %s" % (catalog_q))
 
-  search_key = request.GET['catalog_q']
+    themes = Theme.objects.all().order_by('display_name')
+
+  search_results = Layer.objects.filter(metadatatable.keywords_obs__icontains='catalog_q')
+
   if logger:
-    logger.debug("Search query: %s" % (search_key))
+    logger.debug("Found: %d records similar to: %s" % (len(search_results), catalog_q))
 
   #context = {'search_key': search_key, 'domain': get_domain(8000), 'domain8010': get_domain()}
 
