@@ -82,8 +82,7 @@ def arcrest_example(request, slug=None, template='arcrest_example.html'):
 def linkify(text):
     return text.lower().replace(' ', '-')
     
-def catalog_search(request, template='catalog_search_results.html'):
-  catalog_q = request.GET.get('url')
+def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   if logger:
     logger.info("Begin catalog_search: %s" % (catalog_q))
 
