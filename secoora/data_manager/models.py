@@ -518,7 +518,7 @@ class Records(models.Model):
   specificationdatetype = models.TextField(blank=True)
   links = models.TextField(blank=True)
   area = models.DecimalField(null=True, max_digits=65535, decimal_places=65535, blank=True)
-  secoora_extent = models.BooleanField(null=True, blank=True)
+  secoora_extent = models.BooleanField(blank=True)
 
 
   def __unicode__(self):
