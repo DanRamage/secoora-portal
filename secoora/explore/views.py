@@ -87,6 +87,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   if(len(search_term) == 0):
     search_term = request.GET['catalog_q']
   if logger:
+    logger.info("View search param: %s" % (catalog_q))
     logger.info("Begin catalog_search: %s" % (search_term))
 
   search_results = Layer.objects.filter(metadatatable__anytext__icontains=search_term)
