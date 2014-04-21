@@ -88,7 +88,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 
     themes = Theme.objects.all().order_by('display_name')
 
-  search_results = Layer.objects.filter(metadatatable.keywords_obs__icontains='catalog_q')
+  search_results = Layer.objects.filter(metadatatable.keywords_obs__icontains=catalog_q)
 
   if logger:
     logger.debug("Found: %d records similar to: %s" % (len(search_results), catalog_q))
