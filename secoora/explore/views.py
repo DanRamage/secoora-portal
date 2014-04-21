@@ -83,13 +83,16 @@ def linkify(text):
     return text.lower().replace(' ', '-')
     
 def catalog_search(request, catalog_q, template='catalog_search_results.html'):
+  search_term = catalog_q
+  if(len(search_term) == 0):
+    search_term = request.GET.get['catalog_q']
   if logger:
-    logger.info("Begin catalog_search: %s" % (catalog_q))
+    logger.info("Begin catalog_search: %s" % (search_term))
 
-  search_results = Layer.objects.filter(metadatatable__anytext__icontains=catalog_q)
+  search_results = Layer.objects.filter(metadatatable__anytext__icontains=search_term)
 
   if logger:
-    logger.debug("Found: %d records similar to: %s" % (len(search_results), catalog_q))
+    logger.debug("Found: %d records similar to: %s" % (len(search_results), search_term))
     for result in search_results:
       logger.info("Layer: %s" % (result.name))
 
