@@ -99,4 +99,6 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 
   context = {'result_count' : len(layer_results), 'catalog_q': search_term, 'layers': layer_results, 'domain': get_domain(8000), 'domain8010': get_domain()}
 
+  if logger:
+    logger.info("Rendering response.")
   return render_to_response(template, RequestContext(request, context))
