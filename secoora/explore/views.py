@@ -83,6 +83,7 @@ def linkify(text):
     return text.lower().replace(' ', '-')
     
 def catalog_search(request, catalog_q, template='catalog_search_results.html'):
+  catalog_q = request.GET.get('url')
   if logger:
     logger.info("Begin catalog_search: %s" % (catalog_q))
 
