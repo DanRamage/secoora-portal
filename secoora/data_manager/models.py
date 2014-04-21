@@ -517,7 +517,7 @@ class Records(models.Model):
   specificationdate = models.TextField(blank=True)
   specificationdatetype = models.TextField(blank=True)
   links = models.TextField(blank=True)
-  area = models.DecimalField(null=True, max_digits=131072, decimal_places=16383, blank=True)
+  area = models.DecimalField(null=True, max_digits=1000, decimal_places=1000, blank=True)
   secoora_extent = models.BooleanField(blank=True)
 
 
