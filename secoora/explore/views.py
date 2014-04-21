@@ -46,7 +46,7 @@ def add_learn_links(themes):
         num_layers = len([layer.name for layer in theme.layer_set.all() if not layer.is_parent])
         theme_dict.append({'theme': theme, 'num_layers': num_layers, 'learn_link': theme.learn_link})
     return theme_dict
-    
+"""
 def tiles_page(request, slug=None, template='tiles_page.html'):
     layer = get_object_or_404(Layer, slug_name=slug)
     orig_url = layer.url
@@ -78,7 +78,7 @@ def arcrest_example(request, slug=None, template='arcrest_example.html'):
     layer = get_object_or_404(Layer, slug_name=slug)
     context = {'layer': layer}
     return render_to_response(template, RequestContext(request, context)) 
-
+"""
 def linkify(text):
     return text.lower().replace(' ', '-')
     
