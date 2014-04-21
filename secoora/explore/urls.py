@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from views import *
 
 urlpatterns = patterns('',
-    (r'^catalog/(?P<catalog_q>)$', 'catalog_search'),
+    (r'^catalog/(?P<catalog_q>)$', catalog_search),
     #(r'^catalog', data_catalog),
     #(r'^needs', data_needs),
     #(r'^map_tile_example/([\w-]*)', map_tile_example),
