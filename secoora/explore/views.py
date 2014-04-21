@@ -93,7 +93,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   layer_results = Layer.objects.filter(metadatatable__anytext__icontains=search_term)
 
   if logger:
-    logger.debug("Found: %d records similar to: %s" % (len(search_results), search_term))
+    logger.debug("Found: %d records similar to: %s" % (len(layer_results), search_term))
     #for result in layer_results:
     #  logger.info("Layer: %s" % (result.name))
 
