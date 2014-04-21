@@ -86,10 +86,12 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   if logger:
     logger.info("Begin catalog_search: %s" % (catalog_q))
 
-  search_results = Layer.objects.filter(metadatatable__anytext__contains=catalog_q)
+  search_results = Layer.objects.filter(metadatatable__anytext__icontains=catalog_q)
 
   if logger:
     logger.debug("Found: %d records similar to: %s" % (len(search_results), catalog_q))
+    for result in search_results:
+      logger.info("Layer: %s" % (result.name))
 
   #context = {'search_key': search_key, 'domain': get_domain(8000), 'domain8010': get_domain()}
 
