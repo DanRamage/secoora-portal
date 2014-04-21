@@ -94,8 +94,8 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 
   if logger:
     logger.debug("Found: %d records similar to: %s" % (len(search_results), search_term))
-    for result in search_results:
-      logger.info("Layer: %s" % (result.name))
+    #for result in layer_results:
+    #  logger.info("Layer: %s" % (result.name))
 
   context = {'catalog_q': search_term, 'layers': layer_results, 'domain': get_domain(8000), 'domain8010': get_domain()}
 
