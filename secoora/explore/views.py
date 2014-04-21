@@ -85,7 +85,7 @@ def linkify(text):
 def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   search_term = catalog_q
   if(len(search_term) == 0):
-    search_term = request.GET.get['catalog_q']
+    search_term = request.GET['catalog_q']
   if logger:
     logger.info("Begin catalog_search: %s" % (search_term))
 
