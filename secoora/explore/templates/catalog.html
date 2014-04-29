@@ -1,6 +1,119 @@
 {% extends 'base_with_sidebar.html' %}
 {% block main %}
 {% load flatblock_tags %}
+<style type="text/css">
+
+input[type="text"] {
+    /*border: 0px;*/
+}
+input[type="text"]:hover {
+    /*border: 1px solid #cccccc;*/
+}
+
+.catalog-search-button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+#theme-list .accordion-group {
+    border: 0px;
+    margin-bottom: 0px;
+}
+
+#theme-list .theme-group {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e5e5e5;
+    width: 95%;
+}
+
+#theme-list .accordion-heading {
+    display: table;
+}
+
+#theme-list .accordion-toggle {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0px 15px;
+    height: 41px;
+}
+
+#theme-list .accordion-inner li {
+    padding-left: 0px;
+    padding-right: 16px;
+}
+
+#theme-list .accordion-body {
+    position: static;
+}
+
+#theme-list h3 {
+    margin: 0px;
+}
+
+#theme-list a {
+    text-decoration: none;
+}
+
+#theme-list .theme-heading .color-up h3 {
+    color: rgba(3, 11, 212, 1);
+}
+
+#theme-list .theme-heading .color-down h3 {
+    color: rgba(3, 11, 212, .5);
+}
+
+#theme-list .theme-heading small {
+    vertical-align: middle;
+}
+
+#theme-list .theme-heading i.color-up {
+    color: rgba(0,0,0, 1);
+}
+
+#theme-list .theme-heading i.color-down {
+    color: rgba(0,0,0, .5);
+}
+
+#theme-list .layer-heading .color-up {
+    color: rgba(102, 102, 102, 1);
+}
+#theme-list .layer-heading .color-down {
+    color: rgba(102, 102, 102, .5);
+}
+
+#theme-list .sublayer-heading .color-up {
+    color: rgba(102, 102, 102, 1);
+}
+#theme-list .sublayer-heading .color-down {
+    color: rgba(102, 102, 102, .5);
+}
+
+#theme-list .data-layer-links .color-up {
+    color: rgba(3, 11, 212, 1);
+}
+
+#theme-list .data-layer-links .color-down {
+    color: rgba(3, 11, 212, .8);
+}
+
+#theme-list .data-layer-links li  {
+    display: inline-block;
+}
+
+.blog .typeahead {
+    width: 28%;
+}
+
+.blog .typeahead li a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#theme-list .badge {
+  color: #030BD4
+}
+</style>
 
 <div class="row-fluid">
   <div class="span4 pull-right">
@@ -33,7 +146,7 @@
         <div class="accordion-heading theme-heading">
             <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                 <h3>
-                    <span class="theme-search-name">{{ theme_dict.theme.display_name }}</span> <span class="badge badge-info">{{ theme_dict.num_layers }}</span>
+                    <div class="theme-search-name">{{ theme_dict.theme.display_name }}</span> <span class="badge badge-info">{{ theme_dict.num_layers }}</span>
                     <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                     <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                 </h3>
@@ -180,116 +293,7 @@
   </div>
 </div>
 
-<style type="text/css">
 
-input[type="text"] {
-    /*border: 0px;*/
-}
-input[type="text"]:hover {
-    /*border: 1px solid #cccccc;*/
-}
-
-.catalog-search-button {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-}
-
-#theme-list .accordion-group {
-    border: 0px;
-    margin-bottom: 0px;
-}
-
-#theme-list .theme-group {
-    padding-bottom: 3px;
-    border-bottom: 1px solid #e5e5e5;
-    width: 95%;
-}
-
-#theme-list .accordion-heading {
-    display: table;
-}
-
-#theme-list .accordion-toggle {
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0px 15px;
-    height: 41px;
-}
-
-#theme-list .accordion-inner li {
-    padding-left: 0px;
-    padding-right: 16px;
-}
-
-#theme-list .accordion-body {
-    position: static;
-}
-
-#theme-list h3 {
-    margin: 0px;
-}
-
-#theme-list a {
-    text-decoration: none;
-}
-
-#theme-list .theme-heading .color-up h3 {
-    color: rgba(3, 11, 212, 1);
-}
-
-#theme-list .theme-heading .color-down h3 {
-    color: rgba(3, 11, 212, .5);
-}
-
-#theme-list .theme-heading small {
-    vertical-align: middle;
-}
-
-#theme-list .theme-heading i.color-up {
-    color: rgba(0,0,0, 1);
-}
-
-#theme-list .theme-heading i.color-down {
-    color: rgba(0,0,0, .5);
-}
-
-#theme-list .layer-heading .color-up {
-    color: rgba(102, 102, 102, 1);
-}
-#theme-list .layer-heading .color-down {
-    color: rgba(102, 102, 102, .5);
-}
-
-#theme-list .sublayer-heading .color-up {
-    color: rgba(102, 102, 102, 1);
-}
-#theme-list .sublayer-heading .color-down {
-    color: rgba(102, 102, 102, .5);
-}
-
-#theme-list .data-layer-links .color-up {
-    color: rgba(3, 11, 212, 1);
-}
-
-#theme-list .data-layer-links .color-down {
-    color: rgba(3, 11, 212, .8);
-}
-
-#theme-list .data-layer-links li  {
-    display: inline-block;
-}
-
-.blog .typeahead {
-    width: 28%;
-}
-
-.blog .typeahead li a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-</style>
 
 {% endblock %}
 
