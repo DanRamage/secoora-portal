@@ -53,7 +53,7 @@
                                 {% if layer.is_parent %}
                                 <div class="accordion-heading layer-heading">
                                     <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
-                                        <span class="layer-search-name">{{ layer.name|upper }}</span> / {{ layer.sublayer_list|length }} ...
+                                        <span class="layer-search-name">{{ layer.name|upper }}</span> ({{ layer.sublayer_list|length }})
                                     </a>
                                 </div>
                                 <div id="{{layer.slug}}-links" class="accordion-body collapse">
