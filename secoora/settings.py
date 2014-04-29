@@ -24,7 +24,7 @@ COMPRESS_JS['application']['source_filenames'] += (
     #'marco/js/mColorPicker.js',
 )
 
-LOG_FILE =  os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'marco.log'))
+#LOG_FILE =  os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'marco.log'))
 
 
 INSTALLED_APPS += ( #'clipping',
@@ -49,14 +49,14 @@ GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
 #See the settings_local.py file for the SMTP credentials.
-APP_NAME = "GSAA Portal"
-FEEDBACK_RECIPIENT = "gsaaportal@gmail.com"
+APP_NAME = "SECOORA Portal"
+FEEDBACK_RECIPIENT = "communications@secoora.org"
 HELP_EMAIL = "gsaaportal@gmail.com"
-DEFAULT_FROM_EMAIL = "GSAA Portal Team <gsaaportal@gmail.com>"
-FEEDBACK_SUBJECT = "GSAA Portal Feedback"
+DEFAULT_FROM_EMAIL = "SECOORAPortal Team <communications@secoora.org>"
+FEEDBACK_SUBJECT = "SECOORA Portal Feedback"
 
 # url for socket.io printing
-SOCKET_URL = 'http://gsaaportal.org:8080'
+#SOCKET_URL = 'http://gsaaportal.org:8080'
 
 # Change the following line to True, to display the 'under maintenance' template
 UNDER_MAINTENANCE_TEMPLATE = False
