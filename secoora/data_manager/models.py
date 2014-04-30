@@ -135,7 +135,7 @@ class Metadata(models.Model):
     ('Forecast_Hindcast', 'Forecast/Hindcast'),
     ('Archival', 'Archival')
   )
-
+  display_name = models.CharField(max_length=50)
   data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
   spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)
   model_data_type = models.CharField(max_length=50, choices=MODEL_DATA_TYPE_CHOICES)
@@ -149,6 +149,7 @@ class Metadata(models.Model):
   time_begin = models.DateTimeField(null=True, blank=True)
   time_end = models.DateTimeField(null=True, blank=True)
   time_interval_minutes = models.IntegerField(null=True, blank=True)
+  time_steps = models.TextField(null=True)
 
   keywords_project = models.ManyToManyField('ProjectName', blank=True, null=True)
   keywords_funding = models.ManyToManyField('Funding', blank=True, null=True)
