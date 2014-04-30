@@ -136,6 +136,9 @@ class Metadata(models.Model):
     ('Archival', 'Archival')
   )
   display_name = models.CharField(max_length=50, blank=True)
+  name = models.CharField(max_length=50, blank=True)
+  title = models.TextField(blank=True)
+
   data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
   spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)
   model_data_type = models.CharField(max_length=50, choices=MODEL_DATA_TYPE_CHOICES)
@@ -170,7 +173,6 @@ class Metadata(models.Model):
   xml = models.TextField(blank=True)
   identifiers = models.TextField(blank=True)
   publish_date = models.DateTimeField(null=True, blank=True)
-  title = models.TextField(blank=True)
   links = models.TextField(blank=True)
 
   def __unicode__(self):
