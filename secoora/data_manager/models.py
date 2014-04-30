@@ -135,9 +135,9 @@ class Metadata(models.Model):
     ('Forecast_Hindcast', 'Forecast/Hindcast'),
     ('Archival', 'Archival')
   )
-  display_name = models.CharField(max_length=50)
+  display_name = models.CharField(max_length=50, blank=True)
   data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
-  spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)
+  spatial_type = models.CharField(max_length=50, choices=SPATIAL_TYPE_CHOICES)git
   model_data_type = models.CharField(max_length=50, choices=MODEL_DATA_TYPE_CHOICES)
 
   getcap_link = models.TextField(blank=True)
