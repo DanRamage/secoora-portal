@@ -181,6 +181,7 @@ class Metadata(models.Model):
 class Provider(models.Model):
   row_entry_date = models.DateTimeField(default=datetime.datetime.now)
   row_update_date = models.DateTimeField(null=True, blank=True)
+  display_name = models.CharField(max_length=200, blank=True)
   source_name = models.CharField(max_length=200, blank=True)
   source_link = models.CharField(max_length=500, blank=True)
   thumbnail_source = models.CharField(max_length=500, blank=True)
@@ -462,6 +463,7 @@ class Layer(models.Model):
         self.slug_name = self.slug
         super(Layer, self).save(*args, **kwargs)
 
+"""
 class Records(models.Model):
   identifier = models.TextField(primary_key=True)
   typename = models.TextField()
