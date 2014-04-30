@@ -149,7 +149,7 @@ class Metadata(models.Model):
   time_begin = models.DateTimeField(null=True, blank=True)
   time_end = models.DateTimeField(null=True, blank=True)
   time_interval_minutes = models.IntegerField(null=True, blank=True)
-  time_steps = models.TextField(blank=True)
+  time_steps = models.TextField(blank=True, null=True)
 
   keywords_project = models.ManyToManyField('ProjectName', blank=True, null=True)
   keywords_funding = models.ManyToManyField('Funding', blank=True, null=True)
