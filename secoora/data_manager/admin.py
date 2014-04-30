@@ -38,3 +38,4 @@ admin.site.register(ProjectName)
 admin.site.register(Place)
 admin.site.register(Funding)
 
+
