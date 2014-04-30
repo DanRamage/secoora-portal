@@ -526,6 +526,7 @@ class Records(models.Model):
 
   def __unicode__(self):
       return unicode('%s' % (self.name))
+"""
 
 """
 class Layer(models.Model):
@@ -785,6 +786,7 @@ class Layer(models.Model):
     def save(self, *args, **kwargs):
         self.slug_name = self.slug
         super(Layer, self).save(*args, **kwargs)
+
 """
 class AttributeInfo(models.Model):
     display_name = models.CharField(max_length=255, blank=True, null=True)
