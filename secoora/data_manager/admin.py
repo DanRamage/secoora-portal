@@ -8,7 +8,7 @@ class ThemeAdmin(admin.ModelAdmin):
 class LayerAdmin(admin.ModelAdmin):
     list_display = ('name', 'layer_type', 'url')
     search_fields = ['name', 'layer_type']
-    ordering = ('name',)
+    ordering = ('name','metadatatable')
     exclude = ('slug_name',)
 
 class AttributeInfoAdmin(admin.ModelAdmin):
@@ -20,6 +20,7 @@ class LookupInfoAdmin(admin.ModelAdmin):
 
 class MetadataAdmin(admin.ModelAdmin):
     list_display = ('title', 'display_name', 'id')
+    search_fields = ['title', 'display_name']
 
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'id')
