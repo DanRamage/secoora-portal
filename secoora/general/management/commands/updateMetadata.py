@@ -144,7 +144,7 @@ class Command(BaseCommand):
   option_list = BaseCommand.option_list  + (
       make_option("--UpdateTimeSteps", dest="updateTimeSteps", action='store_true', default='false'),
       make_option("--UpdateMetadata", dest="updateMetadata", action='store_true', default='false'),
-      make_option("--BuildKeywordsAny", dest="buildKeywordsAny", action='store_true', default='false'), )
+      make_option("--BuildKeywordsAny", dest="buildKeywordsAny", action='store_true', default='false'),
       make_option("--RemoteSensingLayers", dest="remoteSensingLayers"), )
 
   def handle(self, *args, **options):
