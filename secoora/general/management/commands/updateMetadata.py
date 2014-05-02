@@ -89,7 +89,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
           try:
             recs = xeniaDb.session.query(timestamp_lkp.pass_timestamp)\
               .join((product_type, product_type.row_id == timestamp_lkp.product_id))\
-              .filter(product_type.type_name == linksParts[0]).\
+              .filter(product_type.type_name == linksParts[0])\
               .order_by(timestamp_lkp.pass_timestamp).\
               all()
             for rec in recs:
