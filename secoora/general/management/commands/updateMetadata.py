@@ -70,11 +70,11 @@ def buildTimeSteps(**kwargs):
 
 def buildRemoteSensingTimeSteps(**kwargs):
   logger.info("Begin updateMetaData")
-  xeniaDb = xeniaAlchemy(databaseType='postgres',
-                        dbUser=XENIA_USER,
-                        dbPwd=XENIA_PWD,
-                        dbHost=XENIA_HOST,
-                        dbName=XENIA_DB)
+  xeniaDb = xeniaAlchemy('postgres',
+                          XENIA_USER,
+                          XENIA_PWD,
+                          XENIA_HOST,
+                          XENIA_DB)
   if xeniaDb.connectDB():
     logger.debug("Connected to xenia DB")
   else:
