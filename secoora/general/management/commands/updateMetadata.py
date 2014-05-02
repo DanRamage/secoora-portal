@@ -69,7 +69,7 @@ def buildTimeSteps(**kwargs):
   logger.info("End buildTimeSteps")
 
 def buildRemoteSensingTimeSteps(**kwargs):
-  logger.info("Begin updateMetaData")
+  logger.info("Begin buildRemoteSensingTimeSteps")
   xeniaDb = xeniaAlchemy()
   if xeniaDb.connectDB(databaseType='postgres',
                         dbUser=XENIA_USER,
@@ -77,9 +77,13 @@ def buildRemoteSensingTimeSteps(**kwargs):
                         dbHost=XENIA_HOST,
                         dbName=XENIA_DB):
     logger.debug("Connected to xenia DB")
+    for layerName in kwargs['remoteSensingLayers']:
+      logger.debug("Layer: %s processing" % (layerName))
+    #Find the layer models from the name.
+    xeniaDb.disconnect()
   else:
     logger.error("Failed to connect to xenia DB")
-  logger.info("End updateMetaData")
+  logger.info("End buildRemoteSensingTimeSteps")
 
 def updateMetaData(**kwargs):
 
@@ -153,7 +157,7 @@ class Command(BaseCommand):
     if options['updateTimeSteps'] == True:
       #buildTimeSteps()
       if options['remoteSensingLayers']:
-        buildRemoteSensingTimeSteps()
+        buildRemoteSensingTimeSteps({remoteSensingLayers: options['remoteSensingLayers'].split(',')})
 
     if options['updateMetadata'] == True:
       updateMetaData()
