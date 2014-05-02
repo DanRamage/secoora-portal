@@ -81,6 +81,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
       logger.debug("Layer: %s start processing" % (layerName))
       #Search for our layer name.
       for layer in Layer.objects.all().filter(name=layerName):
+        logger.debug("Matched: %s" % (layer.name))
         #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
         if layer.metadatatable is not None and len(layer.metadatatable.links):
           linksParts = layer.metadatatable.links.split(',')
@@ -178,7 +179,7 @@ class Command(BaseCommand):
     logger.info("Start Logging: %s" % (__name__))
 
     if options['updateTimeSteps'] == True:
-      #buildTimeSteps()
+      buildTimeSteps()
       if options['remoteSensingLayers']:
         buildRemoteSensingTimeSteps(remoteSensingLayers=options['remoteSensingLayers'].split(','))
 
