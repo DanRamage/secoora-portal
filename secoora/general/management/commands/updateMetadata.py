@@ -60,7 +60,7 @@ def buildTimeSteps(**kwargs):
         else:
           logger.debug("No time records.")
 
-    logger.debug("Layer: %s finished processing" % (layer.name))
+    logger.info("Layer: %s finished processing" % (layer.name))
 
   logger.info("End buildTimeSteps")
 
