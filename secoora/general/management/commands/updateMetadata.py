@@ -92,7 +92,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
               .order_by(timestamp_lkp.pass_timestamp).\
               all()
             for rec in recs:
-              print "%s" % (rec.pass_timestamp)
+              logger.debug("%s" % (rec.pass_timestamp))
             #layer.metadatatable.time_steps = ','.join(rec.pass_timestamp)
 
 
