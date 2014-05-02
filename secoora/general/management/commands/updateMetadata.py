@@ -80,9 +80,8 @@ def buildRemoteSensingTimeSteps(**kwargs):
     for layerName in kwargs['remoteSensingLayers']:
       logger.debug("Layer: %s processing" % (layerName))
       #Search for our layer name.
-      layer = Layer.objects.filter(name=layerName)
-      #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
-      if(layer is not None):
+      for layer in Layer.objects.filter(name=layerName):
+        #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
         if layer.metadatatable is not None and len(layer.metadatatable.links):
           linksParts = layer.metadatatable.links.split(',')
           logger.debug("Data name: %s" % (linksParts[0]))
