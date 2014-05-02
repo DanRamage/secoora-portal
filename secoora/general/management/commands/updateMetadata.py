@@ -6,6 +6,10 @@ from urlparse import urlparse
 from datetime import datetime,timedelta
 from urllib2 import HTTPError
 import logging
+from settings_local import *
+import sys
+sys.path.append('/usr/local/userapps/secoora-portal/xeniatools')
+from xeniaSQLAlchemy import xeniaAlchemy,timestamp_lkp,product_type
 
 logger = logging.getLogger(__name__)
 
@@ -63,6 +67,13 @@ def buildTimeSteps(**kwargs):
     logger.info("Layer: %s finished processing" % (layer.name))
 
   logger.info("End buildTimeSteps")
+
+def buildRemoteSensingTimeSteps(**kwargs):
+ xeniaDb = xeniaAlchemy(databaseType='postgres',
+                        dbUser=XENIA_USER,
+                        dbPwd=XENIA_PWD,
+                        dbHost=XENIA_HOST,
+                        dbName=XENIA_DB)
 
 def updateMetaData(**kwargs):
 
@@ -128,13 +139,17 @@ class Command(BaseCommand):
       make_option("--UpdateTimeSteps", dest="updateTimeSteps", action='store_true', default='false'),
       make_option("--UpdateMetadata", dest="updateMetadata", action='store_true', default='false'),
       make_option("--BuildKeywordsAny", dest="buildKeywordsAny", action='store_true', default='false'), )
+      make_option("--RemoteSensingLayers", dest="remoteSensingLayers"), )
 
   def handle(self, *args, **options):
     logger.info("Start Logging: %s" % (__name__))
 
-    if(options['updateTimeSteps'] == True):
+    if options['updateTimeSteps'] == True:
       buildTimeSteps()
-    if(options['updateMetadata'] == True):
+      if options['remoteSensingLayers']:
+        buildRemoteSensingTimeSteps()
+
+    if options['updateMetadata'] == True:
       updateMetaData()
 
     logger.info("End Logging: %s" % (__name__))
