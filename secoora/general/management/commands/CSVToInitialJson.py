@@ -381,7 +381,7 @@ class Command(BaseCommand):
   help = 'Input CSV File, Initial JSON file to write, Directory to write Legend Files must be we accessible, Base URL to access legend files., If provided, this is a directory to output a file per layer showing the query fields available.'
 
   def handle(self, *args, **options):
-    logger = logging.getLogger(__name__)  
+    logger = logging.getLogger(__name__)
     logger.info("Begin CSVToInitialJson")
     inputCSVFile = args[0]
     outputJSONFile = args[1]

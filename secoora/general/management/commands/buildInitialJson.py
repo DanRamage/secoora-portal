@@ -5,6 +5,7 @@ import simplejson as json
 import traceback
 from data_manager.models import *
 
+
 def buildObsEntries(filename, modelData):
   try:
     obsTypeFile = open(filename, 'rU')
