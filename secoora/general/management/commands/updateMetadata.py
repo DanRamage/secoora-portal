@@ -58,6 +58,7 @@ def buildTimeSteps(**kwargs):
                 logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
 
           layer.metadatatable.time_steps = ','.join(timeSaveList)
+          logger.debug("Number of time steps: %d" % (len(timeSaveList)))
           layer.metadatatable.save()
           del timeSaveList[:]
 
@@ -97,6 +98,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
               times.append(rec.pass_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
               #logger.debug("%s" % (rec.pass_timestamp))
             layer.metadatatable.time_steps = ','.join(times)
+            logger.debug("Number of time steps: %d" % (len(times)))
             layer.metadatatable.save()
 
           except Exception,e:
