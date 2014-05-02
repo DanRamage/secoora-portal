@@ -33,7 +33,7 @@ def buildTimeSteps(**kwargs):
       try:
         wms = WebMapService(baseUrl)
       except HTTPError,e:
-        print e.message
+        logger.exception(e)
       else:
         linksParts = layer.metadatatable.links.split(',')
         logger.debug("Name: %s" % (linksParts[0]))
@@ -51,7 +51,7 @@ def buildTimeSteps(**kwargs):
                 timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
                 timeSaveList.append(time)
               except Exception,e:
-                logger.debug("Layer: %s Invalid date: %s" % (layer.name, time))
+                logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
 
           layer.metadatatable.time_steps = ','.join(timeSaveList)
           layer.metadatatable.save()
@@ -83,7 +83,7 @@ def updateMetaData(**kwargs):
       try:
         wms = WebMapService(baseUrl)
       except HTTPError,e:
-        print e.message
+        logger.exception(e)
       else:
         linksParts = layer.metadatatable.links.split(',')
         #Verify the layer we have is still in the source.
@@ -100,7 +100,7 @@ def updateMetaData(**kwargs):
           layer.metadatatable.save()
         else:
           logger.debug("Name: %s no longer exists." % (linksParts[0]))
-    logger.debug("Layer: %s end processing" % (layer.name))
+    logger.info("Layer: %s end processing" % (layer.name))
 
   logger.info("End updateMetaData")
 
