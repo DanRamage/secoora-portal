@@ -145,7 +145,7 @@ class Command(BaseCommand):
     logger.info("Start Logging: %s" % (__name__))
 
     if options['updateTimeSteps'] == True:
-      buildTimeSteps()
+      #buildTimeSteps()
       if options['remoteSensingLayers']:
         buildRemoteSensingTimeSteps()
 
