@@ -91,10 +91,12 @@ def buildRemoteSensingTimeSteps(**kwargs):
               .filter(product_type.type_name == linksParts[0])\
               .order_by(timestamp_lkp.pass_timestamp).\
               all()
+            times = []
             for rec in recs:
-              logger.debug("%s" % (rec.pass_timestamp))
-            #layer.metadatatable.time_steps = ','.join(rec.pass_timestamp)
-
+              times.append(rec.pass_timestamp)
+              #logger.debug("%s" % (rec.pass_timestamp))
+            layer.metadatatable.time_steps = ','.join(times)
+            layer.metadatatable.save()
 
           except Exception,e:
             logger.exception(e)
