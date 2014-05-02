@@ -78,7 +78,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
                         dbName=XENIA_DB):
     logger.debug("Connected to xenia DB")
     for layerName in kwargs['remoteSensingLayers']:
-      logger.debug("Layer: %s processing" % (layerName))
+      logger.debug("Layer: %s start processing" % (layerName))
       #Search for our layer name.
       for layer in Layer.objects.all().filter(name=layerName):
         #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
@@ -100,6 +100,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
 
           except Exception,e:
             logger.exception(e)
+      logger.debug("Layer: %s end processing" % (layerName))
 
     #Find the layer models from the name.
     xeniaDb.disconnect()
