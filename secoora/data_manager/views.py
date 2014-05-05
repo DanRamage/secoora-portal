@@ -94,9 +94,11 @@ def date_compare_func(x):
    delta =  d - b_d if d > b_d else timedelta.max
    return delta
 
-def get_closest_time(request, layer_name, time_offset):
-
+def get_closest_time(request):
   logger.info("Begin get_closest_time, from: %s" % (request.get_host()))
+
+  layer_name = request.GET['layer_name']
+  time_offset = request.GET['time_offset']
   logger.debug("Layer: %s Time Offset: %s" % (layer_name, time_offset))
 
   results = {datetime : None}
