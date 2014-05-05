@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #(r'^about/', direct_to_template, {'template': 'news/about.html'}),
     #(r'^marco_profile/', include('marco_profile.urls')),
-    #(r'^data_manager/', include('data_manager.urls')),
+    (r'^data_manager/', include('data_manager.urls')),
     #(r'^learn/', include('learn.urls')),
     (r'^explore/', include('explore.urls')),
     #(r'^proxy/', include('proxy.urls')),
