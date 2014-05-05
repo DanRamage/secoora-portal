@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.cache import cache_page
 from models import *
+import logging
 
 logger = logging.getLogger(__name__)
 
