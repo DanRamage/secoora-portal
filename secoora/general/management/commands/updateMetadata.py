@@ -96,7 +96,7 @@ def buildRemoteSensingTimeSteps(**kwargs):
               all()
             times = []
             for rec in recs:
-              times.append(rec.pass_timestamp.strftime("%Y-%m-%d %H:%M:%S"))
+              times.append(rec.pass_timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"))
               #logger.debug("%s" % (rec.pass_timestamp))
             layer.metadatatable.time_steps = ','.join(times)
             logger.debug("Number of time steps: %d" % (len(times)))
