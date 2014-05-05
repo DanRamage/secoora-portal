@@ -44,7 +44,7 @@ def buildTimeSteps(**kwargs):
         if wms[linksParts[0]].timepositions is not None:
           timeSaveList = []
           #We want to validate we have real dates and not garbage dates or empty data as can be
-          #seen in Ruoyings data.
+          #seen in Ruoyings data. We also normalize the datetimes into the %Y-%m-%dT%H:%M:%SZ format.
           for time in wms[linksParts[0]].timepositions:
             #print "Time: %s" % (time)
             try:
@@ -53,7 +53,8 @@ def buildTimeSteps(**kwargs):
             except Exception,e:
               try:
                 timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
-                timeSaveList.append(time)
+                timeSaveList.append(timeObj.strftime("%Y-%m-%dT%H:%M:%SZ"))
+                #timeSaveList.append(time)
               except Exception,e:
                 logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
 
