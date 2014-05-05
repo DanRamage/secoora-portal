@@ -99,7 +99,7 @@ def get_closest_time(request):
   time_offset = request.GET['time_offset']
   logger.debug("Layer: %s Time Offset: %s" % (layer_name, time_offset))
   time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
-  results = {datetime : None}
+  results = {'datetime' : None}
   def date_compare_func(x):
     d =  datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ")
     delta =  d - time_offset_obj if d > time_offset_obj else timedelta.max
