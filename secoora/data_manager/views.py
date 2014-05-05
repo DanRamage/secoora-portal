@@ -93,7 +93,7 @@ def layer_result(layer, status_code=1, success=True, message="Success"):
 
 
 def get_closest_time(request):
-  logger.info("Begin get_closest_time, from: %s" % (request.get_host()))
+  logger.info("Begin get_closest_time")
 
   layer_name = request.GET['layer_name']
   time_offset = request.GET['time_offset']
@@ -112,7 +112,7 @@ def get_closest_time(request):
       logger.debug("Closest Time: %s" % (results['datetime']))
       break
 
-  logger.info("End get_closest_time, from: %s" % (request.get_host()))
+  logger.info("End get_closest_time")
 
 
 
