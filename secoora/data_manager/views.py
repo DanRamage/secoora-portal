@@ -102,9 +102,9 @@ def get_closest_time(request):
   results = {datetime : None}
   def date_compare_func(x):
     logger.debug("Time: %s" % (x))
-     d =  datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ")
-     delta =  d - time_offset_obj if d > time_offset_obj else timedelta.max
-     return delta
+    d =  datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ")
+    delta =  d - time_offset_obj if d > time_offset_obj else timedelta.max
+    return delta
 
   for layer in Layer.objects.all().order_by('name'):
     if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
