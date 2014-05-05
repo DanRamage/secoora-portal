@@ -104,7 +104,7 @@ def get_closest_time(request):
   def date_compare_func(x):
     d =  datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ")
 
-    delta =  d - time_offset_obj if d > time_offset_obj else timedelta.max
+    delta = d - time_offset_obj if d >= time_offset_obj else timedelta.max
     logger.debug("List: %s Time Offset: %s Delta: %s" % (d, time_offset_obj, delta))
 
     return delta
