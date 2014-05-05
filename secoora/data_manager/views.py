@@ -7,6 +7,7 @@ from django.views.decorators.cache import cache_page
 from models import *
 from datetime import datetime,timedelta
 import logging
+from bisect import bisect_left
 
 logger = logging.getLogger(__name__)
 
@@ -101,19 +102,14 @@ def get_closest_time(request):
   time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
   results = {'datetime' : None}
 
-  def date_compare_func(x):
-    d =  datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ")
-
-    delta = d - time_offset_obj if d >= time_offset_obj else timedelta.max
-    logger.debug("List: %s Time Offset: %s Delta: %s" % (d, time_offset_obj, delta))
-
-    return delta
-
   for layer in Layer.objects.all().filter(name=layer_name):
     logger.debug("Found layer: %s" % (layer.name))
     if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
-      times = layer.metadatatable.time_steps.split(',')
-      results['datetime'] = min(times, key = date_compare_func)
+      times = [datetime.strptime(timeStamp, "%Y-%m-%dT%H:%M:%SZ") for timeStamp in layer.metadatatable.time_steps.split(',')]
+      #Find the spot in the list where'd we would insert the time. THis is our search starting point.
+      index = bisect_left(times, time_offset_obj)
+      results['datetime'] = min(times[max(0, index-1), index+2], key=lambda t: abs(time_offset_obj - t))
+
       logger.debug("Closest Time: %s" % (results['datetime']))
       break
 
