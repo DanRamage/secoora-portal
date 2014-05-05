@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.views.decorators.cache import cache_page
 from models import *
-from datetime import datetime
+from datetime import datetime,timedelta
 import logging
 
 logger = logging.getLogger(__name__)
@@ -91,10 +91,6 @@ def layer_result(layer, status_code=1, success=True, message="Success"):
     }
     return result
 
-def date_compare_func(x):
-   d =  datetime.strptime(x[0], "%Y-%m-%d %H:%M:%S")
-   delta =  d - b_d if d > b_d else timedelta.max
-   return delta
 
 def get_closest_time(request):
   logger.info("Begin get_closest_time, from: %s" % (request.get_host()))
@@ -102,8 +98,13 @@ def get_closest_time(request):
   layer_name = request.GET['layer_name']
   time_offset = request.GET['time_offset']
   logger.debug("Layer: %s Time Offset: %s" % (layer_name, time_offset))
-
+  time_offset_obj = datetime.strftime(time_offset, "%Y-%m-%d %H:%M:%S")
   results = {datetime : None}
+  def date_compare_func(x):
+     d =  datetime.strptime(x[0], "%Y-%m-%d %H:%M:%S")
+     delta =  d - time_offset_obj if d > time_offset_obj else timedelta.max
+     return delta
+
   for layer in Layer.objects.all().order_by('name'):
     if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
       times = layer.metadatatable.time_steps.split(',')
