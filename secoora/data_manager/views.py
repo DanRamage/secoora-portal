@@ -108,7 +108,7 @@ def get_closest_time(request):
       times = [datetime.strptime(timeStamp, "%Y-%m-%dT%H:%M:%SZ") for timeStamp in layer.metadatatable.time_steps.split(',')]
       #Find the spot in the list where'd we would insert the time. THis is our search starting point.
       index = bisect_left(times, time_offset_obj)
-      results['datetime'] = min(times[max(0, index-1), index+2], key=lambda t: abs(time_offset_obj - t))
+      results['datetime'] = min(times[max(0, index-1) : index+2], key=lambda t: abs(time_offset_obj - t))
 
       logger.debug("Closest Time: %s" % (results['datetime']))
       break
