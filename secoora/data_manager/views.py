@@ -110,6 +110,7 @@ def get_closest_time(request):
     return delta
 
   for layer in Layer.objects.all().filter(name=layer_name):
+    logger.debug("Found layer: %s" % (layer.name))
     if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
       times = layer.metadatatable.time_steps.split(',')
       results['datetime'] = min(times, key = date_compare_func)
