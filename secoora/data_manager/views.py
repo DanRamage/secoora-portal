@@ -116,4 +116,4 @@ def get_closest_time(request):
 
 
 
-  return simplejson.dumps(results)
+  return HttpResponse(simplejson.dumps(results))
