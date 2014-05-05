@@ -6,6 +6,7 @@ from django.utils import simplejson
 from django.views.decorators.cache import cache_page
 from models import *
 
+logger = logging.getLogger(__name__)
 
 @cache_page(60 * 60 * 24, key_prefix="data_manager_get_json")
 def get_json(request):
@@ -87,3 +88,26 @@ def layer_result(layer, status_code=1, success=True, message="Success"):
         "themes": [theme.id for theme in layer.themes.all()]
     }
     return result
+
+def date_compare_func(x):
+   d =  datetime.strptime(x[0], "%Y-%m-%d %H:%M:%S")
+   delta =  d - b_d if d > b_d else timedelta.max
+   return delta
+
+def get_closest_time(request, layer_name, time_offset):
+
+  logger.info("Begin get_closest_time, from: %s" % (request.get_host()))
+  logger.debug("Layer: %s Time Offset: %s" % (layer_name, time_offset))
+
+  results = {datetime : None}
+  for layer in Layer.objects.all().order_by('name'):
+    if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
+      times = layer.metadatatable.time_steps.split(',')
+      results['datetime'] = min(times, key = date_compare_func)
+      logger.debug("Closest Time: %s" % (results['datetime']))
+
+  logger.info("End get_closest_time, from: %s" % (request.get_host()))
+
+
+
+  return simplejson.dumps(results)
