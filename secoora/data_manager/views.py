@@ -106,10 +106,11 @@ def get_closest_time(request):
       time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
     elif 'TIME_OFFSET_HOURS' in request.GET or 'time_offset_hours' in request.GET:
       time_offset_obj = datetime.now() - timedelta(hours=request.GET['TIME_OFFSET_HOURS'])
+      logger.debug("TIME_OFFSET_HOURS: %s" % (request.GET['TIME_OFFSET_HOURS']))
     else:
       time_offset_obj = datetime.now()
 
-    logger.debug("Finding closest time to: %s" % (time_offset_obj.strftime("%y-%m-%d %H:%M:%S")))
+    logger.debug("Finding closest time to: %s" % (time_offset_obj.strftime("%Y-%m-%d %H:%M:%S")))
     for layer in Layer.objects.all().filter(name=layer_name):
       logger.debug("Found layer: %s" % (layer.name))
       if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
