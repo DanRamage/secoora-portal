@@ -14,7 +14,6 @@ def explore_page(request, template='explore_page.html'):
 
 def data_catalog(request, template='catalog.html'):
     themes = Theme.objects.all().order_by('display_name')
-    logger.debug("Themes: %s" % (list(themes)))
     themes_with_links = add_learn_links(themes)
     add_ordered_layers_lists(themes_with_links)
     context = {'themes': themes_with_links, 'domain': get_domain(8000), 'domain8010': get_domain()}
@@ -38,7 +37,7 @@ def add_ordered_needs_lists(themes_list):
     
 def add_ordered_layers_lists(themes_list): 
     for theme_dict in themes_list:
-        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('metadatatable').order_by('name')
+        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('metadatatable').select_related('provider').order_by('name')
         theme_dict['layers'] = layers
 
 def add_learn_links(themes):
