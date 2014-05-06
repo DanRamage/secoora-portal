@@ -102,11 +102,9 @@ def get_closest_time(request):
     layer_name = request.GET['layer_name']
     #logger.debug("Layer: %s" % (layer_name))
     if 'time_offset' in request.GET:
-      time_offset = request.GET['time_offset']
-      time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
-    elif 'TIME_OFFSET_HOURS' in request.GET or 'time_offset_hours' in request.GET:
-      time_offset_obj = datetime.now() - timedelta(hours=float(request.GET['TIME_OFFSET_HOURS']))
-      logger.debug("TIME_OFFSET_HOURS: %s" % (request.GET['TIME_OFFSET_HOURS']))
+      time_offset_obj = datetime.strptime(request.GET['time_offset'], "%Y-%m-%d %H:%M:%S")
+    elif 'time_offset_hours' in request.GET:
+      time_offset_obj = datetime.now() - timedelta(hours=float(request.GET['time_offset_hours']))
     else:
       time_offset_obj = datetime.now()
 
