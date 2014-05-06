@@ -40,7 +40,7 @@ def add_ordered_layers_lists(themes_list):
         layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('metadatatable').order_by('name')
         theme_dict['layers'] = layers
         for layer in layers:
-          logger.debug("Layer: %s" % (list(layer)))
+          logger.debug("Layer: %s" % (layer))
 
 def add_learn_links(themes):
     theme_dict = []
