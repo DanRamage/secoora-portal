@@ -95,25 +95,34 @@ def layer_result(layer, status_code=1, success=True, message="Success"):
 
 def get_closest_time(request):
   logger.info("Begin get_closest_time")
-
-  layer_name = request.GET['layer_name']
-  time_offset = request.GET['time_offset']
-  logger.debug("Layer: %s Time Offset: %s" % (layer_name, time_offset))
-  time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
   results = {'datetime' : None}
+  logger.debug("GET Params: %s" % (request.GET))
 
-  for layer in Layer.objects.all().filter(name=layer_name):
-    logger.debug("Found layer: %s" % (layer.name))
-    if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
-      times = [datetime.strptime(timeStamp, "%Y-%m-%dT%H:%M:%SZ") for timeStamp in layer.metadatatable.time_steps.split(',')]
-      #Find the spot in the list where'd we would insert the time. THis is our search starting point.
-      index = bisect_left(times, time_offset_obj)
-      closestTime = min(times[max(0, index-1) : index+2], key=lambda t: abs(time_offset_obj - t))
-      results['datetime'] = closestTime.strftime("%Y-%m-%d %H:%M:%S")
+  if 'layer_name' in request.GET:
+    layer_name = request.GET['layer_name']
+    logger.debug("Layer: %s" % (layer_name))
+    if 'time_offset' in request.GET:
+      time_offset = request.GET['time_offset']
+      time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
+    elif 'TIME_OFFSET_HOURS' in request.GET:
+      time_offset_obj = datetime.now() - timedelta(hours=request.GET['TIME_OFFSET_HOURS'])
+    else:
+      time_offset_obj = datetime.now()
 
-      logger.debug("Closest Time: %s" % (results['datetime']))
-      break
 
+    for layer in Layer.objects.all().filter(name=layer_name):
+      logger.debug("Found layer: %s" % (layer.name))
+      if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
+        times = [datetime.strptime(timeStamp, "%Y-%m-%dT%H:%M:%SZ") for timeStamp in layer.metadatatable.time_steps.split(',')]
+        #Find the spot in the list where'd we would insert the time. THis is our search starting point.
+        index = bisect_left(times, time_offset_obj)
+        closestTime = min(times[max(0, index-1) : index+2], key=lambda t: abs(time_offset_obj - t))
+        results['datetime'] = closestTime.strftime("%Y-%m-%d %H:%M:%S")
+
+        logger.debug("Closest Time: %s" % (results['datetime']))
+        break
+  else:
+    logger.info("No layer_name GET param.")
   logger.info("End get_closest_time")
 
 
