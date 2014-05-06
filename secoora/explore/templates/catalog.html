@@ -182,6 +182,13 @@ input[type="text"]:hover {
 
                                                     <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                         <div class="accordion-inner">
+                                                            <div class="product-logo">
+                                                                <img src={{ sublayer.metadatatable.thumbnail_product }} class="thumbnail">
+                                                            </div>
+                                                            <div class="descriptive-text">
+                                                                {{ sublayer.description }}
+                                                            </div>
+
                                                             <ul class="unstyled data-layer-links">
                                                                 <li>
                                                                     {% if sublayer.bookmark_link %}
@@ -219,12 +226,6 @@ input[type="text"]:hover {
                                                                     {% endif %}
                                                                 </li>
                                                             </ul>
-                                                            <div class="product-logo">
-                                                                <img src={{ sublayer.metadatatable.thumbnail_product }} class="img-circle">
-                                                            </div>
-                                                            <div class="descriptive-text">
-                                                                {{ sublayer.description }}
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
