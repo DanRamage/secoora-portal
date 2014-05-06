@@ -104,7 +104,7 @@ def get_closest_time(request):
     if 'time_offset' in request.GET:
       time_offset = request.GET['time_offset']
       time_offset_obj = datetime.strptime(time_offset, "%Y-%m-%d %H:%M:%S")
-    elif 'TIME_OFFSET_HOURS' in request.GET:
+    elif 'TIME_OFFSET_HOURS' in request.GET or 'time_offset_hours' in request.GET:
       time_offset_obj = datetime.now() - timedelta(hours=request.GET['TIME_OFFSET_HOURS'])
     else:
       time_offset_obj = datetime.now()
