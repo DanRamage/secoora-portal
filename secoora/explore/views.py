@@ -37,7 +37,7 @@ def add_ordered_needs_lists(themes_list):
     
 def add_ordered_layers_lists(themes_list): 
     for theme_dict in themes_list:
-        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').order_by('name')
+        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('metadatatable').order_by('name')
         theme_dict['layers'] = layers
     
 def add_learn_links(themes):
