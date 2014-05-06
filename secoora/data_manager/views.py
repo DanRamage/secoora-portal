@@ -96,7 +96,7 @@ def layer_result(layer, status_code=1, success=True, message="Success"):
 def get_closest_time(request):
   logger.info("Begin get_closest_time")
   results = {'datetime' : None}
-  logger.debug("GET Params: %s" % (request.GET))
+  logger.debug("GET Params: %s" % (request.GET.items()))
 
   if 'layer_name' in request.GET:
     layer_name = request.GET['layer_name']
