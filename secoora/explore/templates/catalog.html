@@ -219,6 +219,7 @@ input[type="text"]:hover {
                                                                     {% endif %}
                                                                 </li>
                                                             </ul>
+                                                            {% debug %}
                                                             <div class="product-logo">
                                                               {%  if metadatatable in sublayer and sublayer.metadatatable.thumbnail_product|length %}
                                                                 <img src={{ sublayer.metadatatable.thumbnail_product }} class="img-circle">
