@@ -183,10 +183,11 @@ input[type="text"]:hover {
                                                   <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                       <div class="media">
-                                                        {% if sublayer.provider.thumbnail_source|length > 0 %}
-                                                          <a class="pull-left" href={{ sublayer.provider.source_link }}>
-                                                            <img src={{ sublayer.provider.thumbnail_source }}>
-                                                        {% endif %}
+                                                      {% if sublayer.provider.thumbnail_source|length > 0 %}
+                                                        <a class="pull-left" href={{ sublayer.provider.source_link }}>
+                                                          <img src={{ sublayer.provider.thumbnail_source }}>
+                                                        </a>
+                                                      {% endif %}
                                                         <div class="media-body">
                                                           <div class="descriptive-text">
                                                               {{ sublayer.description }}
