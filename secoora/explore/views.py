@@ -19,7 +19,7 @@ def data_catalog(request, template='catalog.html'):
     context = {'themes': themes_with_links, 'domain': get_domain(8000), 'domain8010': get_domain()}
     return render_to_response(template, RequestContext(request, context)) 
 
-def data_catalog(request, template='bs3_catalog.html'):
+def data_catalog_bs3(request, template='bs3_catalog.html'):
     themes = Theme.objects.all().order_by('display_name')
     themes_with_links = add_learn_links(themes)
     add_ordered_layers_lists(themes_with_links)
