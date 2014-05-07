@@ -266,7 +266,7 @@ class Layer(models.Model):
     openlayers_options = models.TextField(blank=True)
 
     metadatatable = models.OneToOneField('Metadata', related_name='layer', blank=True, null=True)
-    provider = models.ManyToManyField('Provider', blank=True, null=True)
+    provider = models.OneToOneField('Provider', blank=True, null=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.name))
