@@ -187,7 +187,7 @@ input[type="text"]:hover {
                                                   <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                     <div class="accordion-inner">
                                                       <div class="media">
-                                                      {% if sublayer.provider.thumbnail_source|length > 0 %}
+                                                      {% if sublayer.provider.thumbnail_source %}
                                                         <a class="pull-left catalog-logo" href={{ sublayer.provider.source_link }}>
                                                           <img src={{ sublayer.provider.thumbnail_source }} class="img-responsive">
                                                         </a>
