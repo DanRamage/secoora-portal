@@ -191,6 +191,10 @@ input[type="text"]:hover {
                                                         <a class="pull-left catalog-logo" href={{ sublayer.provider.source_link }}>
                                                           <img src={{ sublayer.provider.thumbnail_source }} class="img-responsive">
                                                         </a>
+                                                      {% else %}
+                                                        <a class="pull-left catalog-logo" href="#">
+                                                          <img src="{{MEDIA_URL}}secoora/img/partner-logos/64x64blank.png" class="img-responsive">
+                                                        </a>
                                                       {% endif %}
                                                         <div class="media-body">
                                                           <div class="descriptive-text">
