@@ -1,25 +1,11 @@
 {% extends 'base-bs3.html' %}
 {% block body %}
   <div class="row">
-      <div class="span2">
+      <div class="col-md-2">
           <div class="sidebar-nav-section">
-              <!--
-              <h3><a href="/learn">LEARN</a></h3>
-              <ul class="unstyled">
-                  <li {% if topic.name == 'beach_renourishment' %}class="active"{% endif %}>
-                      <a href="/learn/topic/beach_renourishment">Beach Renourishment</a>
-                  </li>
-                  <li {% if topic.name == 'sediment_management' %}class="active"{% endif %}>
-                      <a href="/learn/topic/port_maintenance">Port Maintenance and Expansion</a>
-                  </li>
-                  <li {% if topic.name == 'habitat_conservation' %}class="active"{% endif %}>
-                      <a href="/learn/topic/habitat_conservation">Habitat Conservation</a>
-                  </li>
-              </ul>
-              -->
           </div>
       </div>
-      <div class="span10">
+      <div class="col-md-10">
           {% block  main %}{% endblock %}
       </div>
   </div>
