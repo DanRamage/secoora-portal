@@ -3,6 +3,7 @@ from views import *
 
 urlpatterns = patterns('',
     (r'^catalog', data_catalog),
+    (r'^bs3_catalog', data_catalog_bs3),
     (r'^search_catalog/(?P<catalog_q>[\w-]*)', catalog_search),
     #(r'^needs', data_needs),
     #(r'^map_tile_example/([\w-]*)', map_tile_example),
