@@ -182,11 +182,13 @@ input[type="text"]:hover {
 
                                                     <div id="{{sublayer.slug}}-links" class="accordion-body collapse">
                                                         <div class="accordion-inner">
-                                                            <div class="product-logo">
-                                                              {% if sublayer.provider.thumbnail_source|length > 0 %}
-                                                                <a href={{ sublayer.provider.source_link }}><img src={{ sublayer.provider.thumbnail_source }} class="thumbnail"></a>
-                                                              {% endif %}
-                                                            </div>
+                                                          <div class="media">
+                                                            {% if sublayer.provider.thumbnail_source|length > 0 %}
+                                                              <a class="pull-left" href={{ sublayer.provider.source_link }}>
+                                                                <img src={{ sublayer.provider.thumbnail_source }}>
+                                                            {% endif %}
+                                                          </div>
+                                                          <div class="media-body">
                                                             <div class="descriptive-text">
                                                                 {{ sublayer.description }}
                                                             </div>
@@ -228,6 +230,7 @@ input[type="text"]:hover {
                                                                     {% endif %}
                                                                 </li>
                                                             </ul>
+                                                          </div>
                                                         </div>
                                                     </div>
                                                 </div>
