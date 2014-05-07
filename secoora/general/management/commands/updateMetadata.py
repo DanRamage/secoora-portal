@@ -153,9 +153,9 @@ def updateMetaData(**kwargs):
   logger.info("End updateMetaData")
 
 def buildKeywordsAny():
-  print "Start buildKeywordsAny"
+  logger.info("Start buildKeywordsAny")
   for layer in Layer.objects.all().order_by('name'):
-    print "Layer: %s" % (layer.name)
+    logger.debug("Layer: %s" % (layer.name))
     keywords_any = []
     if(layer.metadatatable):
       if(len(layer.metadatatable.abstract)):
@@ -164,12 +164,12 @@ def buildKeywordsAny():
         keywords_any.append(obsKeyWord.display_name)
       if(len(keywords_any)):
         layer.metadatatable.anytext += ';'.join(keywords_any)
-        print layer.metadatatable.anytext
+        logger.debug(layer.metadatatable.anytext)
       layer.metadatatable.save()
     else:
-      print "No metadata record found."
+      logger.debug("No metadata record found.")
 
-  print "End buildKeywordsAny"
+  logger.info("End buildKeywordsAny")
 
 class Command(BaseCommand):
   option_list = BaseCommand.option_list  + (
@@ -188,6 +188,9 @@ class Command(BaseCommand):
 
     if options['updateMetadata'] == True:
       updateMetaData()
+
+    if options['buildKeywordsAny']:
+      buildKeywordsAny()
 
     logger.info("End Logging: %s" % (__name__))
 
