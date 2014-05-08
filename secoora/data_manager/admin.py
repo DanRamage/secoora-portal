@@ -23,7 +23,7 @@ class MetadataAdmin(admin.ModelAdmin):
     search_fields = ['title', 'display_name']
 
 class ProviderAdmin(admin.ModelAdmin):
-    list_display = ('source_name', 'id')
+    list_display = ('source_name', 'group_name', 'id')
 
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
