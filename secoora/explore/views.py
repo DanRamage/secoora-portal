@@ -113,7 +113,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 
 def data_partners(request, template='data_partners.html'):
   logger.info("Start data_partners")
-  data_partners = Provider.objects.all().filter(secoora_funded=True).filter(~Q(source_name='SECOORA')).order_by('source_name')
+  data_partners = Provider.objects.all().filter(~Q(source_name='SECOORA')).filter(secoora_funded=True).order_by('source_name')
   logger.debug("%s" % (list(data_partners)))
   logger.info("End data_partners")
 
