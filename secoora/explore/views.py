@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
+from django.db.models import Q
 from data_manager.models import *
 from utils import get_domain
 import settings
@@ -112,7 +113,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 
 def data_partners(request, template='data_partners.html'):
   logger.info("Start data_partners")
-  data_partners = Provider.objects.all().order_by('display_name')
+  data_partners = Provider.objects.all().filter(~Q(source_name='SECOORA')).order_by('source_name')
   logger.debug("%s" % (list(data_partners)))
   logger.info("End data_partners")
 
