@@ -24,12 +24,27 @@
           </div>
           <div class="row">
             <!-- Partner name -->
-            <div class="col-md-5">
+            <div class="col-md-9">
               Partner: {{ partner.source_name }}
             </div>
           </div>
           <div class="row">
-
+            <!-- Partner name -->
+            <div class="col-md-9">
+              Group: {{ partner.metadatatable.name }}
+            </div>
+          </div>
+          <div class="row">
+            <!--Contact info-->
+            <div class="col-md-9">
+              Contact: {{ partner.contact_email_list }}
+            </div>
+          </div>
+          <div class="row">
+            <!--general info-->
+            <div class="col-md-9">
+              {{ partner.metadatatable.abstract }}
+            </div>
           </div>
         </div>
       </div>
