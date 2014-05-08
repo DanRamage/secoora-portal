@@ -10,7 +10,7 @@
 
 <div class="container">
   {%  debug %}
-  {% for partner in data_partners %}
+  {% for partner in providers%}
     <div class="col-md-9">
       <div class="panel panel-default">
         <!--<div class="panel-heading">Panel heading without title</div>-->
@@ -18,12 +18,12 @@
           <div class="row-fluid">
             <!-- Partner name -->
             <div class="col-md-5">
-              <h3>Partner:</h3> {{  provider.display_name }}
+              <h3>Partner:</h3> {{  partner.display_name }}
             </div>
             <!-- logo -->
             <div class="col-md-4">
-              <a class="pull-left catalog-logo" href={{ provider.source_link }}>
-                <img src={{ provider.thumbnail_source }} class="img-responsive">
+              <a class="pull-left catalog-logo" href={{ partner.source_link }}>
+                <img src={{ partner.thumbnail_source }} class="img-responsive">
               </a>
             </div>
           </div>
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  {% endfor data_partners %}
+  {% endfor providers%}
 </div>
 
 
