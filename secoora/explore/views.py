@@ -111,7 +111,10 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
   return render_to_response(template, RequestContext(request, context))
 
 def data_partners(request, template='data_partners.html'):
+  logger.info("Start data_partners")
   data_partners = Provider.objects.all().order_by('display_name')
+  logger.debug("%s" % (list(data_partners)))
+  logger.info("End data_partners")
 
   context = {'data_partners': data_partners, 'domain': get_domain(8000), 'domain8010': get_domain()}
   return render_to_response(template, RequestContext(request, context))
