@@ -116,5 +116,5 @@ def data_partners(request, template='data_partners.html'):
   logger.debug("%s" % (list(data_partners)))
   logger.info("End data_partners")
 
-  context = {'providers': data_partners, 'domain': get_domain(8000), 'domain8010': get_domain()}
+  context = {'providers': data_partners, 'num_providers': len(data_partners), 'domain': get_domain(8000), 'domain8010': get_domain()}
   return render_to_response(template, RequestContext(request, context))
