@@ -193,6 +193,7 @@ class Provider(models.Model):
   catalog_name = models.CharField(max_length=200, blank=True)
   catalog_link = models.CharField(max_length=500, blank=True)
   metadatatable = models.OneToOneField('Metadata', related_name='provider', blank=True, null=True)
+  secoora_funded = models.BooleanField(default='True')
 
   def __unicode__(self):
       return unicode('%s' % (self.source_name))
