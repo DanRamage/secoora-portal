@@ -135,8 +135,8 @@ class Metadata(models.Model):
     ('Forecast_Hindcast', 'Forecast/Hindcast'),
     ('Archival', 'Archival')
   )
-  display_name = models.CharField(max_length=50, blank=True)
-  name = models.CharField(max_length=50, blank=True)
+  display_name = models.CharField(max_length=100, blank=True)
+  name = models.CharField(max_length=100, blank=True)
   title = models.TextField(blank=True)
 
   data_type = models.CharField(max_length=50, choices=DATA_TYPE_CHOICES)
@@ -186,6 +186,7 @@ class Provider(models.Model):
   display_name = models.CharField(max_length=200, blank=True)
   source_name = models.CharField(max_length=200, blank=True)
   source_link = models.CharField(max_length=500, blank=True)
+  group_name = models.CharField(max_length=200, blank=True)
   thumbnail_source = models.CharField(max_length=500, blank=True)
   contact_email_list = models.CharField(max_length=2000, blank=True)
   use_constraints = models.CharField(max_length=2000, blank=True)
