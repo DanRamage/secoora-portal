@@ -121,7 +121,7 @@ def updateMetaData(**kwargs):
     #we've got a links entry.
     if(layer.metadatatable and
       layer.metadatatable.getcap_link and
-      layer.metadatatable.links is not None ):
+      (layer.metadatatable.links is not None or layer.metadatatable.name is not None) ):
       #print "%s getCap: %s" % (layer.name, layer.metadatatable.getcap_link)
       #THe get capabilities link is the full link with the POST params. For OWSLib, we need to get
       #just the base url.
@@ -133,14 +133,18 @@ def updateMetaData(**kwargs):
       except HTTPError,e:
         logger.exception(e)
       else:
-        linksParts = layer.metadatatable.links.split(',')
+        if layer.metadatatable.name is not None:
+          name = layer.metadatatable.name
+        else:
+          linksParts = layer.metadatatable.links.split(',')
+          name = linksParts[0]
         #Verify the layer we have is still in the source.
-        if linksParts[0] in wms.contents:
-          obs = wms[linksParts[0]]
-          logger.debug("Name: %s" % (linksParts[0]))
+        if name in wms.contents:
+          obs = wms[name]
+          logger.debug("Name: %s" % (name))
           if hasattr(obs, 'abstract') and obs.abstract is not None:
             logger.debug("Adding abstract: %s" % (obs.abstract))
-            layer.metadatatable.abstract = wms[linksParts[0]].abstract
+            layer.metadatatable.abstract = wms[name].abstract
           if hasattr(obs, 'boundingBox'):
             logger.debug("Adding boundingBox")
             layer.metadatatable.bbox_extent = obs.boundingBox
