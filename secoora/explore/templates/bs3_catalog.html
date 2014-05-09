@@ -102,8 +102,8 @@ input[type="text"]:hover {
 }
 
 #theme-list .catalog-logo {
-  width: 64px;
-  height: 64px;
+  max-width: 64px;
+  max-height: 64px;
 }
 .blog .typeahead {
     width: 28%;
@@ -188,7 +188,7 @@ input[type="text"]:hover {
                                                     <div class="accordion-inner">
                                                       <div class="row">
                                                         {% if sublayer.provider.thumbnail_source %}
-                                                        <a class="pull-left catalog-logo" href={{ sublayer.provider.source_link }}>
+                                                        <a class="catalog-logo" href={{ sublayer.provider.source_link }}>
                                                           <img src={{ sublayer.provider.thumbnail_source }} class="img-responsive">
                                                         </a>
                                                         {% else %}
