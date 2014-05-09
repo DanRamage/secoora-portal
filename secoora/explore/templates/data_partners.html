@@ -5,12 +5,14 @@
       max-height: 100px;
       max-width: 150px;
     }
-
+    #data-partner .panel-default {
+        border-color: #AAAAAA;
+    }
   </style>
 
   <div class="container-fluid">
     {% for partner in providers%}
-      <div class="panel panel-default">
+      <div id="data-partner" class="panel panel-default">
         <!--<div class="panel-heading">Panel heading without title</div>-->
         <div class="panel-body">
           <div class="row">
