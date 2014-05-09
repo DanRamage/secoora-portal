@@ -140,8 +140,8 @@ input[type="text"]:hover {
     padding: 9px 15px;
 }
 </style>
-<div class="container-fluid">
-  <div class="row">
+
+<div class="row">
   <div class="col-md-4 pull-right">
     <b>The Data Catalog</b>
     gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
@@ -171,12 +171,14 @@ input[type="text"]:hover {
     <div class="accordion-group theme-group">
         <div class="accordion-heading theme-heading">
             <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
+              <div class="row">
                 <h3>
-                    <div class="col-md-6 theme-search-name">{{ theme_dict.theme.display_name }}</div>
-                    <div class="col-md-2"><span class="pull-right badge">{{ theme_dict.num_layers }}</span></div>
-                    <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                    <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+                  <div class="col-md-8 theme-search-name">{{ theme_dict.theme.display_name }}</div>
+                  <div class="col-md-2"><span class="pull-right badge">{{ theme_dict.num_layers }}</span></div>
+                  <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                  <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                 </h3>
+               </div>
             </a>
         </div>
         <div id="{{ theme_dict.theme.name }}" class="theme-accordion accordion-body collapse">
@@ -337,7 +339,6 @@ input[type="text"]:hover {
     </div>
     {% endfor themes%}
   </div>
-</div>
 </div>
 
 
