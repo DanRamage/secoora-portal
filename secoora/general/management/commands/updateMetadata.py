@@ -133,11 +133,11 @@ def updateMetaData(**kwargs):
       except HTTPError,e:
         logger.exception(e)
       else:
-        if layer.metadatatable.name is not None:
-          name = layer.metadatatable.name
-        else:
+        if layer.metadatatable.linksParts is not None:
           linksParts = layer.metadatatable.links.split(',')
           name = linksParts[0]
+        else:
+          name = layer.metadatatable.name
         #Verify the layer we have is still in the source.
         if name in wms.contents:
           obs = wms[name]
@@ -151,7 +151,7 @@ def updateMetaData(**kwargs):
             layer.metadatatable.wkt_geometry = "POLYGON((%f %f, %f %f))" % (obs.boundingBox[0],obs.boundingBox[1], obs.boundingBox[2], obs.boundingBox[3])
           layer.metadatatable.save()
         else:
-          logger.debug("Name: %s no longer exists." % (linksParts[0]))
+          logger.debug("Name: %s no longer exists." % (name))
     logger.info("Layer: %s end processing" % (layer.name))
 
   logger.info("End updateMetaData")
