@@ -255,8 +255,10 @@ input[type="text"]:hover {
                                       {% endif %}
                                   </li>
                                   <li>
-                                     {% if sublayer.metadata_link %}
+                                      {% if sublayer.metadata_link %}
                                         <a href="{{sublayer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
+                                      {% elif sublayer.metadatatable.getcap_link %}
+                                        <a href="{{sublayer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
                                       {% else %}
                                         <span class="link-not-available">METADATA</span>
                                       {% endif %}
@@ -264,8 +266,6 @@ input[type="text"]:hover {
                                   <li>
                                       {% if sublayer.source_link %}
                                         <a href="{{sublayer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
-                                      {% elif sublayer.metadatatable.getcap_link %}
-                                        <a href="{{sublayer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
                                       {% else %}
                                         <span class="link-not-available">SOURCE</span>
                                       {% endif %}
