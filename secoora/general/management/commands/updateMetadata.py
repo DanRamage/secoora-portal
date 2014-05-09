@@ -133,7 +133,7 @@ def updateMetaData(**kwargs):
       except HTTPError,e:
         logger.exception(e)
       else:
-        if layer.metadatatable.linksParts is not None:
+        if layer.metadatatable.links is not None:
           linksParts = layer.metadatatable.links.split(',')
           name = linksParts[0]
         else:
