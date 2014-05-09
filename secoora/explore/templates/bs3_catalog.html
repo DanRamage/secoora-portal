@@ -264,7 +264,7 @@ input[type="text"]:hover {
                                   <li>
                                       {% if sublayer.source_link %}
                                         <a href="{{sublayer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
-                                      {% else if sublayer.metadatatable.getcap_link %}
+                                      {% elif sublayer.metadatatable.getcap_link %}
                                         <a href="{{sublayer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
                                       {% else %}
                                         <span class="link-not-available">SOURCE</span>
