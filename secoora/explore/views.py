@@ -45,7 +45,7 @@ def add_ordered_needs_lists(themes_list):
     
 def add_ordered_layers_lists(themes_list): 
     for theme_dict in themes_list:
-        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('provider').order_by('name')
+        layers = theme_dict['theme'].layer_set.all().exclude(layer_type='placeholder').select_related('provider').select_related('metadatatable').order_by('name')
         theme_dict['layers'] = layers
 
 def add_learn_links(themes):
@@ -114,7 +114,6 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
 def data_partners(request, template='data_partners.html'):
   logger.info("Start data_partners")
   data_partners = Provider.objects.all().filter(~Q(source_name='SECOORA')).filter(secoora_funded=True).order_by('source_name')
-  logger.debug("%s" % (list(data_partners)))
   logger.info("End data_partners")
 
   context = {'providers': data_partners, 'num_providers': len(data_partners), 'domain': get_domain(8000), 'domain8010': get_domain()}
