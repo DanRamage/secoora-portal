@@ -172,7 +172,8 @@ input[type="text"]:hover {
         <div class="accordion-heading theme-heading">
             <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
                 <h3>
-                    <div class="theme-search-name">{{ theme_dict.theme.display_name }}</span> <span class="badge">{{ theme_dict.num_layers }}</span>
+                    <div class="col-md-6 theme-search-name">{{ theme_dict.theme.display_name }}</div>
+                    <div class="col-md-2"><span class="pull-right badge">{{ theme_dict.num_layers }}</span></div>
                     <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                     <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                 </h3>
