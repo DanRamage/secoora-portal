@@ -224,13 +224,13 @@ input[type="text"]:hover {
                                   <img class="catalog-log img-responsive" src="{{MEDIA_URL}}secoora/img/partner-logos/64x64blank.png">
                                 </a>
                                 {% endif %}
-                                <dl class="dl-horizontal">
+                                <dl>
                                   <dt>Description:</dt>
                                   <dd>{{ sublayer.description }}</dd>
                                   <dt>Bounding Box:</dt>
-                                  <dd>{{ sublayer.description }}</dd>
+                                  <dd>{{ sublayer.metadata.bbox_extent }}</dd>
                                   <dt>Resolution:</dt>
-                                  <dd>{{ sublayer.description }}</dd>
+                                  <dd>{{ sublayer.metadata.spatial_resolution }}</dd>
                                 </dl>
                                 <ul class="unstyled data-layer-links">
                                   <li>
