@@ -10,17 +10,90 @@
 <div class="row-fluid">
   <div class="col-md-8 theme catalog-page accordion" id="theme-list">
     {% for layer in layers %}
-
     <div class="accordion-group theme-group">
-        <div class="accordion-heading theme-heading">
-            <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
-                <h3>
-                    <span class="theme-search-name">{{ layer.name }}</span>
-                    <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                    <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
-                </h3>
-            </a>
+      <div class="accordion-heading theme-heading">
+        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
+          <h3>
+            <span class="theme-search-name">{{ layer.name }}</span>
+            <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+            <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+          </h3>
+        </a>
+      </div>
+      <div id="{{layer.slug}}-links" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <div class="accordion" id="{{layer.slug}}-sublayer-list">
+            <div class="accordion-group sublayer-group">
+              <div class="accordion-heading sublayer-heading">
+                <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{layer.slug}}-sublayer-list" href="#{{sublayer.slug}}-links">
+                <span class="layer-search-name">{{ layer.name }} ...</span>
+                </a>
+              </div>
+
+              <div id="{{layer.slug}}-links" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  {% if layer.provider.thumbnail_source %}
+                  <a class="pull-right" href={{ layer.provider.source_link }}>
+                    <img class="catalog-logo img-responsive" src={{ layer.provider.thumbnail_source }}>
+                  </a>
+                  {% else %}
+                  <a class="pull-right" href="#">
+                    <img class="catalog-log img-responsive" src="{{MEDIA_URL}}secoora/img/partner-logos/64x64blank.png">
+                  </a>
+                  {% endif %}
+                  <dl>
+                    <dt>Description:</dt>
+                    <dd>{{ layer.description }}</dd>
+                    <dt>Bounding Box:</dt>
+                    <dd>{{ layer.metadatatable.bbox_extent }}</dd>
+                    <dt>Resolution:</dt>
+                    <dd>{{ layer.metadatatable.spatial_resolution }}</dd>
+                  </dl>
+                  <ul class="unstyled data-layer-links">
+                    <li>
+                        {% if layer.bookmark_link %}
+                          <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                        {% else %}
+                          <span class="link-not-available">VIEW</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if layer.kml %}
+                          <a href="{{layer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
+                        {% else %}
+                          <span class="link-not-available">KML</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if layer.data_download_link %}
+                          <a href="{{layer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
+                        {% else %}
+                          <span class="link-not-available">DATA</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if layer.metadata_link %}
+                          <a href="{{layer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
+                        {% elif layer.metadatatable.getcap_link %}
+                          <a href="{{layer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
+                        {% else %}
+                          <span class="link-not-available">METADATA</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if layer.source_link %}
+                          <a href="{{layer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
+                        {% else %}
+                          <span class="link-not-available">SOURCE</span>
+                        {% endif %}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     {% endfor layers%}
   </div>
