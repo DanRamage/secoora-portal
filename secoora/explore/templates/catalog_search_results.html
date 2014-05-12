@@ -37,9 +37,9 @@
             <dl>
               <dt>Type:</dt>
               <dd>
-              { % for theme in layer.metadatatable.keywords_theme % }
+              {% for theme in layer.metadatatable.keywords_theme %}
                 {{ theme }}
-              { % endfor % }
+              {% endfor %}
               <dt>Description:</dt>
               <dd>{{ layer.description }}</dd>
               <dt>Bounding Box:</dt>
