@@ -2,200 +2,91 @@
 {% block main %}
 {% load flatblock_tags %}
 
-<div class="row-fluid">
-  <div class="col-md-8 pull-left">
-    <b>Search for {{ catalog_q }} found {{ result_count }} results</b>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="col-md-8 theme catalog-page accordion" id="theme-list">
-    {% for layer in layers %}
-    <div class="accordion-group theme-group">
-      <div class="accordion-heading theme-heading">
-        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{layer.slug}}-links">
-          <h3>
-            <span class="theme-search-name">{{ layer.name }}</span>
-            <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-            <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
-          </h3>
-        </a>
-      </div>
-      <div id="{{layer.slug}}-links" class="accordion-body collapse">
-        <div class="accordion-inner">
-          {% if layer.provider.thumbnail_source %}
-          <a class="pull-right" href={{ layer.provider.source_link }}>
-            <img class="catalog-logo img-responsive" src={{ layer.provider.thumbnail_source }}>
-          </a>
-          {% else %}
-          <a class="pull-right" href="#">
-            <img class="catalog-log img-responsive" src="{{MEDIA_URL}}secoora/img/partner-logos/64x64blank.png">
-          </a>
-          {% endif %}
-          <dl>
-            <dt>Description:</dt>
-            <dd>{{ layer.description }}</dd>
-            <dt>Bounding Box:</dt>
-            <dd>{{ layer.metadatatable.bbox_extent }}</dd>
-            <dt>Resolution:</dt>
-            <dd>{{ layer.metadatatable.spatial_resolution }}</dd>
-          </dl>
-          <ul class="unstyled data-layer-links">
-            <li>
-                {% if layer.bookmark_link %}
-                  <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
-                {% else %}
-                  <span class="link-not-available">VIEW</span>
-                {% endif %}
-            </li>
-            <li>
-                {% if layer.kml %}
-                  <a href="{{layer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
-                {% else %}
-                  <span class="link-not-available">KML</span>
-                {% endif %}
-            </li>
-            <li>
-                {% if layer.data_download_link %}
-                  <a href="{{layer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
-                {% else %}
-                  <span class="link-not-available">DATA</span>
-                {% endif %}
-            </li>
-            <li>
-                {% if layer.metadata_link %}
-                  <a href="{{layer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
-                {% elif layer.metadatatable.getcap_link %}
-                  <a href="{{layer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
-                {% else %}
-                  <span class="link-not-available">METADATA</span>
-                {% endif %}
-            </li>
-            <li>
-                {% if layer.source_link %}
-                  <a href="{{layer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
-                {% else %}
-                  <span class="link-not-available">SOURCE</span>
-                {% endif %}
-            </li>
-          </ul>
-        </div>
-      </div>
+  <link href="{{MEDIA_URL}}/secoora/css/catalog.css" rel="stylesheet">
 
+
+  <div class="row-fluid">
+    <div class="col-md-8 pull-left">
+      <b>Search for {{ catalog_q }} found {{ result_count }} results</b>
     </div>
-    {% endfor layers%}
   </div>
-</div>
+  <div class="row-fluid">
+    <div class="col-md-8 theme catalog-page accordion" id="theme-list">
+      {% for layer in layers %}
+      <div class="accordion-group theme-group">
+        <div class="accordion-heading theme-heading">
+          <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{layer.slug}}-links">
+            <h3>
+              <span class="theme-search-name">{{ layer.name }}</span>
+              <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+              <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+            </h3>
+          </a>
+        </div>
+        <div id="{{layer.slug}}-links" class="accordion-body collapse">
+          <div class="accordion-inner">
+            {% if layer.provider.thumbnail_source %}
+            <a class="pull-right" href={{ layer.provider.source_link }}>
+              <img class="catalog-logo img-responsive" src={{ layer.provider.thumbnail_source }}>
+            </a>
+            {% else %}
+            <a class="pull-right" href="#">
+              <img class="catalog-log img-responsive" src="{{MEDIA_URL}}secoora/img/partner-logos/64x64blank.png">
+            </a>
+            {% endif %}
+            <dl>
+              <dt>Description:</dt>
+              <dd>{{ layer.description }}</dd>
+              <dt>Bounding Box:</dt>
+              <dd>{{ layer.metadatatable.bbox_extent }}</dd>
+              <dt>Resolution:</dt>
+              <dd>{{ layer.metadatatable.spatial_resolution }}</dd>
+            </dl>
+            <ul class="unstyled data-layer-links">
+              <li>
+                  {% if layer.bookmark_link %}
+                    <a href="{{layer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                  {% else %}
+                    <span class="link-not-available">VIEW</span>
+                  {% endif %}
+              </li>
+              <li>
+                  {% if layer.kml %}
+                    <a href="{{layer.kml}}" class="data-layer-link color-up" target="_download">KML</a>
+                  {% else %}
+                    <span class="link-not-available">KML</span>
+                  {% endif %}
+              </li>
+              <li>
+                  {% if layer.data_download_link %}
+                    <a href="{{layer.data_download_link}}" class="data-layer-link color-up" target="_download">DATA</a>
+                  {% else %}
+                    <span class="link-not-available">DATA</span>
+                  {% endif %}
+              </li>
+              <li>
+                  {% if layer.metadata_link %}
+                    <a href="{{layer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
+                  {% elif layer.metadatatable.getcap_link %}
+                    <a href="{{layer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
+                  {% else %}
+                    <span class="link-not-available">METADATA</span>
+                  {% endif %}
+              </li>
+              <li>
+                  {% if layer.source_link %}
+                    <a href="{{layer.source_link}}" class="data-layer-link color-up" target="_blank">SOURCE</a>
+                  {% else %}
+                    <span class="link-not-available">SOURCE</span>
+                  {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
 
-<style type="text/css">
-
-input[type="text"] {
-    /*border: 0px;*/
-}
-input[type="text"]:hover {
-    /*border: 1px solid #cccccc;*/
-}
-
-.catalog-search-button {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-}
-
-#theme-list .accordion-group {
-    border: 0px;
-    margin-bottom: 0px;
-}
-
-#theme-list .theme-group {
-    padding-bottom: 3px;
-    border-bottom: 1px solid #e5e5e5;
-    width: 95%;
-}
-
-#theme-list .accordion-heading {
-    display: table;
-}
-
-#theme-list .accordion-toggle {
-    display: table-cell;
-    vertical-align: middle;
-    padding: 0px 15px;
-    height: 41px;
-}
-
-#theme-list .accordion-inner li {
-    padding-left: 0px;
-    padding-right: 16px;
-}
-
-#theme-list .accordion-body {
-    position: static;
-}
-
-#theme-list h3 {
-    margin: 0px;
-}
-
-#theme-list a {
-    text-decoration: none;
-}
-
-#theme-list .theme-heading .color-up h3 {
-    color: rgba(3, 11, 212, 1);
-}
-
-#theme-list .theme-heading .color-down h3 {
-    color: rgba(3, 11, 212, .5);
-}
-
-#theme-list .theme-heading small {
-    vertical-align: middle;
-}
-
-#theme-list .theme-heading i.color-up {
-    color: rgba(0,0,0, 1);
-}
-
-#theme-list .theme-heading i.color-down {
-    color: rgba(0,0,0, .5);
-}
-
-#theme-list .layer-heading .color-up {
-    color: rgba(102, 102, 102, 1);
-}
-#theme-list .layer-heading .color-down {
-    color: rgba(102, 102, 102, .5);
-}
-
-#theme-list .sublayer-heading .color-up {
-    color: rgba(102, 102, 102, 1);
-}
-#theme-list .sublayer-heading .color-down {
-    color: rgba(102, 102, 102, .5);
-}
-
-#theme-list .data-layer-links .color-up {
-    color: rgba(3, 11, 212, 1);
-}
-
-#theme-list .data-layer-links .color-down {
-    color: rgba(3, 11, 212, .8);
-}
-
-#theme-list .data-layer-links li  {
-    display: inline-block;
-}
-
-.blog .typeahead {
-    width: 28%;
-}
-
-.blog .typeahead li a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-</style>
-
+      </div>
+      {% endfor layers%}
+    </div>
+  </div>
 {% endblock %}
 
