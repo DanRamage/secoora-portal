@@ -168,7 +168,9 @@ def buildKeywordsAny():
         keywords_any.append(obsKeyWord.display_name)
       if(len(keywords_any)):
         logger.debug(keywords_any)
-        layer.metadatatable.anytext += ';'.join(keywords_any)
+        keywords = ';'.join(keywords_any)
+        logger.debug(keywords)
+        layer.metadatatable.anytext += keywords
         layer.metadatatable.anytext += ';'
         logger.debug(layer.metadatatable.anytext)
       layer.metadatatable.save()
