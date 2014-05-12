@@ -160,23 +160,21 @@ def buildKeywordsAny():
   logger.info("Start buildKeywordsAny")
   for layer in Layer.objects.all().order_by('name'):
     logger.debug("Layer: %s" % (layer.name))
-    keywords_any = []
     if(layer.metadatatable):
+      keywords_any = []
       if(len(layer.metadatatable.abstract)):
-        layer.metadatatable.anytext = '%s;' % (layer.metadatatable.abstract)
+        keywords_any.append(layer.metadatatable.abstract)
       for obsKeyWord in layer.metadatatable.keywords_obs.all():
         keywords_any.append(obsKeyWord.display_name)
       if(len(keywords_any)):
         logger.debug(keywords_any)
-        keywords = ';'.join(keywords_any)
-        logger.debug(keywords)
-        layer.metadatatable.anytext += keywords
-        layer.metadatatable.anytext += ';'
-        logger.debug(layer.metadatatable.anytext)
+        layer.metadatatable.anytext = ';'.join(keywords_any)
+
+        del keywords_any[:]
+      logger.debug(layer.metadatatable.anytext)
       layer.metadatatable.save()
     else:
       logger.debug("No metadata record found.")
-    del keywords_any[:]
   logger.info("End buildKeywordsAny")
 
 class Command(BaseCommand):
