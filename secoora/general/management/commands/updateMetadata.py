@@ -172,7 +172,7 @@ def buildKeywordsAny():
       layer.metadatatable.save()
     else:
       logger.debug("No metadata record found.")
-
+    del keywords_any[:]
   logger.info("End buildKeywordsAny")
 
 class Command(BaseCommand):
