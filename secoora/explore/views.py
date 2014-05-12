@@ -98,7 +98,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
     logger.info("View search param: %s" % (catalog_q))
     logger.info("Begin catalog_search: %s" % (search_term))
 
-  layer_results = Layer.objects.filter(metadatatable__anytext__icontains=search_term).order_by('display_name')
+  layer_results = Layer.objects.filter(metadatatable__anytext__icontains=search_term).order_by('name')
 
   if logger:
     logger.debug("Found: %d records similar to: %s" % (len(layer_results), search_term))
