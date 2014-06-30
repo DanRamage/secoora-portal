@@ -18,6 +18,8 @@ class LookupInfoAdmin(admin.ModelAdmin):
     list_display = ('value', 'color', 'dashstyle', 'fill', 'graphic')
 
 
+class ProviderInline(admin.TabularInline):
+  model = Provider
 class MetadataAdmin(admin.ModelAdmin):
     list_display = ('title', 'display_name', 'id')
     search_fields = ['title', 'display_name']
@@ -26,8 +28,6 @@ class MetadataAdmin(admin.ModelAdmin):
 class MetadataInline(admin.TabularInline):
   model = Metadata
 
-class ProviderInline(admin.TabularInline):
-  model = Provider
 
 
 class ProviderAdmin(admin.ModelAdmin):
