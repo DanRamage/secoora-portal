@@ -26,6 +26,7 @@ class MetadataAdmin(admin.ModelAdmin):
 
 class MetadataInline(admin.TabularInline):
   model = Metadata
+  fields = ('id',)
 
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'group_name', 'id')
