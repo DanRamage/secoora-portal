@@ -24,6 +24,7 @@ class MetadataAdmin(admin.ModelAdmin):
 
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'group_name', 'id')
+    inlines = [Metadata]
 
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
