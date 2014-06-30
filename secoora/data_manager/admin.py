@@ -29,7 +29,7 @@ class MetadataInline(admin.TabularInline):
 
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'group_name', 'id')
-    inlines = [MetadataInline,]
+    inlines = (MetadataInline,)
 
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
