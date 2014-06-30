@@ -21,14 +21,17 @@ class LookupInfoAdmin(admin.ModelAdmin):
 class MetadataAdmin(admin.ModelAdmin):
     list_display = ('title', 'display_name', 'id')
     search_fields = ['title', 'display_name']
+    inlines = [ProviderInline]
 
 class MetadataInline(admin.TabularInline):
   model = Metadata
-  fk_name = 'id'
+
+class ProviderInline(admin.TabularInline):
+  model = Provider
+
 
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'group_name', 'id')
-    inlines = [MetadataInline]
 
 #class DataNeedAdmin(admin.ModelAdmin):
 #    list_display = ('name', 'description')
