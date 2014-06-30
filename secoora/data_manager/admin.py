@@ -22,9 +22,10 @@ class MetadataAdmin(admin.ModelAdmin):
     list_display = ('title', 'display_name', 'id')
     search_fields = ['title', 'display_name']
 
-class MetadataInline(admin.ModelAdmin):
+class MetadataInline(admin.TabularInline):
   model = Metadata
-  fk_name = 'id'
+  #fk_name = 'id'
+
 class ProviderAdmin(admin.ModelAdmin):
     list_display = ('source_name', 'group_name', 'id')
     inlines = [MetadataInline]
