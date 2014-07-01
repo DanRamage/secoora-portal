@@ -92,7 +92,7 @@
                                 <div class="btn-group btn-group-sm">
                                   <div class="btn-group">
                                     <div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle btn-group-sm" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                                         Data Access
                                         <span class="caret"></span>
                                       </button>
@@ -106,13 +106,15 @@
                                       </ul>
                                     </div>
                                   </div>
-                                  <button type="button" class="btn btn-default">
-                                    {% if sublayer.bookmark_link %}
-                                      <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
-                                    {% else %}
-                                      <span class="link-not-available">VIEW</span>
-                                    {% endif %}
-                                  </button>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-default">
+                                      {% if sublayer.bookmark_link %}
+                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                      {% else %}
+                                        <span class="link-not-available">VIEW</span>
+                                      {% endif %}
+                                    </button>
+                                  </div>
                                 </div>
                                 <!--
                                 <ul class="unstyled data-layer-links">
