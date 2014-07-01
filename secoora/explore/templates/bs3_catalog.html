@@ -89,20 +89,30 @@
                                   <dt>Resolution:</dt>
                                   <dd>{{ sublayer.metadatatable.spatial_resolution }}</dd>
                                 </dl>
-                                <div class="dropdown">
-                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                    Data Access
-                                    <span class="caret"></span>
+                                <div class="btn-group">
+                                  <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                      Data Access
+                                      <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                      <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#">Thredds</a>
+                                      </li>
+                                      <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#">Shapefile</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <button type="button" class="btn btn-default">
+                                      {% if sublayer.bookmark_link %}
+                                        <a href="{{sublayer.bookmark_link}}" class="data-layer-link color-up" target="_blank">VIEW</a>
+                                      {% else %}
+                                        <span class="link-not-available">VIEW</span>
+                                      {% endif %}
                                   </button>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                    <li role="presentation">
-                                      <a role="menuitem" tabindex="-1" href="#">Thredds</a>
-                                    </li>
-                                    <li role="presentation">
-                                      <a role="menuitem" tabindex="-1" href="#">Shapefile</a>
-                                    </li>
-                                  </ul>
                                 </div>
+                                <!--
                                 <ul class="unstyled data-layer-links">
                                   <li>
                                       {% if sublayer.bookmark_link %}
@@ -142,6 +152,7 @@
                                       {% endif %}
                                   </li>
                                 </ul>
+                                -->
                               </div>
                             </div>
                           </div>
