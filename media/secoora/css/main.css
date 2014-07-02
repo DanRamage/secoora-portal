@@ -262,7 +262,8 @@ footer {
 }
 footer #section1 p {
   font-size: 18px;
-  color: #030BD4;
+  /*color: #030BD4;*/
+  color: #22616F;
   font-weight: bold;
   line-height: 30px;
   margin-right: 20px;
