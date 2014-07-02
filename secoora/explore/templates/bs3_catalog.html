@@ -34,7 +34,7 @@
         <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ theme_dict.theme.name }}">
           <h3>
             <div class="theme-search-name">{{ theme_dict.theme.display_name }}
-              <span class="pull-right badge">{{ theme_dict.num_layers }}</span>
+              <span class="pull-right badge-info badge">{{ theme_dict.num_layers }}</span>
               <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
               <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
             </div>
@@ -56,7 +56,7 @@
                   <div class="accordion-heading layer-heading">
                     <a class="accordion-toggle layer-name color-up" data-toggle="collapse" data-parent="{{theme_dict.theme.name}}-layer-list" href="#{{layer.slug}}-links">
                         <span class="layer-search-name">{{ layer.name|upper }}</span>
-                      <span class="pull-right badge">{{ layer.sublayer_list|length }}</span>
+                      <span class="pull-right badge-info badge">{{ layer.sublayer_list|length }}</span>
                     </a>
                   </div>
                   <div id="{{layer.slug}}-links" class="accordion-body collapse">
