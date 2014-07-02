@@ -40,8 +40,9 @@
    /*width:770px;*/             /* As IE ignores !important it will set width as 770px; */
 /*}*/
 body {
-  font-family: "Aller";
+  font-family: Arial,Helvetica,"Bitstream Vera Sans",sans-serif;
   background-color: #318A9E;
+  /*font-family: "Aller";*/
   /*background-color: #F0FAFE;*/
 
   color: #000;
