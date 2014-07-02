@@ -41,7 +41,9 @@
 /*}*/
 body {
   font-family: "Aller";
-  background-color: #F0FAFE;
+  background-color: #318A9E;
+  /*background-color: #F0FAFE;*/
+
   color: #000;
 }
 .primary { color: #030BD4; }
