@@ -129,7 +129,8 @@ input[type="text"]:hover {
 }
 
 #theme-list .badge-info {
-  background-color: #FFFFFF
+  background-color: #FFFFFF;
+  color: #000000;
   /*background-color: #030BD4*/
 }
 .accordion {
