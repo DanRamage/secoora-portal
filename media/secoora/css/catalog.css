@@ -108,6 +108,11 @@ input[type="text"]:hover {
   max-width: 64px;
   max-height: 64px;
 }
+
+#catalog-search {
+  color: rgba(255,255,255,1);
+}
+
 .blog .typeahead {
     width: 28%;
 }
