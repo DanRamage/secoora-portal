@@ -54,7 +54,7 @@ input[type="text"]:hover {
 #theme-list .theme-heading .color-up h3 {
     /*color: rgba(3, 11, 212, 1);*/
 
-    color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 #theme-list .theme-heading .color-down h3 {
