@@ -212,8 +212,8 @@ class Metadata(models.Model):
         src = src.split(',')
         if len(src) == 4:
           type = "Unknown"
-          if src[1] in urn_mapping:
-            type = urn_mapping[src[1]]
+          if src[2] in urn_mapping:
+            type = urn_mapping[src[2]]
           links.append({'name': src[0], 'type': type, 'link': src[3]})
 
     if logger:
