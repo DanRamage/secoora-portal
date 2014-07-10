@@ -112,6 +112,29 @@ class Funding(models.Model):
   def __unicode__(self):
       return unicode('%s' % (self.name))
 
+urn_mapping = {'urn:ogc:serviceType:CatalogueService:2.0.2' : 'OGC Catalogue Service for the Web 2.0.2',
+  'urn:ogc:serviceType:SensorObservationService:1.0.0' : 'OGC Sensor Obstion Service 1.0.0',
+  'urn:ogc:serviceType:SensorObservationService:2.0.0' : 'OGC Sensor Observation Service 2.0.0',
+  'urn:ogc:serviceType:WebCoverageService:1.1.0' : 'OGC Web Coverage Service 1.1.0',
+  'urn:ogc:serviceType:WebCoverageService:1.0.0' : 'OGC Web Coverage Service 1.0.0',
+  'urn:ogc:serviceType:WebFeatureService:2.0.0' : 'OGC Web Feature Service 2.0.0',
+  'urn:ogc:serviceType:WebFeatureService:1.1.0' : 'OGC Web Feature Service 1.1.0',
+  'urn:ogc:serviceType:WebFeatureService:1.0.0' : 'OGC Web Feature Service 1.0.0',
+  'urn:ogc:serviceType:WebMapService:1.3.0' : 'OGC Web Map Service 1.3.0',
+  'urn:ogc:serviceType:WebMapService:1.1.1' : 'OGC Web Map Service 1.1.1',
+  'urn:ogc:serviceType:WebProcessingService:1.0.0' : 'OGC Web Processing Service 1.0.0',
+  'urn:x-esri:serviceType:ArcIMS' : 'ESRI ArcIMS Service',
+  'urn:x-esri:serviceType:ArcGIS' : 'ESRI ArcGIS Service',
+  'urn:x-unidata:serviceType:OPeNDAP:2.0.0' : 'OPeNDAP 2.0.0',
+  'urn:x-unidata:serviceType:NetCDFSubsetService:1.0.0' : 'NetCDF Subset Service 1.0.0',
+  'urn:x-unidata:serviceType:CDMRemote:0.1.0' : 'Common Data Model Remote Web Service 0.1.0',
+  'urn:ogc:dataFormat:GML:2.0' : 'OGC Geography Markup Language 2.0',
+  'urn:ogc:dataFormat:GML:2.1.1' : 'OGC Geography Markup Language 2.1.1',
+  'urn:ogc:dataFormat:GML:2.1.2' : 'OGC Geography Markup Language 2.1.2',
+  'urn:ogc:dataFormat:GML:3.0' : 'OGC Geography Markup Language 3.0',
+  'urn:ogc:dataFormat:GML:3.1.1' : 'OGC Geography Markup Language 3.1.1',
+  'urn:x-osgeo:link:www' : 'Web link / URL',
+  'urn:x-osgeo:link:www-thumbnail' : 'Web Thumbnail / browse image'}
 
 class Metadata(models.Model):
   DATA_TYPE_CHOICES = (
@@ -175,10 +198,23 @@ class Metadata(models.Model):
   publish_date = models.DateTimeField(null=True, blank=True)
   links = models.TextField(blank=True)
 
+
   def __unicode__(self):
       return unicode('%s' % (self.title))
 
+  @property
+  def links_data(self):
+    links = []
+    if len(self.links):
+      sources = self.links.split(';')
+      for src in sources:
+        if len(src) == 3:
+          type = "Unknown"
+          if src[1] in urn_mapping:
+            type = urn_mapping[src[1]]
+          links.append({'name': src[0], 'type': type, 'link': src[3]})
 
+    return links
 
 class Provider(models.Model):
   row_entry_date = models.DateTimeField(default=datetime.datetime.now)
