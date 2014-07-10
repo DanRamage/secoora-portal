@@ -205,8 +205,6 @@ class Metadata(models.Model):
 
   @property
   def links_data(self):
-    if logger:
-      logger.debug("links_data")
     links = []
     if len(self.links):
       sources = self.links.split(';')
@@ -217,6 +215,8 @@ class Metadata(models.Model):
             type = urn_mapping[src[1]]
           links.append({'name': src[0], 'type': type, 'link': src[3]})
 
+    if logger:
+      logger.debug("links_data: %s" % (links))
     return links
 
 class Provider(models.Model):
