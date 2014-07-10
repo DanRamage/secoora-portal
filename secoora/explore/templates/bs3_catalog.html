@@ -96,13 +96,13 @@
                                         Data Access
                                         <span class="caret"></span>
                                       </button>
-                                      {% for link in sublayer.metadatatable.links_data %}
                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation">
-                                          <a role="menuitem" target="_blank" href="{{ link.href }}">{{ link.type }}</a>
-                                         </li>
-                                       </ul>
-                                      {% endfor links_data %}
+                                        {% for link in sublayer.metadatatable.links_data %}
+                                          <li role="presentation">
+                                            <a role="menuitem" target="_blank" href="{{ link.href }}">{{ link.type }}</a>
+                                          </li>
+                                        {% endfor links_data %}
+                                      </ul>
 
                                       <!--
                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
