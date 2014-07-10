@@ -3,7 +3,7 @@ from utils import get_domain
 from django.template.defaultfilters import slugify
 import datetime
 #from sorl.thumbnail import ImageField
-
+import logging
 logger = logging.getLogger(__name__)
 
 class Topic(models.Model):
