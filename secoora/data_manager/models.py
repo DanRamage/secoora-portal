@@ -208,16 +208,18 @@ class Metadata(models.Model):
     links = []
     if len(self.links):
       sources = self.links.split(';')
+      #Links are separated by ';'
       for src in sources:
         src = src.split(',')
+        #THe link consists of [0]: Variable name [1]: Display name [2]: urn type [3]: link
         if len(src) == 4:
           type = "Unknown"
           if src[2] in urn_mapping:
             type = urn_mapping[src[2]]
-          links.append({'name': src[0], 'type': type, 'link': src[3]})
-
-    if logger:
-      logger.debug("links_data: %s" % (links))
+          links.append({'name': src[0], 'type': type, 'href': src[3]})
+        else:
+          if logger:
+            logger.error("%s missing links metadata." % (self.display_name))
     return links
 
 class Provider(models.Model):
