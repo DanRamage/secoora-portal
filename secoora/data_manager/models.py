@@ -207,9 +207,11 @@ class Metadata(models.Model):
   def links_data(self):
     links = []
     if len(self.links):
-      sources = self.links.split(';')
-      #Links are separated by ';'
+      sources = self.links.split('\n')
+      #Links are separated by return
       for src in sources:
+        if logger:
+          logger.error("%s link src: %s" % (self.display_name, src))
         src = src.split(',')
         #THe link consists of [0]: Variable name [1]: Display name [2]: urn type [3]: link
         if len(src) == 4:
