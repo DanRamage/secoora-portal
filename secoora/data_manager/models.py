@@ -209,8 +209,7 @@ class Metadata(models.Model):
     if len(self.links):
       sources = self.links.split(';')
       for src in sources:
-        if logger:
-          logger.debug("links_data source: %s" % (src))
+        src = src.split(',')
         if len(src) == 4:
           type = "Unknown"
           if src[1] in urn_mapping:
