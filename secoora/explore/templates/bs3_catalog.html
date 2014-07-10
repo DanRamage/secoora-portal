@@ -96,6 +96,13 @@
                                         Data Access
                                         <span class="caret"></span>
                                       </button>
+                                      {% for link in sublayer.metadatatable.links_data %}
+                                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation">
+                                          {{ link.type }}
+                                         </li>
+                                       </ul>
+                                      <!--
                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                         <li role="presentation">
                                           <a role="menuitem" tabindex="-1" href="#">Thredds</a>
@@ -104,6 +111,7 @@
                                           <a role="menuitem" tabindex="-1" href="#">Shapefile</a>
                                         </li>
                                       </ul>
+                                      -->
                                     </div>
                                   </div>
                                   <div class="btn-group">
