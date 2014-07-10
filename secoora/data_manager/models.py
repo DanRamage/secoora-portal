@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 import datetime
 #from sorl.thumbnail import ImageField
 
+logger = logging.getLogger(__name__)
 
 class Topic(models.Model):
     display_name = models.CharField(max_length=100)
@@ -204,6 +205,8 @@ class Metadata(models.Model):
 
   @property
   def links_data(self):
+    if logger:
+      logger.debug("links_data")
     links = []
     if len(self.links):
       sources = self.links.split(';')
