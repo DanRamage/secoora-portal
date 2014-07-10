@@ -218,7 +218,7 @@ class Metadata(models.Model):
           type = "Unknown"
           if src[2] in urn_mapping:
             type = urn_mapping[src[2]]
-          links.append({'name': src[0], 'type': type, 'href': src[3]})
+          links.append({'name': src[0].strip(), 'type': type.strip(), 'href': src[3].strip()})
         else:
           if logger:
             logger.error("%s missing links metadata." % (self.display_name))
