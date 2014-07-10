@@ -211,7 +211,7 @@ class Metadata(models.Model):
       for src in sources:
         if logger:
           logger.debug("links_data source: %s" % (src))
-        if len(src) == 3:
+        if len(src) == 4:
           type = "Unknown"
           if src[1] in urn_mapping:
             type = urn_mapping[src[1]]
