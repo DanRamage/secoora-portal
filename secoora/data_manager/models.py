@@ -205,8 +205,6 @@ class Metadata(models.Model):
 
   @property
   def links_data(self):
-    if logger:
-      logger.error("Metadata link: %s GetCapLink: %s" % (self.metadata_link, self.getcap_link))
     links = []
     if len(self.links):
       sources = self.links.split('\n')
