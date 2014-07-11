@@ -116,6 +116,7 @@
                                   </div>
                                   <div class="btn-group">
                                     <button type="button" class="btn btn-default">
+                                      { % debug %}
                                       {% if sublayer.metadatatable.getcap_link and sublayer.metadatatable.getcap_link|length > 0 %}
                                         <a href="{{sublayer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
                                       {% else %}
