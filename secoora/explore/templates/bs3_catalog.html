@@ -92,11 +92,11 @@
                                 <div class="btn-toolbar">
                                   <div class="btn-group">
                                     <div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                        Data Access
+                                      <button id="data_sources_menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Data Sources
                                         <span class="caret"></span>
                                       </button>
-                                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                      <ul class="dropdown-menu" role="menu">
                                         {% for link in sublayer.metadatatable.links_data %}
                                           <li role="presentation">
                                             <a role="menuitem" class="data-layer-link color-up" target="_blank" href="{{ link.href }}">{{ link.type }}</a>
@@ -116,9 +116,9 @@
                                   </div>
                                   <div class="btn-group">
                                     <button type="button" class="btn btn-default">
-                                      {% if sublayer.metadata_link %}
+                                      {% if sublayer.metadatatable.metadata_link and sublayer.metadatatable.metadata_link|length > 0 %}
                                         <a href="{{sublayer.metadata_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
-                                      {% elif sublayer.metadatatable.getcap_link %}
+                                      {% elif sublayer.metadatatable.getcap_link and sublayer.metadatatable.getcap_link|length > 0 %}
                                         <a href="{{sublayer.metadatatable.getcap_link}}" class="data-layer-link color-up" target="_blank">METADATA</a>
                                       {% else %}
                                         <span class="link-not-available">METADATA</span>
