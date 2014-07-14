@@ -79,7 +79,7 @@ input[type="text"]:hover {
 }
 
 #theme-list .layer-heading .color-up {
-    color: rgba(52, 52, 52, 1);
+    color: rgba(220, 220, 220, 1);
     /*color: rgba(102, 102, 102, 1);*/
 }
 #theme-list .layer-heading .color-down {
@@ -88,7 +88,7 @@ input[type="text"]:hover {
 
 #theme-list .sublayer-heading .color-up {
     /*color: rgba(102, 102, 102, 1);*/
-  color: rgba(52, 52, 52, 1);
+  color: rgba(230, 230, 230, 1);
 }
 #theme-list .sublayer-heading .color-down {
     color: rgba(102, 102, 102, .5);
