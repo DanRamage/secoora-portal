@@ -244,10 +244,10 @@ class Provider(models.Model):
 
   @property
   def contacts(self):
-    contacts = {}
+    contacts = []
     for contact in self.contact_email_list.split(','):
       name,email_addr = contact.split(';')
-      contacts[name] = email_addr
+      contacts.append({'name': name, 'emailed_addr': email_addr})
     if logger:
       logger.debug("Contacts: %s Dict: %s" %(self.contact_email_list, contacts))
     return contacts
