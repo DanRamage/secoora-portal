@@ -39,7 +39,9 @@
           <div class="row">
             <!--Contact info-->
             <div class="col-md-9">
-              <b>Contact:</b> {{ partner.contact_email_list }}
+              {% for contact in partner.contacts %}
+                <a href="{{ contact.addr }}">{{ contact.name }}</a>
+              {% endfor contacts %}
             </div>
           </div>
           <div class="row">

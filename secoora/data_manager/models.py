@@ -242,6 +242,13 @@ class Provider(models.Model):
   def __unicode__(self):
       return unicode('%s' % (self.source_name))
 
+  @property
+  def contacts(self):
+    contacts = {}
+    for contact in self.contact_email_list.split(','):
+      name,email_addr = contact.split(';')
+      contacts[name] = email_addr
+    return contacts
 
 class Layer(models.Model):
 
