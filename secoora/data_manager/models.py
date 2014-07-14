@@ -248,6 +248,8 @@ class Provider(models.Model):
     for contact in self.contact_email_list.split(','):
       name,email_addr = contact.split(';')
       contacts[name] = email_addr
+    if logger:
+      logger.debug("Contacts: %s Dict: %s" %(self.contact_email_list, contacts))
     return contacts
 
 class Layer(models.Model):
