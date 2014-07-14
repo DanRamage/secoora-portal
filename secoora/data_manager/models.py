@@ -246,8 +246,9 @@ class Provider(models.Model):
   def contacts(self):
     contacts = []
     for contact in self.contact_email_list.split(','):
-      name,email_addr = contact.split(';')
-      contacts.append({'name': name, 'emailed_addr': email_addr})
+      parts = cont act.split(';')
+      if len(parts) == 2:
+        contacts.append({'name': parts[0], 'emailed_addr': parts[1]})
     if logger:
       logger.debug("Contacts: %s Dict: %s" %(self.contact_email_list, contacts))
     return contacts
