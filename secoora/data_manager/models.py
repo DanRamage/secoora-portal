@@ -249,8 +249,6 @@ class Provider(models.Model):
       parts = contact.split(';')
       if len(parts) == 2:
         contacts.append({'name': parts[0], 'email_addr': parts[1]})
-    if logger:
-      logger.debug("Contacts: %s Dict: %s" %(self.contact_email_list, contacts))
     return contacts
 
 class Layer(models.Model):
