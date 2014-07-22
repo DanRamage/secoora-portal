@@ -121,6 +121,11 @@
                                       <a href="{{sublayer.metadatatable.getcap_link}}" class="btn btn-default data-layer-link color-up" target="_blank" role="button">METADATA</a>
                                     {% endif %}
                                   </div>
+                                  <div class="btn-group">
+                                    {% if sublayer.provider.page_anchor %}
+                                      <a href="/data_partners/{{sublayer.provider.page_anchor}}" class="btn btn-default data-layer-link color-up" target="_blank" role="button">Partner Info</a>
+                                    {% endif %}
+                                  </div>
                                 </div>
                                 <!--
                                 <ul class="unstyled data-layer-links">
