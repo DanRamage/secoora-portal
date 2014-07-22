@@ -254,6 +254,8 @@ class Provider(models.Model):
   @property
   def page_anchor(self):
     anchor = ""
+    if logger:
+      logger.debug("group name: %s" % (self.group_name))
     if self.group_name:
       anchor = self.group_name.replace(' ', '_')
     return anchor
