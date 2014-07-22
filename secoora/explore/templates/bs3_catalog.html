@@ -88,6 +88,7 @@
                                   <dd>{{ sublayer.metadatatable.bbox_extent }}</dd>
                                   <dt>Resolution:</dt>
                                   <dd>{{ sublayer.metadatatable.spatial_resolution }}</dd>
+                                  <dt>Provider Info:</dt>
                                 </dl>
                                 <div class="btn-toolbar">
                                   <div class="btn-group">
@@ -119,6 +120,11 @@
                                       <a href="{{sublayer.metadatatable.metadata_link}}" class="btn btn-default data-layer-link color-up" target="_blank" role="button">METADATA</a>
                                     {% elif sublayer.metadatatable.getcap_link and sublayer.metadatatable.getcap_link|length > 0 %}
                                       <a href="{{sublayer.metadatatable.getcap_link}}" class="btn btn-default data-layer-link color-up" target="_blank" role="button">METADATA</a>
+                                    {% endif %}
+                                  </div>
+                                  <div class="btn-group">
+                                    {% if sublayer.provider.page_anchor %}
+                                      <a href="/secoora_portal/explore/data_partners#{{sublayer.provider.page_anchor}}" class="btn btn-default data-layer-link color-up" target="_blank" role="button">Partner Info</a>
                                     {% endif %}
                                   </div>
                                 </div>
