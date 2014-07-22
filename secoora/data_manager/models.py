@@ -251,6 +251,14 @@ class Provider(models.Model):
         contacts.append({'name': parts[0], 'email_addr': parts[1]})
     return contacts
 
+  @property
+  def page_anchor(self):
+    anchor = ""
+    if self.group_name:
+      anchor = self.group_name.replace(' ', '_')
+    return anchor
+
+
 class Layer(models.Model):
 
     TYPE_CHOICES = (
