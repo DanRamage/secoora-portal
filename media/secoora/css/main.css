@@ -133,7 +133,7 @@ header {
   left: 0;
   right: 0;
   background-color: white;
-  height: 155px;
+  height: 125px;
   z-index: 1000;
 }
 header.shadow {
