@@ -135,6 +135,7 @@ header {
   background-color: white;
   height: 125px;
   z-index: 1000;
+
 }
 header.shadow {
   -webkit-box-shadow: rgba(0,0,0,0.3) 0px 2px 2px -1px;
