@@ -59,7 +59,7 @@ def add_learn_links(themes):
         #so don't add it to count.
         if not layer.is_parent and layer.is_sublayer:
           if logger:
-            logger.debug("Layer: %s Type: %s" % (layer.name, layer.layer_type))
+            logger.debug("Layer: %s Type: %s Themes: %s" % (layer.name, layer.layer_type, layer.themes))
           num_layers += 1
 
         #num_layers = len([layer.name for layer in theme.layer_set.all() if not layer.is_parent])
