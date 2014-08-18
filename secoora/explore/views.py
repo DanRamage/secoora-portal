@@ -51,8 +51,10 @@ def add_ordered_layers_lists(themes_list):
 def add_learn_links(themes):
     theme_dict = []
     for theme in themes:
+      if logger:
+        logger.debug("Theme: %s" % (theme.name))
       num_layers = 0
-      for layer in theme.layer_set.all():
+      for layer in theme.layer_set:
         if not layer.is_parent:
           if logger:
             logger.debug("Layer: %s Type: %s" % (layer.name, layer.layer_type))
