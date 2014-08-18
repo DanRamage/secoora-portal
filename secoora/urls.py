@@ -22,7 +22,9 @@ urlpatterns = patterns('',
     #(r'^search/', include('search.urls')),
     #(r'^portal/', direct_to_template, {'template': 'home.html'}),
     #(r'^$', direct_to_template, {'template': 'home.html'}),
-    (r'', include('madrona.common.urls')),
+    (r'^admin/', include(admin.site.urls)),
+
+    #(r'', include('madrona.common.urls')),
 )
 
 
