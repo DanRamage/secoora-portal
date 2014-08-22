@@ -53,16 +53,10 @@ def add_learn_links(themes):
     for theme in themes:
       if logger:
         logger.debug("Theme: %s" % (theme.name))
-      num_layers = 0
-      for layer in theme.layer_set.all():
-        #Don't include the parent container layer in count. It's not a viewable layer, just a
-        #container.
-        if not layer.is_parent:
-          if logger:
-            logger.debug("Layer: %s Type: %s" % (layer.name, layer.layer_type))
-          num_layers += 1
 
-        #num_layers = len([layer.name for layer in theme.layer_set.all() if not layer.is_parent])
+      #Don't include the parent container layer in count. It's not a viewable layer, just a
+      #container.
+      num_layers = len([layer.name for layer in theme.layer_set.all() if not layer.is_parent])
       theme_dict.append({'theme': theme, 'num_layers': num_layers, 'learn_link': theme.learn_link})
     return theme_dict
 """
