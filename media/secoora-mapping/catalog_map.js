@@ -11,6 +11,52 @@ function catalog_search_map()
     self.olMap.render('map');
   };
 
+  self.selectionBBOXAdded = function(feature)
+  {
+      var vertices = feature.geometry.getVertices();
+
+      /*if(vertices.length)
+      {
+        for(var j = 0; j < vertices.length; j++)
+        {
+          var point = [];
+          point.push(vertices[j].x);
+          point.push(vertices[j].y);
+          self.polygonQueryGeom.push(point);
+        }
+        var point = [];
+        point.push(vertices[0].x);
+        point.push(vertices[0].y);
+        //Append the first point last to close the polygon.
+        self.polygonQueryGeom.push(point);
+      };
+
+    var filterBoundingBox = new OpenLayers.Filter.Comparison({
+       type: OpenLayers.Filter.Spatial.BBOX,
+       property: "ows:BoundingBox",
+       value: bbox
+     });
+
+     var options = {
+       resultType: "results",
+       startPosition: 1,
+       maxRecords: 50,
+       outputFormat: "application/xml",
+       outputSchema: "http://www.isotc211.org/2005/gmd",
+       Query: {
+         ElementSetName: {
+           value: "full"
+         },
+         Constraint: {
+           version: "1.1.0",
+           Filter: filterBoundingBox
+         }
+       }
+     };
+
+     var format = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
+     */
+  };
   self.initialize = function(map_element_id) {
 
     $(window).resize(self.onResize);
@@ -48,9 +94,9 @@ function catalog_search_map()
 
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
-      OpenLayers.Handler.Polygon,
+      OpenLayers.Handler.Box,
       {
-        featureAdded: self.selectionPolygonAdded,
+        featureAdded: self.selectionBBOXAdded,
         callbacks: {
           //We want to check to see if we're drawing a new polygon. If we are, let's get
           //rid of the previous one from the screen.
