@@ -60,7 +60,7 @@ function catalog_search_map()
 
       });
     self.map.addControl(self.polygonOLControl);
-    self.polygonOLControl.enableControl(true);
+    self.polygonOLControl.activate(true);
   };
 
   return(self);
