@@ -73,7 +73,7 @@ function catalog_search_map()
 
   };
 
-  self.onResize()
+  self.onResize = function(percent)
   {
     self.map.render('map');
 
