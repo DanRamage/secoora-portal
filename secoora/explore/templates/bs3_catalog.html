@@ -23,6 +23,12 @@
       </div>
 
     </div>
+    <!-- POlygon search area map -->
+    <div class="row">
+      <div id="map">
+
+      </div>
+    </div>
   </div>
     <!--
     <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
@@ -244,11 +250,16 @@
   </div>
 </div>
 
+<script src="{{MEDIA_URL}}/secoora-mapping/assets/openlayers/OpenLayers.js"></script>
 
 
 {% endblock %}
 
 
 {% block javascript %}
-
+  $( document ).ready(function()
+  {
+    var map = catalog_search_map();
+    map.initialize();
+  });
 {% endblock %}
