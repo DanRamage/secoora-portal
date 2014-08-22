@@ -55,8 +55,8 @@ def add_learn_links(themes):
         logger.debug("Theme: %s" % (theme.name))
       num_layers = 0
       for layer in theme.layer_set.all():
-        #COunt sub layers only. If a layer is not a sub layer, it is not part of a grouping yet
-        #so don't add it to count.
+        #Don't include the parent container layer in count. It's not a viewable layer, just a
+        #container.
         if not layer.is_parent:
           if logger:
             logger.debug("Layer: %s Type: %s" % (layer.name, layer.layer_type))
