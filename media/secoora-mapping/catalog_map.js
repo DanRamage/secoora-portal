@@ -44,7 +44,7 @@ function catalog_search_map()
       styleMap: new OpenLayers.StyleMap({'default': pgStyle})
     });
 
-    self.olMap.addLayers(esriOcean, polygonLayer);
+    self.olMap.addLayers([esriOcean, polygonLayer]);
 
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
