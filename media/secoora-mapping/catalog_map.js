@@ -15,7 +15,7 @@ function catalog_search_map()
 
     $(window).resize(self.onResize);
 
-    self.map = new OpenLayers.Map(map_element_id, {
+    self.map = new OpenLayers.Map(null, {
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
       projection: "EPSG:102113"
     });
@@ -71,11 +71,21 @@ function catalog_search_map()
     self.map.addControl(self.polygonOLControl);
     self.polygonOLControl.activate(true);
 
-    self.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
-                        new OpenLayers.Projection("EPSG:4326"),
-                        new OpenLayers.Projection("EPSG:102113")), 6);
+    //self.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+    //                    new OpenLayers.Projection("EPSG:4326"),
+    //                    new OpenLayers.Projection("EPSG:102113")), 6);
 
   };
 
   return(self);
 };
+
+var map = catalog_search_map();
+$( document ).ready(function()
+{
+  map.initialize("map");
+  map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+                        new OpenLayers.Projection("EPSG:4326"),
+                        new OpenLayers.Projection("EPSG:102113")), 6);
+
+});
