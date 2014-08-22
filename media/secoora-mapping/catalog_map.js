@@ -6,6 +6,10 @@ function catalog_search_map()
   self.map = null;
   self.polygonOLControl = null;
 
+  self.onResize = function(percent)
+  {
+    self.map.render('map');
+  };
 
   self.initialize = function(map_element_id) {
 
@@ -70,12 +74,6 @@ function catalog_search_map()
     self.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         new OpenLayers.Projection("EPSG:102113")), 6);
-
-  };
-
-  self.onResize = function(percent)
-  {
-    self.map.render('map');
 
   };
 
