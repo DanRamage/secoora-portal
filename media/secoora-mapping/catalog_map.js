@@ -7,7 +7,7 @@ function catalog_search_map()
   self.polygonOLControl = null;
 
 
-  self.initialize(map_element_id)
+  self.initialize = function(map_element_id)
   {
     self.map = new OpenLayers.Map(map_element_id, {
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
