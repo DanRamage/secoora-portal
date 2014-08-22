@@ -3,19 +3,19 @@
 function catalog_search_map()
 {
   var self = this;
-  self.map = null;
+  self.olMap = null;
   self.polygonOLControl = null;
 
   self.onResize = function(percent)
   {
-    self.map.render('map');
+    self.olMap.render('map');
   };
 
   self.initialize = function(map_element_id) {
 
     $(window).resize(self.onResize);
 
-    self.map = new OpenLayers.Map(null, {
+    self.olMap = new OpenLayers.Map(null, {
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
       projection: "EPSG:102113"
     });
@@ -44,7 +44,7 @@ function catalog_search_map()
       styleMap: new OpenLayers.StyleMap({'default': pgStyle})
     });
 
-    self.map.addLayers(esriOcean, polygonLayer);
+    self.olMap.addLayers(esriOcean, polygonLayer);
 
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
@@ -68,7 +68,7 @@ function catalog_search_map()
         }
 
       });
-    self.map.addControl(self.polygonOLControl);
+    self.olMap.addControl(self.polygonOLControl);
     self.polygonOLControl.activate(true);
 
     //self.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
@@ -80,11 +80,11 @@ function catalog_search_map()
   return(self);
 };
 
-var map = catalog_search_map();
+var mapView = catalog_search_map();
 $( document ).ready(function()
 {
-  map.initialize("map");
-  map.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+  mapView.initialize("map");
+  mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         new OpenLayers.Projection("EPSG:102113")), 6);
 
