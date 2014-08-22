@@ -13,7 +13,9 @@ function catalog_search_map()
       projection: "EPSG:102113"
     });
 
-    esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean", "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}", {
+    esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean",
+      "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}",
+      {
       sphericalMercator: true,
       isBaseLayer: true,
       //numZoomLevels: 13,
@@ -61,6 +63,8 @@ function catalog_search_map()
       });
     self.map.addControl(self.polygonOLControl);
     self.polygonOLControl.activate(true);
+
+    self.map.zoomToMaxExtent();
   };
 
   return(self);
