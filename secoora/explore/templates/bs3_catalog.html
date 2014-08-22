@@ -258,9 +258,11 @@
 
 
 {% block javascript %}
-  $( document ).ready(function()
-  {
-    var map = catalog_search_map();
-    map.initialize();
-  });
+  <script type="text/javascript">
+    $( document ).ready(function()
+    {
+      var map = catalog_search_map();
+      map.initialize();
+    });
+  </script>
 {% endblock %}
