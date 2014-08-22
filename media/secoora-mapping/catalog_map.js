@@ -84,7 +84,7 @@ var map = catalog_search_map();
 $( document ).ready(function()
 {
   map.initialize("map");
-  map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+  map.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         new OpenLayers.Projection("EPSG:102113")), 6);
 
