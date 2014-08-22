@@ -20,13 +20,6 @@ function catalog_search_map()
       attribution: "Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri"
     });
 
-    //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
-    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer", {
-      styleMap: new OpenLayers.StyleMap({'default': pgStyle})
-    });
-
-    self.map.addLayers(esriOcean, polygonLayer);
-
     //Polygon query tool control
     //Set the style of the select polygon.
     var pgStyle = new OpenLayers.Style({
@@ -36,6 +29,14 @@ function catalog_search_map()
         strokeOpacity: 0.5,
         strokeWidth: 2
     });
+
+    //Add a vector layer to draw our polygon selection on for use with the "Does layer have data here" ESRI quesry.
+    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer", {
+      styleMap: new OpenLayers.StyleMap({'default': pgStyle})
+    });
+
+    self.map.addLayers(esriOcean, polygonLayer);
+
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
       OpenLayers.Handler.Polygon,
