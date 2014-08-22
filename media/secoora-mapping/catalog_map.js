@@ -8,12 +8,15 @@ function catalog_search_map()
 
 
   self.initialize = function(map_element_id) {
+
+    $(window).resize(self.onResize);
+
     self.map = new OpenLayers.Map(map_element_id, {
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
       projection: "EPSG:102113"
     });
 
-    esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean",
+    var esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean",
       "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/${z}/${y}/${x}",
       {
       sphericalMercator: true,
@@ -64,7 +67,16 @@ function catalog_search_map()
     self.map.addControl(self.polygonOLControl);
     self.polygonOLControl.activate(true);
 
-    self.map.zoomToMaxExtent();
+    self.map.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+                        new OpenLayers.Projection("EPSG:4326"),
+                        new OpenLayers.Projection("EPSG:102113")), 6);
+
+  };
+
+  self.onResize()
+  {
+    self.map.render('map');
+
   };
 
   return(self);
