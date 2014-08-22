@@ -25,7 +25,7 @@
     </div>
     <!-- POlygon search area map -->
     <div class="row">
-      <div id="map">
+      <div id="map" class="smallmap">
 
       </div>
     </div>
@@ -257,6 +257,13 @@
 {% block javascript %}
   <script src="{{MEDIA_URL}}/openlayers/OpenLayers.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
+  <style>
+    .smallmap {
+        border: 1px solid #ccc;
+        height: 256px;
+        width: 256px;
+    }
+  </style>
   <script type="text/javascript">
     var map = catalog_search_map();
     $( document ).ready(function()
