@@ -52,4 +52,6 @@ function catalog_search_map()
     self.map.addControl(self.polygonOLControl);
     self.polygonOLControl.enableControl(true);
   };
+
+  return(self);
 };
