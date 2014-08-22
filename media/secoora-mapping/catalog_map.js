@@ -94,7 +94,7 @@ function catalog_search_map()
 
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
-      OpenLayers.Handler.Box,
+      OpenLayers.Handler.Polygon,
       {
         featureAdded: self.selectionBBOXAdded,
         callbacks: {
