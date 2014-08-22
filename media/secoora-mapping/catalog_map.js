@@ -27,6 +27,15 @@ function catalog_search_map()
 
     self.map.addLayers(esriOcean, polygonLayer);
 
+    //Polygon query tool control
+    //Set the style of the select polygon.
+    var pgStyle = new OpenLayers.Style({
+        //fillColor: '#FFFFFF',
+        fillOpacity: 0,
+        //strokeColor: '#0000d0',
+        strokeOpacity: 0.5,
+        strokeWidth: 2
+    });
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
       OpenLayers.Handler.Polygon,
