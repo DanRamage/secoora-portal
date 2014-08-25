@@ -28,7 +28,7 @@ function catalog_search_map()
        property: "ows:BoundingBox",
        value: bounds4326
      });
-    /*
+
      var options = {
        resultType: "results",
        startPosition: 1,
@@ -47,7 +47,19 @@ function catalog_search_map()
      };
 
      var format = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
-     */
+
+    $.ajax({
+      type: "POST",
+      url: "http://www.ngdc.noaa.gov/geoportal/csw",
+      data: format,
+      success: function()
+      {
+        var i = 0;
+      },
+      dataType: "xml"
+      });
+
+
   };
   self.initialize = function(map_element_id) {
 
