@@ -47,11 +47,11 @@ function catalog_search_map()
      };
 
      var format = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
-
+     var xmlOutput = format.write();
     $.ajax({
       type: "POST",
       url: "http://www.ngdc.noaa.gov/geoportal/csw",
-      data: format,
+      data: xmlOutput,
       success: function()
       {
         var i = 0;
