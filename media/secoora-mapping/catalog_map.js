@@ -13,23 +13,11 @@ function catalog_search_map()
 
   self.selectionBBOXAdded = function(feature)
   {
-      var vertices = feature.geometry.getVertices();
+    var bounds4326 = feature.geometry.bounds.tranform(self.olMap.getProjection(),
+                                                      new OpenLayers.Projection("EPSG:4326"));
 
-      /*if(vertices.length)
-      {
-        for(var j = 0; j < vertices.length; j++)
-        {
-          var point = [];
-          point.push(vertices[j].x);
-          point.push(vertices[j].y);
-          self.polygonQueryGeom.push(point);
-        }
-        var point = [];
-        point.push(vertices[0].x);
-        point.push(vertices[0].y);
-        //Append the first point last to close the polygon.
-        self.polygonQueryGeom.push(point);
-      };
+
+    /*
 
     var filterBoundingBox = new OpenLayers.Filter.Comparison({
        type: OpenLayers.Filter.Spatial.BBOX,
