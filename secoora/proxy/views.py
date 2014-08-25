@@ -78,6 +78,7 @@ def restQuery(request, url):
 
     elif request.method == "POST":
         parsedURL = urlparse(url)
+        getUrl = request.POST.get('url')
         logger.info("URL: %s" % (url))
         data = urlencode(request.POST)
         resp, content = conn.request(url, request.method, data)
