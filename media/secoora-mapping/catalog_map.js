@@ -5,7 +5,7 @@ function catalog_search_map()
   var self = this;
   self.olMap = null;
   self.polygonOLControl = null;
-  self.cswGetRecords = null;
+  self.cswGetRecs = null;
 
   self.onResize = function(percent)
   {
@@ -47,7 +47,7 @@ function catalog_search_map()
        }
      };
 
-     self.cswGetRecords = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
+     self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
      var xmlOutput = format.write();
     $.ajax({
       type: "POST",
@@ -55,7 +55,7 @@ function catalog_search_map()
       data: xmlOutput,
       success: function(data, textStatus, jqXHR)
       {
-        var retData = self.cswGetRecords.read(data);
+        var retData = self.cswGetRecs.read(data);
         var i = 0;
       },
       dataType: "xml"
