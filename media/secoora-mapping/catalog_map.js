@@ -48,7 +48,7 @@ function catalog_search_map()
      };
 
      self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
-     var xmlOutput = format.write();
+     var xmlOutput = self.cswGetRecs.write();
     $.ajax({
       type: "POST",
       url: "/proxy/rest_query/?url=http://129.252.139.68:8000",
