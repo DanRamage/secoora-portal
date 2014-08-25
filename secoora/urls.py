@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     #(r'^learn/', include('learn.urls')),
     (r'^explore/', include('explore.urls')),
     (r'^secoora_portal/explore/', include('explore.urls')),
-    #(r'^proxy/', include('proxy.urls')),
+    (r'^proxy/', include('proxy.urls')),
     #(r'^visualize/', include('visualize.urls')),
     #(r'^planner/', include('visualize.urls')),
     #(r'^embed/', include('visualize.urls')),
@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     #(r'^portal/', direct_to_template, {'template': 'home.html'}),
     #(r'^$', direct_to_template, {'template': 'home.html'}),
     (r'^secoora_portal/admin/', include(admin.site.urls)),
+
 
     #(r'', include('madrona.common.urls')),
 )
