@@ -51,7 +51,7 @@ function catalog_search_map()
      var xmlOutput = self.cswGetRecs.write();
     $.ajax({
       type: "POST",
-      url: "/proxy/rest_query/?url=http://129.252.139.68:8000",
+      url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
       data: xmlOutput,
       success: function(data, textStatus, jqXHR)
       {
