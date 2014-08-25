@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     #(r'^$', direct_to_template, {'template': 'home.html'}),
     (r'^secoora_portal/admin/', include(admin.site.urls)),
 
+
     #(r'', include('madrona.common.urls')),
 )
 
