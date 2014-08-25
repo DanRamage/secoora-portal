@@ -55,7 +55,7 @@ function catalog_search_map()
       data: xmlOutput,
       success: function(data, textStatus, jqXHR)
       {
-        var retData = self.cswGetRecs.read(data);
+        var retData = self.cswGetRecs.read(jqXHR.responseText);
         var i = 0;
       },
       dataType: "xml"
