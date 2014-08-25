@@ -15,7 +15,7 @@ function catalog_search_map()
   {
     var bounds = new OpenLayers.Bounds(feature.geometry.bounds.left,
       feature.geometry.bounds.bottom,
-      feature.geometry.bounds.right
+      feature.geometry.bounds.right,
       feature.geometry.bounds.top);
 
       var bounds4326 = bounds.tranform(self.olMap.getProjection(),
