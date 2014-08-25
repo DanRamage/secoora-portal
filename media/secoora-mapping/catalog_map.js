@@ -50,7 +50,7 @@ function catalog_search_map()
      var xmlOutput = format.write();
     $.ajax({
       type: "POST",
-      url: "http://129.252.139.68",
+      url: "http://129.252.139.68:8000",
       data: xmlOutput,
       success: function()
       {
