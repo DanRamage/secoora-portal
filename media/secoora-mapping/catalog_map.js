@@ -5,6 +5,7 @@ function catalog_search_map()
   var self = this;
   self.olMap = null;
   self.polygonOLControl = null;
+  self.cswGetRecords = null;
 
   self.onResize = function(percent)
   {
@@ -46,14 +47,15 @@ function catalog_search_map()
        }
      };
 
-     var format = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
+     self.cswGetRecords = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
      var xmlOutput = format.write();
     $.ajax({
       type: "POST",
       url: "/proxy/rest_query/?url=http://129.252.139.68:8000",
       data: xmlOutput,
-      success: function()
+      success: function(data, textStatus, jqXHR)
       {
+        var retData = self.cswGetRecords.read(data);
         var i = 0;
       },
       dataType: "xml"
