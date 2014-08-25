@@ -10,10 +10,12 @@ import logging.config
 
 requestTimeout = 30   #Set a timeout of N seconds to throw an exception if the server hasn't responded.
 
+logger = logging.getLogger(__name__)
+
 #PROXY_FORMAT = u"http://%s/%s" % (settings.PROXY_DOMAIN, u"%s")
 allowedDomain = "129.252.139.68"
 def getLegendJSON(request, url):
-    logger = logging.getLogger(__name__)
+    #logger = logging.getLogger(__name__)
     logger.info("Begin getLegendJSON")
     #logger.debug("Request: %s" % (request))
     conn = httplib2.Http()
@@ -52,7 +54,7 @@ def getLegendJSON(request, url):
     return HttpResponse('Request could not be processed.')
 
 def restQuery(request, url):
-    logger = logging.getLogger(__name__)
+    #logger = logging.getLogger(__name__)
     logger.info("Begin restQuery")
     #logger.debug("Request: %s" % (request))
     conn = httplib2.Http()
