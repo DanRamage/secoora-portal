@@ -17,14 +17,14 @@ function catalog_search_map()
                                                       new OpenLayers.Projection("EPSG:4326"));
 
 
-    /*
+
 
     var filterBoundingBox = new OpenLayers.Filter.Comparison({
        type: OpenLayers.Filter.Spatial.BBOX,
        property: "ows:BoundingBox",
-       value: bbox
+       value: bounds4326
      });
-
+    /*
      var options = {
        resultType: "results",
        startPosition: 1,
