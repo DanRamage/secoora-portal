@@ -17,7 +17,7 @@ function catalog_search_map()
       feature.geometry.bounds.bottom,
       feature.geometry.bounds.right,
       feature.geometry.bounds.top);
-    var bounds4326 = bounds.transform(new OpenLayers.Projection("EPSG:102113"),
+    var bounds4326 = bounds.transform(self.olMap.getProjection(),
                                       new OpenLayers.Projection("EPSG:4326"));
 
 
