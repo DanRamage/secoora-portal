@@ -47,6 +47,7 @@ function catalog_search_map()
        }
      };
 
+
      self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
      var xmlOutput = self.cswGetRecs.write();
     $.ajax({
