@@ -11,7 +11,7 @@ import logging.config
 requestTimeout = 30   #Set a timeout of N seconds to throw an exception if the server hasn't responded.
 
 #PROXY_FORMAT = u"http://%s/%s" % (settings.PROXY_DOMAIN, u"%s")
-allowedDomain = "gsaaportal.org"
+allowedDomain = "129.252.139.68"
 def getLegendJSON(request, url):
     logger = logging.getLogger(__name__)
     logger.info("Begin getLegendJSON")
