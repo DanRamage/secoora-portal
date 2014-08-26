@@ -34,11 +34,11 @@ function catalog_search_map()
        resultType: "results",
        startPosition: 1,
        maxRecords: 50,
-       outputFormat: "application/xml",
-       outputSchema: "http://www.isotc211.org/2005/gmd",
+       //outputFormat: "application/xml",
+       //outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
-           value: "full"
+           value: "brief"
          },
          Constraint: {
            version: "1.1.0",
