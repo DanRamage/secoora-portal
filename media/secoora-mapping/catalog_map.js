@@ -50,7 +50,17 @@ function catalog_search_map()
 
      self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
      var xmlOutput = self.cswGetRecs.write();
-    $.ajax({
+     var protocol = new OpenLayers.Protocol.CSW({
+          url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
+          parseData: function(request)
+          {
+            //t.eq(request.responseText, "foo", "parseData called properly");
+            return "foo";
+          }
+        });
+     var i = 0;
+      /*
+
       type: "POST",
       url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
       data: xmlOutput,
@@ -61,7 +71,7 @@ function catalog_search_map()
       },
       dataType: "xml"
       });
-
+    */
 
   };
   self.initialize = function(map_element_id) {
