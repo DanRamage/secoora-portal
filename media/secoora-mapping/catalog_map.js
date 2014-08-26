@@ -54,7 +54,7 @@ function catalog_search_map()
          requestsType: "read"
         });
     protocol.priv = OpenLayers.Request.POST({
-      url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
+      url: "/proxy/rest_query/?url=http://129.252.139.68:8000",
       callback: function(request) {
         var response = self.cswGetRecs.read(request.responseXML || request.responseText);
         var i = 0;
