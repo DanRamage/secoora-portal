@@ -51,14 +51,16 @@ function catalog_search_map()
      self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
      var xmlOutput = self.cswGetRecs.write();
      var protocol = new OpenLayers.Protocol.CSW({
-          url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
-          parseData: function(request)
-          {
-            //t.eq(request.responseText, "foo", "parseData called properly");
-            return "foo";
-          }
+         requestsType: "read"
         });
-     var i = 0;
+    protocol.priv = OpenLayers.Request.POST({
+      url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
+      callback: function(request) {
+        var response = self.cswGetRecs.read(request.responseXML || request.responseText);
+        var i = 0;
+      },
+      data: xmlOutput
+    });
       /*
 
       type: "POST",
