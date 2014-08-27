@@ -18,11 +18,12 @@ function catalog_search_map()
       feature.geometry.bounds.bottom,
       feature.geometry.bounds.right,
       feature.geometry.bounds.top);
-    var bounds4326 = bounds.transform(self.olMap.getProjection(),
-                                      new OpenLayers.Projection("EPSG:4326"));
+    bounds.transform(self.olMap.getProjection(),
+                      new OpenLayers.Projection("EPSG:4326"));
 
-
-
+    //For some reason the lat/lon order is reversed from what we need to send to the getCSW, we
+    //reverse them here.
+    var bounds4326 = new OpenLayers.Bounds(bounds.toArray(true));
 
     var filterBoundingBox = new OpenLayers.Filter.Spatial({
        type: OpenLayers.Filter.Spatial.BBOX,
