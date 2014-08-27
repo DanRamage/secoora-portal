@@ -39,7 +39,7 @@ function catalog_search_map()
        //outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
-           value: "brief"
+           value: "full"
          },
          Constraint: {
            version: "1.1.0",
