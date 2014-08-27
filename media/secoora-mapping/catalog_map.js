@@ -24,7 +24,7 @@ function catalog_search_map()
 
 
 
-    var filterBoundingBox = new OpenLayers.Filter.Comparison({
+    var filterBoundingBox = new OpenLayers.Filter.Spatial({
        type: OpenLayers.Filter.Spatial.BBOX,
        property: "ows:BoundingBox",
        value: bounds4326
