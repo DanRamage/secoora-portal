@@ -14,10 +14,10 @@ function catalog_search_map()
 
   self.selectionBBOXAdded = function(feature)
   {
-    var bounds = new OpenLayers.Bounds(feature.geometry.bounds.left,
-      feature.geometry.bounds.bottom,
-      feature.geometry.bounds.right,
-      feature.geometry.bounds.top);
+    var bounds = new OpenLayers.Bounds(feature.geometry.bounds.bottom,
+      feature.geometry.bounds.left,
+      feature.geometry.bounds.top,
+      feature.geometry.bounds.right);
     var bounds4326 = bounds.transform(self.olMap.getProjection(),
                                       new OpenLayers.Projection("EPSG:4326"));
 
