@@ -5,6 +5,7 @@ from djorm_pgfulltext.models import SearchManager
 from djorm_pgfulltext.fields import VectorField
 
 from django.template.defaultfilters import slugify
+from django.contrib.gis.db import models
 import datetime
 #from sorl.thumbnail import ImageField
 import logging
