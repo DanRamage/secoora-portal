@@ -128,6 +128,18 @@ def data_partners(request, template='data_partners.html'):
   return render_to_response(template, RequestContext(request, context))
 
 
+def csw_listing(request, template='pycsw_catalog_view.html'):
+  if logger:
+    logger.info("Start csw_listing")
+  csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
+
+  context = {'records': csw_recs, 'domain': get_domain(8000), 'domain8010': get_domain()}
+  if logger:
+    logger.info("End csw_listing")
+  return render_to_response(template, RequestContext(request, context))
+
+
+
 def csw_test(request):
   if logger:
     logger.info("Start csw_test")
@@ -137,7 +149,8 @@ def csw_test(request):
     for rec in csw_recs:
       json_recs.append({
         'title': rec.title,
-        'links': rec.links
+        'links': rec.links,
+        'organization': rec.organization
       })
   except Exception, e:
     if logger:
