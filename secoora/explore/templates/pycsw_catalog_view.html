@@ -1,0 +1,63 @@
+{% extends 'base_no_sidebar_bs3.html' %}
+{% block main %}
+{% load flatblock_tags %}
+<link href="{{MEDIA_URL}}/secoora/css/catalog.css" rel="stylesheet">
+
+<div class="row">
+  <div id="catalog-search" class="col-sm-4 pull-right">
+    <b>The Data Catalog</b>
+    gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
+
+    <div class="search-row">
+      <div style="margin: 15px 0;">
+        <form id="catalog-search-form" action="/explore/search_catalog/" class="form-search layer-search" method="get" accept-charset="utf-8" autocomplete="off">
+            <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
+            <input type="text" name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
+        </form>
+        <!--
+        <form id="catalog-search-form" class="form-search layer-search">
+            <button class="catalog-search-button" type="submit"><i class="icon-search icon-large"></i></button>
+            <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
+        </form>
+        -->
+      </div>
+
+    </div>
+    <!-- POlygon search area map -->
+    <div class="row">
+      <div id="map" class="smallmap">
+
+      </div>
+    </div>
+  </div>
+    <!--
+    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
+    -->
+  <div class="col-xs-12 col-sm-8 theme catalog-page accordion pull-left" id="theme-list">
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+  <script src="{{MEDIA_URL}}/openlayers/OpenLayers.js"></script>
+  <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
+  <style>
+    .smallmap {
+        border: 1px solid #ccc;
+        height: 256px;
+        width: 256px;
+    }
+  </style>
+  <!--
+  <script type="text/javascript">
+    var map = catalog_search_map();
+    $( document ).ready(function()
+    {
+      map.initialize("map");
+    });
+  </script>
+  -->
+{% endblock %}
