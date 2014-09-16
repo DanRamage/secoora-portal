@@ -133,7 +133,7 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
     logger.info("Start csw_listing")
   csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
   html_id = 0
-  for rec in csw_recs;
+  for rec in csw_recs:
     rec.unique_id = html_id
     html_id += 1
   context = {'records': csw_recs, 'domain': get_domain(8000), 'domain8010': get_domain()}
