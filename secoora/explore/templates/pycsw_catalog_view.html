@@ -40,6 +40,15 @@
           </div>
           <div id="{{ cat_rec.identifier }}" class="accordion-body collapse">
             <div class="accordion-inner">
+              <dl>
+                <dt>Description:</dt>
+                <dd>{{ cat_rec.abstract }}</dd>
+                <dt>Bounding Box:</dt>
+                <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
+                <dt>Resolution:</dt>
+                <dd></dd>
+              </dl>
+
             </div>
           </div>
         </div>
