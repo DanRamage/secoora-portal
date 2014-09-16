@@ -14,12 +14,6 @@
             <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
             <input type="text" name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
         </form>
-        <!--
-        <form id="catalog-search-form" class="form-search layer-search">
-            <button class="catalog-search-button" type="submit"><i class="icon-search icon-large"></i></button>
-            <input type="text" style="display: inline-block" class="search-box" data-provide="typeahead" placeholder="Search the Catalog" data-bind="value: searchTerm, event: { keyup: keySearch }">
-        </form>
-        -->
       </div>
 
     </div>
@@ -30,10 +24,25 @@
       </div>
     </div>
   </div>
-    <!--
-    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
-    -->
-  <div class="col-xs-12 col-sm-8 theme catalog-page accordion pull-left" id="theme-list">
+
+
+  <div class="col-xs-12 col-sm-8 theme catalog-page accordion pull-left" id="{{ cat_rec.identifier }}-parent">
+    {% for cat_rec in records %}
+      <div class="accordion-group theme-group">
+        <div class="accordion-heading theme-heading">
+          <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="{{ cat_rec.identifier }}-parent" href="#{{ cat_rec.identifier }}">
+            <h3>
+              <div class="theme-search-name">{{ cat_rec.title }}
+              </div>
+            </h3>
+          </a>
+        </div>
+        <div id="{{ cat_rec.identifier }}" class="accordion-body collapse">
+          <div class="accordion-inner">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
