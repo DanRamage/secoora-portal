@@ -27,8 +27,8 @@
 
 
   <div class="col-xs-12 col-sm-8 theme catalog-page pull-left">
-    <div class="accordion" id="{{ cat_rec.identifier }}-parent">
-      {% for cat_rec in records %}
+    {% for cat_rec in records %}
+      <div class="accordion" id="{{ cat_rec.identifier }}-parent">
         <div class="accordion-group theme-group">
           <div class="accordion-heading theme-heading">
             <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="{{ cat_rec.identifier }}-parent" href="#{{ cat_rec.identifier }}">
@@ -44,8 +44,8 @@
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
 </div>
 
