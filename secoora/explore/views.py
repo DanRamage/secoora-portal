@@ -129,13 +129,19 @@ def data_partners(request, template='data_partners.html'):
 
 
 def csw_test(request):
-  csw_recs = pycsw_records.objects.using('pycsw_test').all()
+  if logger:
+    logger.info("Start csw_test")
   json_recs = []
-  for rec in csw_recs:
-    json_recs.append({
-      'title': rec.title,
-      'links': rec.links
-    })
+  try:
+    csw_recs = pycsw_records.objects.using('pycsw_test').all()
+    for rec in csw_recs:
+      json_recs.append({
+        'title': rec.title,
+        'links': rec.links
+      })
+  except Exception, e:
+    if logger:
+      logger.exception(e)
   json = {
     'records': json_recs
   }
