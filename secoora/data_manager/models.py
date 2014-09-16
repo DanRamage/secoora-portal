@@ -961,11 +961,12 @@ class pycsw_records:
     auto_update_search_field=True
   )
 
+  def __unicode__(self):
+      return unicode('%s' % (self.title))
+
   class Meta:
     db_table = 'records'
 
-  def __unicode__(self):
-      return unicode('%s' % (self.title))
 
 """
 class DataNeed(models.Model):
