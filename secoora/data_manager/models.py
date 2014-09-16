@@ -959,7 +959,7 @@ class pycsw_records(models.Model):
     search_field='anytext_tsvector',
     auto_update_search_field=True
   )
-  html_id = -1
+  html_id = None
   @property
   def wkt_geometry_to_text(self):
     geo_string = self.wkt_geometry.replace("POLYGON((", "").replace("))")
