@@ -1,5 +1,9 @@
 from django.db import models
 from utils import get_domain
+
+from djorm_pgfulltext.models import SearchManager
+from djorm_pgfulltext.fields import VectorField
+
 from django.template.defaultfilters import slugify
 import datetime
 #from sorl.thumbnail import ImageField
@@ -877,7 +881,91 @@ class LookupInfo(models.Model):
     
     def __unicode__(self):
         return unicode('%s' % (self.value)) 
-    
+
+class pycsw_records:
+  identifier  = models.TextField(primary_key=True)
+  typename  = models.TextField(default="csw:record", null=False,index=True)
+  schema  = models.TextField(default='http://www.opengis.net/cat/csw/2.0.2', null=False, index=True)
+  mdsource  = models.TextField(default='local', null=False, index=True)
+  insert_date  = models.TextField(null=False, index=True)
+  xml  = models.TextField(null=False)
+  anytext  = models.TextField(null=False)
+  language  = models.TextField(index=True)
+  type  = models.TextField(index=True)
+  title  = models.TextField(index=True)
+  title_alternate  = models.TextField(index=True)
+  abstract  = models.TextField(index=True)
+  keywords  = models.TextField(index=True)
+  keywordstype  = models.TextField(index=True)
+  parentidentifier  = models.TextField(index=True)
+  relation  = models.TextField(index=True)
+  time_begin  = models.TextField(index=True)
+  time_end  = models.TextField(index=True)
+  topicategory  = models.TextField(index=True)
+  resourcelanguage  = models.TextField(index=True)
+  creator  = models.TextField(index=True)
+  publisher  = models.TextField(index=True)
+  contributor  = models.TextField(index=True)
+  organization  = models.TextField(index=True)
+
+  securityconstraints  = models.TextField(index=True)
+  accessconstraints  = models.TextField(index=True)
+  otherconstraints  = models.TextField(index=True)
+
+  date  = models.TextField(index=True)
+  date_revision  = models.TextField(index=True)
+  date_creation  = models.TextField(index=True)
+  date_publication  = models.TextField(index=True)
+  date_modified  = models.TextField(index=True)
+  format  = models.TextField(index=True)
+  source  = models.TextField(index=True)
+
+  crs  = models.TextField(index=True)
+  geodescode  = models.TextField(index=True)
+  denominator  = models.TextField(index=True)
+  distancevalue  = models.TextField(index=True)
+  distanceuom  = models.TextField(index=True)
+  wkt_geometry  = models.TextField(index=True)
+
+  servicetype  = models.TextField(index=True)
+  servicetypeversion  = models.TextField(index=True)
+  operation  = models.TextField(index=True)
+  couplingtype  = models.TextField(index=True)
+  operateson  = models.TextField(index=True)
+  operatesonidentifier  = models.TextField(index=True)
+  operatesoname  = models.TextField(index=True)
+
+  degree  = models.TextField(index=True)
+  classification  = models.TextField(index=True)
+  conditionapplyingtoaccessanduse  = models.TextField(index=True)
+  lineage  = models.TextField(index=True)
+  responsiblepartyrole  = models.TextField(index=True)
+  specificationtitle  = models.TextField(index=True)
+  specificationdate  = models.TextField(index=True)
+  specificationdatetype  = models.TextField(index=True)
+
+
+
+  links  = models.TextField(index=True)
+
+  wkb_geometry = models.PolygonField()
+
+  anytext_tsvector = VectorField()
+
+  objects = models.Manager()
+  search_manager = SearchManager(
+    fields=('anytext'),
+    config='pg_catalog.english',
+    search_field='anytext_tsvector',
+    auto_update_search_field=True
+  )
+
+  class Meta:
+    db_table = 'records'
+
+  def __unicode__(self):
+      return unicode('%s' % (self.title))
+
 """
 class DataNeed(models.Model):
     name = models.CharField(max_length=100)
