@@ -962,7 +962,8 @@ class pycsw_records(models.Model):
   html_id = None
   @property
   def wkt_geometry_to_text(self):
-    geo_string = self.wkt_geometry.replace("POLYGON((", "").replace("))")
+    geo_string = self.wkt_geometry.replace("POLYGON((", ""))
+    geo_string = geo_string.replace("))", "")
     return geo_string
 
   def __unicode__(self):
