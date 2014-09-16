@@ -1,10 +1,12 @@
 # Create your views here.
 from django.shortcuts import get_object_or_404, render_to_response
+from django.http import HttpResponse
 from django.template import RequestContext
 from django.db.models import Q
 from data_manager.models import *
 from utils import get_domain
 import settings
+from django.utils import simplejson
 import logging
 
 logger = logging.getLogger(__name__)
@@ -116,6 +118,7 @@ def catalog_search(request, catalog_q, template='catalog_search_results.html'):
     logger.info("Rendering response.")
   return render_to_response(template, RequestContext(request, context))
 
+
 def data_partners(request, template='data_partners.html'):
   logger.info("Start data_partners")
   data_partners = Provider.objects.all().filter(~Q(source_name='SECOORA')).filter(secoora_funded=True).order_by('source_name')
@@ -123,3 +126,17 @@ def data_partners(request, template='data_partners.html'):
 
   context = {'providers': data_partners, 'num_providers': len(data_partners), 'domain': get_domain(8000), 'domain8010': get_domain()}
   return render_to_response(template, RequestContext(request, context))
+
+
+def csw_test(request):
+  csw_recs = pycsw_records.objects.using('pycsw_test').all()
+  json_recs = []
+  for rec in csw_recs:
+    json_recs.append({
+      'title': rec.title,
+      'links': rec.links
+    })
+  json = {
+    'records': json_recs
+  }
+  return HttpResponse(simplejson.dumps(json))
