@@ -6,6 +6,8 @@ urlpatterns = patterns('',
     (r'^bs3_catalog', data_catalog_bs3),
     (r'^data_partners', data_partners),
     (r'^search_catalog/(?P<catalog_q>[\w-]*)', catalog_search),
+    (r'^csw_test', csw_test),
+
     #(r'^needs', data_needs),
     #(r'^map_tile_example/([\w-]*)', map_tile_example),
     #(r'^map_tile_esri_example/([\w-]*)', map_tile_esri_example),
