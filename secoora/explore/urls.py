@@ -6,7 +6,7 @@ urlpatterns = patterns('',
     (r'^bs3_catalog', data_catalog_bs3),
     (r'^data_partners', data_partners),
     (r'^search_catalog/(?P<catalog_q>[\w-]*)', catalog_search),
-    (r'^csw_catalog_view', csw_catalog_view),
+    (r'^csw_listing', csw_listing),
     (r'^csw_test', csw_test),
 
     #(r'^needs', data_needs),
