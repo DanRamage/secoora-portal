@@ -946,7 +946,6 @@ class pycsw_records(models.Model):
   specificationdatetype  = models.TextField(db_index=True)
 
 
-
   links  = models.TextField(db_index=True)
 
   wkb_geometry = models.PolygonField()
@@ -960,6 +959,7 @@ class pycsw_records(models.Model):
     search_field='anytext_tsvector',
     auto_update_search_field=True
   )
+  html_id = -1
   @property
   def wkt_geometry_to_text(self):
     geo_string = self.wkt_geometry.replace("POLYGON((", "").replace("))")

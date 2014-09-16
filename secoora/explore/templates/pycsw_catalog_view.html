@@ -28,17 +28,17 @@
 
   <div class="col-xs-12 col-sm-8 theme catalog-page pull-left">
     {% for cat_rec in records %}
-      <div class="accordion" id="{{ cat_rec.identifier }}-parent">
+      <div class="accordion" id="{{ cat_rec.html_id }}-parent">
         <div class="accordion-group theme-group">
           <div class="accordion-heading theme-heading">
-            <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="{{ cat_rec.identifier }}-parent" href="#{{ cat_rec.identifier }}">
+            <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="{{ cat_rec.html_id }}-parent" href="#{{ cat_rec.html_id }}">
               <h3>
                 <div class="theme-search-name">{{ cat_rec.title }}
                 </div>
               </h3>
             </a>
           </div>
-          <div id="{{ cat_rec.identifier }}" class="accordion-body collapse">
+          <div id="{{ cat_rec.html_id }}" class="accordion-body collapse">
             <div class="accordion-inner">
               <dl>
                 <dt>Description:</dt>
