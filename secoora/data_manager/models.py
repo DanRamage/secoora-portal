@@ -883,7 +883,7 @@ class LookupInfo(models.Model):
     def __unicode__(self):
         return unicode('%s' % (self.value)) 
 
-class pycsw_records:
+class pycsw_records(models.Model):
   identifier  = models.TextField(primary_key=True)
   typename  = models.TextField(default="csw:record", null=False,db_index=True)
   schema  = models.TextField(default='http://www.opengis.net/cat/csw/2.0.2', null=False, db_index=True)
@@ -961,11 +961,12 @@ class pycsw_records:
     auto_update_search_field=True
   )
 
+  def __unicode__(self):
+      return unicode('%s' % (self.title))
+
   class Meta:
     db_table = 'records'
 
-  def __unicode__(self):
-      return unicode('%s' % (self.title))
 
 """
 class DataNeed(models.Model):
