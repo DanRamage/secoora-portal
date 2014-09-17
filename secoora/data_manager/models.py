@@ -996,12 +996,12 @@ class pycsw_records(models.Model):
     return links
 
     @propery
-    def time_begin_pretty:
+    def time_begin_pretty(self):
       buf = datetime.datetime.strptime(self.time_begin, '%YYYY-%mm-%ddT%HH:%MM:%SSZ')
       return buf.strftime("%YYYY-%mm-%dd %HH:%MM:%SS")
 
     @propery
-    def time_end_pretty:
+    def time_end_pretty(self):
       buf = datetime.datetime.strptime(self.end, '%YYYY-%mm-%ddT%HH:%MM:%SSZ')
       return buf.strftime("%YYYY-%mm-%dd %HH:%MM:%SS")
 
