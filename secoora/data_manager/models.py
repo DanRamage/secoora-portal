@@ -998,8 +998,8 @@ class pycsw_records(models.Model):
   @property
   def time_begin_pretty(self):
     try:
-      buf = datetime.datetime.strptime(self.time_start, '%Y-%m-%dT%H:%M:%SZ')
-      buf = buf.strftime("%Y-%m-%d %H:%M:%S")
+      time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%SZ')
+      buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
       if logger:
         logger.debug("time_begin_pretty: %s" % (buf))
     except Exception,e:
@@ -1012,8 +1012,8 @@ class pycsw_records(models.Model):
   @property
   def time_end_pretty(self):
     try:
-      buf = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
-      buf = buf.strftime("%Y-%m-%d %H:%M:%S")
+      time_end = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
+      buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
       if logger:
         logger.debug("time_end_pretty: %s" % (buf))
     except Exception,e:
