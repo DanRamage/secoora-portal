@@ -997,12 +997,20 @@ class pycsw_records(models.Model):
 
     @propery
     def time_begin_pretty(self):
-      buf = datetime.datetime.strptime(self.time_start, '%Y-%m-%dT%H:%M:%SZ')
+      try:
+        buf = datetime.datetime.strptime(self.time_start, '%Y-%m-%dT%H:%M:%SZ')
+      except Exception,e:
+        if logger:
+          logger.exception(e)
       return buf.strftime("%Y-%m-%d %H:%M:%S")
 
     @propery
     def time_end_pretty(self):
-      buf = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
+      try:
+        buf = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
+      except Exception,e:
+        if logger:
+          logger.exception(e)
       return buf.strftime("%Y-%m-%d %H:%M:%S")
 
   def __unicode__(self):
