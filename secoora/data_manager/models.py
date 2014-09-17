@@ -989,7 +989,7 @@ class pycsw_records(models.Model):
         #THe link consists of name,description,protocol,url
         if len(src) == 4:
           type = "Unknown"
-          links.append({'name': src[0], 'protocol': [2] , 'url': src[3]})
+          links.append({'name': src[0], 'protocol': src[2] , 'url': src[3]})
         else:
           if logger:
             logger.error("%s missing links metadata." % (self.display_name))
