@@ -997,29 +997,36 @@ class pycsw_records(models.Model):
 
   @property
   def time_begin_pretty(self):
+    if logger:
+      logger.debug("time_begin_pretty: %s" % (self.title))
     try:
       time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%SZ')
-      buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
-      if logger:
-        logger.debug("time_begin_pretty: %s" % (buf))
     except Exception,e:
       buf = self.time_start
       if logger:
         logger.exception(e)
+    else:
+      buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
+      if logger:
+        logger.debug("time_begin_pretty: %s" % (buf))
+
     return buf
 
 
   @property
   def time_end_pretty(self):
+    if logger:
+      logger.debug("time_end_pretty: %s" % (self.title))
     try:
       time_end = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
-      buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
-      if logger:
-        logger.debug("time_end_pretty: %s" % (buf))
     except Exception,e:
       buf = self.time_end
       if logger:
         logger.exception(e)
+    else:
+      buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
+      if logger:
+        logger.debug("time_begin_pretty: %s" % (buf))
     return buf
 
   def __unicode__(self):
