@@ -1008,6 +1008,7 @@ class pycsw_records(models.Model):
         logger.exception(e)
     return buf
 
+
   @property
   def time_end_pretty(self):
     try:
