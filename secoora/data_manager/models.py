@@ -883,6 +883,18 @@ class LookupInfo(models.Model):
     def __unicode__(self):
         return unicode('%s' % (self.value)) 
 
+
+links_mapping = {
+  "OGC-CSW": "OGC-CSW Catalogue Service for the Web",
+  "OGC-WMS": "OGC-WMS Web Map Service",
+  "OGC-WFS": "OGC-WFS Web Feature Service",
+  "OGC-WCS": "OGC-WCS Web Coverage Service",
+  "OGC-WPS": "OGC-WPS Web Processing Service",
+  "OGC-SOS": "OGC-SOS Sensor Observation Service",
+  "WWW:LINK-1.0-http--image-thumbnail": "Web image thumbnail (URL)",
+  "WWW:DOWNLOAD-1.0-http--download": "File for download",
+  "OGC:WPS-1.1.0-http-get-capabilities": "OGC-WPS Capabilities service (ver 1.0.0)"}
+
 class pycsw_records(models.Model):
   identifier  = models.TextField(primary_key=True)
   typename  = models.TextField(default="csw:record", null=False,db_index=True)
@@ -965,6 +977,24 @@ class pycsw_records(models.Model):
     geo_string = self.wkt_geometry.replace("POLYGON((", "")
     geo_string = geo_string.replace("))", "")
     return geo_string
+
+  @property
+  def links_data(self):
+    links = []
+    if len(self.links):
+      #Links are separated by '^'
+      sources = self.links.split('^')
+      for src in sources:
+        src = src.split(',')
+        #THe link consists of name,description,protocol,url
+        if len(src) == 4:
+          type = "Unknown"
+          links.append({'name': src[0], 'protocol': [2] , 'url': src[3]})
+        else:
+          if logger:
+            logger.error("%s missing links metadata." % (self.display_name))
+    return links
+
 
   def __unicode__(self):
       return unicode('%s' % (self.title))
