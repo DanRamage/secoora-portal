@@ -995,6 +995,15 @@ class pycsw_records(models.Model):
             logger.error("%s missing links metadata." % (self.display_name))
     return links
 
+    @propery
+    def time_begin_pretty:
+      buf = datetime.datetime.strptime(self.time_begin, '%YYYY-%mm-%ddT%HH:%MM:%SSZ')
+      return buf.strftime("%YYYY-%mm-%dd %HH:%MM:%SS")
+
+    @propery
+    def time_end_pretty:
+      buf = datetime.datetime.strptime(self.end, '%YYYY-%mm-%ddT%HH:%MM:%SSZ')
+      return buf.strftime("%YYYY-%mm-%dd %HH:%MM:%SS")
 
   def __unicode__(self):
       return unicode('%s' % (self.title))
