@@ -1001,12 +1001,13 @@ class pycsw_records(models.Model):
       buf = datetime.datetime.strptime(self.time_start, '%Y-%m-%dT%H:%M:%SZ')
       buf = buf.strftime("%Y-%m-%d %H:%M:%S")
       if logger:
-        logger.debug("time_begin_pretty: %s" % (buf.strftime("%Y-%m-%d %H:%M:%S")))
+        logger.debug("time_begin_pretty: %s" % (buf))
     except Exception,e:
       buf = self.time_start
       if logger:
         logger.exception(e)
     return buf
+
 
   @property
   def time_end_pretty(self):
@@ -1014,7 +1015,7 @@ class pycsw_records(models.Model):
       buf = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
       buf = buf.strftime("%Y-%m-%d %H:%M:%S")
       if logger:
-        logger.debug("time_end_pretty: %s" % (buf.strftime("%Y-%m-%d %H:%M:%S")))
+        logger.debug("time_end_pretty: %s" % (buf))
     except Exception,e:
       buf = self.time_end
       if logger:
