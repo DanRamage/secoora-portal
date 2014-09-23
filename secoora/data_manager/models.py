@@ -989,8 +989,8 @@ class pycsw_records(models.Model):
           logger.debug("Links: %s" % (src))
         src = src.split(',')
         #THe link consists of name,description,protocol,ur
-        if len(src) == 4:
-          links.append({'name': src[0], 'protocol': src[2] , 'url': src[3]})
+        if len(src) == 4 and src[2] != "None":
+          links.append({'name': src[0], 'protocol': src[2], 'url': src[3]})
         else:
           if logger:
             logger.error("%s missing links metadata." % (self.display_name))
