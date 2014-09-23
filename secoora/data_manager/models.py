@@ -991,7 +991,7 @@ class pycsw_records(models.Model):
         #THe link consists of name,description,protocol,ur
         if len(src) == 4:
           link = {'name': src[0], 'protocol': src[2], 'url': src[3]}
-          if link['protocol']:
+          if link['protocol'] and link['protocol'] != "None":
             links.append(link)
           else:
             if logger:
