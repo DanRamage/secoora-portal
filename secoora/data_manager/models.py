@@ -981,24 +981,28 @@ class pycsw_records(models.Model):
   @property
   def links_data(self):
     links = []
-    if len(self.links):
-      #Links are separated by '^'
-      sources = self.links.split('^')
-      for src in sources:
-        src = src.split(',')
-        if logger:
-          logger.debug("Links: Name: %s Protocol: %s" % (src[0], src[2]))
-        #THe link consists of name,description,protocol,ur
-        if len(src) == 4:
-          link = {'name': src[0], 'protocol': src[2], 'url': src[3]}
-          if link['protocol'] and link['protocol'] != "None":
-            links.append(link)
+    try:
+      if len(self.links):
+        #Links are separated by '^'
+        sources = self.links.split('^')
+        for src in sources:
+          src = src.split(',')
+          if logger:
+            logger.debug("Links: Name: %s Protocol: %s" % (src[0], src[2]))
+          #THe link consists of name,description,protocol,ur
+          if len(src) == 4:
+            link = {'name': src[0], 'protocol': src[2], 'url': src[3]}
+            if link['protocol'] and link['protocol'] != "None":
+              links.append(link)
+            else:
+              if logger:
+                logger.error("%s has invalid protocol" % (self.display_name))
           else:
             if logger:
-              logger.error("%s has invalid protocol" % (self.display_name))
-        else:
-          if logger:
-            logger.error("%s missing links metadata." % (self.display_name))
+              logger.error("%s missing links metadata." % (self.display_name))
+    except Exception,e:
+      if logger:
+        logger.exception(e)
     return links
 
   @property
