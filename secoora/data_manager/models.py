@@ -996,10 +996,10 @@ class pycsw_records(models.Model):
               links.append(link)
             else:
               if logger:
-                logger.error("%s has invalid protocol" % (self.display_name))
+                logger.error("%s has invalid protocol" % (self.title))
           else:
             if logger:
-              logger.error("%s missing links metadata." % (self.display_name))
+              logger.error("%s missing links metadata." % (self.title))
     except Exception,e:
       if logger:
         logger.exception(e)
