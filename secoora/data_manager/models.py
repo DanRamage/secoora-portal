@@ -990,8 +990,9 @@ class pycsw_records(models.Model):
           logger.debug("Links: Name: %s Protocol: %s" % (src[0], src[2]))
         #THe link consists of name,description,protocol,ur
         if len(src) == 4:
-          if src[2] != "None":
-            links.append({'name': src[0], 'protocol': src[2], 'url': src[3]})
+          link = {'name': src[0], 'protocol': src[2], 'url': src[3]}
+          if link['protocol']:
+            links.append(link)
           else:
             if logger:
               logger.error("%s has invalid protocol" % (self.display_name))
