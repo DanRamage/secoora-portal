@@ -985,6 +985,8 @@ class pycsw_records(models.Model):
       #Links are separated by '^'
       sources = self.links.split('^')
       for src in sources:
+        if logger:
+          logger.debug("Links: %s" % (src))
         src = src.split(',')
         #THe link consists of name,description,protocol,ur
         if len(src) == 4 and src[2] != None and src[2] != "None":
