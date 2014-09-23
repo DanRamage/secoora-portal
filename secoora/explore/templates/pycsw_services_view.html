@@ -1,0 +1,120 @@
+{% extends 'base_no_sidebar_bs3.html' %}
+{% block main %}
+{% load flatblock_tags %}
+<link href="{{MEDIA_URL}}/secoora/css/catalog.css" rel="stylesheet">
+
+<div class="row">
+  <div id="catalog-search" class="col-sm-4 pull-right">
+    <b>The Data Catalog</b>
+    gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
+
+    <div class="search-row">
+      <div style="margin: 15px 0;">
+        <form id="catalog-search-form" action="/explore/search_catalog/" class="form-search layer-search" method="get" accept-charset="utf-8" autocomplete="off">
+            <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
+            <input type="text" name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
+        </form>
+      </div>
+
+    </div>
+    <!-- POlygon search area map -->
+    <div class="row">
+      <div id="map" class="smallmap">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-8 theme catalog-page pull-left">
+    {% for service_type in records %}
+    <div class="accordion-group theme-group">
+      <div class="accordion-heading theme-heading">
+        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ service_type }}">
+          <h3>
+            <div class="theme-search-name">{{ service_type }}
+              <!--
+              <span class="pull-right badge-info badge">{{ theme_dict.num_layers }}</span>
+              -->
+              <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+              <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+            </div>
+          </h3>
+        </a>
+      </div>
+      <div id="{{ service_type }}" class="theme-accordion accordion-body collapse">
+        <div class="accordion-inner">
+        {% for cat_rec in records %}
+          <div class="accordion" id="parent-{{ cat_rec.html_id }}">
+            <div class="accordion-group theme-group">
+              <div class="accordion-heading theme-heading">
+                <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="parent-{{ cat_rec.html_id }}" href="#child-{{ cat_rec.html_id }}">
+                  <h3>
+                    <div class="theme-search-name">{{ cat_rec.title }}
+                    </div>
+                  </h3>
+                </a>
+              </div>
+              <div id="child-{{ cat_rec.html_id }}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <dl>
+                    <dt>Organization:</dt>
+                    <dd>{{ cat_rec.organization }}</dd>
+                    <dt>Description:</dt>
+                    <dd>{{ cat_rec.abstract }}</dd>
+                    <dt>Bounding Box:</dt>
+                    <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
+                    <dt>Time Frame:</dt>
+                    <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
+                  </dl>
+                  <div class="btn-toolbar">
+                    <div class="btn-group">
+                      <div class="dropdown">
+                        <button id="data_sources_menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                          Data Sources
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          {% for link in cat_rec.links_data %}
+                            <li role="presentation">
+                              <a role="menuitem" class="data-layer-link color-up" target="_blank" href="{{ link.url }}">{{ link.protocol }}</a>
+                            </li>
+                          {% endfor links_data %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+     </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+  <script src="{{MEDIA_URL}}/openlayers/OpenLayers.js"></script>
+  <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
+  <style>
+    .smallmap {
+        border: 1px solid #ccc;
+        height: 256px;
+        width: 256px;
+    }
+  </style>
+  <!--
+  <script type="text/javascript">
+    var map = catalog_search_map();
+    $( document ).ready(function()
+    {
+      map.initialize("map");
+    });
+  </script>
+  -->
+{% endblock %}
