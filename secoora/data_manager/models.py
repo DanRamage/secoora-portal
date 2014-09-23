@@ -986,9 +986,8 @@ class pycsw_records(models.Model):
       sources = self.links.split('^')
       for src in sources:
         src = src.split(',')
-        #THe link consists of name,description,protocol,url
-        if len(src) == 4:
-          type = "Unknown"
+        #THe link consists of name,description,protocol,ur
+        if len(src) == 4 and protocol != None:
           links.append({'name': src[0], 'protocol': src[2] , 'url': src[3]})
         else:
           if logger:
