@@ -895,6 +895,17 @@ links_mapping = {
   "WWW:DOWNLOAD-1.0-http--download": "File for download",
   "OGC:WPS-1.1.0-http-get-capabilities": "OGC-WPS Capabilities service (ver 1.0.0)"}
 
+
+service_display_name = {
+  'http': {'name': 'HTTP'},
+  'OPeNDAP:OPeNDAP': {'name' : 'OPeNDAP'},
+  'OGC:WMS': {'name': 'WMS'},
+  'UNIDATA:NCSS': {'name': 'NCSS'},
+  'file': {'name': 'File'},
+  'OGC:SOS': {'name': 'SOS'},
+  'OGC:WCS': {'name': 'WCS'},
+  'WWW:LINK': {'name': 'URL Link'}
+}
 class pycsw_records(models.Model):
   identifier  = models.TextField(primary_key=True)
   typename  = models.TextField(default="csw:record", null=False,db_index=True)
