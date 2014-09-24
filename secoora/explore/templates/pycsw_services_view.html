@@ -25,11 +25,11 @@
     </div>
   </div>
 
-  <div class="col-xs-12 col-sm-8 theme catalog-page accordion pull-left" id="services-list">
+  <div class="col-xs-12 col-sm-8 theme catalog-page accordion pull-left" id="theme-list">
     {% for service_type in records %}
     <div class="accordion-group theme-group">
       <div class="accordion-heading theme-heading">
-        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="services-list" href="#{{ service_type }}">
+        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ service_type }}">
           <h3>
             <div class="theme-search-name">{{ service_type }}
               <!--
