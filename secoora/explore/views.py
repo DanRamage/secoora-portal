@@ -158,7 +158,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
           display_name = service_display_name[type['protocol']]['name']
         service_types[type['protocol']] = {
           'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
-          'diplay_name': 'lalalal',
+          'display_name': display_name,
           'records': []
         }
         if logger:
