@@ -144,24 +144,25 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
 def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping")
-  service_types = {}
+  service_types = []
   csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
   html_id = 0
+  service_type = {}
   for rec in csw_recs:
     links = rec.links_data
     for type in links:
-      if type['protocol'] not in service_types:
+      if type['protocol'] not in service_type:
         display_name = type['protocol']
         if type['protocol'] in service_display_name:
           display_name = service_display_name[type['protocol']]
-        service_types[type['protocol']] = {
+        service_type[type['protocol']] = {
           'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
           'diplay_name': display_name,
           'records' : []
         }
         if logger:
           logger.debug("Protocol: %s added" % (type['protocol']))
-      service_types[type['protocol']]['records'].append(rec)
+
 
     #Used for unique IDs in the HTML template
     rec.html_id = html_id
