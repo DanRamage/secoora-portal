@@ -43,52 +43,50 @@
       </div>
       <div id="{{ service_type }}" class="theme-accordion accordion-body collapse">
         <div class="accordion-inner">
-        {% for cat_rec in service_records %}
-          <div class="accordion" id="parent-{{ cat_rec.html_id }}">
-            <div class="accordion-group theme-group">
-              <div class="accordion-heading theme-heading">
-                <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="parent-{{ cat_rec.html_id }}" href="#child-{{ cat_rec.html_id }}">
-                  <h3>
-                    <div class="theme-search-name">{{ cat_rec.title }}
-                    </div>
-                  </h3>
-                </a>
-              </div>
-              <div id="child-{{ cat_rec.html_id }}" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <dl>
-                    <dt>Organization:</dt>
-                    <dd>{{ cat_rec.organization }}</dd>
-                    <dt>Description:</dt>
-                    <dd>{{ cat_rec.abstract }}</dd>
-                    <dt>Bounding Box:</dt>
-                    <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
-                    <dt>Time Frame:</dt>
-                    <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
-                  </dl>
-                  <div class="btn-toolbar">
-                    <div class="btn-group">
-                      <div class="dropdown">
-                        <button id="data_sources_menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                          Data Sources
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                          {% for link in cat_rec.links_data %}
-                            <li role="presentation">
-                              <a role="menuitem" class="data-layer-link color-up" target="_blank" href="{{ link.url }}">{{ link.protocol }}</a>
-                            </li>
-                          {% endfor links_data %}
-                        </ul>
+          <div class="accordion" id="{{service_type}}-service-list">
+            {% for cat_rec in service_records %}
+              <div class="accordion" id="parent-{{ cat_rec.html_id }}">
+                <div class="accordion-group sublayer-group">
+                  <div class="accordion-heading sublayer-heading">
+                    <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="parent-{{ cat_rec.html_id }}" href="#child-{{ cat_rec.html_id }}">
+                    <span class="layer-search-name">{{ cat_rec.title }}</span>
+                    </a>
+                  </div>
+                  <div id="child-{{ cat_rec.html_id }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      <dl>
+                        <dt>Organization:</dt>
+                        <dd>{{ cat_rec.organization }}</dd>
+                        <dt>Description:</dt>
+                        <dd>{{ cat_rec.abstract }}</dd>
+                        <dt>Bounding Box:</dt>
+                        <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
+                        <dt>Time Frame:</dt>
+                        <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
+                      </dl>
+                      <div class="btn-toolbar">
+                        <div class="btn-group">
+                          <div class="dropdown">
+                            <button id="data_sources_menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                              Data Sources
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              {% for link in cat_rec.links_data %}
+                                <li role="presentation">
+                                  <a role="menuitem" class="data-layer-link color-up" target="_blank" href="{{ link.url }}">{{ link.protocol }}</a>
+                                </li>
+                              {% endfor links_data %}
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            {% endfor %}
           </div>
-        {% endfor %}
-
         </div>
       </div>
     </div>
