@@ -141,7 +141,7 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
     logger.info("End csw_listing")
   return render_to_response(template, RequestContext(request, context))
 
-def csw_list_service_type_grouping(request, template='pycsw_catalog_view.html'):
+def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping")
   service_types = {}
