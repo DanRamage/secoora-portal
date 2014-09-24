@@ -153,7 +153,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
     for type in links:
       if type['protocol'] not in service_types:
         #From the protocol, look up our more user friendly name to use for display.
-        display_name = type['protocol']
+        display_name = type['protocol']['name']
         if type['protocol'] in service_display_name:
           display_name = service_display_name[type['protocol']]
         service_types[type['protocol']] = {
