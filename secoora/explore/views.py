@@ -171,7 +171,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
   keys = service_types.keys()
   keys.sort()
   service_types_list = [service_types[key] for key in keys]
-  context = {'records': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
+  context = {'services': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
   if logger:
     logger.info("End csw_list_service_type_grouping")
   return render_to_response(template, RequestContext(request, context))
