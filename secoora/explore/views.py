@@ -159,11 +159,13 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
         service_types[type['protocol']] = {
           'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
           'display_name': display_name,
+          'record_count' : 0,
           'records': []
         }
         if logger:
           logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
       service_types[type['protocol']]['records'].append(rec)
+      service_types[type['protocol']]['record_count'] += 1
 
     #Used for unique IDs in the HTML template
     rec.html_id = html_id
