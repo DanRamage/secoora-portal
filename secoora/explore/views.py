@@ -162,7 +162,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
           'records': []
         }
         if logger:
-          logger.debug("Protocol: %s added" % (type['protocol']))
+          logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
       service_types[type['protocol']]['records'].append(rec)
 
     #Used for unique IDs in the HTML template
