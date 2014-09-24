@@ -144,13 +144,15 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
 def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping")
-  service_types = {}
+  service_types_list = []
   csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
   html_id = 0
+  service_types = {}
   for rec in csw_recs:
     links = rec.links_data
     for type in links:
       if type['protocol'] not in service_types:
+        #From the protocol, look up our more user friendly name to use for display.
         display_name = type['protocol']
         if type['protocol'] in service_display_name:
           display_name = service_display_name[type['protocol']]
@@ -159,16 +161,17 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
           'diplay_name': display_name,
           'records': []
         }
-        service_types[type['protocol']]['records'].append(rec)
         if logger:
           logger.debug("Protocol: %s added" % (type['protocol']))
-
+      service_types[type['protocol']]['records'].append(rec)
 
     #Used for unique IDs in the HTML template
     rec.html_id = html_id
     html_id += 1
-
-  context = {'records': service_types, 'domain': get_domain(8000), 'domain8010': get_domain()}
+  keys = service_types.keys()
+  keys.sort()
+  service_types_list = [service_types[key] for key in keys]
+  context = {'records': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
   if logger:
     logger.info("End csw_list_service_type_grouping")
   return render_to_response(template, RequestContext(request, context))
