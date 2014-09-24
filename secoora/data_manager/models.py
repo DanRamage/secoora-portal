@@ -904,7 +904,7 @@ service_display_name = {
   'file': {'name': 'File'},
   'OGC:SOS': {'name': 'SOS'},
   'OGC:WCS': {'name': 'WCS'},
-  'WWW:LINK': {'name': 'URL Link'}
+  'WWW:LINK': {'name': 'Link'}
 }
 class pycsw_records(models.Model):
   identifier  = models.TextField(primary_key=True)
