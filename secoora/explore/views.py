@@ -150,7 +150,7 @@ def csw_list_service_type_grouping(request, template='pycsw_catalog_view.html'):
   for rec in csw_recs:
     links = rec.links_data
     for type in links:
-      if type['protocol'] not in links:
+      if type['protocol'] not in service_types:
         service_types[type['protocol']] = []
         if logger:
           logger.debug("Protocol: %s added" % (type['protocol']))
