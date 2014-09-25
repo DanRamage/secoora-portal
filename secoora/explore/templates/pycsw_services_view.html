@@ -48,11 +48,11 @@
               <div class="accordion" id="parent-{{ cat_rec.html_id }}">
                 <div class="accordion-group sublayer-group">
                   <div class="accordion-heading sublayer-heading">
-                    <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list" href="#child-{{ cat_rec.html_id }}">
+                    <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list" href="#child_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
                     <span class="layer-search-name">{{ cat_rec.title }}</span>
                     </a>
                   </div>
-                  <div id="child-{{ cat_rec.html_id }}" class="accordion-body collapse">
+                  <div id="child_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="accordion-body collapse">
                     <div class="accordion-inner">
                       <dl>
                         <dt>Organization:</dt>

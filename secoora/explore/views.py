@@ -141,6 +141,7 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
     logger.info("End csw_listing")
   return render_to_response(template, RequestContext(request, context))
 
+
 def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping")
@@ -156,6 +157,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
         display_name = type['protocol']
         if type['protocol'] in service_display_name:
           display_name = service_display_name[type['protocol']]['name']
+
         service_types[type['protocol']] = {
           'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
           'display_name': display_name,
@@ -164,11 +166,13 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
         }
         if logger:
           logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
+
+      #Used for unique IDs in the HTML template
+      rec.html_id = html_id
+
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
 
-    #Used for unique IDs in the HTML template
-    rec.html_id = html_id
     html_id += 1
   keys = service_types.keys()
   keys.sort()
