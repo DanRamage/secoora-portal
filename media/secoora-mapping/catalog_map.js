@@ -35,7 +35,7 @@ function catalog_search_map()
        resultType: "results",
        startPosition: 1,
        maxRecords: 50,
-       //outputFormat: "application/xml",
+       outputFormat: "application/json",
        //outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
