@@ -1,10 +1,12 @@
 # Create your views here.
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.template import RequestContext
 from django.db.models import Q
 from data_manager.models import *
 from utils import get_domain
+import requests
+
 import settings
 from django.utils import simplejson
 import logging
@@ -185,10 +187,27 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 def csw_query(request, template='catalog_search_results.html'):
   if logger:
     logger.debug("catalog_search_results begin")
+
   getUrl = request.GET.get('url')
   csw_request_data = request.raw_post_data
+
   if logger:
-    logger.debug("CSW url: %s requets: %s" % (getUrl, csw_request_data))
+    logger.debug("CSW url: %s request: %s" % (getUrl, csw_request_data))
+  #Send request to the server.
+  try:
+    results = requests.post(getUrl, data=csw_request_data)
+  except Exception, e:
+    if(logger):
+      logger.exception(e)
+  else:
+    if(results.status_code == 200):
+      if logger:
+        logger.debug("Rcvd CSW results.")
+    else:
+      if logger:
+        logger.debug("CSW query failed: Code: %d" % (results.status_code))
+
+
 
   context = {}
   if logger:
