@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     (r'^search_catalog/(?P<catalog_q>[\w-]*)', catalog_search),
     (r'^csw_listing', csw_listing),
     (r'^csw_services', csw_list_service_type_grouping),
+    (r'^csw_query', csw_query),
     (r'^csw_test', csw_test),
 
     #(r'^needs', data_needs),
