@@ -202,7 +202,7 @@ def csw_query(request, template='catalog_search_results.html'):
   else:
     if(results.status_code == 200):
       if logger:
-        logger.debug("Rcvd CSW results.")
+        logger.debug("Rcvd CSW results: %s" % (results.text))
     else:
       if logger:
         logger.debug("CSW query failed: Code: %d" % (results.status_code))
