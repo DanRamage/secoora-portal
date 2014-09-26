@@ -187,8 +187,9 @@ def csw_query(request, template='catalog_search_results.html'):
     logger.debug("catalog_search_results begin")
   getUrl = request.GET.get('url')
   if logger:
-    logger.debug("CSW url: getUrl")
+    logger.debug("CSW url: %s" % (getUrl))
 
+  context = {}
   if logger:
     logger.debug("catalog_search_results end")
   return render_to_response(template, RequestContext(request, context))
