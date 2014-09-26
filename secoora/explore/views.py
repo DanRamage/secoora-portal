@@ -182,6 +182,18 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
     logger.info("End csw_list_service_type_grouping")
   return render_to_response(template, RequestContext(request, context))
 
+def csw_query(request, url, template='catalog_search_results.html'):
+  if logger:
+    logger.debug("catalog_search_results begin")
+  getUrl = request.GET.get('url')
+  if logger:
+    logger.debug("CSW url: getUrl")
+
+  if logger:
+    logger.debug("catalog_search_results end")
+  return render_to_response(template, RequestContext(request, context))
+
+
 
 def csw_test(request):
   if logger:
