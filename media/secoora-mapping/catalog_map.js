@@ -63,6 +63,7 @@ function catalog_search_map()
       },
       data: xmlOutput
     });
+    window.location.href = self.query_url;
       /*
 
       type: "POST",
