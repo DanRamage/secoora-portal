@@ -10,6 +10,13 @@
       <b>Search returned <span data-bind='test: resultsCount'></span> results</b>
     </div>
   </div>
+  <span data-bind="foreach: results">
+    <div class="row-fluid">
+      <div class="col-md-8 pull-left">
+
+      </div>
+    </div>
+  </span>
 {% endblock %}
 
 {% block javascript %}
@@ -21,10 +28,10 @@
       var self = this;
 
       self.viewModel = null;
-      self.initialize = function(config)
+      self.initialize = function(results)
       {
-        self.viewModel = new csw_search_model(config);
-        self.viewModel.initialize();
+        self.viewModel = new csw_search_model();
+        self.viewModel.initialize(results);
         ko.applyBindings(self.viewModel);
 
       };
