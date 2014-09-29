@@ -57,12 +57,12 @@ function catalog_search_map()
         });
     protocol.priv = OpenLayers.Request.POST({
       url: self.query_url,
+      data: xmlOutput
       /*
       callback: function(request) {
         var response = self.cswGetRecs.read(request.responseXML || request.responseText);
         var i = 0;
       },*/
-      data: xmlOutput
     });
     window.location.href = self.query_url;
       /*
