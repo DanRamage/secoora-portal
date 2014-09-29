@@ -201,9 +201,9 @@ def csw_query(request, template='csw_search_results.html'):
       logger.exception(e)
   else:
     if(results.status_code == 200):
-      csw_records = results.text
       if logger:
-        logger.debug("Rcvd CSW results")
+        logger.debug("Rcvd CSW results: %s" % (results.text))
+      csw_records = simplejson.dumps(results.text)
     else:
       if logger:
         logger.debug("CSW query failed: Code: %d" % (results.status_code))
@@ -213,7 +213,7 @@ def csw_query(request, template='csw_search_results.html'):
   if logger:
     logger.debug("catalog_search_results end")
   #return render_to_response(template, {'brand_info': simplejson.dumps(brand_json)}, context_instance=RequestContext(request))
-  return render_to_response(template, {'search_results': simplejson.loads(csw_records)}, context_instance=RequestContext(request))
+  return render_to_response(template, {'search_results': csw_records}, context_instance=RequestContext(request))
 
 
 
