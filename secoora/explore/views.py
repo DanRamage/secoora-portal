@@ -203,7 +203,7 @@ def csw_query(request, template='csw_search_results.html'):
     if(results.status_code == 200):
       if logger:
         logger.debug("Rcvd CSW results: %s" % (results.text))
-      csw_records = results.text;
+      csw_records = simplejson.loads(results.text);
     else:
       csw_records = [];
       if logger:
