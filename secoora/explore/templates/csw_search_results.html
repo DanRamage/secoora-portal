@@ -38,7 +38,7 @@
       };
       return(self);
     }
-    var search_results = {{ search_results|safe }};
+    var search_results = $.parseJSON({{ search_results|safe }});
     app = csw_search_results_app();
     app.initialize(search_results);
 
