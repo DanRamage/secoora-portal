@@ -56,14 +56,14 @@ function catalog_search_map()
          requestsType: "read"
         });
     protocol.priv = OpenLayers.Request.POST({
-      url: self.query_url,
+      url: self.query_url/*,
       callback: function(request) {
         var response = self.cswGetRecs.read(request.responseXML || request.responseText);
         var i = 0;
-      },
+      },*/
       data: xmlOutput
     });
-    //window.location.href = self.query_url;
+    window.location.href = self.query_url;
       /*
 
       type: "POST",
