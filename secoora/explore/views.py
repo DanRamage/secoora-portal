@@ -204,13 +204,13 @@ def csw_query(request, template='csw_search_results.html'):
       if logger:
         logger.debug("Rcvd CSW results: %s" % (results.text))
       try:
-        csw_records = simplejson.loads(results.text);
+        csw_records = simplejson.loads(results.text)
       except simplejson.JSONDecodeError, e:
-        csw_records = [];
+        csw_records = []
         if logger:
           logger.exception(e)
     else:
-      csw_records = [];
+      csw_records = []
       if logger:
         logger.debug("CSW query failed: Code: %d" % (results.status_code))
 
