@@ -187,7 +187,6 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 def csw_query(request, template='csw_search_results.html'):
   if logger:
     logger.debug("catalog_search_results begin")
-  csw_records = ""
   getUrl = request.GET.get('url')
   csw_request_data = request.raw_post_data
 
@@ -206,11 +205,11 @@ def csw_query(request, template='csw_search_results.html'):
       try:
         csw_records = simplejson.loads(results.text)
       except simplejson.JSONDecodeError, e:
-        csw_records = []
+        csw_records = simplejson.loads([{'a':'b'}])
         if logger:
           logger.exception(e)
     else:
-      csw_records = []
+      csw_records = simplejson.loads([{'c':'d'}])
       if logger:
         logger.debug("CSW query failed: Code: %d" % (results.status_code))
 
