@@ -187,7 +187,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 def csw_query(request, template='csw_search_results.html'):
   if logger:
     logger.debug("catalog_search_results begin")
-
+  csw_records = ""
   getUrl = request.GET.get('url')
   csw_request_data = request.raw_post_data
 
@@ -201,6 +201,7 @@ def csw_query(request, template='csw_search_results.html'):
       logger.exception(e)
   else:
     if(results.status_code == 200):
+      csw_records = results.text
       if logger:
         logger.debug("Rcvd CSW results: %s" % (results.text))
     else:
@@ -212,7 +213,7 @@ def csw_query(request, template='csw_search_results.html'):
   if logger:
     logger.debug("catalog_search_results end")
   #return render_to_response(template, {'brand_info': simplejson.dumps(brand_json)}, context_instance=RequestContext(request))
-  return render_to_response(template, RequestContext(request, {'records': simplejson.dumps(results.text)}))
+  return render_to_response(template, RequestContext(request, {'records': csw_records}))
 
 
 
