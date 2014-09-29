@@ -112,8 +112,8 @@
     var mapView = catalog_search_map();
     $( document ).ready(function()
     {
-      //mapView.initialize(null, "/proxy/rest_query/?url=http://129.252.139.68:8000");
-      mapView.initialize(null, "/explore/csw_query/?url=http://129.252.139.68:8000");
+      mapView.initialize(null, "/proxy/rest_query/?url=http://129.252.139.68:8000");
+      //mapView.initialize(null, "/explore/csw_query/?url=http://129.252.139.68:8000");
       mapView.olMap.render('map');
       mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
                             new OpenLayers.Projection("EPSG:4326"),

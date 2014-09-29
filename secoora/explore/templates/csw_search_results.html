@@ -1,0 +1,41 @@
+{% extends 'base_with_sidebar_bs3.html' %}
+{% block main %}
+{% load flatblock_tags %}
+
+  <link href="{{MEDIA_URL}}/secoora/css/catalog.css" rel="stylesheet">
+
+
+  <div class="row-fluid">
+    <div class="col-md-8 pull-left">
+      <b>Search returned <span data-bind='test: resultsCount'></span> results</b>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="{{MEDIA_URL}}/knockout/knockout-3.2.0.js"></script>
+
+  <script type="text/javascript">
+    function csw_search_results_app()
+    {
+      var self = this;
+
+      self.viewModel = null;
+      self.initialize = function(config)
+      {
+        self.viewModel = new csw_search_model(config);
+        self.viewModel.initialize();
+        ko.applyBindings(self.viewModel);
+
+      };
+      return(self);
+    }
+    var search_reults = {{ search_results|safe }};
+    app = csw_search_results_app();
+    app.initialize(search_reults);
+
+  </script>
+
+{% endblock %}
+
+
