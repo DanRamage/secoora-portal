@@ -218,7 +218,7 @@ def csw_query(request, template='csw_search_results.html'):
   if logger:
     logger.debug("catalog_search_results end")
   #return render_to_response(template, {'brand_info': simplejson.dumps(brand_json)}, context_instance=RequestContext(request))
-  return render_to_response(template, {'search_results': csw_records}, context_instance=RequestContext(request))
+  return render_to_response(template, {'search_results': results.text}, context_instance=RequestContext(request))
 
 
 
