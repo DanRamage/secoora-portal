@@ -202,10 +202,14 @@ def csw_query(request, template='csw_search_results.html'):
     if(results.status_code == 200):
       if logger:
         logger.debug("Rcvd CSW results: %s" % (results.text))
-        csw_records = results.text
+        try:
+          csw_records = simplejson.loads(results.text)
+        except simplejson.JSONDecodeError, e:
+          if logger:
+            logger.exception(e)
     else:
-      logger.debug("2")
-      csw_records = [{'c':'d'}]
+      logger.debug("")
+      csw_records = ""
       if logger:
         logger.debug("CSW query failed: Code: %d" % (results.status_code))
 
