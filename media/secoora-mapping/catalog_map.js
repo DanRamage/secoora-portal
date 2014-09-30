@@ -64,7 +64,7 @@ function catalog_search_map()
         var i = 0;
       },*/
     });
-    window.location.href = self.search_page;
+    //window.location.href = self.search_page;
       /*
 
       type: "POST",
@@ -80,7 +80,7 @@ function catalog_search_map()
     */
 
   };
-  self.initialize = function(map_element_id, search_page, query_url) {
+  self.initialize = function(map_element_id, query_url) {
 
     $(window).resize(self.onResize);
 

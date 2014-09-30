@@ -1,6 +1,7 @@
 function csw_search_model() {
   var self = this;
 
+  self.showResults = ko.observable(false);
   self.results = ko.observableArray([]);
   self.resultsCount = ko.observable(0);
   self.errorMsg = ko.observable("");
