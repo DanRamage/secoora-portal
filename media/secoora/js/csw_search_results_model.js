@@ -3,7 +3,7 @@ function csw_search_model() {
 
   self.results = ko.observableArray([]);
   self.resultsCount = ko.observable(0);
-
+  self.errorMsg = ko.observable("");
 
   self.initialize = function(csw_results) {
     if('tag' in csw_results)
@@ -22,6 +22,11 @@ function csw_search_model() {
             self.results(child.children);
           }
         });
+      }
+      else
+      {
+        self.resultsCount(0);
+        self.errorMsg("An error occured while performing the search. Please retry.")
       }
     }
   }
