@@ -57,7 +57,8 @@ function catalog_search_map()
         });
     protocol.priv = OpenLayers.Request.POST({
       url: self.query_url,
-      data: xmlOutput
+      data: xmlOutput,
+      callback: self.results_callback
       /*
       callback: function(request) {
         var response = self.cswGetRecs.read(request.responseXML || request.responseText);
@@ -80,7 +81,7 @@ function catalog_search_map()
     */
 
   };
-  self.initialize = function(map_element_id, query_url) {
+  self.initialize = function(map_element_id, query_url, results_callback) {
 
     $(window).resize(self.onResize);
 
@@ -115,8 +116,8 @@ function catalog_search_map()
 
     self.olMap.addLayers([esriOcean, polygonLayer]);
 
-    self.search_page = search_page;
-    self.query_url = search_page + "?url=" + query_url;
+    self.query_url = query_url;
+    self.results_callback = results_callback;
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
       OpenLayers.Handler.Polygon,
