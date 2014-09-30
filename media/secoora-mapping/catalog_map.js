@@ -64,7 +64,7 @@ function catalog_search_map()
         var i = 0;
       },*/
     });
-    window.location.href = self.query_url;
+    window.location.href = self.search_page;
       /*
 
       type: "POST",
@@ -80,7 +80,7 @@ function catalog_search_map()
     */
 
   };
-  self.initialize = function(map_element_id, query_url) {
+  self.initialize = function(map_element_id, search_page, query_url) {
 
     $(window).resize(self.onResize);
 
@@ -115,7 +115,8 @@ function catalog_search_map()
 
     self.olMap.addLayers([esriOcean, polygonLayer]);
 
-    self.query_url = query_url;
+    self.search_page = search_page;
+    self.query_url = search_page + "url=" + query_url;
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
       OpenLayers.Handler.Polygon,
