@@ -189,7 +189,7 @@ def csw_query(request, template='csw_search_results.html'):
     logger.debug("catalog_search_results begin")
   getUrl = request.GET.get('url')
   csw_request_data = request.raw_post_data
-
+  csw_records = []
   if logger:
     logger.debug("CSW url: %s request: %s" % (getUrl, csw_request_data))
   #Send request to the server.

@@ -116,7 +116,7 @@ function catalog_search_map()
     self.olMap.addLayers([esriOcean, polygonLayer]);
 
     self.search_page = search_page;
-    self.query_url = search_page + "url=" + query_url;
+    self.query_url = search_page + "?url=" + query_url;
 
     self.polygonOLControl = new OpenLayers.Control.DrawFeature(polygonLayer,
       OpenLayers.Handler.Polygon,
