@@ -58,7 +58,7 @@ function catalog_search_map()
     $.post({
       url: self.query_url,
       data: xmlOutput,
-      dataType: "xml",
+      dataType: "json",
       success: self.results_callback
     });
     /*
