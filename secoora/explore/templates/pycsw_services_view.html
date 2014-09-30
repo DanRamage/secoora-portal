@@ -124,15 +124,20 @@
     }
   </style>
   <script>
-    function csw_search_results_app()
+    function csw_search_app()
     {
       var self = this;
 
       self.viewModel = null;
-      self.initialize = function(results)
+      self.initialize = function()
       {
         self.viewModel = new csw_search_model();
         ko.applyBindings(self.viewModel);
+        mapView.initialize(null, "/explore/csw_query/?http://129.252.139.68:8000");
+        mapView.olMap.render('map');
+        mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+                              new OpenLayers.Projection("EPSG:4326"),
+                              new OpenLayers.Projection("EPSG:102113")), 6);
 
       };
       return(self);
@@ -142,14 +147,9 @@
     $( document ).ready(function()
     {
       //mapView.initialize(null, "/proxy/rest_query/?url=http://129.252.139.68:8000");
-      mapView.initialize(null, "/explore/csw_query/?http://129.252.139.68:8000");
-      mapView.olMap.render('map');
-      mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
-                            new OpenLayers.Projection("EPSG:4326"),
-                            new OpenLayers.Projection("EPSG:102113")), 6);
 
       app = csw_search_results_app();
-
+      app.initialize();
 
     });
   </script>
