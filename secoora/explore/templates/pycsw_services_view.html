@@ -132,7 +132,6 @@
       self.initialize = function(results)
       {
         self.viewModel = new csw_search_model();
-        self.viewModel.initialize(results);
         ko.applyBindings(self.viewModel);
 
       };
@@ -149,9 +148,7 @@
                             new OpenLayers.Projection("EPSG:4326"),
                             new OpenLayers.Projection("EPSG:102113")), 6);
 
-      var search_results = {{ search_results|safe }}
       app = csw_search_results_app();
-      app.initialize(search_results);
 
 
     });
