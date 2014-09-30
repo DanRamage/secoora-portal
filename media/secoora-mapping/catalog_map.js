@@ -55,19 +55,19 @@ function catalog_search_map()
      var protocol = new OpenLayers.Protocol.CSW({
          requestsType: "read"
         });
-    $.post({
+    /*$.post({
       url: self.query_url,
       data: xmlOutput,
       dataType: "json",
       success: self.results_callback
-    });
-    /*
+    });*/
+
     protocol.priv = OpenLayers.Request.POST({
       url: self.query_url,
       data: xmlOutput,
       callback: self.results_callback
     });
-    */
+
     //window.location.href = self.search_page;
       /*
 
