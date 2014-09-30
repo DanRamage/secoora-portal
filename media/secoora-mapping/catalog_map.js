@@ -64,7 +64,7 @@ function catalog_search_map()
         var i = 0;
       },*/
     });
-    window.location.href = self.search_page;
+    //window.location.href = self.search_page;
       /*
 
       type: "POST",
