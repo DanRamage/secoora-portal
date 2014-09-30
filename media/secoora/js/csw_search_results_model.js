@@ -23,11 +23,11 @@ function csw_search_model() {
           }
         });
       }
-      else
-      {
-        self.resultsCount(0);
-        self.errorMsg("An error occured while performing the search. Please retry.")
-      }
+    }
+    else
+    {
+      self.resultsCount(0);
+      self.errorMsg("An error occured while performing the search. Please retry.")
     }
   }
 }

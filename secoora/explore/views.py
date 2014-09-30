@@ -203,7 +203,8 @@ def csw_query(request, template='csw_search_results.html'):
       if logger:
         logger.debug("Rcvd CSW results: %s" % (results.text))
         try:
-          csw_records = simplejson.dumps(results.text)
+          simplejson.dumps(results.text)
+          csw_records = results.text
         except simplejson.JSONDecodeError, e:
           if logger:
             logger.exception(e)
