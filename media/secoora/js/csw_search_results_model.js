@@ -7,6 +7,7 @@ function csw_search_model() {
   self.errorMsg = ko.observable("");
 
   self.process_results = function(csw_results) {
+    var search_results = csw_results.responseText;
     if('tag' in csw_results)
     {
       //Verify the result is a GetRecordsResponse.
