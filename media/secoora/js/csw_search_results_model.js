@@ -60,7 +60,7 @@ function csw_search_model() {
                 }
                 else if(metadata_part.tag == "ows:BoundingBox")
                 {
-                  for(var cnt=0; cnt < metadata_part.children; cnt++)
+                  for(var cnt=0; cnt < metadata_part.children.length; cnt++)
                   {
                     if(result.bounding_box.length)
                     {
