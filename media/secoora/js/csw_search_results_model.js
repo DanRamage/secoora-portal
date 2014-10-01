@@ -48,13 +48,13 @@ function csw_search_model() {
               {
                 if(metadata_part.tag == 'dc:title')
                 {
-                  result.tite = metadata_part.text;
+                  result.title = metadata_part.text;
                 }
-                else if(metadata_part.tag == 'dc.subject')
+                else if(metadata_part.tag == 'dc:subject')
                 {
                   result.keywords.append(metadata_part.text);
                 }
-                else if(metadata_part.tag == 'dc:abstract')
+                else if(metadata_part.tag == 'dct:abstract')
                 {
                   result.abstract = metadata_part.text;
                 }
