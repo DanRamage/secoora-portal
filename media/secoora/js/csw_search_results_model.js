@@ -63,7 +63,6 @@ function csw_search_model() {
                   }
                 }
               });
-            }
               self.results.push(result);
             });
           }
