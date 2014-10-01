@@ -19,7 +19,7 @@ function csw_search_model() {
         {
           if(child['tag'] == 'csw:SearchResults')
           {
-            self.resultsCount(child['attributes'].numerOfRecordsReturned);
+            self.resultsCount(child.attributes.numerOfRecordsReturned);
             self.results(child.children);
           }
         });
