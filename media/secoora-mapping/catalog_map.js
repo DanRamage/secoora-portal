@@ -55,7 +55,8 @@ function catalog_search_map()
      var protocol = new OpenLayers.Protocol.CSW({
          requestsType: "read"
         });
-    $.post({
+    $.ajax({
+      type: "POST",
       url: self.query_url,
       data: xmlOutput,
       dataType: "json",
