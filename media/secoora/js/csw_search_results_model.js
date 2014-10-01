@@ -62,11 +62,11 @@ function csw_search_model() {
                 {
                   for(var cnt=0; cnt < metadata_part.children; cnt++)
                   {
-                    if(bounding_box.length)
+                    if(result.bounding_box.length)
                     {
-                      bounding_box += " ";
+                      result.bounding_box += " ";
                     }
-                    bounding_box += metadata_part.children[cnt].text;
+                    result.bounding_box += metadata_part.children[cnt].text;
                   }
                 }
               });
