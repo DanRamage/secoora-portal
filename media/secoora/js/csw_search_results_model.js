@@ -44,7 +44,7 @@ function csw_search_model() {
                 'keywords': [],
                 'bounding_box': ""
               }
-              $.each(search_result, function(k, metadata_part)
+              $.each(search_result.children, function(k, metadata_part)
               {
                 if(metadata_part.tag == 'dc:title')
                 {
