@@ -44,38 +44,27 @@ function csw_search_model() {
                 'keywords': [],
                 'bounding_box': ""
               }
-              try {
-                $.each(search_result.children, function (k, metadata_part) {
-                  if (metadata_part.tag == 'dc:title') {
-                    result.title = metadata_part.text;
-                  }
-                  else if (metadata_part.tag == 'dc:subject') {
-                    result.keywords.push(metadata_part.text);
-                  }
-                  else if (metadata_part.tag == 'dct:abstract') {
-                    result.abstract = metadata_part.text;
-                  }
-                  else if (metadata_part.tag == "ows:BoundingBox") {
-                    for (var cnt = 0; cnt < metadata_part.children.length; cnt++) {
-                      if (result.bounding_box.length) {
-                        result.bounding_box += " ";
-                      }
-                      result.bounding_box += metadata_part.children[cnt].text;
+              $.each(search_result.children, function (k, metadata_part) {
+                if (metadata_part.tag == 'dc:title') {
+                  result.title = metadata_part.text;
+                }
+                else if (metadata_part.tag == 'dc:subject') {
+                  result.keywords.push(metadata_part.text);
+                }
+                else if (metadata_part.tag == 'dct:abstract') {
+                  result.abstract = metadata_part.text;
+                }
+                else if (metadata_part.tag == "ows:BoundingBox") {
+                  for (var cnt = 0; cnt < metadata_part.children.length; cnt++) {
+                    if (result.bounding_box.length) {
+                      result.bounding_box += " ";
                     }
+                    result.bounding_box += metadata_part.children[cnt].text;
                   }
-                });
-              }
-              catch(err)
-              {
-                console.log(err);
-              }
-              try {
-                self.results.push(result);
-              }
-              catch(err)
-              {
-                console.log(err);
-              }
+                }
+              });
+            }
+              self.results.push(result);
             });
           }
         });
