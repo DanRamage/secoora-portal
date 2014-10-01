@@ -52,7 +52,7 @@ function csw_search_model() {
                 }
                 else if(metadata_part.tag == 'dc:subject')
                 {
-                  result.keywords.append(metadata_part.text);
+                  result.keywords.push(metadata_part.text);
                 }
                 else if(metadata_part.tag == 'dct:abstract')
                 {
