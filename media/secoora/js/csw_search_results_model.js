@@ -30,5 +30,6 @@ function csw_search_model() {
       self.resultsCount(0);
       self.errorMsg("An error occured while performing the search. Please retry.")
     }
+    self.showResults(true);
   }
 }
