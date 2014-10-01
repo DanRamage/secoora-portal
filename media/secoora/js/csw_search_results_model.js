@@ -69,7 +69,13 @@ function csw_search_model() {
               {
                 console.log(err);
               }
-              self.results.push(result);
+              try {
+                self.results.push(result);
+              }
+              catch(err)
+              {
+                console.log(err);
+              }
             });
           }
         });
