@@ -101,7 +101,22 @@
   <span data-bind="foreach: results">
     <div class="row-fluid">
       <div class="col-md-8 pull-left">
-
+        <div class="panel panel-default">
+          <!--<div class="panel-heading">Panel heading without title</div>-->
+          <div class="panel-body">
+            <div class="row">
+              <dl>
+                <dt>Title:</dt>
+                <dd data-bind="text: title"></dd>
+                <dt>Description:</dt>
+                <dd data-bind="text: abstract"></dd>
+                <dt>Bounding Box:</dt>
+                <dd data-bind="text: wkt_geometry_to_text"></dd>
+              </dl>
+             </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </span>
