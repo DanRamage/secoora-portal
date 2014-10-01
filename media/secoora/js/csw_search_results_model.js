@@ -38,7 +38,7 @@ function csw_search_model() {
             //self.results(child.children);
             $.each(child.children, function(j, search_result)
             {
-              result = {
+              var result = {
                 'title': "",
                 'abstract': "",
                 'keywords': [],
@@ -60,7 +60,7 @@ function csw_search_model() {
                 }
                 else if(metadata_part.tag == "ows:BoundingBox")
                 {
-                  for(int i=0; i < metadata_part.children; i++)
+                  for(var cnt=0; cnt < metadata_part.children; cnt++)
                   {
                     if(bounding_box.length)
                     {
