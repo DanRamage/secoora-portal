@@ -52,7 +52,7 @@ function csw_search_model() {
           if(child['tag'] == 'csw:SearchResults')
           {
             self.resultsCount(child.attributes.numberOfRecordsReturned);
-            if(children in child)
+            if('children' in child)
             {
               $.each(child.children, function (j, search_result) {
                 var result = {
