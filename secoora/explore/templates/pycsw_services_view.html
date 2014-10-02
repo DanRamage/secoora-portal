@@ -10,8 +10,8 @@
 
     <div class="search-row">
       <div style="margin: 15px 0;">
-        <form id="catalog-search-form" action="/explore/search_catalog/" class="form-search layer-search" method="get" accept-charset="utf-8" autocomplete="off">
-            <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
+        <form id="catalog-search-form" data-bind="submit: keyword_search_click" class="form-search layer-search" accept-charset="utf-8" autocomplete="off">
+            <a class="btn btn-link" data-bind='value: user_keyword, valueUpdate: "afterkeydown"'><i class="icon-search icon-large"></i></a>
             <input type="text" name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
         </form>
       </div>
@@ -157,14 +157,8 @@
 
     $( document ).ready(function()
     {
+      self.viewModel.init_map('map');
       //mapView.initialize(null, "/proxy/rest_query/?url=http://129.252.139.68:8000");
-      var mapView = catalog_search_map();
-      mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
-      mapView.olMap.render('map');
-      mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
-                            new OpenLayers.Projection("EPSG:4326"),
-                            new OpenLayers.Projection("EPSG:102113")), 6);
-
     });
   </script>
 {% endblock %}
