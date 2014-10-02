@@ -17,9 +17,8 @@
             </button>
             <!--
             <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
-            <input type="text" data-bind='value: user_keyword, valueUpdate: "afterkeydown"' name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
             -->
-            <input data-bind='value: user_keyword, valueUpdate: "afterkeydown"'/>
+            <input type="text" data-bind='value: user_keyword, valueUpdate: "afterkeydown"' name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
 
         </form>
       </div>
@@ -146,6 +145,9 @@
         height: 256px;
         width: 256px;
     }
+  .search-box {
+    color: #000000;
+  }
   </style>
   <script>
     function csw_search_app()
