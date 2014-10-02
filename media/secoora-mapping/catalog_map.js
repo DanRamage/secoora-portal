@@ -18,13 +18,13 @@ function catalog_search_map()
     //Search filter for keyword as user typed.
     var user_term = new OpenLayers.Filter.Comparison({
        type: OpenLayers.Filter.Comparison.LIKE,
-       property: "dc:subject",
+       //property: "dc:subject",
        value: search_term
      });
     //SEarch term replacing " " with "_".
     var user_term_underscores = new OpenLayers.Filter.Comparison({
        type: OpenLayers.Filter.Comparison.LIKE,
-       property: "dc:subject",
+       //property: "dc:subject",
        value: search_term.replace(" ", "_")
      });
 
