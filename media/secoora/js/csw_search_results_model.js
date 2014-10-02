@@ -52,36 +52,37 @@ function csw_search_model() {
           if(child['tag'] == 'csw:SearchResults')
           {
             self.resultsCount(child.attributes.numberOfRecordsReturned);
-            //self.results(child.children);
-            $.each(child.children, function(j, search_result)
+            if(children in child)
             {
-              var result = {
-                'title': "",
-                'abstract': "",
-                'keywords': [],
-                'bounding_box': ""
-              }
-              $.each(search_result.children, function (k, metadata_part) {
-                if (metadata_part.tag == 'dc:title') {
-                  result.title = metadata_part.text;
+              $.each(child.children, function (j, search_result) {
+                var result = {
+                  'title': "",
+                  'abstract': "",
+                  'keywords': [],
+                  'bounding_box': ""
                 }
-                else if (metadata_part.tag == 'dc:subject') {
-                  result.keywords.push(metadata_part.text);
-                }
-                else if (metadata_part.tag == 'dct:abstract') {
-                  result.abstract = metadata_part.text;
-                }
-                else if (metadata_part.tag == "ows:BoundingBox") {
-                  for (var cnt = 0; cnt < metadata_part.children.length; cnt++) {
-                    if (result.bounding_box.length) {
-                      result.bounding_box += " ";
-                    }
-                    result.bounding_box += metadata_part.children[cnt].text;
+                $.each(search_result.children, function (k, metadata_part) {
+                  if (metadata_part.tag == 'dc:title') {
+                    result.title = metadata_part.text;
                   }
-                }
+                  else if (metadata_part.tag == 'dc:subject') {
+                    result.keywords.push(metadata_part.text);
+                  }
+                  else if (metadata_part.tag == 'dct:abstract') {
+                    result.abstract = metadata_part.text;
+                  }
+                  else if (metadata_part.tag == "ows:BoundingBox") {
+                    for (var cnt = 0; cnt < metadata_part.children.length; cnt++) {
+                      if (result.bounding_box.length) {
+                        result.bounding_box += " ";
+                      }
+                      result.bounding_box += metadata_part.children[cnt].text;
+                    }
+                  }
+                });
+                self.results.push(result);
               });
-              self.results.push(result);
-            });
+            }
           }
         });
       }
