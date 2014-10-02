@@ -12,9 +12,9 @@ function catalog_search_map()
   {
     self.olMap.render('map');
   };
-  self.keywordSearch = function()
+  self.keywordSearch = function(search_term)
   {
-    var search_term = "";
+    //var search_term = "";
     //Search filter for keyword as user typed.
     var user_term = new OpenLayers.Filter.Comparison({
        type: OpenLayers.Filter.Comparison.LIKE,
