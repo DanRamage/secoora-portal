@@ -12,7 +12,62 @@ function catalog_search_map()
   {
     self.olMap.render('map');
   };
+  self.keywordSearch = function()
+  {
+    var search_term = "";
+    //Search filter for keyword as user typed.
+    var user_term = new OpenLayers.Filter.Comparison({
+       type: OpenLayers.Filter.Comparison.LIKE,
+       property: "dc:subject",
+       value: search_term
+     });
+    //SEarch term replacing " " with "_".
+    var user_term_underscores = new OpenLayers.Filter.Comparison({
+       type: OpenLayers.Filter.Comparison.LIKE,
+       property: "dc:subject",
+       value: search_term.replace(" ", "_")
+     });
 
+    //User is going to search for sane term such as air temperature and not the
+    //vocabulary term of air_temperature. We're going to search for both by taking
+    //the input from the user and replacing " " with "_" in a coarse attempt
+    //to cover our bases.
+    var parent_filter = new OpenLayers.Filter.Logical({
+        type: OpenLayers.Filter.Logical.OR,
+        filters: [user_term, user_term_underscores]
+    });
+
+
+     var options = {
+       resultType: "results",
+       startPosition: 1,
+       //maxRecords: 50,
+       outputFormat: "application/json",
+       Query: {
+         ElementSetName: {
+           value: "full"
+         },
+         Constraint: {
+           version: "1.1.0",
+           Filter: parent_filter
+         }
+       }
+     };
+
+
+     self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
+     var xmlOutput = self.cswGetRecs.write();
+     //var protocol = new OpenLayers.Protocol.CSW({
+     //    requestsType: "read"
+     //   });
+    $.ajax({
+      type: "POST",
+      url: self.query_url,
+      data: xmlOutput,
+      dataType: "json",
+      success: self.results_callback
+    });
+  };
   self.selectionBBOXAdded = function(feature)
   {
     var bounds = new OpenLayers.Bounds(feature.geometry.bounds.left,
@@ -62,29 +117,6 @@ function catalog_search_map()
       dataType: "json",
       success: self.results_callback
     });
-
-    /*
-    protocol.priv = OpenLayers.Request.POST({
-      url: self.query_url,
-      data: xmlOutput,
-      callback: self.results_callback
-    });*/
-
-    //window.location.href = self.search_page;
-      /*
-
-      type: "POST",
-      url: "/proxy/rest_query/?url=http://data.nodc.noaa.gov/geoportal/csw",
-      data: xmlOutput,
-      success: function(data, textStatus, jqXHR)
-      {
-        var retData = self.cswGetRecs.read(jqXHR.responseText);
-        var i = 0;
-      },
-      dataType: "xml"
-      });
-    */
-
   };
   self.initialize = function(map_element_id, query_url, results_callback) {
 
