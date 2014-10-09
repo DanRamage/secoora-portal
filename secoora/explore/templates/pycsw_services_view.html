@@ -47,9 +47,15 @@
             </div>
           </h3>
         </a>
+        <a href="#" class="btn btn-small btn-help" data-toggle="popover" data-title="{{ service_type.display_name }}" data-content="{{ service_type.help_text }}">
+          <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
+        </a>
+
+        <!--
         <button type="button" class="btn btn-small btn-help" data-trigger="click" data-toggle="popover" data-title="{{ service_type.display_name }}" data-content="{{ service_type.help_text }}" >
           <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
         </button>
+        -->
       </div>
       <div id="{{ service_type.html_id }}" class="accordion-body collapse">
         <div class="accordion-inner">
