@@ -38,11 +38,13 @@
       <div class="accordion-heading theme-heading">
         <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ service_type.html_id }}">
           <h3>
-            <div class="theme-search-name" data-toggle="tooltip" data-placement="right" title="Tooltip on right">{{ service_type.display_name }}
+            <div class="theme-search-name">{{ service_type.display_name }}
 
               <span class="pull-right badge-info badge">{{ service_type.record_count }}</span>
 
-              <small><i class="icon-question-sign question_mark-color" style="display: inline-block"></i></small>
+              <span data-toggle="popover" data-placement="right" title="Tooltip on right">
+                 <small><i class="icon-question-sign question_mark-color" style="display: inline-block"></i></small>
+              </span>
 
               <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
               <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
