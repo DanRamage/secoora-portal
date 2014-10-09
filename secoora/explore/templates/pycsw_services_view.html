@@ -42,19 +42,15 @@
 
               <span class="pull-right badge-info badge">{{ service_type.record_count }}</span>
 
-              <button type="button" class="btn btn-help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">
-                <i class="icon-question-sign question_mark-color" style="display: inline-block"></i>
-              </button>
-              <!--
-              <span data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-                 <small><i class="icon-question-sign question_mark-color" style="display: inline-block"></i></small>
-              </span>
-              -->
               <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
               <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
             </div>
           </h3>
         </a>
+        <button type="button" class="btn btn-small btn-help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">
+          <i class="icon-question-sign question_mark-color" style="display: inline-block"></i>
+        </button>
+
       </div>
       <div id="{{ service_type.html_id }}" class="accordion-body collapse">
         <div class="accordion-inner">
