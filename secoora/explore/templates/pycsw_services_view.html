@@ -47,14 +47,9 @@
             </div>
           </h3>
         </a>
-        <button type="button" class="btn btn-default btn-help" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-          Popover on left
-        </button>
-        <!--
         <button type="button" class="btn btn-small btn-help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">
           <i class="icon-question-sign question_mark-color" style="display: inline-block"></i>
         </button>
-        -->
       </div>
       <div id="{{ service_type.html_id }}" class="accordion-body collapse">
         <div class="accordion-inner">
@@ -189,7 +184,7 @@
     {
       self.viewModel.init_map('map');
       $('[data-toggle="popover"]').popover({
-        trigger: 'hover',
+        trigger: 'click',
         'placement': 'left'
       });
 
