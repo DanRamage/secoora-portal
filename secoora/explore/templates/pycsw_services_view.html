@@ -109,10 +109,10 @@
     {% endfor %}
   </div>
   <div data-bind="visible: showResults()">
-    <div class="row">
+    <div class="row-fluid">
       <button type="button" class="btn btn-default" data-bind="click: backToCatalog">Back to Catalog</button>
     </div>
-    <div class="row">
+    <div class="row-fluid">
       <div class="col-md-8 pull-left">
         <b>Search returned <span data-bind='text: resultsCount'></span> results</b>
         <span data-bind="text: errorMsg"></span>
