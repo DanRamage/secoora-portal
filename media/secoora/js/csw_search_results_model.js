@@ -104,8 +104,8 @@ function csw_search_model() {
                     {
                       protocol = self.service_display_name[metadata_part.attributes.scheme].name;
                     }
-                    service = {'url': metadata_part.text,
-                               'protocol': protocol}
+                    result.services.push({'url': metadata_part.text,
+                                            'protocol': protocol});
 
                   }
                 });
