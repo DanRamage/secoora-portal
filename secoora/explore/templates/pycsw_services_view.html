@@ -108,37 +108,39 @@
     </div>
     {% endfor %}
   </div>
-  <div class="row" data-bind="visible: showResults()">
-    <button type="button" class="btn btn-default" data-bind="click: backToCatalog">Back to Catalog</button>
-  </div>
-  <div class="row">
-    <div class="col-md-8 pull-left">
-      <b>Search returned <span data-bind='text: resultsCount'></span> results</b>
-      <span data-bind="text: errorMsg"></span>
+  <div data-bind="visible: showResults()">
+    <div class="row">
+      <button type="button" class="btn btn-default" data-bind="click: backToCatalog">Back to Catalog</button>
     </div>
-  </div>
-  <span data-bind="foreach: results">
-    <div class="row-fluid">
+    <div class="row">
       <div class="col-md-8 pull-left">
-        <div class="panel panel-default">
-          <!--<div class="panel-heading">Panel heading without title</div>-->
-          <div class="panel-body">
-            <div class="row">
-              <dl>
-                <dt>Title:</dt>
-                <dd data-bind="text: title"></dd>
-                <dt>Description:</dt>
-                <dd data-bind="text: abstract"></dd>
-                <dt>Bounding Box:</dt>
-                <dd data-bind="text: bounding_box"></dd>
-              </dl>
-             </div>
+        <b>Search returned <span data-bind='text: resultsCount'></span> results</b>
+        <span data-bind="text: errorMsg"></span>
+      </div>
+    </div>
+    <span data-bind="foreach: results">
+      <div class="row-fluid">
+        <div class="col-md-8 pull-left">
+          <div class="panel panel-default">
+            <!--<div class="panel-heading">Panel heading without title</div>-->
+            <div class="panel-body">
+              <div class="row">
+                <dl>
+                  <dt>Title:</dt>
+                  <dd data-bind="text: title"></dd>
+                  <dt>Description:</dt>
+                  <dd data-bind="text: abstract"></dd>
+                  <dt>Bounding Box:</dt>
+                  <dd data-bind="text: bounding_box"></dd>
+                </dl>
+               </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </span>
+    </span>
+  </div>
 </div>
 
 
