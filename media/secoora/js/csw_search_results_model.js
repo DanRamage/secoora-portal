@@ -104,9 +104,11 @@ function csw_search_model() {
                     {
                       protocol = self.service_display_name[metadata_part.attributes.scheme].name;
                     }
-                    result.services.push({'url': metadata_part.text,
-                                            'protocol': protocol});
-
+                    if(protocol != "None")
+                    {
+                      result.services.push({'url': metadata_part.text,
+                        'protocol': protocol});
+                    }
                   }
                 });
                 self.results.push(result);
