@@ -20,7 +20,7 @@ function csw_search_model() {
   }
   self.keyword_search_click = function()
   {
-    self.mapView.keywordSearch(self.user_keyword());
+    self.mapView.keywordSearch(self.user_keyword().toLowerCase());
   }
   self.process_results = function(csw_results, textStatus, jqXHR) {
     self.results.removeAll();
