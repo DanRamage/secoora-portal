@@ -17,6 +17,10 @@ function csw_search_model() {
       new OpenLayers.Projection("EPSG:102113")), 6);
 
   }
+  self.backToCatalog = function()
+  {
+    self.showResults(false);
+  }
   self.keyword_search_click = function () {
     self.mapView.keywordSearch(self.user_keyword().toLowerCase());
   }
@@ -85,10 +89,6 @@ function csw_search_model() {
       self.errorMsg("An error occured while performing the search. Please retry.")
     }
     self.showResults(true);
-  }
-  self.backToCatalog = function()
-  {
-    self.showResults(false);
   }
 
 }
