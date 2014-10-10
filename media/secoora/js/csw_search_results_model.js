@@ -8,52 +8,45 @@ function csw_search_model() {
   self.mapView = null;
   self.user_keyword = ko.observable("");
 
-  self.init_map = function(html_map_id)
-  {
+  self.init_map = function (html_map_id) {
     self.mapView = catalog_search_map();
     self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
     self.mapView.olMap.render('map');
     self.mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
-                          new OpenLayers.Projection("EPSG:4326"),
-                          new OpenLayers.Projection("EPSG:102113")), 6);
+      new OpenLayers.Projection("EPSG:4326"),
+      new OpenLayers.Projection("EPSG:102113")), 6);
 
   }
-  self.keyword_search_click = function()
-  {
+  self.keyword_search_click = function () {
     self.mapView.keywordSearch(self.user_keyword().toLowerCase());
   }
-  self.process_results = function(csw_results, textStatus, jqXHR) {
+  self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
-    if('tag' in csw_results)
-    {
+    if ('tag' in csw_results) {
       //Verify the result is a GetRecordsResponse.
-      if(csw_results['tag'] == 'csw:GetRecordsResponse')
-      {
+      if (csw_results['tag'] == 'csw:GetRecordsResponse') {
         /*pyCSW returns results with 2 elements in the children array.
-        The first is csw:SearchStatus which seems to only contain a time,
-        and then the csw:SearchResults which is what we want.
-        The structure of the JSON is:
-        [attributes]
-          -version
-          -xsi:schemaLocation
-        tag
-        [children]
-          -[0]
-            -[attributes]
-            -tag
-          -[1]
-            -[attributes] - items such as number of results returned.
-            -tag
-            -[children]  -THese are the data sets
+         The first is csw:SearchStatus which seems to only contain a time,
+         and then the csw:SearchResults which is what we want.
+         The structure of the JSON is:
+         [attributes]
+         -version
+         -xsi:schemaLocation
+         tag
+         [children]
+         -[0]
+         -[attributes]
+         -tag
+         -[1]
+         -[attributes] - items such as number of results returned.
+         -tag
+         -[children]  -THese are the data sets
 
-        */
-        $.each(csw_results.children, function(i, child)
-        {
-          if(child['tag'] == 'csw:SearchResults')
-          {
+         */
+        $.each(csw_results.children, function (i, child) {
+          if (child['tag'] == 'csw:SearchResults') {
             self.resultsCount(child.attributes.numberOfRecordsReturned);
-            if('children' in child)
-            {
+            if ('children' in child) {
               $.each(child.children, function (j, search_result) {
                 var result = {
                   'title': "",
@@ -87,11 +80,15 @@ function csw_search_model() {
         });
       }
     }
-    else
-    {
+    else {
       self.resultsCount(0);
       self.errorMsg("An error occured while performing the search. Please retry.")
     }
     self.showResults(true);
   }
+  self.backToCatalog = function()
+  {
+    self.showResults(false);
+  }
+
 }
