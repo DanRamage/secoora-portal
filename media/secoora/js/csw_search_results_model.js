@@ -100,9 +100,9 @@ function csw_search_model() {
                   else if(metadata_part.tag == "dct:references")
                   {
                     var protocol = metadata_part.attributes.scheme;
-                    if(metadata_part.attributes.scheme in service_display_name)
+                    if(metadata_part.attributes.scheme in self.service_display_name)
                     {
-                      protocol = service_display_name[metadata_part.attributes.scheme].name;
+                      protocol = self.service_display_name[metadata_part.attributes.scheme].name;
                     }
                     service = {'url': metadata_part.text,
                                'protocol': protocol}
