@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 def harvest_from_staging():
   if logger:
-    logger.exception("Starting harvest_from_staging")
+    logger.debug("Starting harvest_from_staging")
   bounding_poly = GEOSGeometry('POLYGON((-90 24.5, -90 37.2, -60.5 37.2, -60.5 24.5, -90 24.5))')
   try:
     #Get the records inside the SECOORA footprint(little bit bigger).
@@ -24,7 +24,7 @@ def harvest_from_staging():
     if logger:
       logger.exception(e)
   if logger:
-    logger.exception("Finished harvest_from_staging")
+    logger.debug("Finished harvest_from_staging")
   return
 
 
