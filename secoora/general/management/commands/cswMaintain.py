@@ -18,7 +18,7 @@ def harvest_from_staging():
     #pycsw_records.objects.using('pycsw_staging').raw(sql)
     for rec in pycsw_records:
       if logger:
-        logger.debug(rec)
+        logger.debug(rec.title)
   except Exception,e:
     if logger:
       logger.exception(e)
