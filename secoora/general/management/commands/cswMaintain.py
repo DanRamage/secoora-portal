@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.gis.geos import GEOSGeometry
 from optparse import make_option
 from data_manager.models import *
+from django.db.models import Q
 import logging
 from settings_local import *
 from django.contrib.gis.db import models
