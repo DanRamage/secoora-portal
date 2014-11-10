@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 from django.core.management import execute_manager
+#import sys
+#from django.core.management import execute_from_command_line
 import imp
 try:
     imp.find_module('settings') # Assumed to be in the same directory.
