@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 def harvest_from_staging():
   bounding_poly = GEOSGeometry('POLYGON((-90 24.5, -90 37.2, -60.5 37.2, -60.5 24.5, -90 24.5))')
   try:
-    recs = pycsw_records.objects.using('pycsw_staging').filter(wkb_geometry__within=bounding_poly)
-
+    #Get the records inside the SECOORA footprint(little bit bigger).
+    recs = pycsw_records.objects.using('pycsw_staging').filter(~Q(wkb_geometry__within=bounding_poly))
     for rec in recs:
       if logger:
-        logger.debug("Title: %s keywords: %s Links: %s" % (rec.title, rec.keywords, rec.links))
+        logger.debug("Title: %s" % (rec.title))
   except Exception,e:
     if logger:
       logger.exception(e)
