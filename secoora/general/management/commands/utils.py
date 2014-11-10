@@ -16,12 +16,12 @@ class EmailSendError(smtplib.SMTPException): pass
 
 class smtpClass:
  
-  def __init__(self, host, user, password, port=25):
+  def __init__(self, host, user, password, port=25, use_tls=False):
     self._host        = host
     self._port        = port                
     self._user        = user
     self._password    = password
-  
+    self._use_tls     = use_tls
     self._message     = None
     self._subject     = None
     self._from_addr   = None
@@ -37,8 +37,10 @@ class smtpClass:
   def connect(self):
   
     if all([self._host, self._port, self._user, self._password]):  
-      try:    
-        self._server = smtplib.SMTP(self._host, self._port)    
+      try:
+        self._server = smtplib.SMTP(self._host, self._port)
+        if self._use_tls:
+          self._server.starttls()
       except smtplib.SMTPException, e:
         raise ConnectionError("Connection failed!")    
       try:
