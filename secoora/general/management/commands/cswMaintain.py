@@ -16,7 +16,7 @@ def harvest_from_staging():
 
     for rec in recs:
       if logger:
-        logger.debug(rec.title)
+        logger.debug("Title: %s keywords: %s Links: %s" % (rec.title, rec.keywords, rec.links))
   except Exception,e:
     if logger:
       logger.exception(e)
