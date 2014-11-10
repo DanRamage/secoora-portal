@@ -16,10 +16,11 @@ def harvest_from_staging():
   bounding_poly = GEOSGeometry('POLYGON((-90 24.5, -90 37.2, -60.5 37.2, -60.5 24.5, -90 24.5))')
   try:
     #Get the records inside the SECOORA footprint(little bit bigger).
-    recs = pycsw_records.objects.using('pycsw_staging').filter(~Q(wkb_geometry__within=bounding_poly)).delete()
-    #for rec in recs:
-    #  if logger:
-    #    logger.debug("Title: %s" % (rec.title))
+    recs = pycsw_records.objects.using('pycsw_staging').filter(~Q(wkb_geometry__within=bounding_poly))
+    for rec in recs:
+      if logger:
+        logger.debug("Deleting: %s" % (rec.title))
+      rec.delete()
   except Exception,e:
     if logger:
       logger.exception(e)
