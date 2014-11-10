@@ -985,7 +985,9 @@ class pycsw_records(models.Model):
 
   anytext_tsvector = VectorField()
 
-  objects = models.Manager()
+  #objects = models.Manager()
+  objects = models.GeoManager()
+
   search_manager = SearchManager(
     fields=('anytext'),
     config='pg_catalog.english',
