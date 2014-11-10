@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 def harvest_from_staging():
   bounding_poly = 'POLYGON((-90 24.5, -90 37.2, -60.5 37.2, -60.5 24.5, -90 24.5))'
   try:
-    pycsw_records.objects.using('pycsw_staging').filter(wkb_geometry__poly__within=bounding_poly)
+    #pycsw_records.objects.using('pycsw_staging').filter(wkb_geometry__poly__within=bounding_poly)
+    sql = "SELECT title FROM records WHERE ( ST_Intersects(ST_GeomFromText('POLYGON((-90 24.5, -90 37.2, -60.5 37.2, -60.5 24.5, -90 24.5))',4326), wkb_geometry));"
+    pycsw_records.objects.using('pycsw_staging').raw(sql)
     for rec in pycsw_records:
       if logger:
         logger.debug(rec)
