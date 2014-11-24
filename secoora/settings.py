@@ -1,5 +1,6 @@
 # Django settings for lot project.
 from madrona.common.default_settings import *
+import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TIME_ZONE = 'America/New_York'
@@ -13,7 +14,7 @@ DATABASES = {
         'USER': 'vagrant',
     }
 }
-
+"""
 COMPRESS_CSS['application']['source_filenames'] += (
     'marco/css/analysis_reports.css',
     'kmltree/dist/kmltree_mod.css',
@@ -23,11 +24,11 @@ COMPRESS_JS['application']['source_filenames'] += (
     'marco/js/jquery.qtip-1.0.0-rc3.min.js',
     #'marco/js/mColorPicker.js',
 )
-
+"""
 #LOG_FILE =  os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'marco.log'))
 
-
-INSTALLED_APPS += ( #'clipping',
+#INSTALLED_APPS +=
+INSTALLED_APPS  += ( #'clipping',
                     'general',
                     #'scenarios',
                     #'drawing',
