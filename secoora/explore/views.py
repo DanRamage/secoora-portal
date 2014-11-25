@@ -172,6 +172,71 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 
       #Used for unique IDs in the HTML template
       rec.html_id = html_id
+      if logger:
+        for property, value in vars(theObject).iteritems():
+            logger.debug( property, ": ", value )
+      service_types[type['protocol']]['records'].append(rec)
+      service_types[type['protocol']]['record_count'] += 1
+
+    html_id += 1
+  keys = service_types.keys()
+  keys.sort()
+  service_types_list = [service_types[key] for key in keys]
+  context = {'services': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
+  if logger:
+    logger.info("End csw_list_service_type_grouping")
+  return render_to_response(template, RequestContext(request, context))
+
+def csw_list_service_type_grouping_test(request, template='pycsw_services_view_test.html'):
+  if logger:
+    logger.info("Start csw_list_service_type_grouping_test")
+  service_types_list = []
+  csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
+  html_id = 0
+  service_types = {}
+  for rec in csw_recs:
+    links = rec.links_data
+    for type in links:
+      if type['protocol'] not in service_types:
+        #From the protocol, look up our more user friendly name to use for display.
+        display_name = type['protocol']
+        if type['protocol'] in service_display_name:
+          display_name = service_display_name[type['protocol']]['name']
+
+        service_types[type['protocol']] = {
+          'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
+          'display_name': display_name,
+          'record_count' : 0,
+          'help_text': service_display_name[type['protocol']]['help_text'],
+          'spatial_types' : {
+            'point' : {
+              'display_name' : 'Point',
+              'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
+              'records': []
+            },
+            'coverage' : {
+              'display_name' : 'Coverage',
+              'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
+              'help_text': service_display_name[type['protocol']]['help_text'],
+              'records': []
+            }
+          }
+        }
+        """
+        {
+          'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
+          'display_name': display_name,
+          'record_count' : 0,
+          'help_text': service_display_name[type['protocol']]['help_text'],
+          'records': []
+        }
+        """
+        if logger:
+          logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
+
+      #Used for unique IDs in the HTML template
+      rec.html_id = html_id
+      bbox = rec.wkt_geometry_to_text
 
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
