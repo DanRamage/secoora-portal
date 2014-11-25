@@ -38,7 +38,7 @@
       <div class="accordion-heading theme-heading">
         <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ service_type.html_id }}">
           <h3>
-            <div class="theme-search-name">{{ service_type.display_name }}
+            <div class="theme-search-name">{{ service_type.display_name }} ({{ service_type }} )
 
               <span class="pull-right badge-info badge">{{ service_type.record_count }}</span>
 
@@ -66,7 +66,7 @@
                   <a class="accordion-toggle layer-name color-up"
                       data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list"
                       href='"#spatial_types_" + {{ spa_type_rec.html_id }}'>
-                    <span class="layer-search-name">{{ service_type.spatial_types[spa_type_rec].display_name }}</span>
+                    <span class="layer-search-name">{{ spa_type_rec }}</span>
                   </a>
                 </div>
                 <div id='"#spatial_types_" + {{ spa_type_rec.html_id }}' class="accordion-body collapse">
