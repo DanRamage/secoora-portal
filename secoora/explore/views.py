@@ -173,9 +173,9 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
       #Used for unique IDs in the HTML template
       rec.html_id = html_id
 
-      if logger:
+      #if logger:
         #logger.debug("wkb_geometry Coords: %s" % (rec.wkb_geometry.coords))
-        logger.debug("wkb_geometry centroid: %s %d" % (rec.wkb_geometry.centroid, rec.wkb_geometry.centroid.num_points))
+        #logger.debug("wkb_geometry centroid: %s %d" % (rec.wkb_geometry.centroid, rec.wkb_geometry.centroid.num_points))
         #logger.debug("wkb_geometry Num Pts: %s" % (rec.wkb_geometry.num_points))
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
@@ -208,31 +208,22 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
         service_types[type['protocol']] = {
           'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
           'display_name': display_name,
-          'record_count' : 0,
+          'record_count': 0,
           'help_text': service_display_name[type['protocol']]['help_text'],
-          'spatial_types' : {
+          'spatial_types': {
             'point' : {
               'display_name' : 'Point',
               'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
               'records': []
             },
-            'coverage' : {
-              'display_name' : 'Coverage',
+            'coverage': {
+              'display_name': 'Coverage',
               'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
-              'help_text': service_display_name[type['protocol']]['help_text'],
               'records': []
             }
           }
         }
-        """
-        {
-          'html_id': type['protocol'].replace(':', '_').replace(' ', '_'),
-          'display_name': display_name,
-          'record_count' : 0,
-          'help_text': service_display_name[type['protocol']]['help_text'],
-          'records': []
-        }
-        """
+
         if logger:
           logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
 
@@ -240,7 +231,13 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
       rec.html_id = html_id
       bbox = rec.wkt_geometry_to_text
 
-      service_types[type['protocol']]['records'].append(rec)
+      spatial_type = service_types[type['protocol']]['spatial_types']
+      if rec.wkb_geometry.centroid.num_points == 0:
+        spatial_type['point']['records'].append(rec)
+      else:
+        spatial_type['coverage']['records'].append(rec)
+
+      #service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
 
     html_id += 1
