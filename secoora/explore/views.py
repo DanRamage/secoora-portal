@@ -246,7 +246,7 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
   service_types_list = [service_types[key] for key in keys]
   context = {'services': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
   if logger:
-    logger.info("End csw_list_service_type_grouping")
+    logger.info("End csw_list_service_type_grouping_test")
   return render_to_response(template, RequestContext(request, context))
 
 def csw_query(request, template='csw_search_results.html'):
