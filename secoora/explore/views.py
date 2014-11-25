@@ -175,7 +175,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 
 
       if logger:
-        for property, value in vars(rec).iteritems():
+        for property, value in vars(rec.wkb_geometry).iteritems():
             logger.debug( property, ": ", value )
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
