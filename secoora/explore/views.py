@@ -175,7 +175,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 
       if logger:
         #logger.debug("wkb_geometry Coords: %s" % (rec.wkb_geometry.coords))
-        logger.debug("wkb_geometry centroid: %s %s" % (rec.wkb_geometry.centroid, dir(rec.wkb_geometry.centroid)))
+        logger.debug("wkb_geometry centroid: %s %d" % (rec.wkb_geometry.centroid, rec.wkb_geometry.centroid.num_points))
         #logger.debug("wkb_geometry Num Pts: %s" % (rec.wkb_geometry.num_points))
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
