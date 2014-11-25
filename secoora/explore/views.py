@@ -177,7 +177,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
       if logger:
         #logger.debug("wkb_geometry: %s" % (dir(rec.wkb_geometry)))
         logger.debug("wkb_geometry Coords: %s" % (rec.wkb_geometry.coords))
-        logger.debug("wkb_geometry Boundary: %s" % (rec.wkb_geometry.boundary))
+        logger.debug("wkb_geometry centroid: %s" % (rec.wkb_geometry.centroid))
         logger.debug("wkb_geometry Num Pts: %s" % (rec.wkb_geometry.num_points))
         #for property, value in rec.wkb_geometry.__dict__.iteritems():
         #    logger.debug("%s: %s" % (property,value))
