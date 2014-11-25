@@ -173,14 +173,10 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
       #Used for unique IDs in the HTML template
       rec.html_id = html_id
 
-
       if logger:
-        #logger.debug("wkb_geometry: %s" % (dir(rec.wkb_geometry)))
-        logger.debug("wkb_geometry Coords: %s" % (rec.wkb_geometry.coords))
-        logger.debug("wkb_geometry centroid: %s" % (rec.wkb_geometry.centroid))
-        logger.debug("wkb_geometry Num Pts: %s" % (rec.wkb_geometry.num_points))
-        #for property, value in rec.wkb_geometry.__dict__.iteritems():
-        #    logger.debug("%s: %s" % (property,value))
+        #logger.debug("wkb_geometry Coords: %s" % (rec.wkb_geometry.coords))
+        logger.debug("wkb_geometry centroid(%d): %s" % (rec.wkb_geometry.centroid,rec.wkb_geometry.centroid.dims))
+        #logger.debug("wkb_geometry Num Pts: %s" % (rec.wkb_geometry.num_points))
       service_types[type['protocol']]['records'].append(rec)
       service_types[type['protocol']]['record_count'] += 1
 
