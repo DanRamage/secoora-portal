@@ -172,6 +172,8 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
 
       #Used for unique IDs in the HTML template
       rec.html_id = html_id
+
+
       if logger:
         for property, value in vars(rec).iteritems():
             logger.debug( property, ": ", value )
