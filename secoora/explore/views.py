@@ -210,19 +210,18 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
           'display_name': display_name,
           'record_count': 0,
           'help_text': service_display_name[type['protocol']]['help_text'],
-          'spatial_types': {
-            'point' : {
+          'spatial_types': {}
+        }
+        service_types[type['protocol']]['spatial_types']['point'] = {
               'display_name' : 'Point',
               'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
               'records': []
-            },
-            'coverage': {
+            }
+        service_types[type['protocol']]['spatial_types']['coverage'] = {
               'display_name': 'Coverage',
               'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
               'records': []
             }
-          }
-        }
 
         if logger:
           logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
