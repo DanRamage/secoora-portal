@@ -60,16 +60,16 @@
       <div id="{{ service_type.html_id }}" class="accordion-body collapse">
         <div class="accordion-inner">
           <div class="accordion" id="{{service_type.html_id}}-service-list">
-            {% for key, type_rec in service_type.spatial_types %}
+            {% for key, spa_type_rec in service_type.spatial_types %}
               <div class="accordion-group layer-group">
                 <div class="accordion-heading layer-heading">
                   <a class="accordion-toggle layer-name color-up"
                       data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list"
-                      href='"#spatial_types_" + {{ type_rec.html_id }}'>
-                    <span class="layer-search-name">{{ type_rec.display_name }}</span>
+                      href='"#spatial_types_" + {{ key }}:{{ spa_type_rec.html_id }}'>
+                    <span class="layer-search-name">{{ key }}:{{ spa_type_rec.display_name }}</span>
                   </a>
                 </div>
-                <div id='"#spatial_types_" + {{ type_rec.html_id }}' class="accordion-body collapse">
+                <div id='"#spatial_types_" + {{ spa_type_rec.html_id }}' class="accordion-body collapse">
                   <div class="accordion-inner">
                     <div class="accordion" id="{{type_rec.html_id}}-spatial_type-list">
                       {% for cat_rec in spa_type_rec.records %}
