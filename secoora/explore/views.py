@@ -246,7 +246,7 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
   service_types_list = [service_types[key] for key in keys]
   #Now convert the spatial types dictionary to a list.
   for type in service_types_list:
-    keys = type['spatial_types']
+    keys = type['spatial_types'].keys()
     keys.sort()
     type.spatial_types_list = [type[key] for key in keys]
     type.spatial_types_list.pop(key, None)
