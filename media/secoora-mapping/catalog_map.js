@@ -180,7 +180,7 @@ function catalog_search_map()
     self.olMap.addControl(self.polygonOLControl);
     self.polygonOLControl.activate(true);
 
-    self.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
+    self.olMap.setCenter(new OpenLayers.LonLat(-79.27, 33.01).transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         new OpenLayers.Projection("EPSG:102113")), 6);
 
