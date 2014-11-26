@@ -262,7 +262,7 @@
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
       });
 
-      $('.theme-accordion').on('hide', function(e) {
+      $('.theme-accordion').on('hide.bs.collapse', function(e) {
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'inline-block');
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'none');
       });
