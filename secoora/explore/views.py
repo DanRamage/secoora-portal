@@ -248,8 +248,8 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
   for type in service_types_list:
     keys = type['spatial_types'].keys()
     keys.sort()
-    type.spatial_types_list = [type[key] for key in keys]
-    type.spatial_types_list.pop(key, None)
+    type.spatial_types_list = [type['spatial_types'][key] for key in keys]
+    type.pop('spatial_types', None)
 
   context = {'services': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
   if logger:
