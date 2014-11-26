@@ -232,7 +232,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
         if 'coverage' not in spatial_type:
           spatial_type['coverage'] = {
             'display_name' : 'Coverage(High Frequency Radar, Models, ...)',
-            'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
+            'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
             'records': []
           }
         spatial_type['coverage']['records'].append(rec)
