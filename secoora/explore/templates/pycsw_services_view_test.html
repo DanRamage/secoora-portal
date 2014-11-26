@@ -50,14 +50,8 @@
         <a href="#" class="btn btn-small btn-help" data-toggle="popover" data-title="{{ service_type.display_name }}" data-content="{{ service_type.help_text }}">
           <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
         </a>
-
-        <!--
-        <button type="button" class="btn btn-small btn-help" data-trigger="click" data-toggle="popover" data-title="{{ service_type.display_name }}" data-content="{{ service_type.help_text }}" >
-          <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
-        </button>
-        -->
       </div>
-      <div id="{{ service_type.html_id }}" class="theme-accordion accordion-body collapse">
+      <div id='{{ service_type.html_id }}' class="theme-accordion accordion-body collapse">
         <div class="accordion-inner">
           <div class="accordion" id="{{service_type.html_id}}-service-list">
             {% for spa_type_rec in service_type.spatial_types_list %}
@@ -263,7 +257,7 @@
           $('.caret-icon').addClass('color-up');
       });
 
-      $('.theme-accordion').on('show', function(e) {
+      $('.theme-accordion').on('hover', function(e) {
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
       });
@@ -271,6 +265,31 @@
       $('.theme-accordion').on('hide', function(e) {
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'inline-block');
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'none');
+      });
+      $('.layer-group').hover(function(e) { //trigger the mouseover event
+            $('.layer-namee').removeClass('color-up');
+            $('.layer-name').addClass('color-down');
+            $(e.currentTarget).find('.layer-name').removeClass('color-down');
+            $(e.currentTarget).find('.layer-name').addClass('color-up');
+            $('#theme-list .in').siblings('.layer-heading').find('.layer-name').removeClass('color-down');
+            $('#theme-list .in').siblings('.layer-heading').find('.layer-name').addClass('color-up');
+        }, function(e) { //trigger the mouseout event
+            $('.layer-name').removeClass('color-down');
+            $('.layer-name').removeClass('color-up');
+            $('.layer-name').addClass('color-up');
+        });
+
+      $('.sublayer-name').hover(function(e) { //trigger the mouseover event
+          $('.sublayer-namee').removeClass('color-up');
+          $('.sublayer-name').addClass('color-down');
+          $(e.currentTarget).removeClass('color-down');
+          $(e.currentTarget).addClass('color-up');
+          $('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').removeClass('color-down');
+          $('#theme-list .in').siblings('.sublayer-heading').find('.sublayer-name').addClass('color-up');
+      }, function(e) { //trigger the mouseout event
+          $('.sublayer-name').removeClass('color-down');
+          $('.sublayer-name').removeClass('color-up');
+          $('.sublayer-name').addClass('color-up');
       });
 
       //mapView.initialize(null, "/proxy/rest_query/?url=http://129.252.139.68:8000");
