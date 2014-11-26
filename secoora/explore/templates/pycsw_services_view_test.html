@@ -241,6 +241,28 @@
         trigger: 'focus',
         placement: 'left'
       });
+      $('.theme-group').hover(function(e) { //trigger the mouseover event
+          $('.theme-title').removeClass('color-up');
+          $('.theme-title').addClass('color-down');
+          $('.caret-icon').removeClass('color-up');
+          $('.caret-icon').addClass('color-down');
+          $(e.currentTarget).find('.theme-title').removeClass('color-down');
+          $(e.currentTarget).find('.theme-title').addClass('color-up');
+          $(e.currentTarget).find('.caret-icon').removeClass('color-down');
+          $(e.currentTarget).find('.caret-icon').addClass('color-up');
+          $('#theme-list .in').siblings('.theme-heading').find('.theme-title').removeClass('color-down');
+          $('#theme-list .in').siblings('.theme-heading').find('.theme-title').addClass('color-up');
+          $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').removeClass('color-down');
+          $('#theme-list .in').siblings('.theme-heading').find('.caret-icon').addClass('color-up');
+      }, function(e) { //trigger the mouseout event
+          $('.theme-title').removeClass('color-down');
+          $('.theme-title').removeClass('color-up');
+          $('.theme-title').addClass('color-up');
+          $('.caret-icon').removeClass('color-down');
+          $('.caret-icon').removeClass('color-up');
+          $('.caret-icon').addClass('color-up');
+      });
+
       $('.theme-accordion').on('show', function(e) {
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
