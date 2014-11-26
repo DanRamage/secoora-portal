@@ -143,7 +143,7 @@ def csw_listing(request, template='pycsw_catalog_view.html'):
     logger.info("End csw_listing")
   return render_to_response(template, RequestContext(request, context))
 
-
+"""
 def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping")
@@ -188,8 +188,8 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
   if logger:
     logger.info("End csw_list_service_type_grouping")
   return render_to_response(template, RequestContext(request, context))
-
-def csw_list_service_type_grouping_test(request, template='pycsw_services_view_test.html'):
+"""
+def csw_list_service_type_grouping(request, template='pycsw_services_view.html'):
   if logger:
     logger.info("Start csw_list_service_type_grouping_test")
   service_types_list = []
