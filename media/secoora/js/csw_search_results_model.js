@@ -33,9 +33,11 @@ function csw_search_model() {
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
     self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.37.192:8000", app.viewModel.process_results);
     self.mapView.olMap.render('map');
+    /*
     self.mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
       new OpenLayers.Projection("EPSG:4326"),
       new OpenLayers.Projection("EPSG:102113")), 6);
+    */
 
   }
   self.backToCatalog = function()
