@@ -210,20 +210,8 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
           'display_name': display_name,
           'record_count': 0,
           'help_text': service_display_name[type['protocol']]['help_text'],
-          'spatial_types': {
-            'point': {
-              'display_name' : 'Point',
-              'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
-              'records': []
-            },
-            'coverage': {
-              'display_name': 'Coverage',
-              'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
-              'records': []
-            }
-          }
+          'spatial_types': {}
         }
-
         if logger:
           logger.debug("Protocol: %s(%s) added" % (type['protocol'], display_name))
 
@@ -233,8 +221,20 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
 
       spatial_type = service_types[type['protocol']]['spatial_types']
       if rec.wkb_geometry.centroid.num_points == 0:
+        if 'point' not in spatial_type:
+          spatial_type['point'] = {
+            'display_name' : 'Point',
+            'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
+            'records': []
+          }
         spatial_type['point']['records'].append(rec)
       else:
+        if 'coverage' not in spatial_type:
+          spatial_type['coverage'] = {
+            'display_name' : 'Coverage',
+            'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
+            'records': []
+          }
         spatial_type['coverage']['records'].append(rec)
 
       #service_types[type['protocol']]['records'].append(rec)
@@ -244,6 +244,13 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
   keys = service_types.keys()
   keys.sort()
   service_types_list = [service_types[key] for key in keys]
+  #Now convert the spatial types dictionary to a list.
+  for type in service_types_list:
+    keys = type.spatial_types
+    keys.sort()
+    type.spatial_types_list = [type[key] for key in keys]
+    type.spatial_types_list.pop(key, None)
+
   context = {'services': service_types_list, 'domain': get_domain(8000), 'domain8010': get_domain()}
   if logger:
     logger.info("End csw_list_service_type_grouping_test")
