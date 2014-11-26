@@ -121,14 +121,12 @@ function catalog_search_map()
   self.initialize = function(map_element_id, query_url, results_callback) {
 
     $(window).resize(self.onResize);
-    var center_pt = new OpenLayers.LonLat(-79.27, 33.01).transform(
+    /*var center_pt = new OpenLayers.LonLat(-79.27, 33.01).transform(
                         new OpenLayers.Projection("EPSG:4326"),
-                        new OpenLayers.Projection("EPSG:102113"));
+                        new OpenLayers.Projection("EPSG:102113"));*/
     self.olMap = new OpenLayers.Map(null, {
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
-      projection: "EPSG:102113",
-      center: center_pt,
-      zoom: 6
+      projection: "EPSG:102113"
     });
 
     var esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean",
