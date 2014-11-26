@@ -36,7 +36,7 @@ function csw_search_model() {
 
     self.mapView.olMap.setCenter(new OpenLayers.LonLat(-73.852, 31.933).transform(
       new OpenLayers.Projection("EPSG:4326"),
-      new OpenLayers.Projection("EPSG:102113")), 4);
+      new OpenLayers.Projection("EPSG:102113")), 5);
 
 
   }
