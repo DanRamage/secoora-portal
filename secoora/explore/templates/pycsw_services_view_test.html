@@ -53,7 +53,7 @@
       </div>
       <div id='{{ service_type.html_id }}' class="theme-accordion accordion-body collapse">
         <div class="accordion-inner">
-          <div class="accordion" id="{{service_type.html_id}}-service-list">
+          <div id="{{service_type.html_id}}-service-list" class="accordion">
             {% for spa_type_rec in service_type.spatial_types_list %}
               <div class="accordion-group layer-group">
                 <div class="accordion-heading layer-heading">
@@ -257,7 +257,7 @@
           $('.caret-icon').addClass('color-up');
       });
 
-      $('.theme-accordion').on('show', function(e) {
+      $('.theme-accordion').on('show.bs.collapse', function(e) {
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-right').css('display', 'none');
           $(e.currentTarget).siblings('.theme-heading').find('i.icon-caret-down').css('display', 'inline-block');
       });
