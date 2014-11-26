@@ -223,7 +223,7 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
       if rec.wkb_geometry.centroid.num_points == 0:
         if 'point' not in spatial_type:
           spatial_type['point'] = {
-            'display_name' : 'Point',
+            'display_name' : 'Point(Buoys, Land Stations, ...)',
             'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
             'records': []
           }
@@ -231,7 +231,7 @@ def csw_list_service_type_grouping_test(request, template='pycsw_services_view_t
       else:
         if 'coverage' not in spatial_type:
           spatial_type['coverage'] = {
-            'display_name' : 'Coverage',
+            'display_name' : 'Coverage(High Frequency Radar, Models, ...)',
             'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_point',
             'records': []
           }
