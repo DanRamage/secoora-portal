@@ -65,11 +65,11 @@
                 <div class="accordion-heading layer-heading">
                   <a class="accordion-toggle layer-name color-up"
                       data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list"
-                      href='"#spatial_types_" + {{ spa_type_rec.html_id }}'>
+                      href="#{{ spa_type_rec.html_id }}_spatial_types">
                     <span class="layer-search-name">{{ spa_type_rec.display_name }}</span>
                   </a>
                 </div>
-                <div id='"#spatial_types_" + {{ spa_type_rec.html_id }}' class="accordion-body collapse">
+                <div id="{{ spa_type_rec.html_id }}_spatial_types" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <div class="accordion" id="{{type_rec.html_id}}-spatial_type-list">
                       {% for cat_rec in spa_type_rec.records %}
