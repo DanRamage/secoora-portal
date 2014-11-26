@@ -128,7 +128,7 @@ function catalog_search_map()
       displayProjection: new OpenLayers.Projection("EPSG:4326"),
       projection: "EPSG:102113",
       center: center_pt,
-      zoom: 6
+      zoom: 10
     });
 
     var esriOcean = new OpenLayers.Layer.XYZ("ESRI Ocean",
