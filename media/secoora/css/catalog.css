@@ -91,7 +91,9 @@ input[type="text"]:hover {
   color: rgba(230, 230, 230, 1);
 }
 #theme-list .sublayer-heading .color-down {
-    color: rgba(102, 102, 102, .5);
+    /*color: rgba(102, 102, 102, .5);*/
+    color: rgba(225, 225, 225, 1);
+
 }
 
 #theme-list .data-layer-links .color-up {
