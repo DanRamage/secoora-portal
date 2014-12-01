@@ -5,6 +5,7 @@ function catalog_search_map()
   var self = this;
   self.olMap = null;
   self.polygonOLControl = null;
+  self.polygonQueryGeom = [];
   self.cswGetRecs = null;
   self.query_url = null;
 
