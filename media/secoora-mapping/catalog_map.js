@@ -71,6 +71,31 @@ function catalog_search_map()
   };
   self.selectionBBOXAdded = function(feature)
   {
+    var vertices = feature.geometry.getVertices();
+    if(self.polygonQueryGeom)
+    {
+      self.polygonQueryGeom.length = 0;
+    }
+    else
+    {
+      self.polygonQueryGeom = [];
+    }
+    if(vertices.length)
+    {
+      for(var j = 0; j < vertices.length; j++)
+      {
+        var point = [];
+        point.push(vertices[j].x);
+        point.push(vertices[j].y);
+        self.polygonQueryGeom.push(point);
+      }
+      var point = [];
+      point.push(vertices[0].x);
+      point.push(vertices[0].y);
+      //Append the first point last to close the polygon.
+      self.polygonQueryGeom.push(point);
+    };
+
     var bounds = new OpenLayers.Bounds(feature.geometry.bounds.left,
       feature.geometry.bounds.bottom,
       feature.geometry.bounds.right,
