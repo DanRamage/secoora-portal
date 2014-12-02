@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     #(r'^arcrest_example/([\w-]*)', arcrest_example),
     #(r'^([\w-]+)', tiles_page),
     #(r'^', explore_page),
+
 )
