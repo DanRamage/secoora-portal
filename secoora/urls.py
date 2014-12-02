@@ -6,6 +6,7 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', 'explore.views.csw_list_service_type_grouping'),
     (r'^explore/', include('explore.urls')),
     (r'^data_manager/', include('data_manager.urls')),
     (r'^proxy/', include('proxy.urls')),
