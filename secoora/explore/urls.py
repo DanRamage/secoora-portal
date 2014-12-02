@@ -3,7 +3,6 @@ from views import *
 
 urlpatterns = patterns('',
 
-    (r'^$', csw_list_service_type_grouping),
     (r'^csw_services', csw_list_service_type_grouping),
     (r'^catalog', data_catalog),
     (r'^bs3_catalog', data_catalog_bs3),
