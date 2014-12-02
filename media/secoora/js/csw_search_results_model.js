@@ -32,7 +32,7 @@ function csw_search_model() {
     self.mapView = catalog_search_map();
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.37.192:8000", app.viewModel.process_results);
-    self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://pycsw.secoora.org", app.viewModel.process_results);
+    self.mapView.initialize(null, "/proxy/rest_query/?url=http://pycsw.secoora.org", app.viewModel.process_results);
 
     self.mapView.olMap.render('map');
 
