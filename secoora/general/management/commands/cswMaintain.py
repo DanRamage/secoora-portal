@@ -43,7 +43,7 @@ def update_metadata(ini_file):
   configFile.read(ini_file)
   #GEt the list of data providers
   try:
-    providers = configFile.get('data_providers', 'provider_list').split(',')
+    providers = configFile.get('data_providers', 'metadata_info').split(',')
     #Go through each provider and copy the metadata files of interest into the directory
     #pycsw will process from.
     waf_dir_list = []
