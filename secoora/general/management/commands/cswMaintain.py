@@ -50,7 +50,7 @@ def update_metadata(ini_file):
     for provider in providers:
       if logger:
         logger.debug("Provider: %s" % (provider))
-      init_dir = configFile.get(provider, 'initial_dir').split(',')
+      init_dir = configFile.get(provider, 'initial_dir')
       dest_dir = configFile.get(provider, 'destination_dir')
       file_list = configFile.get(provider, 'file_list').split(',')
 
