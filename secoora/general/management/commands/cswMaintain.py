@@ -55,7 +55,7 @@ def update_metadata(ini_file):
         src_file_path = "%s%s" % (init_dir, file)
         dest_file_path= "%s%s" % (dest_dir, file)
         if logger:
-          logger.debug("Copying file: %s to %s" % (src_file_path, dest_file_path))
+          logger.debug("Copying file: %s from %s to %s" % (file, src_file_path, dest_file_path))
         copyfile(src_file_path,dest_file_path)
   except ConfigParser.Error, e:
     if logger:
