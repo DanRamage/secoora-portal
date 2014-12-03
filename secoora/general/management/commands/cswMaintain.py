@@ -88,9 +88,9 @@ class Command(BaseCommand):
   def handle(self, *args, **options):
     logger.info("Start Logging: %s" % (__name__))
 
-    if options['harvestStaging']:
+    if options['harvestStaging'] == True:
       harvest_from_staging()
-    elif options['updateMetadata']:
+    if options['updateMetadata'] == True:
       update_metadata(options['metadataIniFile'])
 
     logger.info("End Logging: %s" % (__name__))
