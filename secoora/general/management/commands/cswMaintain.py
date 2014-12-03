@@ -68,13 +68,14 @@ def update_metadata(ini_file):
     cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
     if logger:
       logger.debug("Executing pycsw cmd: %s" (cmd))
+    """
     args = shlex.split(cmd)
     try:
         subprocess.check_call(args)
     except subprocess.CalledProcessError as error:
       if logger:
         logger.exception(e)
-
+    """
   if logger:
     logger.debug("Finished update_metadata")
 
