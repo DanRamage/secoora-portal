@@ -50,9 +50,15 @@ def update_metadata(ini_file):
     for provider in providers:
       if logger:
         logger.debug("Provider: %s" % (provider))
-      init_dir = configFile.get(provider, 'initial_dir')
+      init_dir = configFile.get(provider, 'initial_dir').split(',')
       dest_dir = configFile.get(provider, 'destination_dir')
       file_list = configFile.get(provider, 'file_list').split(',')
+
+      #Check if dest dir exists, if not create it.
+      if not os.path.exists(dest_dir):
+        if logger:
+          logger.debug("Creating directory: %s" % (dest_dir))
+        os.makedirs(dest_dir)
 
       #Delete the previous files in the WAF
       for file in os.listdir(dest_dir):
