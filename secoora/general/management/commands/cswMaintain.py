@@ -55,7 +55,7 @@ def update_metadata(ini_file):
         src_file_path = "%s%s" % (init_dir, file)
         dest_file_path= "%s%s" % (dest_dir, file)
         if logger:
-          logger.debug("Copying file: %s to %s" % (init_dir, dest_dir))
+          logger.debug("Copying file: %s to %s" % (src_file_path, dest_file_path))
         copyfile(src_file_path,dest_file_path)
   except ConfigParser.Error, e:
     if logger:
@@ -63,15 +63,17 @@ def update_metadata(ini_file):
   except Exception, e:
     if logger:
       logger.exception(e)
-
-  #Now let's update the catalog
-  cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
-  args = shlex.split(cmd)
-  try:
-      subprocess.check_call(args)
-  except subprocess.CalledProcessError as error:
+  else:
+    #Now let's update the catalog
+    cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
     if logger:
-      logger.exception(e)
+      logger.debug("Executing pycsw cmd: %s" (cmd))
+    args = shlex.split(cmd)
+    try:
+        subprocess.check_call(args)
+    except subprocess.CalledProcessError as error:
+      if logger:
+        logger.exception(e)
 
   if logger:
     logger.debug("Finished update_metadata")
