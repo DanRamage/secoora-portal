@@ -45,6 +45,7 @@ def update_metadata(ini_file):
     providers = configFile.get('data_providers', 'provider_list').split(',')
     #Go through each provider and copy the metadata files of interest into the directory
     #pycsw will process from.
+    waf_dir_list = []
     for provider in providers:
       if logger:
         logger.debug("Provider: %s" % (provider))
@@ -57,25 +58,26 @@ def update_metadata(ini_file):
         if logger:
           logger.debug("Copying file: %s from %s to %s" % (file, src_file_path, dest_file_path))
         copyfile(src_file_path,dest_file_path)
+
+      #Now let's update the catalog
+      cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
+      if logger:
+        logger.debug("Executing pycsw cmd: %s" (cmd))
+      """
+      args = shlex.split(cmd)
+      try:
+          subprocess.check_call(args)
+      except subprocess.CalledProcessError as error:
+        if logger:
+          logger.exception(e)
+      """
+
   except ConfigParser.Error, e:
     if logger:
       logger.exception(e)
   except Exception, e:
     if logger:
       logger.exception(e)
-  else:
-    #Now let's update the catalog
-    cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
-    if logger:
-      logger.debug("Executing pycsw cmd: %s" (cmd))
-    """
-    args = shlex.split(cmd)
-    try:
-        subprocess.check_call(args)
-    except subprocess.CalledProcessError as error:
-      if logger:
-        logger.exception(e)
-    """
   if logger:
     logger.debug("Finished update_metadata")
 
