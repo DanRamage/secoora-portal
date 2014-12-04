@@ -76,18 +76,29 @@ def update_metadata(ini_file):
           logger.debug("Copying file: %s from %s to %s" % (file, src_file_path, dest_file_path))
         copyfile(src_file_path,dest_file_path)
 
-      #Now let's update the catalog
-      cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
-      if logger:
-        logger.debug("Executing pycsw cmd: %s" % (cmd))
-      """
-      args = shlex.split(cmd)
+      #Currently pycsw has no method to update the records, so we clear out the database
+      #first before loading the new records.
       try:
-          subprocess.check_call(args)
-      except subprocess.CalledProcessError as error:
+        if logger:
+          logger.debug("Deleting records in pycsw")
+        pycsw_records.objects.using('pycsw_test').all().delete()
+      except Exception, e:
         if logger:
           logger.exception(e)
-      """
+      else:
+
+        #Now let's update the catalog
+        cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
+        if logger:
+          logger.debug("Executing pycsw cmd: %s" % (cmd))
+
+        args = shlex.split(cmd)
+        try:
+            subprocess.check_call(args)
+        except subprocess.CalledProcessError as error:
+          if logger:
+            logger.exception(e)
+
   except ConfigParser.Error, e:
     if logger:
       logger.exception(e)
