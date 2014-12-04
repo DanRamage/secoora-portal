@@ -1035,6 +1035,8 @@ class pycsw_records(models.Model):
       buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
     except ValueError, e:
       try:
+        if logger:
+          logger.debug("time_begin_pretty try 2")
         time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
         buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
       except ValueError, e:
