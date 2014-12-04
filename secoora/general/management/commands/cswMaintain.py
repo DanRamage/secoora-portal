@@ -61,13 +61,14 @@ def update_metadata(ini_file):
         os.makedirs(dest_dir)
 
       #Delete the previous files in the WAF
+      """
       for file in os.listdir(dest_dir):
         file_path = os.path.join(dest_dir, file)
         if logger:
           logger.debug("Deleteing file: %s" % (file_path))
         if os.path.isfile(file_path):
             os.unlink(file_path)
-
+      """
       for file in file_list:
         src_file_path = "%s%s" % (init_dir, file)
         dest_file_path= "%s%s" % (dest_dir, file)
