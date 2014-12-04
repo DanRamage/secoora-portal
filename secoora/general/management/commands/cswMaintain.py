@@ -53,10 +53,7 @@ def update_metadata(ini_file):
       init_dir = configFile.get(provider, 'initial_dir')
       dest_dir = configFile.get(provider, 'destination_dir')
       file_list = configFile.get(provider, 'file_list').split(',')
-  except ConfigParser.Error, e:
-    if logger:
-      logger.exception(e)
-  else:
+
     #Check if dest dir exists, if not create it.
     if not os.path.exists(dest_dir):
       if logger:
@@ -107,6 +104,9 @@ def update_metadata(ini_file):
         if logger:
           logger.exception(e)
 
+  except ConfigParser.Error, e:
+    if logger:
+      logger.exception(e)
   if logger:
     logger.debug("Finished update_metadata")
 
