@@ -1033,7 +1033,7 @@ class pycsw_records(models.Model):
     try:
       time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%SZ')
       buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
-    except Exception, e:
+    except ValueError, e:
       try:
         time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
         buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
@@ -1057,7 +1057,7 @@ class pycsw_records(models.Model):
     try:
       time_end = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
       buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
-    except Exception,e:
+    except ValueError,e:
       try:
         time_end = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
         buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
