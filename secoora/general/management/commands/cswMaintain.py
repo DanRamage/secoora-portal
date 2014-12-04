@@ -10,7 +10,7 @@ from django.contrib.gis.db import models
 logger = logging.getLogger(__name__)
 
 PYCSW_CFG_FILE = '/var/www/pycsw/default.cfg'
-WAF_DIR = '/usr/local/userapps/secoora-portal/secoora/metadata/pycsw/waf'
+WAF_DIR = '/usr/local/userapps/secoora-portal/metadata/pycsw/waf'
 def harvest_from_staging():
   if logger:
     logger.debug("Starting harvest_from_staging")
