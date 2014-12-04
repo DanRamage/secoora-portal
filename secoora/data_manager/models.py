@@ -1044,9 +1044,8 @@ class pycsw_records(models.Model):
         buf = self.time_start
         if logger:
           logger.exception(e)
-    else:
-      if logger:
-        logger.debug("time_begin_pretty: %s" % (buf))
+    if logger:
+      logger.debug("time_begin_pretty: %s" % (buf))
 
     return buf
 
@@ -1069,9 +1068,8 @@ class pycsw_records(models.Model):
         buf = self.time_end
         if logger:
           logger.exception(e)
-    else:
-      if logger:
-        logger.debug("time_begin_pretty: %s" % (buf))
+    if logger:
+      logger.debug("time_end_pretty: %s" % (buf))
     return buf
 
   def __unicode__(self):
