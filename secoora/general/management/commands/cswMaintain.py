@@ -53,58 +53,60 @@ def update_metadata(ini_file):
       init_dir = configFile.get(provider, 'initial_dir')
       dest_dir = configFile.get(provider, 'destination_dir')
       file_list = configFile.get(provider, 'file_list').split(',')
-
-      #Check if dest dir exists, if not create it.
-      if not os.path.exists(dest_dir):
-        if logger:
-          logger.debug("Creating directory: %s" % (dest_dir))
-        os.makedirs(dest_dir)
-
-      #Delete the previous files in the WAF
-      """
-      for file in os.listdir(dest_dir):
-        file_path = os.path.join(dest_dir, file)
-        if logger:
-          logger.debug("Deleteing file: %s" % (file_path))
-        if os.path.isfile(file_path):
-            os.unlink(file_path)
-      """
-      for file in file_list:
-        src_file_path = "%s%s" % (init_dir, file)
-        dest_file_path= "%s%s" % (dest_dir, file)
-        if logger:
-          logger.debug("Copying file: %s from %s to %s" % (file, src_file_path, dest_file_path))
-        copyfile(src_file_path,dest_file_path)
-
-      #Currently pycsw has no method to update the records, so we clear out the database
-      #first before loading the new records.
-      try:
-        if logger:
-          logger.debug("Deleting records in pycsw")
-        pycsw_records.objects.using('pycsw_test').all().delete()
-      except Exception, e:
-        if logger:
-          logger.exception(e)
-      else:
-
-        #Now let's update the catalog
-        cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
-        if logger:
-          logger.debug("Executing pycsw cmd: %s" % (cmd))
-
-        args = shlex.split(cmd)
-        try:
-            subprocess.check_call(args)
-        except subprocess.CalledProcessError as error:
-          if logger:
-            logger.exception(e)
-
   except ConfigParser.Error, e:
     if logger:
       logger.exception(e)
-  except Exception, e:
-    if logger:
-      logger.exception(e)
+  else:
+    #Check if dest dir exists, if not create it.
+    if not os.path.exists(dest_dir):
+      if logger:
+        logger.debug("Creating directory: %s" % (dest_dir))
+      os.makedirs(dest_dir)
+
+    #Delete the previous files in the WAF
+    """
+    for file in os.listdir(dest_dir):
+      file_path = os.path.join(dest_dir, file)
+      if logger:
+        logger.debug("Deleteing file: %s" % (file_path))
+      if os.path.isfile(file_path):
+          os.unlink(file_path)
+    """
+    for file in file_list:
+      src_file_path = "%s%s" % (init_dir, file)
+      dest_file_path= "%s%s" % (dest_dir, file)
+      if logger:
+        logger.debug("Copying file: %s from %s to %s" % (file, src_file_path, dest_file_path))
+      try:
+        copyfile(src_file_path,dest_file_path)
+      except IOError,e:
+        if logger:
+          logger.error("Failed to copy file: %s" % (file))
+          logger.exception(e)
+
+    #Currently pycsw has no method to update the records, so we clear out the database
+    #first before loading the new records.
+    try:
+      if logger:
+        logger.debug("Deleting records in pycsw")
+      pycsw_records.objects.using('pycsw_test').all().delete()
+    except Exception, e:
+      if logger:
+        logger.exception(e)
+    else:
+
+      #Now let's update the catalog
+      cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
+      if logger:
+        logger.debug("Executing pycsw cmd: %s" % (cmd))
+
+      args = shlex.split(cmd)
+      try:
+          subprocess.check_call(args)
+      except subprocess.CalledProcessError as error:
+        if logger:
+          logger.exception(e)
+
   if logger:
     logger.debug("Finished update_metadata")
 
