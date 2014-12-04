@@ -88,7 +88,6 @@ def update_metadata(ini_file):
         if logger:
           logger.exception(e)
 
-
   except ConfigParser.Error, e:
     if logger:
       logger.exception(e)
