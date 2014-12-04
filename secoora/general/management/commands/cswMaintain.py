@@ -77,7 +77,7 @@ def update_metadata(ini_file):
         copyfile(src_file_path,dest_file_path)
 
       #Now let's update the catalog
-      cmd = "/usr/local/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
+      cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
       if logger:
         logger.debug("Executing pycsw cmd: %s" % (cmd))
       """
