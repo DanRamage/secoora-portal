@@ -193,7 +193,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
   if logger:
     logger.info("Start csw_list_service_type_grouping_test")
   service_types_list = []
-  csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('organization')
+  csw_recs = pycsw_records.objects.using('pycsw_test').all().order_by('title')
   html_id = 0
   service_types = {}
   for rec in csw_recs:
