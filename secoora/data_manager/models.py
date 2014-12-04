@@ -1032,12 +1032,19 @@ class pycsw_records(models.Model):
       logger.debug("time_begin_pretty: %s" % (self.title))
     try:
       time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%SZ')
-    except Exception,e:
-      buf = self.time_start
-      if logger:
-        logger.exception(e)
-    else:
       buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
+    except Exception, e:
+      try:
+        time_begin = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
+        buf = time_begin.strftime("%Y-%m-%d %H:%M:%S")
+      except ValueError, e:
+        if logger:
+          logger.exception(e)
+      else:
+        buf = self.time_start
+        if logger:
+          logger.exception(e)
+    else:
       if logger:
         logger.debug("time_begin_pretty: %s" % (buf))
 
@@ -1050,12 +1057,19 @@ class pycsw_records(models.Model):
       logger.debug("time_end_pretty: %s" % (self.title))
     try:
       time_end = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
-    except Exception,e:
-      buf = self.time_end
-      if logger:
-        logger.exception(e)
-    else:
       buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
+    except Exception,e:
+      try:
+        time_end = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
+        buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
+      except ValueError, e:
+        if logger:
+          logger.exception(e)
+      else:
+        buf = self.time_end
+        if logger:
+          logger.exception(e)
+    else:
       if logger:
         logger.debug("time_begin_pretty: %s" % (buf))
     return buf
