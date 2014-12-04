@@ -1041,7 +1041,7 @@ class pycsw_records(models.Model):
         if logger:
           logger.exception(e)
       else:
-        buf = self.time_start
+        buf = self.time_begin
         if logger:
           logger.exception(e)
     if logger:
