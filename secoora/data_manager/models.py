@@ -1059,14 +1059,15 @@ class pycsw_records(models.Model):
       time_end = datetime.datetime.strptime(self.time_end, '%Y-%m-%dT%H:%M:%SZ')
       buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
     except ValueError,e:
+      buf = self.time_end
+      if logger:
+        logger.exception(e)
       try:
+        if logger:
+          logger.debug("time_end_pretty attemping different format")
         time_end = datetime.datetime.strptime(self.time_begin, '%Y-%m-%dT%H:%M:%S.%fZ')
         buf = time_end.strftime("%Y-%m-%d %H:%M:%S")
       except ValueError, e:
-        if logger:
-          logger.exception(e)
-      else:
-        buf = self.time_end
         if logger:
           logger.exception(e)
     if logger:
