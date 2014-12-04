@@ -10,7 +10,7 @@ from django.contrib.gis.db import models
 logger = logging.getLogger(__name__)
 
 PYCSW_CFG_FILE = '/var/www/pycsw/default.cfg'
-
+WAF_DIR = '/usr/local/userapps/secoora-portal/secoora/metadata/pycsw/waf'
 def harvest_from_staging():
   if logger:
     logger.debug("Starting harvest_from_staging")
@@ -38,6 +38,7 @@ def update_metadata(ini_file):
 
   if logger:
     logger.debug("Starting update_metadata")
+
   #Copy metadata of interest into a directory that pycsw will ingest from.
   configFile = ConfigParser.RawConfigParser()
   configFile.read(ini_file)
@@ -89,28 +90,26 @@ def update_metadata(ini_file):
               logger.error("Failed to copy file: %s" % (file))
               logger.exception(e)
 
-        #Currently pycsw has no method to update the records, so we clear out the database
-        #first before loading the new records.
-        try:
-          if logger:
-            logger.debug("Deleting records in pycsw")
-          pycsw_records.objects.using('pycsw_test').all().delete()
-        except Exception, e:
-          if logger:
-            logger.exception(e)
-        else:
+  #Currently pycsw has no method to update the records, so we clear out the database
+  #first before loading the new records.
+  try:
+    if logger:
+      logger.debug("Deleting records in pycsw")
+    pycsw_records.objects.using('pycsw_test').all().delete()
+  except Exception, e:
+    if logger:
+      logger.exception(e)
+  #Now let's update the catalog
+  cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s -r" % (WAF_DIR, PYCSW_CFG_FILE)
+  if logger:
+    logger.debug("Executing pycsw cmd: %s" % (cmd))
 
-          #Now let's update the catalog
-          cmd = "/var/www/pycsw/bin/pycsw-admin.py -c load_records -p %s -f %s" % (dest_dir, PYCSW_CFG_FILE)
-          if logger:
-            logger.debug("Executing pycsw cmd: %s" % (cmd))
-
-          args = shlex.split(cmd)
-          try:
-              subprocess.check_call(args)
-          except subprocess.CalledProcessError as error:
-            if logger:
-              logger.exception(e)
+  args = shlex.split(cmd)
+  try:
+      subprocess.check_call(args)
+  except subprocess.CalledProcessError as error:
+    if logger:
+      logger.exception(e)
 
   if logger:
     logger.debug("Finished update_metadata")
