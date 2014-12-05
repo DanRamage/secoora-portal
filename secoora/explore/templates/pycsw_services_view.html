@@ -89,21 +89,23 @@
                                   <dt>Time Frame:</dt>
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
                                 </dl>
-                                <a id="toggler_{{ service_type.html_id }}_{{ cat_rec.html_id }}"
-                                   href="#"
-                                   data-toggle="collapse"
-                                   class="active"
-                                   data-target="#keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
-                                  Folder Items
-                                </a>
-                                <div id="keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="collapse">
-                                  <ul>
-                                    {% for keyword in cat_rec.keywords_split %}
-                                      <li>{{ keyword }}</li>
-                                    {%  endfor %}
-                                  </ul>
+                                <div>
+                                  <a id="toggler_{{ service_type.html_id }}_{{ cat_rec.html_id }}"
+                                     href="#"
+                                     data-toggle="collapse"
+                                     class="active"
+                                     data-target="#keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
+                                    Keywords
+                                    <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                                  </a>
+                                  <div id="keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="collapse">
+                                    <ul>
+                                      {% for keyword in cat_rec.keywords_split %}
+                                        <li>{{ keyword }}</li>
+                                      {%  endfor %}
+                                    </ul>
+                                  </div>
                                 </div>
-
                                 <div class="btn-toolbar">
                                   <div class="btn-group">
                                     <div class="dropdown">
