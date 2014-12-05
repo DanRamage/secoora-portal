@@ -235,7 +235,7 @@ def csw_list_service_type_grouping(request, template='pycsw_services_view.html')
             'html_id': type['protocol'].replace(':', '_').replace(' ', '_') + '_coverage',
             'records': []
           }
-        rec.keywords = rec.keywords.replace('_', ' ').split(',')
+        rec.keywords = [rec.replace('_', ' ') for rec in rec.keywords]
         spatial_type['coverage']['records'].append(rec)
 
       #service_types[type['protocol']]['records'].append(rec)
