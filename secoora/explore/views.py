@@ -295,22 +295,10 @@ def csw_query(request, template='csw_search_results.html'):
 
 
 
-def csw_test(request):
+def search_page(request, template='search_options_page.html'):
   if logger:
-    logger.info("Start csw_test")
-  json_recs = []
-  try:
-    csw_recs = pycsw_records.objects.using('pycsw_test').all()
-    for rec in csw_recs:
-      json_recs.append({
-        'title': rec.title,
-        'links': rec.links,
-        'organization': rec.organization
-      })
-  except Exception, e:
-    if logger:
-      logger.exception(e)
-  json = {
-    'records': json_recs
-  }
-  return HttpResponse(simplejson.dumps(json))
+    logger.debug("search_page begin")
+
+  if logger:
+    logger.debug("search_page end")
+  return render_to_response(template, context_instance=RequestContext(request))
