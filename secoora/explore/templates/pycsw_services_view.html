@@ -39,7 +39,7 @@
     {% for service_type in services %}
     <div class="accordion-group theme-group">
       <div class="accordion-heading theme-heading">
-        <a class="accordion-toggle theme-title color-up" data-toggle="collapse" data-parent="theme-list" href="#{{ service_type.html_id }}">
+        <a class="accordion-toggle theme-title color-up" data-toggle="collapse"  href="#{{ service_type.html_id }}">
           <h3>
             <div class="theme-search-name">{{ service_type.display_name }}
 
@@ -61,7 +61,7 @@
               <div class="accordion-group layer-group">
                 <div class="accordion-heading layer-heading">
                   <a class="accordion-toggle layer-name color-up"
-                      data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list"
+                      data-toggle="collapse"
                       href="#{{ spa_type_rec.html_id }}_spatial_types">
                     <span class="layer-search-name">{{ spa_type_rec.display_name }}</span>
                   </a>
@@ -73,7 +73,7 @@
                         <div class="accordion" id="parent-{{ cat_rec.html_id }}">
                           <div class="accordion-group sublayer-group">
                             <div class="accordion-heading sublayer-heading">
-                              <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse" data-parent="{{service_type.html_id}}-service-list" href="#child_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
+                              <a class="accordion-toggle sublayer-name color-up" data-toggle="collapse"  href="#child_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
                               <span class="layer-search-name">{{ cat_rec.title }}</span>
                               </a>
                             </div>
@@ -274,10 +274,10 @@
       });
 
       $('.keywords_collapse').on('shown.bs.collapse', function(e) {
-        e.preventDefault();
+        //e.preventDefault();
       });
       $('.keywords_collapse').on('hidden.bs.collapse', function(e) {
-        e.preventDefault();
+        //e.preventDefault();
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
