@@ -88,18 +88,16 @@
                                   <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
                                   <dt>Time Frame:</dt>
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
-                                  <dt>
-                                    <span id="toggler_{{ cat_rec.html_id }}"
-                                       class="keywords_header"
-                                       data-toggle="collapse"
-                                       data-target="#keywords_{{ cat_rec.html_id }}"
-                                       aria-expanded="true"
-                                       aria-controls="keywords_{{ cat_rec.html_id }}">
+                                  <dt id="toggler_{{ cat_rec.html_id }}"
+                                     class="keywords_header"
+                                     data-toggle="collapse"
+                                     data-target="#keywords_{{ cat_rec.html_id }}"
+                                     aria-expanded="true"
+                                     aria-controls="keywords_{{ cat_rec.html_id }}">
 
-                                      Keywords
-                                      <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                                      <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
-                                    </span>
+                                    Keywords
+                                    <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                                    <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                                   </dt>
                                   <dd id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
                                     <ul>
