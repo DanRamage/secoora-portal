@@ -1,0 +1,90 @@
+{% extends 'base_with_sidebar_bs3.html' %}
+{% block main %}
+  <link href="{{MEDIA_URL}}/secoora/css/catalog.css" rel="stylesheet">
+  <style type="text/css">
+    .catalog-logo {
+      max-height: 100px;
+      max-width: 150px;
+    }
+    #data-partner .panel-default {
+        border-color: #AAAAAA;
+    }
+  </style>
+
+  <div class="container">
+    <!-- Begin keyword search column -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+          <div id="word_cloud" class="col-xs-12">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div style="margin: 15px 0;">
+              <form id="catalog-search-form" data-bind="submit: keyword_search_click" class="form-search layer-search" accept-charset="utf-8" autocomplete="off">
+                <button type="submit">
+                  <i class="icon-search icon-large"></i>
+                </button>
+                <input type="text" data-bind='value: user_keyword, valueUpdate: "afterkeydown"' name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
+                <a id='search_help' href="#" class="btn btn-small btn-search_help"
+                   data-toggle="popover"
+                   data-title="Catalog Search Help"
+                   data-content="For a keyword search, type the term into the input field, then hit return.
+                   For a polygon area search, draw the polygon on the map making sure the last point closes the polygon. On the last point
+                   double click and the search will be executed.">
+                  <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
+                </a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End keyword search column -->
+    <!-- Begin polygon search column -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="map" class="smallmap">
+        </div>
+      </div>
+    </div>
+    <!-- End polygon search column -->
+
+  </div>
+
+
+
+{% endblock %}
+
+
+{% block javascript %}
+  <script src="{{MEDIA_URL}}/openlayers/OpenLayers.js"></script>
+  <script src="{{MEDIA_URL}}/knockout/knockout-3.2.0.js"></script>
+  <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
+  <script src="{{MEDIA_URL}}/secoora/js/csw_search_results_model.js"></script>
+
+  <script>
+    function search_options_app()
+    {
+      var self = this;
+      self.viewModel = null;
+      self.initialize = function()
+      {
+        self.viewModel = new csw_search_model();
+        ko.applyBindings(self.viewModel);
+
+      };
+      $( document ).ready(function()
+      {
+        //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
+        $("#word_cloud").load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi");
+      });
+
+      return(self);
+    }
+    app = search_options_app();
+    app.initialize();
+  </script>
+
+{% endblock %}
