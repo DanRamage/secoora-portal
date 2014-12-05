@@ -1089,7 +1089,7 @@ class pycsw_records(models.Model):
     if logger:
       logger.debug("keywords_split: %s" % (self.title))
 
-    return(keywords)
+    return(keywords.sort())
 
   def __unicode__(self):
       return unicode('%s' % (self.title))
