@@ -101,7 +101,7 @@
                                     <div id="keywords_body_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="keywords_header_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
                                       <div class="panel-body">
                                         <ul>
-                                          {% for keyword in cat_rec.keywords %}
+                                          {% for keyword in cat_rec.keywords_split %}
                                             <li>{{ keyword }}</li>
                                           {%  endfor %}
                                       </ul>
