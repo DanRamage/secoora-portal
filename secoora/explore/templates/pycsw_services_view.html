@@ -90,6 +90,7 @@
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
                                   <dt>
                                     <span id="toggler_{{ cat_rec.html_id }}"
+                                       class="keywords_header"
                                        data-toggle="collapse"
                                        data-target="#keywords_{{ cat_rec.html_id }}"
                                        aria-expanded="true"
@@ -97,6 +98,7 @@
 
                                       Keywords
                                       <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                                      <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                                     </span>
                                   </dt>
                                   <dd id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
@@ -269,11 +271,13 @@
         placement: 'left'
       });
 
-      $('.keywords_collapse').on('shown.bs.collapse', function(e) {
-        //e.preventDefault();
+      $('.keywords_header').on('show.bs.collapse', function(e) {
+        $(e.currentTarget).find('i.icon-caret-right').css('display', 'none');
+        $(e.currentTarget).find('i.icon-caret-down').css('display', 'inline-block');
       });
-      $('.keywords_collapse').on('hidden.bs.collapse', function(e) {
-        //e.preventDefault();
+      $('.keywords_header').on('hidde.bs.collapse', function(e) {
+        $(e.currentTarget).find('i.icon-caret-right').css('display', 'inline-block');
+        $(e.currentTarget).find('i.icon-caret-down').css('display', 'none');
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
