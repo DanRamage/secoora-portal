@@ -92,13 +92,15 @@
                                     <a id="toggler_{{ cat_rec.html_id }}"
                                        href="#"
                                        data-toggle="collapse"
-                                       data-target="#keywords_{{ cat_rec.html_id }}">
+                                       data-target="#keywords_{{ cat_rec.html_id }}"
+                                       aria-expanded="true"
+                                       aria-controls="keywords_{{ cat_rec.html_id }}">
                                       Keywords
                                       <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                                     </a>
                                   </dt>
                                   <dd>
-                                    <div id="keywords_{{ cat_rec.html_id }}" class="collapse">
+                                    <div id="keywords_{{ cat_rec.html_id }}" class="collapse in">
                                       <ul>
                                         {% for keyword in cat_rec.keywords_split %}
                                           <li>{{ keyword }}</li>
