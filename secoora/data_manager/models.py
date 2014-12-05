@@ -1080,7 +1080,7 @@ class pycsw_records(models.Model):
       logger.debug("keywords_split: %s" % (self.title))
     keywords = []
     try:
-      keywords = self.keywords.split(',')
+      keywords = self.keywords.split(',').sort()
       keywords = [keyword.replace('_', ' ') for keyword in keywords]
     except Exception,e:
       if logger:
@@ -1089,7 +1089,7 @@ class pycsw_records(models.Model):
     if logger:
       logger.debug("keywords_split: %s" % (self.title))
 
-    return(keywords.sort())
+    return(keywords)
 
   def __unicode__(self):
       return unicode('%s' % (self.title))
