@@ -89,25 +89,19 @@
                                   <dt>Time Frame:</dt>
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
                                 </dl>
-                                <div id="keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="panel-group collapsed"  role="tablist" aria-multiselectable="true">
-                                  <div class="panel panel-default">
-                                    <div id="keywords_header_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="panel-heading" role="tab" >
-                                      <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#keywords_body_{{ service_type.html_id }}_{{ cat_rec.html_id }}" aria-expanded="true" aria-controls="keywords_body_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
-                                          Keywords
-                                        </a>
-                                      </h4>
-                                    </div>
-                                    <div id="keywords_body_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="keywords_header_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
-                                      <div class="panel-body">
-                                        <ul>
-                                          {% for keyword in cat_rec.keywords_split %}
-                                            <li>{{ keyword }}</li>
-                                          {%  endfor %}
-                                      </ul>
-                                      </div>
-                                    </div>
-                                  </div>
+                                <a id="toggler_{{ service_type.html_id }}_{{ cat_rec.html_id }}"
+                                   href="#"
+                                   data-toggle="collapse"
+                                   class="active"
+                                   data-target="#keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
+                                  Folder Items
+                                </a>
+                                <div id="keywords_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="collapse">
+                                  <ul>
+                                    {% for keyword in cat_rec.keywords_split %}
+                                      <li>{{ keyword }}</li>
+                                    {%  endfor %}
+                                  </ul>
                                 </div>
 
                                 <div class="btn-toolbar">
