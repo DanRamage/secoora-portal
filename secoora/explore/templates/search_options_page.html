@@ -85,7 +85,7 @@
 
         //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
         $("#word_cloud").load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi",
-                              complete: function(){
+                              function(){
                                 $('#tagcloud a').tagcloud();
                               });
 
