@@ -1074,6 +1074,23 @@ class pycsw_records(models.Model):
       logger.debug("time_end_pretty: %s" % (buf))
     return buf
 
+  @property
+  def keywords_split(self):
+    if logger:
+      logger.debug("keywords_split: %s" % (self.title))
+    keywords = []
+    try:
+      keywords = self.keywords.split(',')
+      keywords = [keyword.replace('_', ' ') for keyword in keywords]
+    except Exception,e:
+      if logger:
+        logger.exception(e)
+
+    if logger:
+      logger.debug("keywords_split: %s" % (self.title))
+
+    return(keywords)
+
   def __unicode__(self):
       return unicode('%s' % (self.title))
 
