@@ -61,6 +61,7 @@
 {% block javascript %}
   <script src="{{MEDIA_URL}}/openlayers/OpenLayers.js"></script>
   <script src="{{MEDIA_URL}}/knockout/knockout-3.2.0.js"></script>
+  <script src="{{MEDIA_URL}}/tagcloud/jquery.tagcloud.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/csw_search_results_model.js"></script>
 
@@ -77,8 +78,16 @@
       };
       $( document ).ready(function()
       {
+        $.fn.tagcloud.defaults = {
+          size: {start: 14, end: 18, unit: 'pt'},
+          color: {start: '#cde', end: '#f52'}
+        };
+
         //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
         $("#word_cloud").load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi");
+
+
+        $('#word_cloud a').tagcloud();
       });
 
       return(self);
