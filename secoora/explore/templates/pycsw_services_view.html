@@ -99,14 +99,12 @@
                                       <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                                     </a>
                                   </dt>
-                                  <dd>
-                                    <div id="keywords_{{ cat_rec.html_id }}" class="collapse">
-                                      <ul>
-                                        {% for keyword in cat_rec.keywords_split %}
-                                          <li>{{ keyword }}</li>
-                                        {%  endfor %}
-                                      </ul>
-                                    </div>
+                                  <dd id="keywords_{{ cat_rec.html_id }}" class="collapse">
+                                    <ul>
+                                      {% for keyword in cat_rec.keywords_split %}
+                                        <li>{{ keyword }}</li>
+                                      {%  endfor %}
+                                    </ul>
                                   </dd>
                                 </dl>
                                 <div class="btn-toolbar">
