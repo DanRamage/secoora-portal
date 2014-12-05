@@ -271,13 +271,13 @@
         placement: 'left'
       });
 
-      $('.keywords_header').on('show.bs.collapse', function(e) {
-        $(e.currentTarget).find('i.icon-caret-right').css('display', 'none');
-        $(e.currentTarget).find('i.icon-caret-down').css('display', 'inline-block');
+      $('.keywords_collapse').on('show.bs.collapse', function(e) {
+        $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-right').css('display', 'none');
+        $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-down').css('display', 'inline-block');
       });
-      $('.keywords_header').on('hidde.bs.collapse', function(e) {
-        $(e.currentTarget).find('i.icon-caret-right').css('display', 'inline-block');
-        $(e.currentTarget).find('i.icon-caret-down').css('display', 'none');
+      $('.keywords_collapse').on('hidde.bs.collapse', function(e) {
+        $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-right').css('display', 'inline-block');
+        $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-down').css('display', 'none');
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
