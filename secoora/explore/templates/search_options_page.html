@@ -78,8 +78,16 @@
       };
       $( document ).ready(function()
       {
+        $.fn.tagcloud.defaults = {
+          size: {start: 14, end: 18, unit: 'pt'},
+          color: {start: '#cde', end: '#f52'}
+        };
+
         //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
         $("#word_cloud").load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi");
+
+
+        $('#word_cloud a').tagcloud();
       });
 
       return(self);
