@@ -89,25 +89,23 @@
                                   <dt>Time Frame:</dt>
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
                                   <dt>
-                                    <div id="toggler_parent_{{ cat_rec.html_id }}">
-                                      <span id="toggler_{{ cat_rec.html_id }}"
-                                         data-toggle="collapse"
-                                         data-target="#keywords_{{ cat_rec.html_id }}"
-                                         aria-expanded="true"
-                                         aria-controls="keywords_{{ cat_rec.html_id }}">
+                                    <span id="toggler_{{ cat_rec.html_id }}"
+                                       data-toggle="collapse"
+                                       data-target="#keywords_{{ cat_rec.html_id }}"
+                                       aria-expanded="true"
+                                       aria-controls="keywords_{{ cat_rec.html_id }}">
 
-                                        Keywords
-                                        <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                                      </span>
-                                      <div id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
-                                        <ul>
-                                          {% for keyword in cat_rec.keywords_split %}
-                                            <li>{{ keyword }}</li>
-                                          {%  endfor %}
-                                        </ul>
-                                      </div>
-                                    </div>
+                                      Keywords
+                                      <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                                    </span>
                                   </dt>
+                                  <dd id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
+                                    <ul>
+                                      {% for keyword in cat_rec.keywords_split %}
+                                        <li>{{ keyword }}</li>
+                                      {%  endfor %}
+                                    </ul>
+                                  </dd>
                                 </dl>
                                 <div class="btn-toolbar">
                                   <div class="btn-group">
