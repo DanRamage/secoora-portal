@@ -113,9 +113,9 @@
                                      aria-expanded="true"
                                      aria-controls="data_src_{{ service_type.html_id }}_{{ cat_rec.html_id }}">
 
-                                    Data Sources
+                                    Data Sources Links
                                     <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                                    <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>>
+                                    <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
                                   </dt>
                                   <dd id="data_src_{{ service_type.html_id }}_{{ cat_rec.html_id }}" class="data_src_collapse collapse">
                                     <ul>
@@ -293,6 +293,14 @@
       $('.keywords_collapse').on('hide.bs.collapse', function(e) {
         $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-right').css('display', 'inline-block');
         $(e.currentTarget).siblings('.keywords_header').find('i.icon-caret-down').css('display', 'none');
+      });
+      $('.data_src_collapse').on('show.bs.collapse', function(e) {
+        $(e.currentTarget).siblings('.data_src_header').find('i.icon-caret-right').css('display', 'none');
+        $(e.currentTarget).siblings('.data_src_header').find('i.icon-caret-down').css('display', 'inline-block');
+      });
+      $('.data_src_collapse').on('hide.bs.collapse', function(e) {
+        $(e.currentTarget).siblings('.data_src_header').find('i.icon-caret-right').css('display', 'inline-block');
+        $(e.currentTarget).siblings('.data_src_header').find('i.icon-caret-down').css('display', 'none');
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
