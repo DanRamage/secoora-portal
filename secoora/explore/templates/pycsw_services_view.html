@@ -88,7 +88,8 @@
                                   <dd>{{ cat_rec.wkt_geometry_to_text }}</dd>
                                   <dt>Time Frame:</dt>
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
-                                  <dt>
+                                </dl>
+                                <div>
                                     <a id="toggler_{{ cat_rec.html_id }}"
                                        href="#"
                                        data-toggle="collapse"
@@ -98,15 +99,15 @@
                                       Keywords
                                       <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
                                     </a>
-                                  </dt>
-                                  <dd id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
+
+                                  <div id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
                                     <ul>
                                       {% for keyword in cat_rec.keywords_split %}
                                         <li>{{ keyword }}</li>
                                       {%  endfor %}
                                     </ul>
-                                  </dd>
-                                </dl>
+                                  </div>
+                                 </div>
                                 <div class="btn-toolbar">
                                   <div class="btn-group">
                                     <div class="dropdown">
@@ -270,7 +271,6 @@
       });
 
       $('.keywords_collapse').on('show.bs.collapse', function(e) {
-        e.preventDefault();
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
