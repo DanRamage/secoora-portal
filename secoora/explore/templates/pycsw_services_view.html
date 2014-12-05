@@ -90,17 +90,15 @@
                                   <dd>{{ cat_rec.time_begin_pretty }} to {{ cat_rec.time_end_pretty }}</dd>
                                   <dt>
                                     <div id="toggler_parent_{{ cat_rec.html_id }}">
-                                      <a id="toggler_{{ cat_rec.html_id }}"
-                                         href="#"
+                                      <span id="toggler_{{ cat_rec.html_id }}"
                                          data-toggle="collapse"
-                                         data-target="#keywords_{{ cat_rec.html_id }}"
-                                         data-parent="toggler_parent_{{ cat_rec.html_id }}"
+                                         data-content="#keywords_{{ cat_rec.html_id }}"
                                          aria-expanded="true"
                                          aria-controls="keywords_{{ cat_rec.html_id }}">
 
                                         Keywords
                                         <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
-                                      </a>
+                                      </span>
                                       <div id="keywords_{{ cat_rec.html_id }}" class="keywords_collapse collapse">
                                         <ul>
                                           {% for keyword in cat_rec.keywords_split %}
