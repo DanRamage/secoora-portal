@@ -1080,7 +1080,7 @@ class pycsw_records(models.Model):
       logger.debug("keywords_split: %s" % (self.title))
     keywords = []
     try:
-      keywords = self.keywords.split(',').sort()
+      keywords = self.keywords.split(',')
       keywords = [keyword.replace('_', ' ') for keyword in keywords]
     except Exception,e:
       if logger:
