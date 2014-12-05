@@ -273,7 +273,11 @@
         placement: 'left'
       });
 
-      $('.keywords_collapse').on('show.bs.collapse', function(e) {
+      $('.keywords_collapse').on('shown.bs.collapse', function(e) {
+        e.preventDefault();
+      });
+      $('.keywords_collapse').on('hidden.bs.collapse', function(e) {
+        e.preventDefault();
       });
 
       $('.theme-group').hover(function(e) { //trigger the mouseover event
