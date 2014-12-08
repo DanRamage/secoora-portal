@@ -54,11 +54,6 @@
       <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12">
-            <p><h3>Search datasets by typing keyword, or clicking on word cloud below.</h3></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
             <div class="panel-group"
                  id="keyword_search"
                  role="tablist"
@@ -76,6 +71,11 @@
                      role="tabpanel"
                      aria-labelledby="keyword_search_header">
                   <div class="panel-body">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <p><h3>Search datasets by typing keyword, or clicking on word cloud below.</h3></p>
+                      </div>
+                    </div>
                     <div style="margin: 15px 0;">
                       <form id="catalog-search-form"
                             data-bind="submit: keyword_search_click"
@@ -115,9 +115,30 @@
     <!-- Begin polygon search column -->
     <div class="row">
       <div class="col-xs-12">
-        <div class="row">
-          <div class="map_container col-xs-12">
-            <div id="map" class="search_page_map">
+        <div class="panel-group"
+             id="map_search"
+             role="tablist"
+             aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="map_search_header">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#map_search_body" aria-expanded="true" aria-controls="collapseOne">
+                  Geographic Search
+                </a>
+              </h4>
+            </div>
+            <div id="map_search_body"
+                 class="panel-collapse collapse in"
+                 role="tabpanel"
+                 aria-labelledby="map_search_header">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="map_container col-xs-12">
+                    <div id="map" class="search_page_map">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
