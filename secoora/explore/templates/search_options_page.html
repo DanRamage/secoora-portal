@@ -44,53 +44,55 @@
   </style>
 
   <div class="container">
-    <!-- Begin keyword search column -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel-group"
-                 id="keyword_search"
-                 role="tablist"
-                 aria-multiselectable="true">
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="keyword_search_header">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#keyword_search_body" aria-expanded="true" aria-controls="collapseOne">
-                      Keyword Search
-                    </a>
-                  </h4>
-                </div>
-                <div id="keyword_search_body"
-                     class="panel-collapse collapse in"
-                     role="tabpanel"
-                     aria-labelledby="keyword_search_header">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <p><h3>Search datasets by typing keyword, or clicking on word cloud below.</h3></p>
+    <div data-bind="visible: !showResults()">
+      <!-- Begin keyword search column -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel-group"
+                   id="keyword_search"
+                   role="tablist"
+                   aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="keyword_search_header">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#keyword_search_body" aria-expanded="true" aria-controls="collapseOne">
+                        Keyword Search
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="keyword_search_body"
+                       class="panel-collapse collapse in"
+                       role="tabpanel"
+                       aria-labelledby="keyword_search_header">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <p><h3>Search datasets by typing keyword, or clicking on word cloud below.</h3></p>
+                        </div>
                       </div>
-                    </div>
-                    <div style="margin: 15px 0;">
-                      <form id="catalog-search-form"
-                            data-bind="submit: keyword_search_click"
-                            class="form-search layer-search"
-                            accept-charset="utf-8"
-                            autocomplete="off">
-                        <button type="submit">
-                          <i class="icon-search icon-large"></i>
-                        </button>
-                        <input id="keyword"
-                               type="text"
-                               data-bind='value: user_keyword, valueUpdate: "afterkeydown"'
-                               name="catalog_q"
-                               style="display: inline-block"
-                               class="search-box"
-                               placeholder="Search the Catalog"/>
-                      </form>
-                    </div>
-                    <div class="row">
-                      <div id="word_cloud" class="col-xs-12">
+                      <div style="margin: 15px 0;">
+                        <form id="catalog-search-form"
+                              data-bind="submit: keyword_search_click"
+                              class="form-search layer-search"
+                              accept-charset="utf-8"
+                              autocomplete="off">
+                          <button type="submit">
+                            <i class="icon-search icon-large"></i>
+                          </button>
+                          <input id="keyword"
+                                 type="text"
+                                 data-bind='value: user_keyword, valueUpdate: "afterkeydown"'
+                                 name="catalog_q"
+                                 style="display: inline-block"
+                                 class="search-box"
+                                 placeholder="Search the Catalog"/>
+                        </form>
+                      </div>
+                      <div class="row">
+                        <div id="word_cloud" class="col-xs-12">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -100,40 +102,40 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- End keyword search column -->
-    <!-- Begin polygon search column -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel-group"
-             id="map_search"
-             role="tablist"
-             aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="map_search_header">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#map_search_body" aria-expanded="true" aria-controls="collapseOne">
-                  Geographic Search
-                </a>
-              </h4>
-            </div>
-            <div id="map_search_body"
-                 class="panel-collapse collapse in"
-                 role="tabpanel"
-                 aria-labelledby="map_search_header">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <p>
-                      <h3>For a polygon area search, draw the polygon on the map making sure the last point closes the polygon. On the last point
-                      double click and the search will be executed.</h3>
-                    </p>
+      <!-- End keyword search column -->
+      <!-- Begin polygon search column -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel-group"
+               id="map_search"
+               role="tablist"
+               aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="map_search_header">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#map_search_body" aria-expanded="true" aria-controls="collapseOne">
+                    Geographic Search
+                  </a>
+                </h4>
+              </div>
+              <div id="map_search_body"
+                   class="panel-collapse collapse in"
+                   role="tabpanel"
+                   aria-labelledby="map_search_header">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <p>
+                        <h3>For a polygon area search, draw the polygon on the map making sure the last point closes the polygon. On the last point
+                        double click and the search will be executed.</h3>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div id="map" class="search_page_map">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div id="map" class="search_page_map">
 
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -142,9 +144,8 @@
           </div>
         </div>
       </div>
+      <!-- End polygon search column -->
     </div>
-    <!-- End polygon search column -->
-
     <!-- Begin search results -->
     <div data-bind="visible: showResults()">
       <div class="row-fluid">
