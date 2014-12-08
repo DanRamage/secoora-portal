@@ -145,6 +145,66 @@
     </div>
     <!-- End polygon search column -->
 
+    <!-- Begin search results -->
+    <div data-bind="visible: showResults()">
+      <div class="row-fluid">
+        <div class="col-md-8 pull-left">
+          <button type="button" class="btn btn-default" data-bind="click: backToCatalog">
+            <i class="icon-chevron-left" style="display: inline-block"></i>
+            Back to Catalog
+          </button>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="col-md-8 pull-left">
+          <h3><b>Search returned <span data-bind='text: resultsCount'></span> results</b></h3>
+          <span data-bind="text: errorMsg"></span>
+        </div>
+      </div>
+      <span data-bind="foreach: results">
+        <div class="row-fluid">
+          <div class="col-md-8 pull-left">
+            <div class="panel panel-default">
+              <!--<div class="panel-heading">Panel heading without title</div>-->
+              <div class="panel-body">
+                <div class="row">
+                  <dl>
+                    <dt>Title:</dt>
+                    <dd data-bind="text: title"></dd>
+                    <dt>Description:</dt>
+                    <dd data-bind="text: abstract"></dd>
+                    <dt>Bounding Box:</dt>
+                    <dd data-bind="text: bounding_box"></dd>
+                  </dl>
+                </div>
+                <div class="row">
+                  <div class="btn-toolbar">
+                    <div class="btn-group">
+                      <div class="dropdown">
+                        <button id="data_sources_menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                          Data Sources
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <span data-bind="foreach: services">
+                            <li role="presentation">
+                              <a role="menuitem" class="data-layer-link color-up" target="_blank" data-bind="text: protocol, attr: {href: url}"></a>
+                            </li>
+                          </span>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+    <!-- End search results -->
+
+
   </div>
 
 
@@ -157,7 +217,7 @@
   <script src="{{MEDIA_URL}}/knockout/knockout-3.2.0.js"></script>
   <script src="{{MEDIA_URL}}/tagcloud/jquery.tagcloud.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/catalog_map.js"></script>
-  <script src="{{MEDIA_URL}}/secoora/js/csw_search_results_model.js"></script>
+  <script src="{{MEDIA_URL}}/secoora/js/search_page_model.js"></script>
 
   <script>
     function search_options_app()
@@ -166,25 +226,13 @@
       self.viewModel = null;
       self.initialize = function()
       {
-        self.viewModel = new csw_search_model();
+        self.viewModel = new search_page_model();
         ko.applyBindings(self.viewModel);
 
       };
       $( document ).ready(function()
       {
-        self.viewModel.init_map('map');
-
-        $.fn.tagcloud.defaults = {
-          size: {start: 14, end: 18, unit: 'pt'},
-          color: {start: '#cde', end: '#f52'}
-        };
-
-        //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
-        $("#word_cloud").load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi",
-                              function(){
-                                $('#tagcloud a').tagcloud();
-                              });
-
+        self.viewModel.initialize('map', 'word_cloud');
 
       });
 
