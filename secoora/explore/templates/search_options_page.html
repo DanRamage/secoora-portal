@@ -80,18 +80,13 @@
                         <button type="submit">
                           <i class="icon-search icon-large"></i>
                         </button>
-                        <input type="text" data-bind='value: user_keyword, valueUpdate: "afterkeydown"' name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
-                        <!--
-                        <a id='search_help' href="#" class="btn btn-small btn-search_help"
-                           data-toggle="popover"
-                           data-title="Catalog Search Help"
-                           data-content="For a keyword search, type the term into the input field, then hit return.
-                           For a polygon area search, draw the polygon on the map making sure the last point closes the polygon. On the last point
-                           double click and the search will be executed.">
-
-                          <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
-                        </a>
-                        -->
+                        <input id="keyword"
+                               type="text"
+                               data-bind='value: user_keyword, valueUpdate: "afterkeydown"'
+                               name="catalog_q"
+                               style="display: inline-block"
+                               class="search-box"
+                               placeholder="Search the Catalog"/>
                       </form>
                     </div>
                     <div class="row">
