@@ -34,7 +34,7 @@ function csw_search_model() {
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.37.192:8000", app.viewModel.process_results);
     self.mapView.initialize(null, "/proxy/rest_query/?url=http://pycsw.secoora.org", app.viewModel.process_results);
 
-    self.mapView.olMap.render('map');
+    self.mapView.olMap.render(html_map_id);
 
     self.mapView.olMap.setCenter(new OpenLayers.LonLat(-79.27, 33.01).transform(
       new OpenLayers.Projection("EPSG:4326"),
