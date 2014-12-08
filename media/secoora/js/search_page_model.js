@@ -28,11 +28,11 @@ function search_page_model() {
   self.mapView = null;
   self.user_keyword = ko.observable("");
 
-  self.initialize = function (html_map_id, word_cloud_id) {
+  self.initialize = function (html_map_id, catalog_url, word_cloud_id, word_cloud_url) {
     self.mapView = catalog_search_map();
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.37.192:8000", app.viewModel.process_results);
-    self.mapView.initialize(null, "/proxy/rest_query/?url=http://pycsw.secoora.org", app.viewModel.process_results);
+    self.mapView.initialize(null, catalog_url, app.viewModel.process_results);
 
     self.mapView.olMap.render(html_map_id);
 
@@ -46,7 +46,7 @@ function search_page_model() {
     };
 
     //Pull in the menu and the footer from the HTML files. We do this to try and avoid getting mired in CF crap.
-    $("#" + word_cloud_id).load("{{MEDIA_URL}}/secoora/js/tagcloud.ssi",
+    $("#" + word_cloud_id).load(word_cloud_url,
                           function(){
                             $('#tagcloud a').tagcloud();
                           });
