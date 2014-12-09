@@ -15,7 +15,7 @@ function catalog_search_map()
   };
   self.keywordSearch = function(search_term)
   {
-
+    var parse_results = searchQuery.parse(search_term);
     //var search_term = "";
     //Search filter for keyword as user typed.
     var user_term = new OpenLayers.Filter.Comparison({
