@@ -15,7 +15,7 @@ function catalog_search_map()
   };
   self.keywordSearch = function(search_term)
   {
-    var goog_parser = new Parser();
+    var goog_parser = new parser();
     var parsed = goog_parser.parse(search_term);
     //var search_term = "";
     //Search filter for keyword as user typed.
