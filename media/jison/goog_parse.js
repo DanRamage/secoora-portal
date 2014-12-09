@@ -71,7 +71,7 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var search_term_parser = (function(){
+var parser = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[1,4],$V2=[1,10],$V3=[1,8],$V4=[1,11],$V5=[1,13],$V6=[1,14],$V7=[5,6,7,10],$V8=[5,6,7,10,14,15,16,19],$V9=[5,6,7,10,14,16,19],$Va=[5,10];
 var parser = {trace: function trace() { },
 yy: {},
@@ -696,9 +696,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = search_term_parser;
-exports.Parser = search_term_parser.Parser;
-exports.parse = function () { return search_term_parser.parse.apply(search_term_parser, arguments); };
+exports.parser = parser;
+exports.Parser = parser.Parser;
+exports.parse = function () { return parser.parse.apply(parser, arguments); };
 exports.main = function commonjsMain(args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');
