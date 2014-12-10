@@ -70,8 +70,19 @@ function search_page_model() {
   self.temporal_search_click = function()
   {
     var start_date = $("#start_date").datepicker('getDate');
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_year = d.getFullYear();
+    var start_string = curr_year + "-" + curr_month + "-" + curr_date;
+
     var end_date = $("#end_date").datepicker('getDate');
-    self.mapView.temporalSearch(start_date, end_date);
+
+    curr_date = d.getDate();
+    curr_month = d.getMonth() + 1; //Months are zero based
+    curr_year = d.getFullYear();
+    end_string = curr_year + "-" + curr_month + "-" + curr_date;
+
+    self.mapView.temporalSearch(start_string, end_string);
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
