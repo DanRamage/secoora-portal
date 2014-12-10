@@ -70,16 +70,16 @@ function search_page_model() {
   self.temporal_search_click = function()
   {
     var start_date = $("#start_date").datepicker('getDate');
-    var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1; //Months are zero based
-    var curr_year = d.getFullYear();
+    var curr_date = start_date.getDate();
+    var curr_month = start_date.getMonth() + 1; //Months are zero based
+    var curr_year = start_date.getFullYear();
     var start_string = curr_year + "-" + curr_month + "-" + curr_date;
 
     var end_date = $("#end_date").datepicker('getDate');
 
-    curr_date = d.getDate();
-    curr_month = d.getMonth() + 1; //Months are zero based
-    curr_year = d.getFullYear();
+    curr_date = end_date.getDate();
+    curr_month = end_dated.getMonth() + 1; //Months are zero based
+    curr_year = end_date.getFullYear();
     end_string = curr_year + "-" + curr_month + "-" + curr_date;
 
     self.mapView.temporalSearch(start_string, end_string);
