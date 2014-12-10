@@ -83,7 +83,7 @@ function search_page_model() {
     var end_string = $("#end_date").val();
     var start_date = $("#start_date").datepicker('getDate');
     var end_date = $("#end_date").datepicker('getDate');
-    if(start_date.valueOf() == NaN)
+    if(isNan(start_date.valueOf()))
     {
       if(self.error_popup_view == null)
       {
@@ -93,7 +93,7 @@ function search_page_model() {
       self.error_popup_view.popup_error_message("No start date provided.");
     }
 
-    if(start_date > end_date)
+    if(!isNaN(end_date) && start_date > end_date)
     {
       if(self.error_popup_view == null)
       {
