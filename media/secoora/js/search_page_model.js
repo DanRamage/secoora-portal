@@ -64,8 +64,8 @@ function search_page_model() {
         });
     // I can't figure out any other way to reset the data in the control which remains
     // even when you reload the page.
-    $("#start_date").val("");
-    $("#end_date").val("");
+    //$("#start_date").val("");
+    //$("#end_date").val("");
 
 
   }
@@ -89,18 +89,20 @@ function search_page_model() {
     }
     if(start_date.valueOf() != NaN)
     {
-      var curr_date = start_date.getDate();
-      var curr_month = start_date.getMonth() + 1; //Months are zero based
-      var curr_year = start_date.getFullYear();
-      var start_string = curr_year + "-" + curr_month + "-" + curr_date;
+      //var curr_date = start_date.getDate();
+      //var curr_month = start_date.getMonth() + 1; //Months are zero based
+      //var curr_year = start_date.getFullYear();
+      var start_string = $("#start_date").val();
     }
 
     if(end_date.valueOf() != NaN)
     {
-      curr_date = end_date.getDate();
-      curr_month = end_date.getMonth() + 1; //Months are zero based
-      curr_year = end_date.getFullYear();
-      end_string = curr_year + "-" + curr_month + "-" + curr_date;
+      //curr_date = end_date.getDate();
+      //curr_month = end_date.getMonth() + 1; //Months are zero based
+      //curr_year = end_date.getFullYear();
+      //end_string = curr_year + "-" + curr_month + "-" + curr_date;
+      var end_string = $("#start_date").val();
+
     }
     self.mapView.temporalSearch(start_string, end_string);
   }
