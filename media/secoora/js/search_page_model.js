@@ -78,15 +78,6 @@ function search_page_model() {
   }
   self.temporal_search_click = function()
   {
-    var start_date = $("#start_date").datepicker('getDate');
-    var end_date = $("#end_date").datepicker('getDate');
-    if(start_date > end_date)
-    {
-      self.error_popup_view = new error_popup_view();
-      self.error_popup_view.popup_title("Date Error");
-      self.error_popup_view.popup_error_message("The start is later than the end date.");
-      $('#error_popup').show();
-    }
     if(start_date.valueOf() != NaN)
     {
       //var curr_date = start_date.getDate();
@@ -101,8 +92,17 @@ function search_page_model() {
       //curr_month = end_date.getMonth() + 1; //Months are zero based
       //curr_year = end_date.getFullYear();
       //end_string = curr_year + "-" + curr_month + "-" + curr_date;
-      var end_string = $("#start_date").val();
+      var end_string = $("#end_date").val();
 
+    }
+    var start_date = $("#start_date").datepicker('getDate');
+    var end_date = $("#end_date").datepicker('getDate');
+    if(start_date > end_date)
+    {
+      self.error_popup_view = new error_popup_view();
+      self.error_popup_view.popup_title("Date Error");
+      self.error_popup_view.popup_error_message("The start is later than the end date.");
+      $('#error_popup').show();
     }
     self.mapView.temporalSearch(start_string, end_string);
   }
