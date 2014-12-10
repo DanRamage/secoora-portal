@@ -182,7 +182,7 @@
                         <div class="row">
                           <div class="col-xs-12">
                             <div id="start_date" class="input-append date">
-                              <input data-format="yyyy-mm-dd" type="text"></input>
+                              <input data-format="yyyy-mm-dd" type="text">
                               <span class="add-on">
                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                 </i>
@@ -193,7 +193,7 @@
                         <div class="row">
                           <div class="col-xs-12">
                             <div id="end_date" class="input-append date">
-                              <input data-format="yyyy-mm-dd" type="text"></input>
+                              <input data-format="yyyy-mm-dd" type="text">
                               <span class="add-on">
                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                 </i>
@@ -302,10 +302,10 @@
       $( document ).ready(function()
       {
         $('#start_date').datetimepicker({
-          language: 'pt-BR'
+          pickTime: false
         });
         $('#end_date').datetimepicker({
-          language: 'pt-BR'
+          pickTime: false
         });
 
         self.viewModel.initialize('map',
