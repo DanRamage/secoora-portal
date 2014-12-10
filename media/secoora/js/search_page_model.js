@@ -56,8 +56,11 @@ function search_page_model() {
           format: "yyyy-mm-dd"
         });
     self.datepicker = $('#date_range .input-daterange').datepicker;
+    // I can't figure out any other way to reset the data in the control which remains
+    // even when you reload the page.
+    $("#start_date").val("");
+    $("#end_date").val("");
 
-    var i;
   }
   self.backToCatalog = function()
   {
