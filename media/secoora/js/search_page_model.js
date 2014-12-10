@@ -60,7 +60,8 @@ function search_page_model() {
                           });
 
     $('#date_range .input-daterange').datepicker({
-          format: "yyyy-mm-dd"
+          format: "yyyy-mm-dd",
+          autoclose: true
         });
     // I can't figure out any other way to reset the data in the control which remains
     // even when you reload the page.
@@ -83,7 +84,6 @@ function search_page_model() {
       //var curr_date = start_date.getDate();
       //var curr_month = start_date.getMonth() + 1; //Months are zero based
       //var curr_year = start_date.getFullYear();
-      var start_string = $("#start_date").val();
     }
 
     if(end_date.valueOf() != NaN)
@@ -92,9 +92,10 @@ function search_page_model() {
       //curr_month = end_date.getMonth() + 1; //Months are zero based
       //curr_year = end_date.getFullYear();
       //end_string = curr_year + "-" + curr_month + "-" + curr_date;
-      var end_string = $("#end_date").val();
 
     }
+    var start_string = $("#start_date").val();
+    var end_string = $("#end_date").val();
     var start_date = $("#start_date").datepicker('getDate');
     var end_date = $("#end_date").datepicker('getDate');
     if(start_date > end_date)
