@@ -104,7 +104,7 @@ function search_page_model() {
         self.error_popup_view = new error_popup_view();
       }
       self.popup_title("Date Error");
-      self.popup_error_message("<h3>The Start Date is later than the End Date.</h3>");
+      self.popup_error_message("The Start Date is later than the End Date.");
       $('#error_popup').modal("show");
       return;
     }
