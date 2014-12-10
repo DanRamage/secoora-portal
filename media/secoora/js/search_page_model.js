@@ -92,7 +92,7 @@ function search_page_model() {
         //self.error_popup_view = new error_popup_view();
       }
       self.popup_title("Date Error");
-      self.popup_error_message("No start date provided.");
+      self.popup_error_message("No Start Date provided.");
       $('#error_popup').modal("show");
       return;
     }
@@ -104,7 +104,7 @@ function search_page_model() {
         self.error_popup_view = new error_popup_view();
       }
       self.popup_title("Date Error");
-      self.popup_error_message("The start is later than the end date.");
+      self.popup_error_message("<h3>The Start Date is later than the End Date.</h3>");
       $('#error_popup').modal("show");
       return;
     }
