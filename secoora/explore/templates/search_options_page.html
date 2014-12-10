@@ -179,23 +179,12 @@
                         </div>
                       </div>
                       <div style="margin: 15px 0;">
-                        <div class="row">
+                        <div id="date_range" class="row">
                           <div class="col-xs-4">
-                            <div id="start_date" class="input-group date">
-                              <input type="text" class="form-control">
-                                <span class="input-group-addon">
-                                  <i class="glyphicon glyphicon-th"></i>
-                                </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <div id="end_date" class="input-group date">
-                              <input type="text" class="form-control">
-                                <span class="input-group-addon">
-                                  <i class="glyphicon glyphicon-th"></i>
-                                </span>
+                            <div class="input-daterange input-group" id="datepicker">
+                              <input type="text" class="input-sm form-control" name="start" />
+                                <span class="input-group-addon">to</span>
+                              <input type="text" class="input-sm form-control" name="end" />
                             </div>
                           </div>
                         </div>
@@ -299,10 +288,7 @@
       };
       $( document ).ready(function()
       {
-        $('#start_date').datepicker({
-          format: "yyyy/mm/dd"
-        });
-        $('#end_date').datepicker({
+        $('#date_range .input-daterange').datepicker({
           format: "yyyy/mm/dd"
         });
 
