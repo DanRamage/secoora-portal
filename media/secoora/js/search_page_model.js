@@ -91,6 +91,7 @@ function search_page_model() {
       }
       self.error_popup_view.popup_title("Date Error");
       self.error_popup_view.popup_error_message("No start date provided.");
+      $('#error_popup').modal("show");
     }
 
     if(!isNaN(end_date) && start_date > end_date)
@@ -101,7 +102,7 @@ function search_page_model() {
       }
       self.error_popup_view.popup_title("Date Error");
       self.error_popup_view.popup_error_message("The start is later than the end date.");
-      $('#error_popup').show();
+      $('#error_popup').modal("show");
     }
     self.mapView.temporalSearch(start_string, end_string);
   }
