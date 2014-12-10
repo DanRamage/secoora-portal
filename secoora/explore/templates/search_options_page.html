@@ -181,23 +181,21 @@
                       <div style="margin: 15px 0;">
                         <div class="row">
                           <div class="col-xs-12">
-                            <div id="start_date" class="input-append date">
-                              <input data-format="yyyy-mm-dd" type="text">
-                              <span class="add-on">
-                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                </i>
-                              </span>
+                            <div id="start_date" class="input-group date">
+                              <input type="text" class="form-control">
+                                <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-th"></i>
+                                </span>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-xs-12">
-                            <div id="end_date" class="input-append date">
-                              <input data-format="yyyy-mm-dd" type="text">
-                              <span class="add-on">
-                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                </i>
-                              </span>
+                            <div id="end_date" class="input-group date">
+                              <input type="text" class="form-control">
+                                <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-th"></i>
+                                </span>
                             </div>
                           </div>
                         </div>
@@ -301,11 +299,9 @@
       };
       $( document ).ready(function()
       {
-        $('#start_date').datetimepicker({
-          pickTime: false
+        $('#start_date .input-group.date').datepicker({
         });
-        $('#end_date').datetimepicker({
-          pickTime: false
+        $('#end_date .input-group.date').datepicker({
         });
 
         self.viewModel.initialize('map',
