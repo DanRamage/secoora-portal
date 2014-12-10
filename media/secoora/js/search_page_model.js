@@ -67,6 +67,11 @@ function search_page_model() {
   self.keyword_search_click = function () {
     self.mapView.keywordSearch(self.user_keyword().toLowerCase());
   }
+  self.temporal_search_click = function()
+  {
+    var start_date = $("#start_date").datepicker('getDate');
+    var end_date = $("#end_date").datepicker('getDate');
+  }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
     if ('tag' in csw_results) {
