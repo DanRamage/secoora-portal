@@ -83,7 +83,7 @@ function search_page_model() {
     var end_string = $("#end_date").val();
     var start_date = $("#start_date").datepicker('getDate');
     var end_date = $("#end_date").datepicker('getDate');
-    if(isNan(start_date.valueOf()))
+    if(isNaN(start_date.valueOf()))
     {
       if(self.error_popup_view == null)
       {
