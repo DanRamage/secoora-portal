@@ -13,6 +13,42 @@ function catalog_search_map()
   {
     self.olMap.render('map');
   };
+  self.temporalSearch = function(start_date, end_date)
+  {
+    var date_range = new OpenLayers.Filter.Comparison({
+       type: OpenLayers.Filter.Comparison.BETWEEN,
+       property: "dc:date",
+       lowerBoundary: start_date,
+       upperBoundary: end_date
+     });
+     var options = {
+       resultType: "results",
+       startPosition: 1,
+       //maxRecords: 50,
+       outputFormat: "application/json",
+       Query: {
+         ElementSetName: {
+           value: "full"
+         },
+         Constraint: {
+           version: "1.1.0",
+           Filter: date_range
+         }
+       }
+     };
+
+
+     self.cswGetRecs = new OpenLayers.Format.CSWGetRecords.v2_0_2(options);
+     var xmlOutput = self.cswGetRecs.write();
+    $.ajax({
+      type: "POST",
+      url: self.query_url,
+      data: xmlOutput,
+      dataType: "json",
+      success: self.results_callback
+    });
+
+  };
   self.keywordSearch = function(search_term)
   {
     //var goog_parser = parser();

@@ -27,7 +27,6 @@ function search_page_model() {
   self.errorMsg = ko.observable("");
   self.mapView = null;
   self.user_keyword = ko.observable("");
-  self.datepicker = null;
 
   self.initialize = function (html_map_id, catalog_url, word_cloud_id, word_cloud_url) {
     self.mapView = catalog_search_map();
@@ -55,7 +54,6 @@ function search_page_model() {
     $('#date_range .input-daterange').datepicker({
           format: "yyyy-mm-dd"
         });
-    self.datepicker = $('#date_range .input-daterange').datepicker;
     // I can't figure out any other way to reset the data in the control which remains
     // even when you reload the page.
     $("#start_date").val("");
