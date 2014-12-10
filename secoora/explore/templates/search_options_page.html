@@ -179,21 +179,28 @@
                         </div>
                       </div>
                       <div style="margin: 15px 0;">
-                        <form id="catalog-search-form"
-                              class="form-search layer-search"
-                              accept-charset="utf-8"
-                              autocomplete="off">
-                          <button type="submit">
-                            <i class="icon-search icon-large"></i>
-                          </button>
-                          <input id="start_date_search"
-                                 type="text"
-                                 data-bind='value: user_keyword, valueUpdate: "afterkeydown"'
-                                 name="catalog_q"
-                                 style="display: inline-block"
-                                 class="search-box"
-                                 placeholder="Search the Catalog"/>
-                        </form>
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <div id="start_date" class="input-append date">
+                              <input data-format="yyyy-mm-dd" type="text"></input>
+                              <span class="add-on">
+                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                </i>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <div id="end_date" class="input-append date">
+                              <input data-format="yyyy-mm-dd" type="text"></input>
+                              <span class="add-on">
+                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                </i>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -294,6 +301,13 @@
       };
       $( document ).ready(function()
       {
+        $('#start_date').datetimepicker({
+          language: 'pt-BR'
+        });
+        $('#end_date').datetimepicker({
+          language: 'pt-BR'
+        });
+
         self.viewModel.initialize('map',
                                   "/proxy/rest_query/?url=http://pycsw.secoora.org",
                                   'word_cloud',
