@@ -71,6 +71,7 @@ function search_page_model() {
   {
     var start_date = $("#start_date").datepicker('getDate');
     var end_date = $("#end_date").datepicker('getDate');
+    self.olMap.temporalSearch(start_date, end_date);
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
