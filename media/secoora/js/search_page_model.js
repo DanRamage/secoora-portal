@@ -57,6 +57,7 @@ function search_page_model() {
         });
     self.datepicker = $('#date_range .input-daterange').datepicker;
 
+    var i;
   }
   self.backToCatalog = function()
   {
