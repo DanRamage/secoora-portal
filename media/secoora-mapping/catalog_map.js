@@ -118,7 +118,7 @@ function catalog_search_map()
      var options = {
        resultType: "results",
        startPosition: 1,
-       maxRecords: 50,
+       //maxRecords: 50,
        outputFormat: "application/json",
        //outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {

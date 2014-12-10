@@ -146,6 +146,64 @@
         </div>
       </div>
       <!-- End polygon search column -->
+      <!-- Begin temporal search  -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel-group"
+                   id="temporal_search"
+                   role="tablist"
+                   aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="temporal_search_header">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse"
+                         data-parent="#temporal_search"
+                         href="#temporal_search_body"
+                         aria-expanded="true"
+                         aria-controls="temporal">
+                        Temporal Search
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="temporal_search_body"
+                       class="panel-collapse collapse in"
+                       role="tabpanel"
+                       aria-labelledby="temporal_search_header">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <p><h3>Search datasets by selecting a date range.</h3></p>
+                        </div>
+                      </div>
+                      <div style="margin: 15px 0;">
+                        <form id="catalog-search-form"
+                              data-bind="submit: temporal_search_click"
+                              class="form-search layer-search"
+                              accept-charset="utf-8"
+                              autocomplete="off">
+                          <button type="submit">
+                            <i class="icon-search icon-large"></i>
+                          </button>
+                          <input id="start_date_search"
+                                 type="text"
+                                 data-bind='value: user_keyword, valueUpdate: "afterkeydown"'
+                                 name="catalog_q"
+                                 style="display: inline-block"
+                                 class="search-box"
+                                 placeholder="Search the Catalog"/>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End temporal search -->
     </div>
     <!-- Begin search results -->
     <div data-bind="visible: showResults()">
