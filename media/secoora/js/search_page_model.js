@@ -98,7 +98,7 @@ function search_page_model() {
     if(end_date.valueOf() != NaN)
     {
       curr_date = end_date.getDate();
-      curr_month = end_dated.getMonth() + 1; //Months are zero based
+      curr_month = end_date.getMonth() + 1; //Months are zero based
       curr_year = end_date.getFullYear();
       end_string = curr_year + "-" + curr_month + "-" + curr_date;
     }
