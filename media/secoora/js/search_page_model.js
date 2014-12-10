@@ -1,3 +1,10 @@
+function error_popup_view() {
+  var self = this;
+
+  self.popup_title = ko.observable("");
+  self.popup_error_message = ko.observable("");
+};
+
 function search_page_model() {
   var self = this;
 
@@ -27,6 +34,7 @@ function search_page_model() {
   self.errorMsg = ko.observable("");
   self.mapView = null;
   self.user_keyword = ko.observable("");
+  self.error_popup_view = null;
 
   self.initialize = function (html_map_id, catalog_url, word_cloud_id, word_cloud_url) {
     self.mapView = catalog_search_map();
@@ -59,6 +67,7 @@ function search_page_model() {
     $("#start_date").val("");
     $("#end_date").val("");
 
+
   }
   self.backToCatalog = function()
   {
@@ -70,18 +79,29 @@ function search_page_model() {
   self.temporal_search_click = function()
   {
     var start_date = $("#start_date").datepicker('getDate');
-    var curr_date = start_date.getDate();
-    var curr_month = start_date.getMonth() + 1; //Months are zero based
-    var curr_year = start_date.getFullYear();
-    var start_string = curr_year + "-" + curr_month + "-" + curr_date;
-
     var end_date = $("#end_date").datepicker('getDate');
+    if(start_date > end_date)
+    {
+      self.error_popup_view = new error_popup_view();
+      self.error_popup_view.popup_title("Date Error");
+      self.error_popup_view.popup_error_message("The start is later than the end date.");
+      $('#error_popup').show();
+    }
+    if(start_date.valueOf() != NaN)
+    {
+      var curr_date = start_date.getDate();
+      var curr_month = start_date.getMonth() + 1; //Months are zero based
+      var curr_year = start_date.getFullYear();
+      var start_string = curr_year + "-" + curr_month + "-" + curr_date;
+    }
 
-    curr_date = end_date.getDate();
-    curr_month = end_dated.getMonth() + 1; //Months are zero based
-    curr_year = end_date.getFullYear();
-    end_string = curr_year + "-" + curr_month + "-" + curr_date;
-
+    if(end_date.valueOf() != NaN)
+    {
+      curr_date = end_date.getDate();
+      curr_month = end_dated.getMonth() + 1; //Months are zero based
+      curr_year = end_date.getFullYear();
+      end_string = curr_year + "-" + curr_month + "-" + curr_date;
+    }
     self.mapView.temporalSearch(start_string, end_string);
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
