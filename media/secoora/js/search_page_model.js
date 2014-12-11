@@ -112,6 +112,7 @@ function search_page_model() {
   }
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
+    var parsed_xml = $.parseXML(jqXHR.responseText);
 
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
