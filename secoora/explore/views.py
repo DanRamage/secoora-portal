@@ -294,6 +294,8 @@ def csw_query(request, template='csw_search_results.html'):
   return render_to_response(template, {'search_results': csw_records}, context_instance=RequestContext(request))
 
 
+def pycsw_request(request):
+  return
 
 def search_page(request, template='search_options_page.html'):
   if logger:
