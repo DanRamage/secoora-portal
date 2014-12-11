@@ -104,7 +104,7 @@ function catalog_search_map()
       type: "POST",
       url: self.query_url,
       data: xmlOutput,
-      dataType: "json",
+      dataType: "xml",
       success: self.results_callback
     });
   };
