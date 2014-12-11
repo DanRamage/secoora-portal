@@ -82,7 +82,7 @@ function catalog_search_map()
        startPosition: 1,
        maxRecords: 100,
        outputFormat: "application/json",
-       outputSchema: "http://www.isotc211.org/2005/gmd",
+       //outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
            value: "full"
