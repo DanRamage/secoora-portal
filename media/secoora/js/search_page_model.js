@@ -122,10 +122,10 @@ function search_page_model() {
         var record_tags = $(csw_results).find('gmi\\:MI_Metadata');
         if(record_tags != undefined)
         {
-          $.each(record_tags, function(ndx, tag)
+          record_tags.each(function(ndx, tag)
           {
             var i = 0;
-          })
+          });
         }
       }
     }
