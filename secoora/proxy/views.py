@@ -85,7 +85,7 @@ def restQuery(request, url):
         resp, content = conn.request(postURL, request.method, data)
         if logger:
           logger.debug(resp)
-          logger.debug(content)
+          logger.debug("Content: %s" %(content))
         return HttpResponse(content, content_type=resp['content-type'])
 
     return(HttpResponse('Request could not be processed.'))
