@@ -84,6 +84,7 @@ def restQuery(request, url):
           logger.info("POST URL: %s Data: %s" % (postURL, data))
         resp, content = conn.request(postURL, request.method, data)
         if logger:
+          logger.debug(resp)
           logger.debug(content)
         return HttpResponse(content)
 
