@@ -111,6 +111,7 @@ function search_page_model() {
     self.mapView.temporalSearch(start_string, end_string);
   }
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
+    var xml_results = $.parseXML(csw_results);
     self.results.removeAll();
 
   }
