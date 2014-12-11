@@ -111,9 +111,24 @@ function search_page_model() {
     self.mapView.temporalSearch(start_string, end_string);
   }
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
-    var parsed_xml = $.parseXML(jqXHR.responseText);
     self.results.removeAll();
-
+    var rec_cnt = $(csw_results).find('csw\\:SearchResults').attr('numberOfRecordsMatched');
+    if(rec_cnt != undefined)
+    {
+      rec_cnt = parseInt(rec_cnt);
+      //Have matching records.
+      if(rec_cnt > 0)
+      {
+        var record_tags = $(csw_results).find('gmi\\:MI_Metadata');
+        if(record_tags != undefined)
+        {
+          $.each(record_tags, function(ndx, tag)
+          {
+            var i = 0;
+          })
+        }
+      }
+    }
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
