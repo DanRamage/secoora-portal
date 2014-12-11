@@ -80,8 +80,11 @@ def restQuery(request, url):
         parsedURL = urlparse(url)
         postURL = request.GET.get('url')
         data = request.raw_post_data
-        logger.info("POST URL: %s Data: %s" % (postURL, data))
+        if logger:
+          logger.info("POST URL: %s Data: %s" % (postURL, data))
         resp, content = conn.request(postURL, request.method, data)
+        if logger:
+          logger.debug(content)
         return HttpResponse(content)
 
     return(HttpResponse('Request could not be processed.'))
