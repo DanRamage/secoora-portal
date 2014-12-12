@@ -130,7 +130,7 @@ function search_page_model() {
               'keywords': [],
               'bounding_box': "",
               'services': [],
-              'contacts' : []
+              'contacts' : {}
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
@@ -148,8 +148,8 @@ function search_page_model() {
                               .find('gmd\\:CI_Address')
                               .find('gmd\\:electronicMailAddress')
                               .find('gco\\:CharacterString').text();
-            result.contacts.push({'contact_name': contact_name,
-                                  'email': email});
+            result.contacts = {'contact_name': contact_name,
+                                  'email': email};
             //Abstract
             result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
