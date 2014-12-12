@@ -259,6 +259,27 @@
                           <li data-bind="text: $data"></li>
                       </ul>
                     </dd>
+                    <dt data-bind="attr: {id: 'data_src_toggler_' + id,
+                       'data-target': '#data_src_' + id,
+                       'aria-controls': 'data_src_' + id}"
+                       class="data_src_header"
+                       data-toggle="collapse"
+                       aria-expanded="true">
+                      Data Source Links
+                      <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                      <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+                    </dt>
+                    <dd data-bind="attr: {id: 'data_src_' + id}" class="data_src_collapse collapse">
+                      <ul data-bind="foreach: services">
+                          <li role="presentation">
+                            <a role="menuitem"
+                               data-bind="text: protocol, attr: {href: url}"
+                               class="data-layer-link color-up"
+                               target="_blank"></a>
+                          </li>
+                      </ul>
+                    </dd>
+
                   </dl>
                 </div>
               </div>
