@@ -133,10 +133,10 @@ function search_page_model() {
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
-            result['title'] = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
+            result.title = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
 
             //Abstract
-            result['abstract'] = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
+            result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
             //BBox
             var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
@@ -146,7 +146,7 @@ function search_page_model() {
               var ll_lat = parseFloat(bbox_rec.find("gmd\\:southBoundLatitude").find('gco\\:Decimal').text()).toFixed(3);
               var ur_lon = parseFloat(bbox_rec.find("gmd\\:eastBoundLongitude").find('gco\\:Decimal').text()).toFixed(3);
               var ur_lat = parseFloat(bbox_rec.find("gmd\\:northBoundLatitude").find('gco\\:Decimal').text()).toFixed(3);
-              result['bounding_box'] = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
+              result.bounding_box = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
             }
             //Get the keywords.
             var keywords_tag = id_rec.find("gmd\\:descriptiveKeywords").find("gmd\\:MD_Keywords");
@@ -154,7 +154,24 @@ function search_page_model() {
             {
               var keyword = $(k_tag).find("gco\\:CharacterString").text();
               keyword = keyword.replace(/_/g, ' ');
-              result['keywords'].push(keyword);
+              result.keywords.push(keyword);
+            });
+            //Now let's loop the services available.
+            var services_rec = $(tag).find("gmd\\:MD_DataIdentification[id!='DataIdentification']")
+            services_rec.each(function(s_ndx, s_rec)
+            {
+              var url = $(s_rec).find('srv\\:containsOperations')
+                        .find('srv\\:SV_OperationMetadata')
+                        .find('srv\\:connectPoint')
+                        .find('gmd\\:CI_OnlineResource')
+                        .find('gmd\\:linkage')
+                        .find('gmd\\:URL').text();
+
+              result.services.push({
+                'url': url,
+                'protocol': services_rec.attr('id')}
+              );
+
             });
             self.results.push(result);
         });
