@@ -133,7 +133,7 @@ function search_page_model() {
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             result['title'] = id_rec.find("gmd\\:title").find("gco\\:CharacterString").text();
-            
+            self.results.push(result);
         });
         }
       }
