@@ -134,24 +134,20 @@ function search_page_model() {
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
-            result.title = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
-            if(result.title.indexOf('cormp.ilm3.buoy') != -1)
-            {
-              var i = 0;
-            }
+            result.title = $(id_rec).find("gmd\\:citation").children("gmd\\:CI_Citation").children("gmd\\:title").children("gco\\:CharacterString").text();
             //Contact info
             var contact_name = id_rec.find('gmd\\:citedResponsibleParty')
-                                    .find('gmd\\:CI_ResponsibleParty')
-                                    .find('gmd\\:individualName')
-                                    .find('gco\\:CharacterString').text();
+                                    .children('gmd\\:CI_ResponsibleParty')
+                                    .children('gmd\\:individualName')
+                                    .children('gco\\:CharacterString').text();
             var email = id_rec.find('gmd\\:citedResponsibleParty')
-                              .find('gmd\\:CI_ResponsibleParty')
-                              .find('gmd\\:contactInfo')
-                              .find('gmd\\:CI_Contact')
-                              .find('gmd\\:address')
-                              .find('gmd\\:CI_Address')
-                              .find('gmd\\:electronicMailAddress')
-                              .find('gco\\:CharacterString').text();
+                              .children('gmd\\:CI_ResponsibleParty')
+                              .children('gmd\\:contactInfo')
+                              .children('gmd\\:CI_Contact')
+                              .children('gmd\\:address')
+                              .children('gmd\\:CI_Address')
+                              .children('gmd\\:electronicMailAddress')
+                              .children('gco\\:CharacterString').text();
             result.contacts = {'contact_name': contact_name,
                                   'email': email};
             //Abstract
@@ -161,10 +157,10 @@ function search_page_model() {
             var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
             if(bbox_rec != undefined)
             {
-              var ll_lon = parseFloat(bbox_rec.find("gmd\\:westBoundLongitude").find('gco\\:Decimal').text()).toFixed(3);
-              var ll_lat = parseFloat(bbox_rec.find("gmd\\:southBoundLatitude").find('gco\\:Decimal').text()).toFixed(3);
-              var ur_lon = parseFloat(bbox_rec.find("gmd\\:eastBoundLongitude").find('gco\\:Decimal').text()).toFixed(3);
-              var ur_lat = parseFloat(bbox_rec.find("gmd\\:northBoundLatitude").find('gco\\:Decimal').text()).toFixed(3);
+              var ll_lon = parseFloat(bbox_rec.find("gmd\\:westBoundLongitude").children('gco\\:Decimal').text()).toFixed(3);
+              var ll_lat = parseFloat(bbox_rec.find("gmd\\:southBoundLatitude").children('gco\\:Decimal').text()).toFixed(3);
+              var ur_lon = parseFloat(bbox_rec.find("gmd\\:eastBoundLongitude").children('gco\\:Decimal').text()).toFixed(3);
+              var ur_lat = parseFloat(bbox_rec.find("gmd\\:northBoundLatitude").children('gco\\:Decimal').text()).toFixed(3);
               result.bounding_box = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
             }
             //Get the keywords.
@@ -182,11 +178,11 @@ function search_page_model() {
               var protocol = $(s_rec).find('srv\\:SV_ServiceIdentification').attr('id');
               if(protocol != undefined) {
                 var url = $(s_rec).find('srv\\:containsOperations')
-                  .find('srv\\:SV_OperationMetadata')
-                  .find('srv\\:connectPoint')
-                  .find('gmd\\:CI_OnlineResource')
-                  .find('gmd\\:linkage')
-                  .find('gmd\\:URL').text();
+                  .children('srv\\:SV_OperationMetadata')
+                  .children('srv\\:connectPoint')
+                  .children('gmd\\:CI_OnlineResource')
+                  .children('gmd\\:linkage')
+                  .children('gmd\\:URL').text();
                 result.services.push({
                   'url': url,
                   'protocol': protocol
