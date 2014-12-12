@@ -242,6 +242,24 @@
                                       attr: {href: 'mailto:'+ email}"></a>
                       </div>
                     </dd>
+                      <dt data-bind="attr: {id: 'keywords_toggle_' + $index,
+                         'data-target': '#keywords_' + $index,
+                         'aria-controls': 'keywords_keywords_' + $index}"
+                         class="keywords_header"
+                         data-toggle="collapse"
+                         aria-expanded="true">
+
+                        Keywords
+                        <small><i class="icon-caret-right caret-icon color-up" style="display: inline-block"></i></small>
+                        <small><i class="icon-caret-down caret-icon color-up" style="display: none"></i></small>
+                      </dt>
+                      <dd data-bind="attr: {id: 'keywords_' + $index}"
+                          class="keywords_collapse collapse">
+                        <ul data-bind="foreach: keywords">
+                            <li data-bind="text: $element"></li>
+                        </ul>
+                      </dd>
+
                   </dl>
                 </div>
                 <div class="row">
