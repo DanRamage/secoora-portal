@@ -167,14 +167,14 @@ function search_page_model() {
               .children('gmd\\:EX_TemporalExtent[id="boundingTemporalExtent"]');
             if(temporal_rec != undefined)
             {
-              var date_val = Date($(temporal_rec).find('gmd\\:extent')
+              var date_val = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
-                .children('gml\\:beginPosition').text());
-              result.begin_time = date_val.getFullYear() + '-' + date_val.getMonth() + '-' + date_val.getDate();
-              date_val = Date($(temporal_rec).find('gmd\\:extent')
+                .children('gml\\:beginPosition').text();
+              result.begin_time = date_val.slice(0, date_val.indexOf("T"));
+              date_val = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
-                .children('gml\\:endPosition').text());
-              result.end_time = date_val.getFullYear() + '-' + date_val.getMonth() + '-' + date_val.getDate();
+                .children('gml\\:endPosition').text();
+              result.end_time = date_val.slice(0, date_val.indexOf("T"));
             }
             //BBox
             var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
