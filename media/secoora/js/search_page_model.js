@@ -135,6 +135,10 @@ function search_page_model() {
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
             result.title = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
+            if(result.title.indexOf('cormp.ilm3.buoy') != -1)
+            {
+              var i = 0;
+            }
             //Contact info
             var contact_name = id_rec.find('gmd\\:citedResponsibleParty')
                                     .find('gmd\\:CI_ResponsibleParty')
