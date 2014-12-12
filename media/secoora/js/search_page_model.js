@@ -138,6 +138,16 @@ function search_page_model() {
             //Abstract
             result['abstract'] = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
+            //BBox
+            var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
+            if(bbox_rec != undefined)
+            {
+              var ll_lon = bbox_rec.find("gmd\\:westBoundLongitude").find('gco\\:Decimal').text();
+              var ll_lat = bbox_rec.find("gmd\\:southBoundLatitude").find('gco\\:Decimal').text();
+              var ur_lon = bbox_rec.find("gmd\\:eastBoundLongitude").find('gco\\:Decimal').text();
+              var ur_lat = bbox_rec.find("gmd\\:northBoundLatitude").find('gco\\:Decimal').text();
+              result['bounding_box'] = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
+            }
             //Get the keywords.
             var keywords_tag = id_rec.find("gmd\\:descriptiveKeywords").find("gmd\\:MD_Keywords");
             keywords_tag.each(function(k_ndx, k_tag)
