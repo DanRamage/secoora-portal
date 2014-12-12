@@ -157,10 +157,10 @@ function search_page_model() {
               result.keywords.push(keyword);
             });
             //Now let's loop the services available.
-            var services_rec = $(tag).find("gmd\\:MD_DataIdentification");
+            var services_rec = $(tag).find("gmd\\:identificationInfo");
             services_rec.each(function(s_ndx, s_rec)
             {
-              if($(s_rec).attr('id') != 'DataIdentification') {
+              if($(s_rec).find('gmd\\:MD_DataIdentification').attr('id') != 'DataIdentification') {
                 var url = $(s_rec).find('srv\\:containsOperations')
                   .find('srv\\:SV_OperationMetadata')
                   .find('srv\\:connectPoint')
