@@ -170,7 +170,7 @@ function search_page_model() {
 
                 result.services.push({
                     'url': url,
-                    'protocol': services_rec.attr('id')}
+                    'protocol': $(s_rec).find('gmd\\:MD_DataIdentification').attr('id')}
                 );
               }
             });
