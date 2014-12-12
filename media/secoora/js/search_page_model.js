@@ -160,7 +160,7 @@ function search_page_model() {
             var services_rec = $(tag).find("gmd\\:identificationInfo");
             services_rec.each(function(s_ndx, s_rec)
             {
-              var protocol = $(s_rec).find('gmd\\:MD_DataIdentification').attr('id');
+              var protocol = $(s_rec).find('gmd\\:SV_ServiceIdentification').attr('id');
               if(protocol != 'DataIdentification') {
                 var url = $(s_rec).find('srv\\:containsOperations')
                   .find('srv\\:SV_OperationMetadata')
