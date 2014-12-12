@@ -140,7 +140,7 @@ function search_page_model() {
             {
               var keyword = $(k_tag).find("gco\\:CharacterString").text();
               keyword = keyword.replacAll('_', ' ');
-              keywords.push(keyword);
+              result['keywords'].push(keyword);
             });
             self.results.push(result);
         });
