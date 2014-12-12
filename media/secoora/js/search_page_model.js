@@ -130,26 +130,30 @@ function search_page_model() {
               'keywords': [],
               'bounding_box': "",
               'services': [],
-              'contacts' : {}
+              'contacts' : []
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
             result.title = $(id_rec).find("gmd\\:citation").children("gmd\\:CI_Citation").children("gmd\\:title").children("gco\\:CharacterString").text();
             //Contact info
-            var contact_name = id_rec.find('gmd\\:citedResponsibleParty')
-                                    .children('gmd\\:CI_ResponsibleParty')
-                                    .children('gmd\\:individualName')
-                                    .children('gco\\:CharacterString').text();
-            var email = id_rec.find('gmd\\:citedResponsibleParty')
-                              .children('gmd\\:CI_ResponsibleParty')
-                              .children('gmd\\:contactInfo')
-                              .children('gmd\\:CI_Contact')
-                              .children('gmd\\:address')
-                              .children('gmd\\:CI_Address')
-                              .children('gmd\\:electronicMailAddress')
-                              .children('gco\\:CharacterString').text();
-            result.contacts = {'contact_name': contact_name,
-                                  'email': email};
+            var contact_tag = $(id_rec).find('gmd\\:citedResponsibleParty');
+            if(contact_tag != undefined)
+            {
+              $(contact_tag).each(function(c_ndx, c_tag) {
+                var contact_name = $(c_tag).find('gmd\\:CI_ResponsibleParty')
+                  .children('gmd\\:individualName')
+                  .children('gco\\:CharacterString').text();
+                var email = $(c_tag).find('gmd\\:CI_ResponsibleParty')
+                  .children('gmd\\:contactInfo')
+                  .children('gmd\\:CI_Contact')
+                  .children('gmd\\:address')
+                  .children('gmd\\:CI_Address')
+                  .children('gmd\\:electronicMailAddress')
+                  .children('gco\\:CharacterString').text();
+                result.contacts.push({'contact_name': contact_name,
+                  'email': email});
+              });
+            }
             //Abstract
             result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
