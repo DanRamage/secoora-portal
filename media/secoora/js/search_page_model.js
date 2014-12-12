@@ -158,6 +158,20 @@ function search_page_model() {
             //Abstract
             result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
+            //Temporal extent
+            var extents_rec = $(id_rec).find('gmd\\:extent')
+              .children('gmd\\:EX_Extent[id="boundingExtent"]');
+            var temporal_rec = $(extents_rec).find('gmd\\:temporalElement')
+              .children('gmd\\:EX_TemporalExtent[id="boundingTemporalExtent"]');
+            if(temporal_rec != undefined)
+            {
+              var begin_time = $(temporal_rec).find('gmd\\:extent')
+                .children('gml\\:TimePeriod')
+                .children('gml\\:beginPosition').text();
+              var end_time = $(temporal_rec).find('gmd\\:extent')
+                .children('gml\\:TimePeriod')
+                .children('gml\\:endPosition').text();
+            }
             //BBox
             var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
             if(bbox_rec != undefined)
