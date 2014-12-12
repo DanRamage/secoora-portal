@@ -139,7 +139,7 @@ function search_page_model() {
             var contact_name = id_rec.find('gmd\\:citedResponsibleParty')
                                     .find('gmd\\:CI_ResponsibleParty')
                                     .find('gmd\\:individualName')
-                                    .find('gco:CharacterString').text();
+                                    .find('gco\\:CharacterString').text();
             var email = id_rec.find('gmd\\:citedResponsibleParty')
                               .find('gmd\\:CI_ResponsibleParty')
                               .find('gmd\\:contactInfo')
