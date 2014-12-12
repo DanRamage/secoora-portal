@@ -125,6 +125,7 @@ function search_page_model() {
           record_tags.each(function(ndx, tag)
           {
             var result = {
+              'id': ndx,
               'title': "",
               'abstract': "",
               'keywords': [],
