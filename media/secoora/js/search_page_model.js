@@ -129,12 +129,27 @@ function search_page_model() {
               'abstract': "",
               'keywords': [],
               'bounding_box': "",
-              'services': []
+              'services': [],
+              'contacts' : []
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
             result.title = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
-
+            //Contact info
+            var contact_name = id_rec.find('gmd\\:citedResponsibleParty')
+                                    .find('gmd\\:CI_ResponsibleParty')
+                                    .find('gmd\\:individualName')
+                                    .find('gco:CharacterString').text();
+            var email = id_rec.find('gmd\\:citedResponsibleParty')
+                              .find('gmd\\:CI_ResponsibleParty')
+                              .find('gmd\\:contactInfo')
+                              .find('gmd\\:CI_Contact')
+                              .find('gmd\\:address')
+                              .find('gmd\\:CI_Address')
+                              .find('gmd\\:electronicMailAddress')
+                              .find('gmd\\:CharacterString');
+            result.contacts.push({'contact_name': contact_name,
+                                  'email': email});
             //Abstract
             result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
 
@@ -161,8 +176,7 @@ function search_page_model() {
             services_rec.each(function(s_ndx, s_rec)
             {
               var protocol = $(s_rec).find('srv\\:SV_ServiceIdentification').attr('id');
-              if(protocol != undefined &&
-                 protocol != 'DataIdentification') {
+              if(protocol != undefined) {
                 var url = $(s_rec).find('srv\\:containsOperations')
                   .find('srv\\:SV_OperationMetadata')
                   .find('srv\\:connectPoint')
