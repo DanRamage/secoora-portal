@@ -132,7 +132,16 @@ function search_page_model() {
               'services': []
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
+            //Get the title.
             result['title'] = id_rec.find("gmd\\:citation").find("gmd\\:CI_Citation").find("gmd\\:title").find("gco\\:CharacterString").text();
+            //Get the keywords.
+            var keywords_tag = id_rec.find("gmd\\:descriptiveKeywords").find("gmd\\:MD_Keywords");
+            keywords_tag.each(function(k_ndx, k_tag)
+            {
+              var keyword = $(k_tag).find("gco\\:CharacterString").text();
+              keyword = keyword.replace('_', ' ');
+              keywords.push(keyword);
+            });
             self.results.push(result);
         });
         }
