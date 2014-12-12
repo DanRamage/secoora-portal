@@ -139,7 +139,7 @@ function search_page_model() {
             keywords_tag.each(function(k_ndx, k_tag)
             {
               var keyword = $(k_tag).find("gco\\:CharacterString").text();
-              keyword = keyword.replacAll('_', ' ');
+              keyword = keyword.replaceAll('_', ' ');
               result['keywords'].push(keyword);
             });
             self.results.push(result);
