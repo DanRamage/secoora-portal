@@ -170,10 +170,12 @@ function search_page_model() {
               var date_val = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
                 .children('gml\\:beginPosition').text();
+              //Just get the date portion, leaving out time.
               result.begin_time = date_val.slice(0, date_val.indexOf("T"));
               date_val = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
                 .children('gml\\:endPosition').text();
+              //Just get the date portion, leaving out time.
               result.end_time = date_val.slice(0, date_val.indexOf("T"));
             }
             //BBox
