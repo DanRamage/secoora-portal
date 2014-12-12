@@ -131,7 +131,9 @@ function search_page_model() {
               'keywords': [],
               'bounding_box': "",
               'services': [],
-              'contacts' : []
+              'contacts' : [],
+              'begin_time' : "",
+              'end_time' : ""
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
             //Get the title.
@@ -165,10 +167,10 @@ function search_page_model() {
               .children('gmd\\:EX_TemporalExtent[id="boundingTemporalExtent"]');
             if(temporal_rec != undefined)
             {
-              var begin_time = $(temporal_rec).find('gmd\\:extent')
+              result.begin_time = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
                 .children('gml\\:beginPosition').text();
-              var end_time = $(temporal_rec).find('gmd\\:extent')
+              result.end_time = $(temporal_rec).find('gmd\\:extent')
                 .children('gml\\:TimePeriod')
                 .children('gml\\:endPosition').text();
             }
