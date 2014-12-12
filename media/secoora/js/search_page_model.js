@@ -138,6 +138,12 @@ function search_page_model() {
         }
       }
     }
+    else
+    {
+      rec_cnt = 0;
+    }
+    self.resultsCount(rec_cnt);
+    self.showResults(true);
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
