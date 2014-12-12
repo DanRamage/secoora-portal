@@ -124,8 +124,17 @@ function search_page_model() {
         {
           record_tags.each(function(ndx, tag)
           {
-            var i = 0;
-          });
+            var result = {
+              'title': "",
+              'abstract': "",
+              'keywords': [],
+              'bounding_box': "",
+              'services': []
+            }
+            var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
+            result['title'] = id_rec.find("gmd\\:title").find("gco\\:CharacterString").text();
+            
+        });
         }
       }
     }
