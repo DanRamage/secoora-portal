@@ -237,6 +237,9 @@
                     <dd data-bind="text: bounding_box"></dd>
                     <dt>Contact</dt>
                     <dd>
+                      <a data-bind="text: contacts.contact_name,
+                                    attr: {href: 'mailto:'+ contacts.email}"></a>
+
                     </dd>
                   </dl>
                 </div>
