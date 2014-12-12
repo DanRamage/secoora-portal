@@ -160,18 +160,18 @@ function search_page_model() {
             var services_rec = $(tag).find("gmd\\:identificationInfo");
             services_rec.each(function(s_ndx, s_rec)
             {
-              if($(s_rec).find('gmd\\:MD_DataIdentification').attr('id') != 'DataIdentification') {
+              var protocol = $(s_rec).find('gmd\\:MD_DataIdentification').attr('id');
+              if(protocol != 'DataIdentification') {
                 var url = $(s_rec).find('srv\\:containsOperations')
                   .find('srv\\:SV_OperationMetadata')
                   .find('srv\\:connectPoint')
                   .find('gmd\\:CI_OnlineResource')
                   .find('gmd\\:linkage')
                   .find('gmd\\:URL').text();
-
                 result.services.push({
-                    'url': url,
-                    'protocol': $(s_rec).find('gmd\\:MD_DataIdentification').attr('id')}
-                );
+                  'url': url,
+                  'protocol': protocol
+                });
               }
             });
             self.results.push(result);
