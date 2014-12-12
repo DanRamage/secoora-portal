@@ -25,7 +25,8 @@ function catalog_search_map()
        resultType: "results",
        startPosition: 1,
        maxRecords: 100,
-       outputFormat: "application/json",
+       outputFormat: "application/xml",
+       outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
            value: "full"
@@ -44,7 +45,7 @@ function catalog_search_map()
       type: "POST",
       url: self.query_url,
       data: xmlOutput,
-      dataType: "json",
+      dataType: "xml",
       success: self.results_callback
     });
 
@@ -156,8 +157,8 @@ function catalog_search_map()
        resultType: "results",
        startPosition: 1,
        maxRecords: 100,
-       outputFormat: "application/json",
-       //outputSchema: "http://www.isotc211.org/2005/gmd",
+       outputFormat: "application/xml",
+       outputSchema: "http://www.isotc211.org/2005/gmd",
        Query: {
          ElementSetName: {
            value: "full"
@@ -179,7 +180,7 @@ function catalog_search_map()
       type: "POST",
       url: self.query_url,
       data: xmlOutput,
-      dataType: "json",
+      dataType: "xml",
       success: self.results_callback
     });
   };
