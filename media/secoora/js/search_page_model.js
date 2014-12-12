@@ -157,7 +157,7 @@ function search_page_model() {
               result.keywords.push(keyword);
             });
             //Now let's loop the services available.
-            var services_rec = $(tag).find("gmd\\:MD_DataIdentification[id!='DataIdentification']")
+            var services_rec = $(tag).find("gmd\\:MD_DataIdentification:not[id='DataIdentification']")
             services_rec.each(function(s_ndx, s_rec)
             {
               var url = $(s_rec).find('srv\\:containsOperations')
