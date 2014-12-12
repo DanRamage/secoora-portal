@@ -147,7 +147,7 @@ function search_page_model() {
                               .find('gmd\\:address')
                               .find('gmd\\:CI_Address')
                               .find('gmd\\:electronicMailAddress')
-                              .find('gco\\:CharacterString');
+                              .find('gco\\:CharacterString').text();
             result.contacts.push({'contact_name': contact_name,
                                   'email': email});
             //Abstract
