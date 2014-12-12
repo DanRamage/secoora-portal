@@ -169,7 +169,8 @@ function search_page_model() {
               result.bounding_box = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
             }
             //Get the keywords.
-            var keywords_tag = id_rec.find("gmd\\:descriptiveKeywords").find("gmd\\:MD_Keywords");
+            var keywords_tag = id_rec.find("gmd\\:descriptiveKeywords")
+              .children("gmd\\:MD_Keywords");
             keywords_tag.each(function(k_ndx, k_tag)
             {
               var keyword = $(k_tag).find("gco\\:CharacterString").text();
