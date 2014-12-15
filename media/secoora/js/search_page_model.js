@@ -32,7 +32,7 @@ function searching_popup_view()
       left: '50%' // Left position relative to parent
     };
     var target = document.getElementById(spinner_id);
-    var spinner = new Spinner(opts).spin(target);
+    self.spinner = new Spinner(opts).spin(target);
   };
   self.show = function(show_flag)
   {
