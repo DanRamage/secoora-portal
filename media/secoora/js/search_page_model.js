@@ -124,7 +124,7 @@ function search_page_model() {
   self.backToCatalog = function()
   {
     self.showResults(false);
-    self.loadingIndicator(false);
+    self.loadingIndicator.show(false);
   }
   self.keyword_search_click = function () {
     self.loadingIndicator.show(true);
