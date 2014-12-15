@@ -245,7 +245,7 @@ function search_page_model() {
               result.end_time = date_val.slice(0, date_val.indexOf("T"));
             }
             //BBox
-            var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
+            var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox'], EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
             if(bbox_rec != undefined)
             {
               var ll_lon = parseFloat(bbox_rec.find("gmd\\:westBoundLongitude, westBoundLongitude").children('gco\\:Decimal, Decimal').text()).toFixed(3);
