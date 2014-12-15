@@ -174,7 +174,7 @@ function search_page_model() {
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
 
-    var rec_cnt = $(csw_results).find('csw\\:SearchResults').attr('numberOfRecordsMatched');
+    var rec_cnt = $(csw_results).find('csw\\:SearchResults', 'SearchResults').attr('numberOfRecordsMatched');
     if(rec_cnt != undefined)
     {
       rec_cnt = parseInt(rec_cnt);
