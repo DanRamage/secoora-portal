@@ -40,10 +40,12 @@ function searching_popup_view()
   {
     if(show_flag)
     {
+      self.spinner.spin();
       $('#' + self.popup_id).modal("show");
     }
     else
     {
+      self.spinner.stop();
       $('#' + self.popup_id).modal("hide");
     }
   };
