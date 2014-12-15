@@ -112,7 +112,7 @@ function catalog_search_map(view_model)
   };
   self.selectionBBOXAdded = function(feature)
   {
-    self.viewModel.loadingIndicator(true);
+    self.viewModel.loadingIndicator.show(true);
 
     var vertices = feature.geometry.getVertices();
     if(self.polygonQueryGeom)
