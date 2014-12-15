@@ -113,7 +113,7 @@ function search_page_model() {
     // even when you reload the page.
     //$("#start_date").val("");
     //$("#end_date").val("");
-    self.loadingIndicator = new searching_popup_view()
+    self.loadingIndicator = new searching_popup_view();
     self.loadingIndicator.initialize('searching_popup', 'spinner')
 
   }
