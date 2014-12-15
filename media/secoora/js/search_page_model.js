@@ -181,7 +181,7 @@ function search_page_model() {
       //Have matching records.
       if(rec_cnt > 0)
       {
-        var record_tags = $(csw_results).find('gmi\\:MI_Metadata');
+        var record_tags = $(csw_results).find('gmi\\:MI_Metadata, MI_Metadata');
         if(record_tags != undefined)
         {
           record_tags.each(function(ndx, tag)
@@ -197,46 +197,50 @@ function search_page_model() {
               'begin_time' : "",
               'end_time' : ""
             }
-            var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification']")
+            var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification'], MD_DataIdentification[id='DataIdentification']")
             //Get the title.
-            result.title = $(id_rec).find("gmd\\:citation").children("gmd\\:CI_Citation").children("gmd\\:title").children("gco\\:CharacterString").text();
+            result.title = $(id_rec).find("gmd\\:citation")
+              .children("gmd\\:CI_Citation, CI_Citation")
+              .children("gmd\\:title, title")
+              .children("gco\\:CharacterString, CharacterString").text();
             //Contact info
             var contact_tag = $(id_rec).find('gmd\\:citedResponsibleParty');
             if(contact_tag != undefined)
             {
               $(contact_tag).each(function(c_ndx, c_tag) {
-                var contact_name = $(c_tag).find('gmd\\:CI_ResponsibleParty')
-                  .children('gmd\\:individualName')
-                  .children('gco\\:CharacterString').text();
-                var email = $(c_tag).find('gmd\\:CI_ResponsibleParty')
-                  .children('gmd\\:contactInfo')
-                  .children('gmd\\:CI_Contact')
-                  .children('gmd\\:address')
-                  .children('gmd\\:CI_Address')
-                  .children('gmd\\:electronicMailAddress')
-                  .children('gco\\:CharacterString').text();
+                var contact_name = $(c_tag).find('gmd\\:CI_ResponsibleParty, CI_ResponsibleParty')
+                  .children('gmd\\:individualName, individualName')
+                  .children('gco\\:CharacterString, CharacterString').text();
+                var email = $(c_tag).find('gmd\\:CI_ResponsibleParty, CI_ResponsibleParty')
+                  .children('gmd\\:contactInfo, contactInfo')
+                  .children('gmd\\:CI_Contact, CI_Contact')
+                  .children('gmd\\:address, address')
+                  .children('gmd\\:CI_Address, CI_Address')
+                  .children('gmd\\:electronicMailAddress, electronicMailAddress')
+                  .children('gco\\:CharacterString, CharacterString').text();
                 result.contacts.push({'contact_name': contact_name,
                   'email': email});
               });
             }
             //Abstract
-            result.abstract = id_rec.find("gmd\\:abstract").find("gco\\:CharacterString").text();
+            result.abstract = id_rec.find("gmd\\:abstract, abstract")
+              .find("gco\\:CharacterString, CharacterString").text();
 
             //Temporal extent
-            var extents_rec = $(id_rec).find('gmd\\:extent')
-              .children('gmd\\:EX_Extent[id="boundingExtent"]');
-            var temporal_rec = $(extents_rec).find('gmd\\:temporalElement')
-              .children('gmd\\:EX_TemporalExtent[id="boundingTemporalExtent"]');
+            var extents_rec = $(id_rec).find('gmd\\:extent, extent')
+              .children('gmd\\:EX_Extent[id="boundingExtent"], EX_Extent[id="boundingExtent"]');
+            var temporal_rec = $(extents_rec).find('gmd\\:temporalElement, temporalElement')
+              .children('gmd\\:EX_TemporalExtent[id="boundingTemporalExtent"], EX_TemporalExtent[id="boundingTemporalExtent"]');
             if(temporal_rec != undefined)
             {
-              var date_val = $(temporal_rec).find('gmd\\:extent')
-                .children('gml\\:TimePeriod')
-                .children('gml\\:beginPosition').text();
+              var date_val = $(temporal_rec).find('gmd\\:extent, extent')
+                .children('gml\\:TimePeriod, TimePeriod')
+                .children('gml\\:beginPosition, beginPosition').text();
               //Just get the date portion, leaving out time.
               result.begin_time = date_val.slice(0, date_val.indexOf("T"));
-              date_val = $(temporal_rec).find('gmd\\:extent')
-                .children('gml\\:TimePeriod')
-                .children('gml\\:endPosition').text();
+              date_val = $(temporal_rec).find('gmd\\:extent, extent')
+                .children('gml\\:TimePeriod, TimePeriod')
+                .children('gml\\:endPosition, endPosition').text();
               //Just get the date portion, leaving out time.
               result.end_time = date_val.slice(0, date_val.indexOf("T"));
             }
@@ -244,34 +248,34 @@ function search_page_model() {
             var bbox_rec = id_rec.find("gmd\\:EX_GeographicBoundingBox[id='boundingGeographicBoundingBox']");
             if(bbox_rec != undefined)
             {
-              var ll_lon = parseFloat(bbox_rec.find("gmd\\:westBoundLongitude").children('gco\\:Decimal').text()).toFixed(3);
-              var ll_lat = parseFloat(bbox_rec.find("gmd\\:southBoundLatitude").children('gco\\:Decimal').text()).toFixed(3);
-              var ur_lon = parseFloat(bbox_rec.find("gmd\\:eastBoundLongitude").children('gco\\:Decimal').text()).toFixed(3);
-              var ur_lat = parseFloat(bbox_rec.find("gmd\\:northBoundLatitude").children('gco\\:Decimal').text()).toFixed(3);
+              var ll_lon = parseFloat(bbox_rec.find("gmd\\:westBoundLongitude, westBoundLongitude").children('gco\\:Decimal, Decimal').text()).toFixed(3);
+              var ll_lat = parseFloat(bbox_rec.find("gmd\\:southBoundLatitude, southBoundLatitude").children('gco\\:Decimal, Decimal').text()).toFixed(3);
+              var ur_lon = parseFloat(bbox_rec.find("gmd\\:eastBoundLongitude, eastBoundLongitude").children('gco\\:Decimal, Decimal').text()).toFixed(3);
+              var ur_lat = parseFloat(bbox_rec.find("gmd\\:northBoundLatitude, northBoundLatitude").children('gco\\:Decimal, Decimal').text()).toFixed(3);
               result.bounding_box = ll_lon + ' ' + ll_lat + ', ' + ur_lon + ' ' + ur_lat;
             }
             //Get the keywords.
-            var keywords_tag = $(id_rec).find("gmd\\:descriptiveKeywords")
-              .children("gmd\\:MD_Keywords")
-              .children("gmd\\:keyword");
+            var keywords_tag = $(id_rec).find("gmd\\:descriptiveKeywords, descriptiveKeywords")
+              .children("gmd\\:MD_Keywords, MD_Keywords")
+              .children("gmd\\:keyword, keyword");
             keywords_tag.each(function(k_ndx, k_tag)
             {
-              var keyword = $(k_tag).find("gco\\:CharacterString").text();
+              var keyword = $(k_tag).find("gco\\:CharacterString, CharacterString").text();
               keyword = keyword.replace(/_/g, ' ');
               result.keywords.push(keyword);
             });
             //Now let's loop the services available.
-            var services_rec = $(tag).find("gmd\\:identificationInfo");
+            var services_rec = $(tag).find("gmd\\:identificationInfo, identificationInfo");
             services_rec.each(function(s_ndx, s_rec)
             {
-              var protocol = $(s_rec).find('srv\\:SV_ServiceIdentification').attr('id');
+              var protocol = $(s_rec).find('srv\\:SV_ServiceIdentification, SV_ServiceIdentification').attr('id');
               if(protocol != undefined) {
-                var url = $(s_rec).find('srv\\:containsOperations')
-                  .children('srv\\:SV_OperationMetadata')
-                  .children('srv\\:connectPoint')
-                  .children('gmd\\:CI_OnlineResource')
-                  .children('gmd\\:linkage')
-                  .children('gmd\\:URL').text();
+                var url = $(s_rec).find('srv\\:containsOperations, containsOperations')
+                  .children('srv\\:SV_OperationMetadata, SV_OperationMetadata')
+                  .children('srv\\:connectPoint, connectPoint')
+                  .children('gmd\\:CI_OnlineResource, CI_OnlineResource')
+                  .children('gmd\\:linkage, linkage')
+                  .children('gmd\\:URL, URL').text();
                 result.services.push({
                   'url': url,
                   'protocol': protocol
