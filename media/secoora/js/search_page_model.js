@@ -199,12 +199,12 @@ function search_page_model() {
             }
             var id_rec = $(tag).find("gmd\\:MD_DataIdentification[id='DataIdentification'], MD_DataIdentification[id='DataIdentification']")
             //Get the title.
-            result.title = $(id_rec).find("gmd\\:citation")
+            result.title = $(id_rec).find("gmd\\:citation, citation")
               .children("gmd\\:CI_Citation, CI_Citation")
               .children("gmd\\:title, title")
               .children("gco\\:CharacterString, CharacterString").text();
             //Contact info
-            var contact_tag = $(id_rec).find('gmd\\:citedResponsibleParty');
+            var contact_tag = $(id_rec).find('gmd\\:citedResponsibleParty, citedResponsibleParty');
             if(contact_tag != undefined)
             {
               $(contact_tag).each(function(c_ndx, c_tag) {
