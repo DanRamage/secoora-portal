@@ -6,16 +6,22 @@
 <div class="row">
   <div id="catalog-search" class="col-sm-4 pull-right">
     <b>The Data Catalog</b>
-    gathers available data and recruits new data about ocean resources and human use information such as fishing grounds, recreational areas, shipping lanes, habitat areas, and energy sites. Data falls into one of seven themes listed below. You can explore the data available under each theme, or search for the data using the form below.
+    is a repository of SECOORA funded and non-funded data. The catalog is organized by
+    the data service(s) the data endpoint provides. To search the catalog, go to the search page
+    by clicking the button below.
     <div class="search-row">
       <div style="margin: 15px 0;">
+        <form id="catalog-search-form"
+              action="explore/search_page.html">
+          <button type="submit">
+            <i class="icon-search icon-large">Catalog Search</i>
+          </button>
+        </form>
+        <!--
         <form id="catalog-search-form" data-bind="submit: keyword_search_click" class="form-search layer-search" accept-charset="utf-8" autocomplete="off">
           <button type="submit">
             <i class="icon-search icon-large"></i>
           </button>
-          <!--
-          <a class="btn btn-link"><i class="icon-search icon-large"></i></a>
-          -->
           <input type="text" data-bind='value: user_keyword, valueUpdate: "afterkeydown"' name="catalog_q" style="display: inline-block" class="search-box" placeholder="Search the Catalog"/>
           <a id='search_help' href="#" class="btn btn-small btn-search_help"
              data-toggle="popover"
@@ -26,6 +32,7 @@
             <i class="icon-question-sign question_mark-style" style="display: inline-block"></i>
           </a>
         </form>
+        -->
       </div>
     </div>
     <!-- POlygon search area map -->
