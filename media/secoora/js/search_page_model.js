@@ -11,10 +11,12 @@ function searching_popup_view()
   var self = this;
   self.spinner;
   self.popup_id;
+  self.spinner_id;
 
   self.initialize = function(popup_id, spinner_id)
   {
     self.popup_id = popup_id;
+    self.spinner_id = spinner_id;
     var opts = {
       lines: 13, // The number of lines to draw
       length: 26, // The length of each line
@@ -33,14 +35,15 @@ function searching_popup_view()
       top: '50%', // Top position relative to parent
       left: '50%' // Left position relative to parent
     };
-    var target = document.getElementById(spinner_id);
+    var target = document.getElementById('#' + self.spinner_id);
     self.spinner = new Spinner(opts).spin(target);
   };
   self.show = function(show_flag)
   {
     if(show_flag)
     {
-      self.spinner.spin();
+      var target = document.getElementById('#' + self.spinner_id);
+      self.spinner.spin(target);
       $('#' + self.popup_id).modal("show");
     }
     else
