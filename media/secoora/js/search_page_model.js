@@ -9,6 +9,8 @@ function error_popup_view() {
 function searching_popup_view()
 {
   var self = this;
+  self.spinner;
+  self.popup_id;
 
   self.initialize = function(popup_id, spinner_id)
   {
@@ -44,9 +46,9 @@ function searching_popup_view()
     {
       $('#' + self.popup_id).modal("hide");
     }
-  }
+  };
 
-};
+}
 
 function search_page_model() {
   var self = this;
