@@ -294,6 +294,7 @@ function search_page_model() {
     self.resultsCount(rec_cnt);
     self.loadingIndicator.show(false);
     self.showResults(true);
+    $.scrollTop();
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
