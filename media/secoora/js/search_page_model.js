@@ -129,6 +129,12 @@ function search_page_model() {
     self.showResults(false);
     self.loadingIndicator.show(false);
   }
+  self.word_soup_click = function(search_term)
+  {
+    self.loadingIndicator.show(true);
+    self.user_keyword(search_term);
+    self.mapView.keywordSearch(self.user_keyword().toLowerCase());
+  }
   self.keyword_search_click = function () {
     self.loadingIndicator.show(true);
     self.mapView.keywordSearch(self.user_keyword().toLowerCase());
