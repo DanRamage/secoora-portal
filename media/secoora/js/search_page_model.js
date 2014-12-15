@@ -3,6 +3,49 @@ function error_popup_view() {
 
   self.popup_title = ko.observable("");
   self.popup_error_message = ko.observable("");
+
+};
+
+function searching_popup_view()
+{
+  var self = this;
+
+  self.initialize = function(popup_id, spinner_id)
+  {
+    self.popup_id = popup_id;
+    var opts = {
+      lines: 13, // The number of lines to draw
+      length: 26, // The length of each line
+      width: 7, // The line thickness
+      radius: 15, // The radius of the inner circle
+      corners: 0.3, // Corner roundness (0..1)
+      rotate: 34, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb or array of colors
+      speed: 1, // Rounds per second
+      trail: 48, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: '50%', // Top position relative to parent
+      left: '50%' // Left position relative to parent
+    };
+    var target = document.getElementById(spinner_id);
+    var spinner = new Spinner(opts).spin(target);
+  };
+  self.show = function(show_flag)
+  {
+    if(show_flag)
+    {
+      $('#' + self.popup_id).modal("show");
+    }
+    else
+    {
+      $('#' + self.popup_id).modal("hide");
+    }
+  }
+
 };
 
 function search_page_model() {
@@ -28,6 +71,7 @@ function search_page_model() {
                  'help_text': 'A web image thumbnail URL.'}
   };
 
+  self.loadingIndicator = null;
   self.showResults = ko.observable(false);
   self.results = ko.observableArray([]);
   self.resultsCount = ko.observable(0);
@@ -69,18 +113,21 @@ function search_page_model() {
     // even when you reload the page.
     //$("#start_date").val("");
     //$("#end_date").val("");
-
+    self.loadingIndicator = new searching_popup_view('searching_popup', 'spinner')
 
   }
   self.backToCatalog = function()
   {
     self.showResults(false);
+    self.loadingIndicator(false);
   }
   self.keyword_search_click = function () {
+    self.loadingIndicator.show(true);
     self.mapView.keywordSearch(self.user_keyword().toLowerCase());
   }
   self.temporal_search_click = function()
   {
+    self.loadingIndicator.show(true);
     var start_string = $("#start_date").val();
     var end_string = $("#end_date").val();
     var start_date = $("#start_date").datepicker('getDate');
@@ -109,9 +156,10 @@ function search_page_model() {
       return;
     }
     self.mapView.temporalSearch(start_string, end_string);
-  }
+  };
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
     self.results.removeAll();
+
     var rec_cnt = $(csw_results).find('csw\\:SearchResults').attr('numberOfRecordsMatched');
     if(rec_cnt != undefined)
     {
@@ -226,6 +274,7 @@ function search_page_model() {
       rec_cnt = 0;
     }
     self.resultsCount(rec_cnt);
+    self.loadingIndicator.show(false);
     self.showResults(true);
   }
   self.process_results = function (csw_results, textStatus, jqXHR) {
@@ -306,6 +355,7 @@ function search_page_model() {
       self.resultsCount(0);
       self.errorMsg("An error occured while performing the search. Please retry.")
     }
+    self.loadingIndicator.show(false);
     self.showResults(true);
   }
 

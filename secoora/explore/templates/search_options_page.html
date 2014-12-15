@@ -311,7 +311,20 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <!-- End error popup -->
-
+    <!-- Begin Loading popup -->
+    <div class="modal hide"
+         id="searching_popup"
+         data-backdrop="static"
+         data-keyboard="false">
+      <div class="modal-header">
+        <h1>Searching...</h1>
+      </div>
+      <div class="modal-body">
+        <div id="spinner">
+        </div>
+      </div>
+    </div>
+    <!-- End Loading popup -->
   </div>
 
 
@@ -324,7 +337,7 @@
   <script src="{{MEDIA_URL}}/knockout/knockout-3.2.0.js"></script>
   <script src="{{MEDIA_URL}}/bootstrap/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
   <script src="{{MEDIA_URL}}/tagcloud/jquery.tagcloud.js"></script>
-  <script src="{{MEDIA_URL}}/jison/goog_parse.js"></script>
+  <script src="{{MEDIA_URL}}/spin/spin.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/search_page_catalog_map.js"></script>
   <script src="{{MEDIA_URL}}/secoora/js/search_page_model.js"></script>
 
