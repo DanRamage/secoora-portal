@@ -90,7 +90,7 @@ function search_page_model() {
   self.popup_error_message = ko.observable("");
 
   self.initialize = function (html_map_id, catalog_url, word_cloud_id, word_cloud_url) {
-    self.mapView = catalog_search_map();
+    self.mapView = catalog_search_map(self);
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.139.68:8000", app.viewModel.process_results);
     //self.mapView.initialize(null, "/secoora_portal/proxy/rest_query/?url=http://129.252.37.192:8000", app.viewModel.process_results);
     self.mapView.initialize(null, catalog_url, app.viewModel.process_results_xml);

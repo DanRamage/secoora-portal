@@ -1,6 +1,6 @@
 
 
-function catalog_search_map()
+function catalog_search_map(view_model)
 {
   var self = this;
   self.olMap = null;
@@ -8,6 +8,7 @@ function catalog_search_map()
   self.polygonQueryGeom = [];
   self.cswGetRecs = null;
   self.query_url = null;
+  self.viewModel = view_model;
 
   self.onResize = function(percent)
   {
@@ -111,6 +112,8 @@ function catalog_search_map()
   };
   self.selectionBBOXAdded = function(feature)
   {
+    self.viewModel.loadingIndicator(true);
+
     var vertices = feature.geometry.getVertices();
     if(self.polygonQueryGeom)
     {
