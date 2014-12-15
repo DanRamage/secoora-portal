@@ -35,14 +35,14 @@ function searching_popup_view()
       top: '50%', // Top position relative to parent
       left: '50%' // Left position relative to parent
     };
-    var target = document.getElementById('#' + self.spinner_id);
+    var target = document.getElementById(self.spinner_id);
     self.spinner = new Spinner(opts).spin(target);
   };
   self.show = function(show_flag)
   {
     if(show_flag)
     {
-      var target = document.getElementById('#' + self.spinner_id);
+      var target = document.getElementById(self.spinner_id);
       self.spinner.spin(target);
       $('#' + self.popup_id).modal("show");
     }
