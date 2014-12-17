@@ -220,7 +220,12 @@
       </div>
       <div class="row-fluid">
         <div class="col-md-8 pull-left">
+          <!-- ko if: len(user_keyword()) == 0 -->
           <h3><b>Search returned <span data-bind='text: resultsCount'></span> results</b></h3>
+          <!-- /ko -->
+          <!-- ko if: len(user_keyword()) -->
+          <h3><b>Search for <span data-bind="text: user_keyword"></span> returned <span data-bind='text: resultsCount'></span> results</b></h3>
+          <!-- /ko -->
           <span data-bind="text: errorMsg"></span>
         </div>
       </div>
