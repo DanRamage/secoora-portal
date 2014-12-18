@@ -171,6 +171,7 @@ function search_page_model() {
       $('#error_popup').modal("show");
       return;
     }
+    self.user_keyword("From: " + start_string + " To: " + end_string);
     self.mapView.temporalSearch(start_string, end_string);
   };
   self.process_results_xml = function (csw_results, textStatus, jqXHR) {
