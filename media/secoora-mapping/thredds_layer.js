@@ -6,8 +6,7 @@
   OpenLayers.Layer.WMSTimeOffset = OpenLayers.Class(OpenLayers.Layer.WMS, {
 
     currentDateTime : undefined,          //Current Date object.
-    //currentTime : undefined,          //Current Time object.
-    layerInfoPopup : undefined,       //THe timeWidget popup window.
+    currentTime : undefined,          //Current Time object.
 
     initialize: function(name, url, params, options) {
       OpenLayers.Layer.WMS.prototype.initialize.apply(this,arguments);
@@ -78,6 +77,7 @@
     initialize: function(name, url, params, options) {
       OpenLayers.Layer.WMS.prototype.initialize.apply(this,arguments);
     },
+    /*
     getCurrentDateTime : function()
     {
       //Take the current Thredds datetime string, convert it into a Date object.
@@ -113,7 +113,7 @@
       }
       return(this.currentDateTime);
     },
-
+    */
     getFullRequestString : function(newParams, altUrl)
     {
       // Do we have a current layer time? If not let's get one based on the current time.
