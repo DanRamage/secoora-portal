@@ -22,6 +22,16 @@ def show_planner(request, template='planner.html'):
         return render_to_response('under_maintenance.html', RequestContext(request, context))
     return render_to_response(template, RequestContext(request, context))
 
+def show_planner(request, template='planner_bs3.html'):
+    try:
+        socket_url = settings.SOCKET_URL
+    except AttributeError:
+        socket_url = ''
+    context = {'MEDIA_URL': settings.MEDIA_URL, 'SOCKET_URL': socket_url, 'login': 'true'}
+    if settings.UNDER_MAINTENANCE_TEMPLATE:
+        return render_to_response('under_maintenance.html', RequestContext(request, context))
+    return render_to_response(template, RequestContext(request, context))
+
 def show_embedded_map(request, template='map.html'):
     context = {'MEDIA_URL': settings.MEDIA_URL}
     return render_to_response(template, RequestContext(request, context))

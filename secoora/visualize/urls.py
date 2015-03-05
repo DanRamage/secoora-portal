@@ -3,6 +3,7 @@ from views import *
 from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('',
+    uel(r'^bs3_map', show_planner_bs3),
     url(r'^poly_results$', direct_to_template, {'template' : 'polygon-query-results.html'}),
     url(r'^get_bookmarks$', get_bookmarks),
     url(r'^remove_bookmark$', remove_bookmark),
