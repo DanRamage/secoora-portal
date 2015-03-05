@@ -865,7 +865,7 @@ img + h3 {
     text-decoration: none;
     outline: none;
     overflow: hidden;
-    width: 25px;
+    width: 35px;
     line-height: 22px;
     background: #130085; /* fallback for IE - IE6 requires background shorthand*/
     background: rgba(0, 60, 136, 0.5);
