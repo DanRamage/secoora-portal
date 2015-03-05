@@ -492,7 +492,7 @@
                 <!--
                 <div id="map-panel" data-bind="css: { 'fullscreen-map': isFullScreen() && !showLayers() && !showLegend(), 'fullscreen-with-layers': isFullScreen() && showLayers() && !showLegend(), 'fullscreen-with-legend': isFullScreen() && !showLayers() && showLegend(), 'fullscreen-with-legend-and-layers': isFullScreen() && showLayers() && showLegend(), 'shift-left': !showLayers(), col-md-12: !showLayers() && !showLegend(), col-md-9: !showLayers() && showLegend(), col-md-8: showLayers() && !showLegend(), col-md-5: showLayers() && showLegend() }">
                 -->
-                <div id="map-panel" class="col-md-8">
+                <div id="map-panel" data-bind="css: { 'col-md-12': !showLayers() && !showLegend(), 'col-md-9': !showLayers() && showLegend(), 'col-md-8': showLayers() && !showLegend(), 'col-md-5': showLayers() && showLegend() }">>
                 {% endif %}
                     <div class="row-fluid" data-bind="visible: showMapPanel">
                         <div class="col-md-12">
