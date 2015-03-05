@@ -637,12 +637,12 @@
 
                                   <!-- Description Overlay  style="display:none"-->
                                     <div id ="description-overlay" class="row-fluid" style="display: none" data-bind="visible: showDescription() && !showOverview()" >
-                                        <div class="span11">
+                                        <div class="col-md-11">
                                             <span class="title" data-bind="text: activeInfoLayer().name"></span> --
                                             <span class="text" data-bind="text: activeInfoLayer().description"></span>
                                             <div class="pull-right"><a class="btn btn-mini" data-bind="click: expandDescription, text: 'Show More...'"></a></div>
                                         </div>
-                                        <div class="span1">
+                                        <div class="col-md-1">
                                             <a href="#" style="margin-left: 10px; opacity: .6;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a>
                                         </div>
                                     </div>
@@ -688,7 +688,7 @@
 
                                             {% load flatblock_tags %}
                                             <div id="overview-overlay-links">
-                                              <span class="span11">
+                                              <span class="col-md-11">
                                                 <div class="text" style="margin-top: 5px">
                                                     <span>
                                                         <a class="btn btn-mini" data-bind="css: { disabled: ! activeKmlLink() }, attr: { href: activeKmlLink() }" target="_blank">
@@ -729,7 +729,7 @@
                                                     -->
                                                 </div>
                                               </span>
-                                              <span class="span1"></span>
+                                              <span class="col-md-1"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -744,7 +744,7 @@
                 </div>
 
                 <!-- Legends Panel (right panel) -->
-                <div data-bind="visible: showLegend(), css: {'fullscreen-legend': isFullScreen() }" class="span3" id="legend">
+                <div data-bind="visible: showLegend(), css: {'fullscreen-legend': isFullScreen() }" class="col-md-3" id="legend">
                     <div id="legend-wrapper">
                         <div id="legend-header">
                             <span class="pull-right">
