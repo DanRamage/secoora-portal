@@ -22,7 +22,7 @@ def show_planner(request, template='planner.html'):
         return render_to_response('under_maintenance.html', RequestContext(request, context))
     return render_to_response(template, RequestContext(request, context))
 
-def show_planner(request, template='planner_bs3.html'):
+def show_planner_bs3(request, template='planner_bs3.html'):
     try:
         socket_url = settings.SOCKET_URL
     except AttributeError:
