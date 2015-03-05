@@ -100,6 +100,11 @@
           border: 1px solid #e5e5e5;
           border-radius: 4px;
         }
+        .tab-padding {
+          padding-left: 0px;
+          padding-right: 0px;
+
+        }
         </style>
 
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{MEDIA_URL}}/secoora-mapping/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -189,9 +194,9 @@
                 <!-- Data Panel (left panel) -->
                 {% load in_group %}
                 {% if user.is_authenticated and user|in_group:"Designers" %}
-                <div class="col-md-5 frame tabs" data-bind="visible: showLayers(), css: {'fullscreen-data-authenticated': isFullScreen()}">
+                <div class="col-md-5 tab-padding frame tabs" data-bind="visible: showLayers(), css: {'fullscreen-data-authenticated': isFullScreen()}">
                 {% else %}
-                <div class="col-md-4 frame tabs" data-bind="visible: showLayers(), css: {'fullscreen-data': isFullScreen()}">
+                <div class="col-md-4 tab-padding frame tabs" data-bind="visible: showLayers(), css: {'fullscreen-data': isFullScreen()}">
                 {% endif %}
                     <div class="sidebar-nav">
                         <!-- tab controls -->
