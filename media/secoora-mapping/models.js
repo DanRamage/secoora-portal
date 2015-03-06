@@ -1058,7 +1058,7 @@ function viewModel() {
     var self = this;
 
     //self.modernBrowser = ko.observable( !($.browser.msie && $.browser.version < 9.0) );
-    self.modernBrowser(true);
+    self.modernBrowser = ko.observable(true);
     // list of active layermodels
     self.activeLayers = ko.observableArray();
 
