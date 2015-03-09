@@ -345,6 +345,9 @@
                                                     <a class="btn opacity-button icon-button" data-bind="click: $parent.showOpacity">
                                                         <i class="icon-adjust icon-large"></i>
                                                     </a>
+                                                    <a class="btn time-slider-button icon-button" data-bind="">
+                                                        <i class="icon-time icon-large"></i>
+                                                    </a>
                                                     <a class="btn icon-button" data-bind="click: toggleActive">
                                                         <i class="icon-remove">
                                                         </i>
@@ -798,6 +801,17 @@
             <div class="popover-inner">
                 <div class="popover-content" data-bind="if: selectedLayer">
                     <div class="slider" data-bind="jqSlider: selectedLayer().opacity, jqOptions: { min: 0, max: 1, step: .01, range: 'min' }"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time slider tool -->
+        <div style="display:none" id="time-slider-popover" class="popover fade bottom in">
+            <div class="arrow">
+            </div>
+            <div class="ts-popover-inner">
+                <div class="ts-popover-content" data-bind="if: selectedLayer">
+                    <div class="slider" data-bind=""></div>
                 </div>
             </div>
         </div>
