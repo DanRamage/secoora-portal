@@ -22,16 +22,22 @@ def get_json(request):
     }
     return HttpResponse(simplejson.dumps(json))
 
-def get_time_increments(request, layer_name):
-  logger.info("Begin get_time_increments")
-  logger.debug("Layer requested: %s" % layer_name)
-
-  layer_data = Layer.objects.filter(name=layer_name).all()
-  times = layer_data.metadatatable.time_steps.split(",")
+def get_time_increments(request, layer_id):
+  times = []
+  if logger:
+    logger.info("Begin get_time_increments")
+    logger.debug("Layer requested: %s" % layer_id)
+  try:
+    layer_data = Layer.objects.filter(id=layer_id)
+    times = layer_data.metadatatable.time_steps.split(",")
+  except Exception, e:
+    if logger:
+      logger.exception(e)
   json = {
     'time_steps': times
   }
-  logger.info("End get_time_increments")
+  if logger:
+    logger.info("End get_time_increments")
   return HttpResponse(simplejson.dumps(json))
 
 def create_layer(request):
