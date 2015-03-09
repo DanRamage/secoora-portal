@@ -1857,7 +1857,7 @@ function viewModel() {
      */
     self.showTimeSlider = function(layer, event)
     {
-      var $popover = $('#opacity-popover');
+      var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
           self.hideOpacity();
