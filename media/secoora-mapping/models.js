@@ -1848,9 +1848,7 @@ function viewModel() {
         $('.opacity-button.active').removeClass('active');
         app.updateUrl();
     };
-    self.hideTooltip = function() {
-        $('#layer-popover').hide();
-    };
+
     /*
     DWR 2015-03-09
     Time slider functions.
@@ -1858,10 +1856,11 @@ function viewModel() {
     self.showTimeSlider = function(layer, event)
     {
       var $button = $(event.target).closest('a');
+      self.selectedLayer(layer);
       var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
-          self.hideOpacity();
+          self.hideTimeSlider();
       }
       else
       {
@@ -1873,8 +1872,15 @@ function viewModel() {
           });
           $button.addClass('active');
       }
+    };
+    self.hideTimeSlider = function(self, event)
+    {
+      $('#time-slider-popover').hide();
+      $('.time-slider-button.active').removeClass('active');
+    };
 
-
+    self.hideTooltip = function() {
+        $('#layer-popover').hide();
     };
 
     // show coords info in pointer
