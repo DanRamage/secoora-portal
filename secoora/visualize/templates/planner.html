@@ -345,6 +345,9 @@
                                                     <a class="btn opacity-button icon-button" data-bind="click: $parent.showOpacity">
                                                         <i class="icon-adjust icon-large"></i>
                                                     </a>
+                                                    <a class="btn time-slider-button icon-button" data-bind="">
+                                                        <i class="icon-time icon-large"></i>
+                                                    </a>
                                                     <a class="btn icon-button" data-bind="click: toggleActive">
                                                         <i class="icon-remove">
                                                         </i>
@@ -802,6 +805,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- test clock -->
         <div style="display:none" id="clock-forward" class="popover fade bottom in">
             <div class="arrow">
@@ -809,11 +813,23 @@
             <div class="popover-inner">
                 <div class="popover-content" data-bind="if: selectedLayer">
                     <div class="slider" data-bind="jqSlider: selectedLayer().opacity, jqOptions: { min: 0, max: 1, step: .01, range: 'min' }"></div>
+=======
+        <!-- Time slider tool -->
+        <div style="display:none" id="time-slider-popover" class="popover fade bottom in">
+            <div class="arrow">
+            </div>
+            <div class="ts-popover-inner">
+                <div class="ts-popover-content" data-bind="if: selectedLayer">
+                    <div class="slider" data-bind=""></div>
+>>>>>>> 5eda76875391b9ddd31da157abeb8ceffd7d53ed
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
         <!--<div style="display:none" id="layer-popover" class="layer-popover popover fade right in" data-bind="event: {'mouseleave': $root.hideTooltip}">
+=======
+>>>>>>> 5eda76875391b9ddd31da157abeb8ceffd7d53ed
         <!--<div style="display:none" id="layer-popover" class="layer-popover popover fade right in" data-bind="event: {'mouseleave': $root.hideTooltip}">
             <div class="arrow"></div>
             <div class="popover-inner layer-tooltip">
