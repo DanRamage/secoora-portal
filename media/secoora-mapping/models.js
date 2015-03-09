@@ -1857,6 +1857,7 @@ function viewModel() {
      */
     self.showTimeSlider = function(layer, event)
     {
+      var $button = $(event.target).closest('a');
       var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
