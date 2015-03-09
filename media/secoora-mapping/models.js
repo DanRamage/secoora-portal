@@ -33,6 +33,8 @@ function layerModel(options, parent) {
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
 
+    self.requestTime = ko.observable();
+
     self.restLegend = [];
 
     //WHen the layer is issued the identify request, if there are results there, this is set to true.
