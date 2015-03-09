@@ -33,7 +33,7 @@ function layerModel(options, parent) {
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
 
-    self.requestTime = ko.observable();
+    self.requestTime = ko.observable(0);
 
     self.restLegend = [];
 
