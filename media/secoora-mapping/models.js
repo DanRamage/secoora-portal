@@ -746,34 +746,20 @@ function layerModel(options, parent) {
         layer.showSublayers(false);
     };
 
-    /*
-    self.arcFeatureQueryHandler = function(evt)
+    self.get_time_increments = function()
     {
-      self.layerDataAvailable(false)
+      $.ajax({
+          async: false,
+          url: '/data_manager/get_time_increments',
+          data: { layer_name: self.name },
+          type: 'POST',
+          dataType: 'json',
+          success: function(result) {
+          },
+          error: function(result) { }
+      });
+
     }
-    self.identifyQueryResultHandler = function(requestResult)
-    {
-      //A successful return from the ESRI server is a JSON object in the form:
-      //results : []
-      // If the array is empty, there are no data for that layer in the provided polygon,
-      // if there are results, the data are present.
-      if('results' in requestResult)
-      {
-        if(requestResults['results'].length)
-        {
-          self.layerDataAvailable(true)
-        }
-        else
-        {
-          self.layerDataAvailable(false)
-        }
-      }
-      else
-      {
-        self.layerDataAvailable(false)
-      }
-    }
-    */
     return self;
 } // end layerModel
 
@@ -1880,7 +1866,10 @@ function viewModel() {
       $('#time-slider-popover').hide();
       $('.time-slider-button.active').removeClass('active');
     };
+    $("#time_slider").on( "slide", function( event, ui )
+      {
 
+      });
     self.hideTooltip = function() {
         $('#layer-popover').hide();
     };
