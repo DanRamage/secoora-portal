@@ -1851,7 +1851,30 @@ function viewModel() {
     self.hideTooltip = function() {
         $('#layer-popover').hide();
     };
+    /*
+    DWR 2015-03-09
+    Time slider functions.
+     */
+    self.showTimeSlider = function(layer, event)
+    {
+      var $popover = $('#opacity-popover');
+      if ($button.hasClass('active'))
+      {
+          self.hideOpacity();
+      }
+      else
+      {
+          $popover.show().position({
+              "my": "center top",
+              "at": "center bottom",
+              "of": $button,
+              "offset": "0px 10px"
+          });
+          $button.addClass('active');
+      }
 
+
+    };
 
     // show coords info in pointer
     self.showPointerInfo = ko.observable(false);
