@@ -1853,16 +1853,16 @@ function viewModel() {
       }
       else
       {
-          $popover.find("#time_selected").val(self.selectedLayer().selectedTime);
+          $popover.find("#time_selected").val(layer.selectedTime);
           layer.get_time_increments(function(results)
           {
             self.selectedLayer().timeSteps = results['time_steps'];
             $( "#time_slider" ).slider( "option", "min", 0 );
-            $( "#time_slider" ).slider( "option", "max", self.selectedLayer().timeSteps.length - 1 );
+            $( "#time_slider" ).slider( "option", "max", layer.timeSteps.length - 1 );
             $( "#time_slider" ).slider( "option", "step", 1 );
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
-              var val = self.selectedLayer().timeSteps[ui.value];
-              self.selectedLayer().selectedTime = val;
+              var val = layer.timeSteps[ui.value];
+              layer.selectedTime = val;
               $popover.find("#time_selected").val(val);
 
             });
