@@ -1847,6 +1847,7 @@ function viewModel() {
       var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
+          self.selectedLayer().timeSteps.length = 0;
           self.hideTimeSlider();
       }
       else
@@ -1854,6 +1855,11 @@ function viewModel() {
           layer.get_time_increments(function(results)
           {
             self.selectedLayer().timeSteps = results['time_steps'];
+            $( "#time-slider-popover" ).slider( "option", "min", 0 );
+            $( "#time-slider-popover" ).slider( "option", "max", self.selectedLayer().timeSteps.length - 1 );
+            $( "#time-slider-popover" ).on( "slidechange", function( event, ui ) {
+              $("#time-slider-popover > #time_selected").val(self.selectedLayer().timeSteps[ui.value]);
+            });
             $popover.show().position({
                 "my": "center top",
                 "at": "center bottom",
