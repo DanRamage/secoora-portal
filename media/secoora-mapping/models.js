@@ -33,7 +33,8 @@ function layerModel(options, parent) {
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
 
-    self.requestTime = "";
+    self.requestTime = ko.observable("");
+    self.selectedTime = "";
     self.timeSteps = [];
 
     self.restLegend = [];
@@ -1852,7 +1853,7 @@ function viewModel() {
       }
       else
       {
-          $popover.find("#time_selected").val(self.selectedLayer().requestTime);
+          $popover.find("#time_selected").val(self.selectedLayer().selectedTime);
           layer.get_time_increments(function(results)
           {
             self.selectedLayer().timeSteps = results['time_steps'];
@@ -1861,7 +1862,7 @@ function viewModel() {
             $( "#time_slider" ).slider( "option", "step", 1 );
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
               var val = self.selectedLayer().timeSteps[ui.value];
-              self.selectedLayer().requestTime = val;
+              self.selectedLayer().selectedTime = val;
               $popover.find("#time_selected").val(val);
 
             });
