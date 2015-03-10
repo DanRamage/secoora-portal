@@ -28,7 +28,7 @@ def get_time_increments(request, layer_id):
     logger.info("Begin get_time_increments")
     logger.debug("Layer requested: %s" % layer_id)
   try:
-    layer_data = Layer.objects.filter(id=layer_id)
+    layer_data = Layer.objects.get(id=layer_id)
     times = layer_data.metadatatable.time_steps.split(",")
   except Exception, e:
     if logger:
