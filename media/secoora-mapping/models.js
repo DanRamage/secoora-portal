@@ -1848,7 +1848,7 @@ function viewModel() {
       var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
-          self.selectedLayer().timeSteps.length = 0;
+          layer.timeSteps.length = 0;
           self.hideTimeSlider();
       }
       else
@@ -1856,7 +1856,8 @@ function viewModel() {
           $popover.find("#time_selected").val(layer.selectedTime);
           layer.get_time_increments(function(results)
           {
-            self.selectedLayer().timeSteps = results['time_steps'];
+            //self.selectedLayer().timeSteps = results['time_steps'];
+            layer.timeSteps = results['time_steps'];
             $( "#time_slider").slider({
               min: 0,
               max: layer.timeSteps.length - 1,
