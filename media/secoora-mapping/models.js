@@ -1848,7 +1848,7 @@ function viewModel() {
       var $popover = $('#time-slider-popover');
       if ($button.hasClass('active'))
       {
-          layer.timeSteps.length = 0;
+          //layer.timeSteps.length = 0;
           self.hideTimeSlider();
       }
       else
@@ -1867,7 +1867,6 @@ function viewModel() {
               min: 0,
               max: layer.timeSteps.length - 1,
               step: 1,
-              value: init_ndx,
               change: function( event, ui ) {
                 var val = layer.timeSteps[ui.value];
                 layer.selectedTime = val;
