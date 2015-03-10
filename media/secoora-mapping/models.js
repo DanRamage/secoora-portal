@@ -1850,8 +1850,9 @@ function viewModel() {
       }
       else
       {
-          layer.get_time_increments(function()
+          layer.get_time_increments(function(results)
           {
+
             $popover.show().position({
                 "my": "center top",
                 "at": "center bottom",
