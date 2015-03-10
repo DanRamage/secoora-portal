@@ -1870,7 +1870,7 @@ function viewModel() {
 
               }
             });
-            if(layer.selectedTime.length)
+            if(layer.requestTime().length)
             {
               //Get the index of our last selected time so we can then
               //set the slider position.
