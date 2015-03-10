@@ -37,7 +37,7 @@ def get_time_increments(request, layer_id):
     'time_steps': times
   }
   if logger:
-    logger.info("End get_time_increments, %d times found" % (times.length))
+    logger.info("End get_time_increments, %d times found" % (len(times)))
   return HttpResponse(simplejson.dumps(json))
 
 def create_layer(request):
