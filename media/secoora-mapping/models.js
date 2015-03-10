@@ -1860,7 +1860,7 @@ function viewModel() {
             $( "#time_slider" ).slider( "option", "step", 1 );
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
               var val = self.selectedLayer().timeSteps[ui.value];
-              self.selectedLayer.requestTime(val);
+              self.selectedLayer().requestTime(val);
             });
             $popover.show().position({
                 "my": "center top",
