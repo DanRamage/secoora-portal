@@ -1853,7 +1853,12 @@ function viewModel() {
       }
       else
       {
-          $popover.find("#time_selected").val(layer.selectedTime);
+          var init_ndx = 0
+          if(layer.selectedTime)
+          {
+            init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
+            $popover.find("#time_selected").val(layer.selectedTime);
+          }
           layer.get_time_increments(function(results)
           {
             //self.selectedLayer().timeSteps = results['time_steps'];
@@ -1862,6 +1867,7 @@ function viewModel() {
               min: 0,
               max: layer.timeSteps.length - 1,
               step: 1,
+              value: init_ndx,
               change: function( event, ui ) {
                 var val = layer.timeSteps[ui.value];
                 layer.selectedTime = val;
