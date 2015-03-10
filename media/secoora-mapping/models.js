@@ -1859,7 +1859,8 @@ function viewModel() {
             $( "#time_slider" ).slider( "option", "max", self.selectedLayer().timeSteps.length - 1 );
             $( "#time_slider" ).slider( "option", "step", 1 );
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
-              self.selectedLayer().requestTime(self.selectedLayer().timeSteps[ui.value]);
+              var val = self.selectedLayer().timeSteps[ui.value];
+              self.selectedLayer.requestTime(val);
             });
             $popover.show().position({
                 "my": "center top",
