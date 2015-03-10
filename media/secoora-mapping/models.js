@@ -1854,7 +1854,7 @@ function viewModel() {
       else
       {
           var init_ndx = 0
-          if(layer.selectedTime)
+          if(layer.selectedTime.length)
           {
             init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
             $popover.find("#time_selected").val(layer.selectedTime);
