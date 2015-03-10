@@ -1853,7 +1853,7 @@ function viewModel() {
       }
       else
       {
-          var init_ndx = 0
+          var init_ndx = 0;
           if(layer.selectedTime.length)
           {
             init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
