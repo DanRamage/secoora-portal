@@ -1873,7 +1873,7 @@ function viewModel() {
               //Get the index of our last selected time so we can then
               //set the slider position.
               var init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
-              $( "#time_slider").slider.("option", "value", init_ndx);
+              $( "#time_slider").slider("option", "value", init_ndx);
               $popover.find("#time_selected").val(layer.selectedTime);
             }
 
