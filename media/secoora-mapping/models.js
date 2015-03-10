@@ -1852,7 +1852,7 @@ function viewModel() {
       }
       else
       {
-          $( "#time_slider").find("#time_selected").val(self.selectedLayer().requestTime());
+          $popover.find("#time_selected").val(self.selectedLayer().requestTime());
           layer.get_time_increments(function(results)
           {
             self.selectedLayer().timeSteps = results['time_steps'];
