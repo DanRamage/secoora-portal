@@ -1844,7 +1844,7 @@ function viewModel() {
     self.showTimeSlider = function(layer, event)
     {
       var $button = $(event.target).closest('a');
-      //self.selectedLayer(layer);
+      self.selectedLayer(layer);
       var $popover = $('#time-slider-popover');
       $popover.find("#time_selected").val("");
       if ($button.hasClass('active'))
@@ -1865,7 +1865,9 @@ function viewModel() {
               change: function( event, ui ) {
                 var val = layer.timeSteps[ui.value];
                 layer.selectedTime = val;
-                $popover.find("#time_selected").val(val);
+                //$popover.find("#time_selected").val(val);
+                layer.requestTime(val);
+
               }
             });
             if(layer.selectedTime.length)
@@ -1874,7 +1876,7 @@ function viewModel() {
               //set the slider position.
               var init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
               $( "#time_slider").slider("option", "value", init_ndx);
-              $popover.find("#time_selected").val(layer.selectedTime);
+              //$popover.find("#time_selected").val(layer.selectedTime);
             }
 
             /*
