@@ -1846,7 +1846,7 @@ function viewModel() {
       var $button = $(event.target).closest('a');
       self.selectedLayer(layer);
       var $popover = $('#time-slider-popover');
-      $popover.find("#time_selected").val("");
+      //$popover.find("#time_selected").val("");
       if ($button.hasClass('active'))
       {
           //layer.timeSteps.length = 0;
@@ -1876,7 +1876,7 @@ function viewModel() {
               //set the slider position.
               var init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
               $( "#time_slider").slider("option", "value", init_ndx);
-              layer.requestTime(layer.selectedTime);
+              //layer.requestTime(layer.selectedTime);
               //$popover.find("#time_selected").val(layer.selectedTime);
             }
 
