@@ -34,6 +34,7 @@ function layerModel(options, parent) {
     self.shared = ko.observable(false);
 
     self.requestTime = ko.observable(0);
+    self.timeSteps = [];
 
     self.restLegend = [];
 
@@ -1852,7 +1853,7 @@ function viewModel() {
       {
           layer.get_time_increments(function(results)
           {
-
+            self.selectedLayer().timeSteps = results['time_steps'];
             $popover.show().position({
                 "my": "center top",
                 "at": "center bottom",
