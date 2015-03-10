@@ -1876,6 +1876,7 @@ function viewModel() {
               //set the slider position.
               var init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
               $( "#time_slider").slider("option", "value", init_ndx);
+              layer.requestTime(layer.selectedTime);
               //$popover.find("#time_selected").val(layer.selectedTime);
             }
 
