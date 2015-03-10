@@ -1853,14 +1853,14 @@ function viewModel() {
       }
       else
       {
-          var init_ndx = 0;
-          if(layer.selectedTime.length)
-          {
-            init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
-            $popover.find("#time_selected").val(layer.selectedTime);
-          }
           layer.get_time_increments(function(results)
           {
+            var init_ndx = 0;
+            if(layer.selectedTime.length)
+            {
+              init_ndx = layer.timeSteps.indexOf(layer.selectedTime);
+              $popover.find("#time_selected").val(layer.selectedTime);
+            }
             //self.selectedLayer().timeSteps = results['time_steps'];
             layer.timeSteps = results['time_steps'];
             $( "#time_slider").slider({
