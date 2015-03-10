@@ -1862,7 +1862,7 @@ function viewModel() {
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
               var val = self.selectedLayer().timeSteps[ui.value];
               //self.selectedLayer().requestTime(val);
-              $( "#time_slider").find("#time_selected").val(self.selectedLayer().requestTime());
+              $( "#time_slider").find("#time_selected").val(val);
 
             });
             $popover.show().position({
