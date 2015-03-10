@@ -1862,7 +1862,7 @@ function viewModel() {
               min: 0,
               max: layer.timeSteps.length - 1,
               step: 1,
-              slidechange: function( event, ui ) {
+              change: function( event, ui ) {
                 var val = layer.timeSteps[ui.value];
                 layer.selectedTime = val;
                 $popover.find("#time_selected").val(val);
