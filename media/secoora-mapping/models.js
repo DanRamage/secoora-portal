@@ -746,16 +746,14 @@ function layerModel(options, parent) {
         layer.showSublayers(false);
     };
 
-    self.get_time_increments = function()
+    self.get_time_increments = function(callback_function)
     {
       $.ajax({
-          async: false,
-          url: '/data_manager/get_time_increments',
-          data: { layer_name: self.name },
+          async: true,
+          url: '/data_manager/get_time_increments/'+ self.id,
           type: 'POST',
           dataType: 'json',
-          success: function(result) {
-          },
+          success: callback_function,
           error: function(result) { }
       });
 
@@ -1852,13 +1850,16 @@ function viewModel() {
       }
       else
       {
-          $popover.show().position({
-              "my": "center top",
-              "at": "center bottom",
-              "of": $button,
-              "offset": "0px 10px"
-          });
-          $button.addClass('active');
+          layer.get_time_increments(function()
+          {
+            $popover.show().position({
+                "my": "center top",
+                "at": "center bottom",
+                "of": $button,
+                "offset": "0px 10px"
+            });
+            $button.addClass('active');
+          })
       }
     };
     self.hideTimeSlider = function(self, event)
