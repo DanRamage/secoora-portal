@@ -1857,6 +1857,17 @@ function viewModel() {
           layer.get_time_increments(function(results)
           {
             self.selectedLayer().timeSteps = results['time_steps'];
+            $( "#time_slider").slider({
+              min: 0,
+              max: layer.timeSteps.length - 1,
+              step: 1,
+              slidechange: function( event, ui ) {
+                var val = layer.timeSteps[ui.value];
+                layer.selectedTime = val;
+                $popover.find("#time_selected").val(val);
+              }
+            });
+            /*
             $( "#time_slider" ).slider( "option", "min", 0 );
             $( "#time_slider" ).slider( "option", "max", layer.timeSteps.length - 1 );
             $( "#time_slider" ).slider( "option", "step", 1 );
@@ -1866,6 +1877,7 @@ function viewModel() {
               $popover.find("#time_selected").val(val);
 
             });
+            */
             $popover.show().position({
                 "my": "center top",
                 "at": "center bottom",
