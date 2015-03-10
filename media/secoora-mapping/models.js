@@ -1858,7 +1858,7 @@ function viewModel() {
             $( "#time_slider" ).slider( "option", "min", 0 );
             $( "#time_slider" ).slider( "option", "max", self.selectedLayer().timeSteps.length - 1 );
             $( "#time_slider" ).on( "slidechange", function( event, ui ) {
-              $("#time-slider-popover > #time_selected").val(self.selectedLayer().timeSteps[ui.value]);
+              $("#time-slider-popover").find("#time_selected").val(self.selectedLayer().timeSteps[ui.value]);
             });
             $popover.show().position({
                 "my": "center top",
