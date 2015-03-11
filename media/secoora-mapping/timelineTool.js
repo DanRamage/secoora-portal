@@ -15,15 +15,17 @@ var timelineToolModel = function() {
     max: self.forecast_hours,
     step: 1,
     slide: function (event, ui) {
-
+      //The slider increments in 1 hour movements, for ease of calcs,
+      //we use the epoch milliseconds and the add(or subtract) the movement
+      //amount of the slider, then convert it to a readable time string.
       var adjusted = self.currentEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
       self.selectedDatetime(
                 new_date.getFullYear().toString() + "-" +
-                new_date.getMonth().toString() + "-" +
-                new_date.getDate().toString() + " " +
-                new_date.getHours().toString() + ":" +
-                new_date.getMinutes().toString() + ":00"
+                ("0" + new_date.getMonth()).slice(-2) + "-" +
+                ("0" + new_date.getDate()).slice(-2) + " " +
+                ("0" + new_date.getHours()).slice(-2) + ":" +
+                ("0" + new_date.getMinutes()).slice(-2) + ":00"
       );
     }
   });
@@ -65,12 +67,13 @@ var timelineToolModel = function() {
     {
       if(!$('#time-slider-popover').is(":visible"))
       {
-        var now = new Date();
+        var new_date = new Date();
         var dateStr = now.getFullYear().toString() + "-" +
-                      now.getMonth().toString() + "-" +
-                      now.getDate().toString() + " " +
-                      now.getHours().toString() + ":" +
-                      now.getMinutes().toString() + ":00";
+                          new_date.getFullYear().toString() + "-" +
+                          ("0" + new_date.getMonth()).slice(-2) + "-" +
+                          ("0" + new_date.getDate()).slice(-2) + " " +
+                          ("0" + new_date.getHours()).slice(-2) + ":" +
+                          ("0" + new_date.getMinutes()).slice(-2) + ":00";
         self.currentEpochDatetime = now.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
