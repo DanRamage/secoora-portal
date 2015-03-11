@@ -74,7 +74,7 @@ var timelineToolModel = function() {
                           ("0" + new_date.getDate()).slice(-2) + " " +
                           ("0" + new_date.getHours()).slice(-2) + ":" +
                           ("0" + new_date.getMinutes()).slice(-2) + ":00";
-        self.currentEpochDatetime = now.getTime();
+        self.currentEpochDatetime = new_date.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
