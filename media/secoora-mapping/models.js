@@ -1,3 +1,29 @@
+function bisect_left(search_value, values_array)
+{
+  var lo = 0;
+  var hi = values_array.length - 1;
+
+  var middle = (hi - lo) / 2;
+  var found = false;
+  while(!found)
+  {
+    if(hi - lo < 3)
+    {
+      found = true;
+      break;
+    }
+    if(search_value > values_array[middle])
+    {
+      lo = middle;
+    }
+    else if(search_value < values_array[middle])
+    {
+      hi = middle;
+    }
+    middle = (hi - lo) / 2;
+  }
+  return(middle);
+}
 function layerModel(options, parent) {
     var self = this,
         $descriptionTemp;
@@ -33,8 +59,8 @@ function layerModel(options, parent) {
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
 
+    self.has_time_offsets = false;
     self.requestTime = ko.observable("");
-    self.selectedTime = "";
     self.timeSteps = [];
 
     self.restLegend = [];
@@ -56,51 +82,13 @@ function layerModel(options, parent) {
         //When request is sent, reset the flag.
         self.layerDataAvailable(false);
       };
-      /*
-      self.idresultarrived = function(result)
+    }
+    else if(self.type === 'WMS')
+    {
+      if(self.url.indexOf("TIME") !== -1)
       {
-        var response = result.response;
-        if(response.status == 200)
-        {
-          var jsonFormat = new OpenLayers.Format.JSON();
-          var returnJSON = jsonFormat.read(response.responseText);
-
-          if('results' in returnJSON)
-          {
-            if(returnJSON['results'].length)
-            {
-              //There is layer data in the polygon requested, so set the observable true. This is reflected in the modal popup as either
-              //an 'X' which is no data or a check mark for data.
-              self.layerDataAvailable(true);
-            }
-          }
-          else
-          {
-            self.layerDataAvailable(false);
-          }
-        }
-        else
-        {
-          self.layerDataAvailable(false);
-        }
-      };*/
-
-      //Control for doing a REST identify for determining if the layer has data in the polygon.
-      /*
-      self.identifyControl = new OpenLayers.Control.ArcGisRestIdentify({
-        proxy: "/proxy/rest_query/?url=",
-        url : url,
-        layerId: self.arcgislayers,
-        sr : srCode[1],
-        tolerance : 2,
-
-        eventListeners: {
-          arcfeatureidentify : self.arcfeatureidentify,
-          idresultarrived : self.idresultarrived
-        }
-      });
-      */
-
+        self.has_time_offsets = true;
+      }
     }
 
 
@@ -389,6 +377,13 @@ function layerModel(options, parent) {
                 self.activateUtfGridLayer();
             }
 
+            if(self.has_time_offsets && self.timeSteps.length === 0)
+            {
+              self.get_time_increments(function(results)
+              {
+                self.timeSteps = results['time_steps'];
+              });
+            }
         }
     };
 

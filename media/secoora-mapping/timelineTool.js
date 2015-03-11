@@ -1,8 +1,9 @@
 
 (function() {
-var timelineToolModel = function() {
+var timelineToolModel = function(viewModel) {
   var self = this;
 
+  self.parentViewModel = viewModel;
   self.hindcast_hours = 24;
   self.forecast_hours = 24;
 
@@ -28,6 +29,33 @@ var timelineToolModel = function() {
                 ("0" + new_date.getHours()).slice(-2) + ":" +
                 ("0" + new_date.getMinutes()).slice(-2) + ":00"
       );
+    },
+    stop: function( event, ui ) {
+      var layer_ids = [];
+      $.each(self.activeLayers(), function(i, layer) {
+        if (layer.has_time_offsets) {
+          layer_id.push({'layer_id': layer.id});
+        }
+      });
+      var json_query = {'datetime' : self.selectedDatetime(),
+                        'layer_ids': layer_ids};
+      /*
+      $.ajax({
+          async: true,
+          url: '/data_manager/get_time_increments/'+ self.id,
+          type: 'POST',
+          contentType: 'application/json; charset=utf-8',
+          data: $.toJSON(myEvent),
+          dataType: 'text',
+          success: function(result) {
+            result;
+          },
+          error: function(result) {
+            result;
+          }
+      });
+      */
+
     }
   });
 
@@ -101,5 +129,5 @@ var timelineToolModel = function() {
 
 };
 
-app.viewModel.timelineTool = new timelineToolModel();
+app.viewModel.timelineTool = new timelineToolModel(app.viewModel);
 })();

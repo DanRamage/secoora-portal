@@ -8,6 +8,7 @@ from models import *
 from datetime import datetime,timedelta
 import logging
 from bisect import bisect_left
+from date_time_utils import get_utc_epoch
 
 logger = logging.getLogger(__name__)
 
@@ -23,21 +24,22 @@ def get_json(request):
     return HttpResponse(simplejson.dumps(json))
 
 def get_time_increments(request, layer_id):
-  times = []
+  epoch_times = []
   if logger:
     logger.info("Begin get_time_increments")
     logger.debug("Layer requested: %s" % layer_id)
   try:
     layer_data = Layer.objects.get(id=layer_id)
     times = layer_data.metadatatable.time_steps.split(",")
+    epoch_times = [get_utc_epoch(time) for time in times]
   except Exception, e:
     if logger:
       logger.exception(e)
   json = {
-    'time_steps': times
+    'time_steps': epoch_times
   }
   if logger:
-    logger.info("End get_time_increments, %d times found" % (len(times)))
+    logger.info("End get_time_increments, %d times found" % (len(epoch_times)))
   return HttpResponse(simplejson.dumps(json))
 
 def create_layer(request):
@@ -145,6 +147,44 @@ def get_closest_time(request):
 
   logger.info("End get_closest_time")
 
+def get_closest_time_for_ids(request):
+  if logger:
+    logger.info("Begin get_closest_time")
+  results = {'layer_ids' : []}
+  #logger.debug("GET Params: %s" % (request.GET.items()))
+  if request.is_ajax():
+    if request.method == 'POST':
+      layer_ids = request.body
+      if logger:
+        logger.debug("Request json: %s" % (layer_ids))
+      for layer_id in layer_ids:
+        try:
+          if 'time_offset' in request.GET:
+            time_offset_obj = datetime.strptime(request.GET['time_offset'], "%Y-%m-%d %H:%M:%S")
+          elif 'time_offset_hours' in request.GET:
+            time_offset_obj = datetime.now() - timedelta(hours=float(request.GET['time_offset_hours']))
+          else:
+            time_offset_obj = datetime.now()
+
+          logger.debug("Finding closest time to: %s" % (time_offset_obj.strftime("%Y-%m-%d %H:%M:%S")))
+          for layer in Layer.objects.all().get(id=int(layer_id)):
+            logger.debug("Found layer: %s" % (layer.name))
+            if layer.metadatatable is not None and layer.metadatatable.time_steps is not None:
+              times = [datetime.strptime(timeStamp, "%Y-%m-%dT%H:%M:%SZ") for timeStamp in layer.metadatatable.time_steps.split(',')]
+              #Find the spot in the list where'd we would insert the time. THis is our search starting point.
+              index = bisect_left(times, time_offset_obj)
+              closestTime = min(times[max(0, index-1) : index+2], key=lambda t: abs(time_offset_obj - t))
+              results['datetime'] = closestTime.strftime("%Y-%m-%d %H:%M:%S")
+
+              logger.debug("Layer ID: %d Closest Time: %s" % (int(layer_id), results['datetime']))
+              break
+        except Exception,e:
+          logger.exception(e)
+
+  else:
+    logger.info("No layer_ids GET param.")
+
+  logger.info("End get_closest_time")
 
 
   return HttpResponse(simplejson.dumps(results))
