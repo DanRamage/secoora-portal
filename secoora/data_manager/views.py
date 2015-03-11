@@ -31,7 +31,7 @@ def get_time_increments(request, layer_id):
   try:
     layer_data = Layer.objects.get(id=layer_id)
     times = layer_data.metadatatable.time_steps.split(",")
-    epoch_times = [get_utc_epoch(time) for time in times]
+    epoch_times = [get_utc_epoch(datetime.strptime(time, '%Y-%m-%dT%H:%M:%SZ')) for time in times]
   except Exception, e:
     if logger:
       logger.exception(e)
