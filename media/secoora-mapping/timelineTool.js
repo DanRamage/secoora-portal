@@ -69,11 +69,11 @@ var timelineToolModel = function() {
       {
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
-              "my": "middle bottom",
+              "my": "left bottom",
               "at": "left bottom",
-              "of": $("#map-wrapper")
+              "of": $("#map-panel")
           });
-        $('#time-slider-popover').width($("#map-wrapper").width() * 0.9);
+        $('#time-slider-popover').width($("#map-panel").width() * 0.9);
       }
     }
     else
