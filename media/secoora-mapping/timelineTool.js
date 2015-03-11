@@ -11,7 +11,7 @@ var timelineToolModel = function() {
   var now = new Date();
   var dateStr = now.getFullYear().toString() + "-" +
                 now.getMonth().toString() + "-" +
-                now.getDate().toString() + "" +
+                now.getDate().toString() + " " +
                 now.getHours().toString() + ":" +
                 now.getMinutes().toString() + ":00";
 
