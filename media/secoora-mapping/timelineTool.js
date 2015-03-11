@@ -72,7 +72,7 @@ var timelineToolModel = function() {
                       now.getHours().toString() + ":" +
                       now.getMinutes().toString() + ":00";
         self.currentEpochDatetime = now.getTime();
-
+        self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
