@@ -68,8 +68,8 @@ var timelineToolModel = function() {
       if(!$('#time-slider-popover').is(":visible"))
       {
         $('#time-slider-popover').show().draggable().position({
-              "my": "right middle",
-              "at": "left middle",
+              "my": "left bottom",
+              "at": "left bottom",
               "of": $("#map-panel")
           });
       }
