@@ -1248,79 +1248,11 @@ function viewModel() {
       });
     };
 
-    /*self.polygonSelectActive = ko.observable(false);
-    self.polygonIdentify = function(self, event)
+    self.timelineToolClick = function(event)
     {
-      //self.polygonQueryTool.polygonIdentify(event);
-      self.measurementTool.enableControl(false);
-
-      //Toggle the state.
-      if(self.polygonSelectActive() === false)
-      {
-        self.polygonSelectActive(true);
-
-        app.polygonDraw.activate();
-      }
-      else
-      {
-        self.polygonSelectActive(false);
-        app.polygonDraw.deactivate();
-      }
-
+      self.timelineTool.timelineToolClick(event);
     };
 
-    self.currentPolygonFeature = null;
-    self.selectionPolygonAdded = function(feature)
-    {
-      //$('#polygon-query-modal').modal('show');
-      $('#polygonQueryTab').tab('show');
-
-      var vertices = feature.geometry.getVertices();
-      if(self.polygonQueryGeom)
-      {
-        self.polygonQueryGeom.length = 0;
-      }
-      else
-      {
-        self.polygonQueryGeom = [];
-      }
-      if(vertices.length)
-      {
-        for(var j = 0; j < vertices.length; j++)
-        {
-          var point = [];
-          point.push(vertices[j].x);
-          point.push(vertices[j].y);
-          self.polygonQueryGeom.push(point);
-        }
-        var point = [];
-        point.push(vertices[0].x);
-        point.push(vertices[0].y);
-        //Append the first point last to close the polygon.
-        self.polygonQueryGeom.push(point);
-
-      }
-
-      for(var i = 0; i < self.themes().length; i++)
-      {
-        //if(i === 0)
-        //{
-          var theme = self.themes()[i];
-          theme.doPolygonQuery(self.polygonQueryGeom, feature);
-        //}
-      }
-    };
-    //This aborts any outstanding queries from previous polygon query attempts.
-    self.cancelPolygonQuery = function()
-    {
-      for(var i = 0; i < self.themes().length; i++)
-      {
-        var theme = self.themes()[i];
-        $.each(theme.restIdentifyControls, function(ndx, restIdControl) {
-            restIdControl.cancelRequest();
-        });
-      }
-    };*/
     //////////////////////////////////////////////////////////////
 
     // determines visibility of description overlay

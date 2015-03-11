@@ -540,19 +540,20 @@
                                           </a>
                                           <!--Polygon Layer Search Button-->
                                           <!--
-                                          <a class="btn" id="btn-identify" data-bind="click: polygonIdentify, style: {color: polygonSelectActive() ? '#000000' : '#FFFFFF'}">
-                                              <i data-bind="css: {'icon-polygon-select-active' : polygonSelectActive(), 'icon-polygon-select': !polygonSelectActive() }"></i>
-                                              <span>Polygon Select</span>
-                                          </a>
-                                          -->
                                           <a class="btn" id="btn-identify" data-bind="click: polygonIdentify, style: {color: polygonQueryTool.polygonSelectActive() ? '#000000' : '#FFFFFF'}">
                                               <i data-bind="css: {'icon-polygon-select-active' : polygonQueryTool.polygonSelectActive(), 'icon-polygon-select': !polygonQueryTool.polygonSelectActive() }"></i>
                                               <span>Polygon Select</span>
                                           </a>
+                                          -->
                                           <!--Measure tool-->
                                           <a class="btn" id="btn-measure-tool" data-bind="click: measureToolClick, style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}">
                                               <i data-bind="css: {'icon-measure-tool-active' : measurementTool.measureToolActive(), 'icon-measure-tool': !measurementTool.measureToolActive() },style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}"></i>
                                               <span>Measure</span>
+                                          </a>
+                                          <!-- Timeline tool -->
+                                          <a class="btn" id="btn-timeline-tool" data-bind="click: timelineToolClick, style: {color: measurementTool.measureToolActive() ? '#000000' : '#FFFFFF'}">
+                                              <i class="icon-info-sign icon-time"></i>
+                                              <span>Time Line</span>
                                           </a>
                                         </div> <!-- /Buttons -->
 
@@ -816,31 +817,7 @@
             </div>
         </div>
 
-        <!-- Time slider tool -->
-        <div style="display:none" id="time-slider-popover" class="popover fade bottom in">
-            <div class="arrow">
-            </div>
-            <div class="popover-inner" data-bind="if: selectedLayer">
-                <div class="popover-content">
-                    <div id="time_slider" class="slider"></div>
-                </div>
-                <div>
-                  <input type="text" id="time_selected" data-bind = "value: selectedLayer().requestTime">
-                </div>
-            </div>
-        </div>
 
-        <!--<div style="display:none" id="layer-popover" class="layer-popover popover fade right in" data-bind="event: {'mouseleave': $root.hideTooltip}">
-=======
->>>>>>> 5eda76875391b9ddd31da157abeb8ceffd7d53ed
-        <!--<div style="display:none" id="layer-popover" class="layer-popover popover fade right in" data-bind="event: {'mouseleave': $root.hideTooltip}">
-            <div class="arrow"></div>
-            <div class="popover-inner layer-tooltip">
-                <div class="popover-content">
-                    <span data-bind="html: layerToolTipText"></span>
-                </div>
-            </div>
-        </div>-->
 
         {% include "bookmarks.html" %}
 
