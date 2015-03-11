@@ -9,6 +9,7 @@ var timelineToolModel = function() {
   self.timelineToolActive = ko.observable(false);
 
   self.selectedDatetime = ko.observable("");
+  self.startingEpochDatetime = -1;
 
   $("#time-slider-popover").find("#time_slider").slider({
     min: -1 * self.hindcast_hours,
@@ -18,7 +19,7 @@ var timelineToolModel = function() {
       //The slider increments in 1 hour movements, for ease of calcs,
       //we use the epoch milliseconds and the add(or subtract) the movement
       //amount of the slider, then convert it to a readable time string.
-      var adjusted = self.currentEpochDatetime + (ui.value * 3600000);
+      var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
       self.selectedDatetime(
                 new_date.getFullYear().toString() + "-" +
@@ -74,7 +75,7 @@ var timelineToolModel = function() {
                           ("0" + new_date.getDate()).slice(-2) + " " +
                           ("0" + new_date.getHours()).slice(-2) + ":" +
                           ("0" + new_date.getMinutes()).slice(-2) + ":00";
-        self.currentEpochDatetime = new_date.getTime();
+        self.startingEpochDatetime = new_date.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
