@@ -68,7 +68,7 @@ var timelineToolModel = function() {
       if(!$('#time-slider-popover').is(":visible"))
       {
         var new_date = new Date();
-        var dateStr = now.getFullYear().toString() + "-" +
+        var dateStr = new_date.getFullYear().toString() + "-" +
                           new_date.getFullYear().toString() + "-" +
                           ("0" + new_date.getMonth()).slice(-2) + "-" +
                           ("0" + new_date.getDate()).slice(-2) + " " +
