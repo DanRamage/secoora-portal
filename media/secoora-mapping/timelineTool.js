@@ -73,7 +73,7 @@ var timelineToolModel = function() {
               "at": "left bottom",
               "of": $("#map-panel")
           });
-        $('#time-slider-popover').width($("#map-panel").width());
+        $('#time-slider-popover').width($("#map-panel").width() * 0.9);
       }
     }
     else
