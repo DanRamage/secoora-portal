@@ -71,9 +71,9 @@ var timelineToolModel = function() {
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
               "at": "middle bottom",
-              "of": $("#map-panel")
+              "of": $("#map-wrapper")
           });
-        $('#time-slider-popover').width($("#map-panel").width() * 0.9);
+        $('#time-slider-popover').width($("#map-wrapper").width() * 0.9);
       }
     }
     else
