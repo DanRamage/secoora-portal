@@ -20,7 +20,7 @@ function bisect_left(search_value, values_array)
     {
       hi = middle;
     }
-    middle = (hi - lo) / 2;
+    middle = Math.round((hi - lo) / 2 + 0.5);
   }
   return(middle);
 }
