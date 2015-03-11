@@ -69,8 +69,8 @@ var timelineToolModel = function() {
       {
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
-              "my": "left bottom",
-              "at": "middle bottom",
+              "my": "middle bottom",
+              "at": "left bottom",
               "of": $("#map-wrapper")
           });
         $('#time-slider-popover').width($("#map-wrapper").width() * 0.9);
