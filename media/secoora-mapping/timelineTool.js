@@ -34,7 +34,7 @@ var timelineToolModel = function(viewModel) {
       var layer_ids = [];
       $.each(self.parentViewModel.activeLayers(), function(i, layer) {
         if (layer.has_time_offsets) {
-          closest_date = bisect_left(self.startingEpochDatetime/1000, layer.timeSteps);
+          closest_date = bisect_left(Math.round(self.startingEpochDatetime/1000), layer.timeSteps);
           layer_id.push({'layer_id': layer.id});
 
         }
