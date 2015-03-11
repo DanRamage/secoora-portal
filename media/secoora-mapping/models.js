@@ -2,7 +2,7 @@ function bisect_left(search_value, values_array)
 {
   var lo = 0;
   var hi = values_array.length - 1;
-
+  var closest_ndx = -1;
   var middle = Math.round((hi + lo) / 2 + 0.5);
   var found = false;
   while(!found)
@@ -10,6 +10,7 @@ function bisect_left(search_value, values_array)
     if(hi - lo < 3)
     {
       found = true;
+      closest_ndx = middle;
       break;
     }
     if(search_value > values_array[middle])
@@ -22,7 +23,7 @@ function bisect_left(search_value, values_array)
     }
     middle = Math.round((hi + lo) / 2 + 0.5);
   }
-  return(middle);
+  return(closest_ndx);
 }
 function layerModel(options, parent) {
     var self = this,
