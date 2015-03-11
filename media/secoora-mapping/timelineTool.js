@@ -23,7 +23,7 @@ var timelineToolModel = function() {
     step: 1,
     slide: function (event, ui) {
 
-      var adjusted = self.currentEpochDatetime + (ui.value * 3600);
+      var adjusted = self.currentEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
       self.selectedDatetime(
                 new_date.getFullYear().toString() + "-" +
