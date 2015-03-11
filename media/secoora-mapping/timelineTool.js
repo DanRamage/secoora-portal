@@ -14,7 +14,7 @@ var timelineToolModel = function() {
                 now.getDate().toString() + " " +
                 now.getHours().toString() + ":" +
                 now.getMinutes().toString() + ":00";
-
+  self.currentEpochDatetime = dateStr.UTC();
   self.selectedDatetime = ko.observable(dateStr);
 
   $("#time-slider-popover").find("#time_slider").slider({
@@ -22,11 +22,16 @@ var timelineToolModel = function() {
     max: self.forecast_hours,
     step: 1,
     slide: function (event, ui) {
-      //var val = layer.timeSteps[ui.value];
-      //layer.selectedTime = val;
-      //$popover.find("#time_selected").val(val);
-      //layer.requestTime(val);
 
+      self.currentEpochDatetime = self.currentEpochDatetime + (ui.value * 3600);
+      var new_date = new Date(self.currentEpochDatetime);
+      self.selectedDatetime(
+                new_date.getFullYear().toString() + "-" +
+                new_date.getMonth().toString() + "-" +
+                new_date.getDate().toString() + " " +
+                new_date.getHours().toString() + ":" +
+                new_date.getMinutes().toString() + ":00"
+      );
     }
   });
 
@@ -35,7 +40,7 @@ var timelineToolModel = function() {
   {
     self.hindcast_hours = hindcast_hours;
     self.forecast_hours = forecast_hours;
-  }
+  };
   self.timelineToolClick = function(event)
   {
     //Toggle the state.
