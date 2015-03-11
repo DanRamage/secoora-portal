@@ -85,7 +85,7 @@ function layerModel(options, parent) {
     }
     else if(self.type === 'WMS')
     {
-      if(self.url.indexOf("TIME") !== -1)
+      if(self.url != null && self.url.indexOf("TIME") !== -1)
       {
         self.has_time_offsets = true;
       }
