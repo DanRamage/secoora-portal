@@ -14,7 +14,7 @@ var timelineToolModel = function() {
                 now.getDate().toString() + " " +
                 now.getHours().toString() + ":" +
                 now.getMinutes().toString() + ":00";
-  self.currentEpochDatetime = dateStr.UTC();
+  self.currentEpochDatetime = now.UTC();
   self.selectedDatetime = ko.observable(dateStr);
 
   $("#time-slider-popover").find("#time_slider").slider({
