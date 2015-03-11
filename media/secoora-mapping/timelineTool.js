@@ -8,14 +8,7 @@ var timelineToolModel = function() {
 
   self.timelineToolActive = ko.observable(false);
 
-  var now = new Date();
-  var dateStr = now.getFullYear().toString() + "-" +
-                now.getMonth().toString() + "-" +
-                now.getDate().toString() + " " +
-                now.getHours().toString() + ":" +
-                now.getMinutes().toString() + ":00";
-  self.currentEpochDatetime = now.getTime();
-  self.selectedDatetime = ko.observable(dateStr);
+  self.selectedDatetime = ko.observable("");
 
   $("#time-slider-popover").find("#time_slider").slider({
     min: -1 * self.hindcast_hours,
@@ -72,6 +65,14 @@ var timelineToolModel = function() {
     {
       if(!$('#time-slider-popover').is(":visible"))
       {
+        var now = new Date();
+        var dateStr = now.getFullYear().toString() + "-" +
+                      now.getMonth().toString() + "-" +
+                      now.getDate().toString() + " " +
+                      now.getHours().toString() + ":" +
+                      now.getMinutes().toString() + ":00";
+        self.currentEpochDatetime = now.getTime();
+
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
