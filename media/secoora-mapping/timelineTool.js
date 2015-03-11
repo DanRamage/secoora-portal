@@ -67,11 +67,13 @@ var timelineToolModel = function() {
     {
       if(!$('#time-slider-popover').is(":visible"))
       {
+        $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
               "at": "left bottom",
               "of": $("#map-panel")
           });
+        $('#time-slider-popover').width($("#map-panel").width());
       }
     }
     else
