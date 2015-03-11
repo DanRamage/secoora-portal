@@ -3,7 +3,7 @@ function bisect_left(search_value, values_array)
   var lo = 0;
   var hi = values_array.length - 1;
 
-  var middle = Math.round((hi - lo) / 2 + 0.5);
+  var middle = Math.round((hi + lo) / 2 + 0.5);
   var found = false;
   while(!found)
   {
@@ -20,7 +20,7 @@ function bisect_left(search_value, values_array)
     {
       hi = middle;
     }
-    middle = Math.round((hi - lo) / 2 + 0.5);
+    middle = Math.round((hi + lo) / 2 + 0.5);
   }
   return(middle);
 }
