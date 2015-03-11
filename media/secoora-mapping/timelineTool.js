@@ -78,7 +78,7 @@ var timelineToolModel = function() {
     {
       $('#time-slider-popover').hide();
     }
-  }
+  };
   self.handleSlider = function(event)
   {
   };
