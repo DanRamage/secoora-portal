@@ -62,10 +62,7 @@ var timelineToolModel = function() {
     }
     else
     {
-      $('#measurement-tool-popover').hide();
-      self.englishDistance("");
-      self.metricDistance ("");
-      self.nmDistance ("");
+      $('#time-slider-popover').hide();
     }
   }
   self.handleSlider = function(event)
