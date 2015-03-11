@@ -70,7 +70,7 @@ var timelineToolModel = function() {
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
-              "at": "left bottom",
+              "at": "middle bottom",
               "of": $("#map-panel")
           });
         $('#time-slider-popover').width($("#map-panel").width() * 0.9);
