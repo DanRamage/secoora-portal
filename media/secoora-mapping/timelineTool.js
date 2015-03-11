@@ -17,6 +17,20 @@ var timelineToolModel = function() {
 
   self.selectedDatetime = ko.observable(dateStr);
 
+  $("#time-slider-popover").find("#time_slider").slider({
+    min: -1 * self.hindcast_hours,
+    max: self.forecast_hours,
+    step: 1,
+    slide: function (event, ui) {
+      //var val = layer.timeSteps[ui.value];
+      //layer.selectedTime = val;
+      //$popover.find("#time_selected").val(val);
+      //layer.requestTime(val);
+
+    }
+  });
+
+
   self.setRanges = function(hindcast_hours, forecast_hours)
   {
     self.hindcast_hours = hindcast_hours;
