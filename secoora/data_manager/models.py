@@ -269,6 +269,7 @@ class Layer(models.Model):
     TYPE_CHOICES = (
         ('XYZ', 'XYZ'),
         ('WMS', 'WMS'),
+        ('WMST', 'WMST'),
         ('ArcRest', 'ArcRest'),
         ('radio', 'radio'),
         ('checkbox', 'checkbox'),
