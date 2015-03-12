@@ -525,7 +525,8 @@ class Layer(models.Model):
             'color': self.vector_color,
             'fill_opacity': self.vector_fill,
             'graphic': self.vector_graphic,
-            'opacity': self.opacity
+            'opacity': self.opacity,
+            'ol_config_data': layer.ol_config_data
         }
         return layers_dict
 
