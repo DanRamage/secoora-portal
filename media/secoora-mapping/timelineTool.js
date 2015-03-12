@@ -12,6 +12,15 @@ var timelineToolModel = function(viewModel) {
   self.selectedDatetime = ko.observable("");
   self.startingEpochDatetime = -1;
 
+  self.get_display_date = function(dateObj)
+  {
+      var display_date = dateObj.getUTCFullYear().toString() + "-" +
+      ("0" + dateObj.getUTCMonth()).slice(-2) + "-" +
+      ("0" + dateObj.getUTCDate()).slice(-2) + " " +
+      ("0" + dateObj.getUTCHours()).slice(-2) + ":" +
+      ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00";
+    return(display_date);
+  }
   $("#time-slider-popover").find("#time_slider").slider({
     min: -1 * self.hindcast_hours,
     max: self.forecast_hours,
@@ -23,13 +32,7 @@ var timelineToolModel = function(viewModel) {
       //amount of the slider, then convert it to a readable time string.
       var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
-      self.selectedDatetime(
-                new_date.getUTCFullYear().toString() + "-" +
-                ("0" + new_date.getUTCMonth()).slice(-2) + "-" +
-                ("0" + new_date.getUTCDate()).slice(-2) + " " +
-                ("0" + new_date.getUTCHours()).slice(-2) + ":" +
-                ("0" + new_date.getUTCMinutes()).slice(-2) + ":00"
-      );
+      self.selectedDatetime(get_display_date(new_date));
     },
     //When the user stops moving the thumbtrack, the active layers are then queried.
     stop: function( event, ui ) {
@@ -92,12 +95,7 @@ var timelineToolModel = function(viewModel) {
       if(!$('#time-slider-popover').is(":visible"))
       {
         var new_date = new Date();
-        var dateStr = new_date.getUTCFullYear().toString() + "-" +
-                          new_date.getUTCFullYear().toString() + "-" +
-                          ("0" + new_date.getUTCMonth()).slice(-2) + "-" +
-                          ("0" + new_date.getUTCDate()).slice(-2) + " " +
-                          ("0" + new_date.getUTCHours()).slice(-2) + ":" +
-                          ("0" + new_date.getUTCMinutes()).slice(-2) + ":00";
+        var dateStr = get_display_date(new_date);
         self.startingEpochDatetime = new_date.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
