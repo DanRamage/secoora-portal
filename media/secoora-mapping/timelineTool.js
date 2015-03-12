@@ -24,11 +24,11 @@ var timelineToolModel = function(viewModel) {
       var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
       self.selectedDatetime(
-                new_date.getFullYear().toString() + "-" +
-                ("0" + new_date.getMonth()).slice(-2) + "-" +
-                ("0" + new_date.getDate()).slice(-2) + " " +
-                ("0" + new_date.getHours()).slice(-2) + ":" +
-                ("0" + new_date.getMinutes()).slice(-2) + ":00"
+                new_date.getUTCFullYear().toString() + "-" +
+                ("0" + new_date.getUTCMonth()).slice(-2) + "-" +
+                ("0" + new_date.getUTCDate()).slice(-2) + " " +
+                ("0" + new_date.getUTCHours()).slice(-2) + ":" +
+                ("0" + new_date.getUTCMinutes()).slice(-2) + ":00"
       );
     },
     //When the user stops moving the thumbtrack, the active layers are then queried.
@@ -39,11 +39,11 @@ var timelineToolModel = function(viewModel) {
           if(closest_date_ndx != -1)
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
-            var wms_t = closest_date.getFullYear().toString() + "-" +
-                        ("0" + closest_date.getMonth()).slice(-2) + "-" +
-                        ("0" + closest_date.getDate()).slice(-2) + "T" +
-                        ("0" + closest_date.getHours()).slice(-2) + ":" +
-                        ("0" + closest_date.getMinutes()).slice(-2) + ":00.000Z"
+            var wms_t = closest_date.getUTCFullYear().toString() + "-" +
+                        ("0" + closest_date.getUTCMonth()).slice(-2) + "-" +
+                        ("0" + closest_date.getUTCDate()).slice(-2) + "T" +
+                        ("0" + closest_date.getUTCHours()).slice(-2) + ":" +
+                        ("0" + closest_date.getUTCMinutes()).slice(-2) + ":00.000Z"
 
             layer.layer.mergeNewParams({'TIME':wms_t,
                                         'salt': Math.random()});
@@ -92,12 +92,12 @@ var timelineToolModel = function(viewModel) {
       if(!$('#time-slider-popover').is(":visible"))
       {
         var new_date = new Date();
-        var dateStr = new_date.getFullYear().toString() + "-" +
-                          new_date.getFullYear().toString() + "-" +
-                          ("0" + new_date.getMonth()).slice(-2) + "-" +
-                          ("0" + new_date.getDate()).slice(-2) + " " +
-                          ("0" + new_date.getHours()).slice(-2) + ":" +
-                          ("0" + new_date.getMinutes()).slice(-2) + ":00";
+        var dateStr = new_date.getUTCFullYear().toString() + "-" +
+                          new_date.getUTCFullYear().toString() + "-" +
+                          ("0" + new_date.getUTCMonth()).slice(-2) + "-" +
+                          ("0" + new_date.getUTCDate()).slice(-2) + " " +
+                          ("0" + new_date.getUTCHours()).slice(-2) + ":" +
+                          ("0" + new_date.getUTCMinutes()).slice(-2) + ":00";
         self.startingEpochDatetime = new_date.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
