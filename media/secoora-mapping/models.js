@@ -92,10 +92,10 @@ function layerModel(options, parent) {
       }
     }
 
-    self.openlayers_options = options.openlayers_options.length ? options.openlayers_options : null;
-    if(self.openlayers_options !== null)
+    if(options.openlayers_options.length)
     {
-      var json = $.parseJSON(options.openlayers_options);
+      self.openlayers_options = options.openlayers_options.length;
+      //var json = $.parseJSON(options.openlayers_options);
     }
 
 
