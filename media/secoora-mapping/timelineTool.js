@@ -32,7 +32,7 @@ var timelineToolModel = function(viewModel) {
       //amount of the slider, then convert it to a readable time string.
       var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       var new_date = new Date(adjusted);
-      self.selectedDatetime(get_display_date(new_date));
+      self.selectedDatetime(self.get_display_date(new_date));
     },
     //When the user stops moving the thumbtrack, the active layers are then queried.
     stop: function( event, ui ) {
@@ -95,7 +95,7 @@ var timelineToolModel = function(viewModel) {
       if(!$('#time-slider-popover').is(":visible"))
       {
         var new_date = new Date();
-        var dateStr = get_display_date(new_date);
+        var dateStr = self.get_display_date(new_date);
         self.startingEpochDatetime = new_date.getTime();
         self.selectedDatetime(dateStr);
         $('#time-slider-popover').width($("#map-panel").width());
