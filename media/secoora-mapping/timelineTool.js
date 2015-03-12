@@ -47,6 +47,7 @@ var timelineToolModel = function(viewModel) {
 
             layer.layer.mergeNewParams({'TIME':wms_t});
             layer.redraw(true);
+
           }
         }
       });
