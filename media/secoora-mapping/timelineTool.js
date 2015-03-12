@@ -53,6 +53,8 @@ var timelineToolModel = function(viewModel) {
       });
     }
   });
+  http://129.252.139.124/cgi-bin/mapserv?MAP=/home/xeniaprod/mapping/common/general.map&LAYERS=model_ncwms&OBSTYPE=ncep_global/prmslmsl&FORMAT=image/png&REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&SRS=EPSG:900913&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_inimage&NCWMS_STYLES=boxfill/occam&TIME=&COLORSCALERANGE=95000,105000&NUMCOLORBANDS=254
+  http://129.252.139.124/cgi-bin/mapserv?MAP=/home/xeniaprod/mapping/common/general.map&LAYERS=model_ncwms&OBSTYPE=ncep_global/prmslmsl&WIDTH=750&HEIGHT=570&FORMAT=image/png&REQUEST=GetMap&SERVICE=WMS&VERSION=1.1.1&SRS=EPSG:900913&TRANSPARENT=TRUE&EXCEPTIONS=application/vnd.ogc.se_inimage&NCWMS_STYLES=boxfill/occam&TIME=2015-03-12T12:00:00.000Z&COLORSCALERANGE=95000,105000&NUMCOLORBANDS=254
 
 
   self.setRanges = function(hindcast_hours, forecast_hours)
