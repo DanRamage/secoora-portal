@@ -493,7 +493,8 @@ class Layer(models.Model):
                 'color': layer.vector_color,
                 'fill_opacity': layer.vector_fill,
                 'graphic': layer.vector_graphic,
-                'opacity': layer.opacity
+                'opacity': layer.opacity,
+                'ol_config_data': layer.ol_config_data
             }
             for layer in self.sublayers.all()
         ]
