@@ -290,7 +290,6 @@ class Layer(models.Model):
     legend_subtitle = models.CharField(max_length=255, blank=True, null=True)
     utfurl = models.CharField(max_length=255, blank=True, null=True)
 
-    ol_config_data = models.TextField(blank=True, null=True)
     #tooltip
     description = models.TextField(blank=True, null=True)
 
@@ -494,7 +493,7 @@ class Layer(models.Model):
                 'fill_opacity': layer.vector_fill,
                 'graphic': layer.vector_graphic,
                 'opacity': layer.opacity,
-                'ol_config_data': layer.ol_config_data
+                'openlayers_options': layer.openlayers_options
             }
             for layer in self.sublayers.all()
         ]
@@ -526,7 +525,7 @@ class Layer(models.Model):
             'fill_opacity': self.vector_fill,
             'graphic': self.vector_graphic,
             'opacity': self.opacity,
-            'ol_config_data': layer.ol_config_data
+            'openlayers_options': layer.openlayers_options
         }
         return layers_dict
 
