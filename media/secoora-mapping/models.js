@@ -91,11 +91,17 @@ function layerModel(options, parent) {
         self.has_time_offsets = true;
       }
     }
-
+    self.openlayers_options = null;
     if(options.openlayers_options.length)
     {
-      self.openlayers_options = options.openlayers_options.length;
-      //var json = $.parseJSON(options.openlayers_options);
+      try
+      {
+        self.openlayers_options = $.parseJSON(unescape(options.openlayers_options));
+      }
+      catch(err)
+      {
+        alert(err);
+      }
     }
 
 
