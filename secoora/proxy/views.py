@@ -13,7 +13,7 @@ requestTimeout = 30   #Set a timeout of N seconds to throw an exception if the s
 logger = logging.getLogger(__name__)
 
 #PROXY_FORMAT = u"http://%s/%s" % (settings.PROXY_DOMAIN, u"%s")
-allowedDomain = "129.252.37.120"
+allowedDomain = ["129.252.139.124"]
 def getLegendJSON(request, url):
     #logger = logging.getLogger(__name__)
     logger.info("Begin getLegendJSON")
@@ -27,7 +27,14 @@ def getLegendJSON(request, url):
         logger.debug(getUrl)
         parsedURL = urlparse(getUrl)
         logger.info("URL: %s" % (getUrl))
-        if(parsedURL.hostname == allowedDomain):
+        try:
+          allowedDomain.index(parsedURL.hostname)
+        except WalueError, e:
+          if logger:
+            logger.error("Illegal domain request attempt!")
+            logger.exception(e)
+            return(HttpResponse(status=403))
+        else:
           try:
             results = requests.get(getUrl)
           except Exception,e:
@@ -37,9 +44,9 @@ def getLegendJSON(request, url):
             if(results.status_code == 200):
               return HttpResponse(results.text)
             return(HttpResponse(''))
-        else:
-          logger.error("Illegal domain request attempt!")
-          return(HttpResponse(status=403))
+        #else:
+        #  logger.error("Illegal domain request attempt!")
+        #  return(HttpResponse(status=403))
 
     elif request.method == "POST":
         parsedURL = urlparse(url)
