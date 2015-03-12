@@ -91,7 +91,7 @@ function layerModel(options, parent) {
         self.has_time_offsets = true;
       }
     }
-    self.openlayers_options = options.openlayers_options ? options.openlayers_options : null;
+    self.openlayers_options = options.openlayers_options.length ? options.openlayers_options : null;
     if(self.openlayers_options !== null)
     {
       var json = $.toJSON(options.openlayers_options);
