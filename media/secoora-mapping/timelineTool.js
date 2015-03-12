@@ -45,8 +45,8 @@ var timelineToolModel = function(viewModel) {
                         ("0" + closest_date.getHours()).slice(-2) + ":" +
                         ("0" + closest_date.getMinutes()).slice(-2) + ":00.000Z"
 
-            layer.layer.mergeNewParams({'TIME':wms_t});
-            layer.redraw(true);
+            layer.layer.mergeNewParams({'TIME':wms_t,
+                                        'salt': Math.random()});
 
           }
         }
