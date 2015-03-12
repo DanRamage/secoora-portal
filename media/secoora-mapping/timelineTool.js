@@ -16,6 +16,7 @@ var timelineToolModel = function(viewModel) {
     min: -1 * self.hindcast_hours,
     max: self.forecast_hours,
     step: 1,
+    //Slide handler updates the time display, no queries are done in this handler.
     slide: function (event, ui) {
       //The slider increments in 1 hour movements, for ease of calcs,
       //we use the epoch milliseconds and the add(or subtract) the movement
@@ -30,37 +31,18 @@ var timelineToolModel = function(viewModel) {
                 ("0" + new_date.getMinutes()).slice(-2) + ":00"
       );
     },
+    //When the user stops moving the thumbtrack, the active layers are then queried.
     stop: function( event, ui ) {
-      var layer_ids = [];
       $.each(self.parentViewModel.activeLayers(), function(i, layer) {
         if (layer.has_time_offsets) {
           var closest_date_ndx = bisect_left(Math.round(self.startingEpochDatetime/1000), layer.timeSteps);
           if(closest_date_ndx != -1)
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
-            layer_ids.push({'layer_id': layer.id});
+            layer.layer.mergeNewParams({'TIME':closest_date.format("Y-m-d\\TH:i:00.000\\Z")});
           }
         }
       });
-      var json_query = {'datetime' : self.selectedDatetime(),
-                        'layer_ids': layer_ids};
-      /*
-      $.ajax({
-          async: true,
-          url: '/data_manager/get_time_increments/'+ self.id,
-          type: 'POST',
-          contentType: 'application/json; charset=utf-8',
-          data: $.toJSON(myEvent),
-          dataType: 'text',
-          success: function(result) {
-            result;
-          },
-          error: function(result) {
-            result;
-          }
-      });
-      */
-
     }
   });
 
