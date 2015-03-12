@@ -290,6 +290,7 @@ class Layer(models.Model):
     legend_subtitle = models.CharField(max_length=255, blank=True, null=True)
     utfurl = models.CharField(max_length=255, blank=True, null=True)
 
+    ol_config_data = models.TextField(blank=True, null=True)
     #tooltip
     description = models.TextField(blank=True, null=True)
 
