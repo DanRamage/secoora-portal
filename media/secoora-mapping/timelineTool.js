@@ -39,7 +39,13 @@ var timelineToolModel = function(viewModel) {
           if(closest_date_ndx != -1)
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
-            layer.layer.mergeNewParams({'TIME':closest_date.format("Y-m-d\\TH:i:00.000\\Z")});
+            var wms_t = closest_date.getFullYear().toString() + "-" +
+                        ("0" + closest_date.getMonth()).slice(-2) + "-" +
+                        ("0" + closest_date.getDate()).slice(-2) + "T" +
+                        ("0" + closest_date.getHours()).slice(-2) + ":" +
+                        ("0" + closest_date.getMinutes()).slice(-2) + ":00.000Z"
+
+            layer.layer.mergeNewParams({'TIME':wms_t});
           }
         }
       });
