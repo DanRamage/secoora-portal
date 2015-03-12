@@ -29,7 +29,7 @@ def getLegendJSON(request, url):
         logger.info("URL: %s" % (getUrl))
         try:
           allowedDomain.index(parsedURL.hostname)
-        except WalueError, e:
+        except ValueError, e:
           if logger:
             logger.error("Illegal domain request attempt!")
             logger.exception(e)
