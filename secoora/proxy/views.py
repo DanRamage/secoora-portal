@@ -13,7 +13,7 @@ requestTimeout = 30   #Set a timeout of N seconds to throw an exception if the s
 logger = logging.getLogger(__name__)
 
 #PROXY_FORMAT = u"http://%s/%s" % (settings.PROXY_DOMAIN, u"%s")
-allowedDomain = "129.252.139.68"
+allowedDomain = "129.252.37.120"
 def getLegendJSON(request, url):
     #logger = logging.getLogger(__name__)
     logger.info("Begin getLegendJSON")
