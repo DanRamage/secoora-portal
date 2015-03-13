@@ -39,7 +39,8 @@ var timelineToolModel = function(viewModel) {
       $.each(self.parentViewModel.activeLayers(), function(i, layer) {
         if(layer.timeSteps.length > 0)
         {
-          var closest_date_ndx = bisect_left(Math.round(self.startingEpochDatetime/1000), layer.timeSteps);
+          var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
+          var closest_date_ndx = bisect_left(Math.round(adjusted/1000), layer.timeSteps);
           if(closest_date_ndx != -1)
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);

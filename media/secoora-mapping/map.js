@@ -549,7 +549,12 @@ app.addLayerToMap = function(layer, isVisible) {
             //ADd the identify control.
             app.map.addControl(layer.queryControl);
 
-        } else if (layer.type === 'WMS' || layer.type === 'WMST') {
+        }
+        //DWR 2015-03-13
+        //Added the WMST(time) as well as attempt to use the params
+        //and options.
+        else if (layer.type === 'WMS' || layer.type === 'WMST') {
+
             layer.layer = new OpenLayers.Layer.WMS(
                 layer.name,
                 layer.url,
@@ -559,7 +564,8 @@ app.addLayerToMap = function(layer, isVisible) {
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
-        } else { //if XYZ with no utfgrid
+        }
+        else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
             layer.layer = new OpenLayers.Layer.XYZ(layer.name,
                 //layer.type === 'XYZ' ? layer.url : layer.url + '.png',
@@ -575,7 +581,8 @@ app.addLayerToMap = function(layer, isVisible) {
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
         }
-    } else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
+    }
+    else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
         //layer.utfcontrol = app.addUTFControl(layer);
         //app.map.addControl(layer.utfcontrol);
     }
