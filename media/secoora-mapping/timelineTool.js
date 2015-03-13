@@ -20,7 +20,7 @@ var timelineToolModel = function(viewModel) {
       ("0" + dateObj.getUTCHours()).slice(-2) + ":" +
       ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00";
     return(display_date);
-  }
+  };
   $("#time-slider-popover").find("#time_slider").slider({
     min: -1 * self.hindcast_hours,
     max: self.forecast_hours,
@@ -35,11 +35,11 @@ var timelineToolModel = function(viewModel) {
       var slider_text = "Now";
       if(ui.value > 0)
       {
-        slider_text = '+' + ui.value + ' Hour';
+        slider_text = '+' + ui.value + ' Hour(s)';
       }
       else if(ui.value < 0)
       {
-        slider_text = ui.value + ' Hour';
+        slider_text = ui.value + ' Hour(s)';
       }
       //self.selectedDatetime(self.get_display_date(new_date));
       self.selectedDatetime(slider_text);
