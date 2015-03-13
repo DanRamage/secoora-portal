@@ -9,7 +9,7 @@ var timelineToolModel = function(viewModel) {
 
   self.timelineToolActive = ko.observable(false);
 
-  self.selectedDatetime = ko.observable("");
+  self.selectedDatetime = ko.observable("Now");
   self.startingEpochDatetime = -1;
 
   self.get_display_date = function(dateObj)
@@ -39,7 +39,7 @@ var timelineToolModel = function(viewModel) {
       }
       else if(ui.value < 0)
       {
-        slider_text = '-' + ui.value + ' Hour';
+        slider_text = ui.value + ' Hour';
       }
       //self.selectedDatetime(self.get_display_date(new_date));
       self.selectedDatetime(slider_text);
@@ -109,7 +109,7 @@ var timelineToolModel = function(viewModel) {
         var new_date = new Date();
         var dateStr = self.get_display_date(new_date);
         self.startingEpochDatetime = new_date.getTime();
-        self.selectedDatetime(dateStr);
+        self.selectedDatetime("Now");
         $('#time-slider-popover').width($("#map-panel").width());
         $('#time-slider-popover').show().draggable().position({
               "my": "left bottom",
