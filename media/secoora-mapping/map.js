@@ -549,13 +549,12 @@ app.addLayerToMap = function(layer, isVisible) {
             //ADd the identify control.
             app.map.addControl(layer.queryControl);
 
-        } else if (layer.type === 'WMS') {
+        } else if (layer.type === 'WMS' || layer.type === 'WMST') {
             layer.layer = new OpenLayers.Layer.WMS(
                 layer.name,
                 layer.url,
-                {
-                    'layers': 'basic'
-                }
+                layer.openlayers_options.params,
+                layer.openlayers_options.options
             );
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);

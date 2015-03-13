@@ -60,7 +60,6 @@ function layerModel(options, parent) {
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
 
-    self.has_time_offsets = false;
     self.requestTime = ko.observable("");
     self.timeSteps = [];
 
@@ -83,13 +82,6 @@ function layerModel(options, parent) {
         //When request is sent, reset the flag.
         self.layerDataAvailable(false);
       };
-    }
-    else if(self.type === 'WMS')
-    {
-      if(self.url != null && self.url.indexOf("TIME") !== -1)
-      {
-        self.has_time_offsets = true;
-      }
     }
     self.openlayers_options = null;
     if(options.openlayers_options.length)
@@ -390,7 +382,7 @@ function layerModel(options, parent) {
                 self.activateUtfGridLayer();
             }
 
-            if(self.has_time_offsets && self.timeSteps.length === 0)
+            if(self.type === 'WMST' && self.timeSteps.length === 0)
             {
               self.get_time_increments(function(results)
               {

@@ -37,7 +37,8 @@ var timelineToolModel = function(viewModel) {
     //When the user stops moving the thumbtrack, the active layers are then queried.
     stop: function( event, ui ) {
       $.each(self.parentViewModel.activeLayers(), function(i, layer) {
-        if (layer.has_time_offsets) {
+        if(layer.timeSteps.length > 0)
+        {
           var closest_date_ndx = bisect_left(Math.round(self.startingEpochDatetime/1000), layer.timeSteps);
           if(closest_date_ndx != -1)
           {
