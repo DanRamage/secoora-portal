@@ -30,9 +30,19 @@ var timelineToolModel = function(viewModel) {
       //The slider increments in 1 hour movements, for ease of calcs,
       //we use the epoch milliseconds and the add(or subtract) the movement
       //amount of the slider, then convert it to a readable time string.
-      var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
-      var new_date = new Date(adjusted);
-      self.selectedDatetime(self.get_display_date(new_date));
+      //var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
+      //var new_date = new Date(adjusted);
+      var slider_text = "Now";
+      if(ui.value > 0)
+      {
+        slider_text = '+' + ui.value + ' Hour';
+      }
+      else if(ui.value < 0)
+      {
+        slider_text = '-' + ui.value + ' Hour';
+      }
+      //self.selectedDatetime(self.get_display_date(new_date));
+      self.selectedDatetime(slider_text);
     },
     //When the user stops moving the thumbtrack, the active layers are then queried.
     stop: function( event, ui ) {
