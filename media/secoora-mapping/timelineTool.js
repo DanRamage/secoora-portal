@@ -21,6 +21,15 @@ var timelineToolModel = function(viewModel) {
       ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00";
     return(display_date);
   };
+  self.get_wmst_date = function(dateObj)
+  {
+    var wmst_date = dateObj.getUTCFullYear().toString() + "-" +
+      ("0" + dateObj.getUTCMonth()).slice(-2) + "-" +
+      ("0" + dateObj.getUTCDate()).slice(-2) + "T" +
+      ("0" + dateObj.getUTCHours()).slice(-2) + ":" +
+      ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00.000Z"
+    return(wmst_date);
+  };
   $("#time-slider-popover").find("#time_slider").slider({
     min: -1 * self.hindcast_hours,
     max: self.forecast_hours,
@@ -54,11 +63,7 @@ var timelineToolModel = function(viewModel) {
           if(closest_date_ndx != -1)
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
-            var wms_t = closest_date.getUTCFullYear().toString() + "-" +
-                        ("0" + closest_date.getUTCMonth()).slice(-2) + "-" +
-                        ("0" + closest_date.getUTCDate()).slice(-2) + "T" +
-                        ("0" + closest_date.getUTCHours()).slice(-2) + ":" +
-                        ("0" + closest_date.getUTCMinutes()).slice(-2) + ":00.000Z"
+            var wms_t = self.get_wmst_date(closest_date);
 
             layer.layer.mergeNewParams({'TIME':wms_t,
                                         'salt': Math.random()});

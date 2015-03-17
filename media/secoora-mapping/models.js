@@ -369,9 +369,24 @@ function layerModel(options, parent) {
 
             self.activateBaseLayer();
 
-            // save reference in parent layer
-            if (layer.parent) {
+            if(self.type === 'WMST' && self.timeSteps.length === 0)
+            {
+              self.get_time_increments(function(results)
+              {
+                self.timeSteps = results['time_steps'];
+                // save reference in parent layer
+                if (layer.parent)
+                {
+                  self.activateParentLayer();
+                }
+              });
+            }
+            else
+            {
+              // save reference in parent layer
+              if (layer.parent) {
                 self.activateParentLayer();
+              }
             }
             if(self.legendTable() === false)
             {
@@ -382,13 +397,6 @@ function layerModel(options, parent) {
                 self.activateUtfGridLayer();
             }
 
-            if(self.type === 'WMST' && self.timeSteps.length === 0)
-            {
-              self.get_time_increments(function(results)
-              {
-                self.timeSteps = results['time_steps'];
-              });
-            }
         }
     };
 
@@ -409,6 +417,20 @@ function layerModel(options, parent) {
     // called from activateLayer
     self.activateParentLayer = function() {
         var layer = this;
+        if(this.type === 'WMST')
+        {
+          var now_date = new Date();
+          var startingEpochDatetime = now_date.getTime();
+          var closest_date_ndx = bisect_left(Math.round(startingEpochDatetime/1000), layer.timeSteps);
+          if(closest_date_ndx != -1)
+          {
+            var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
+            var wms_t = app.viewModel.timelineTool.get_wmst_date(closest_date);
+
+            layer.layer.mergeNewParams({'TIME':wms_t});
+
+          }
+        }
         if (layer.parent.type === 'radio' && layer.parent.activeSublayer()) {
             // only allow one sublayer on at a time
             layer.parent.activeSublayer().deactivateLayer();
