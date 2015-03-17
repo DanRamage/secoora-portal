@@ -358,72 +358,76 @@ function layerModel(options, parent) {
 
     };
 
-    self.activateLayer = function(layerVisible) {
-        //2013-02-20 DWR
-        //Added so we can use the topic button to add the layers into the Active tab, but not make them visible.
-        var isVisible = typeof(layerVisible) === "undefined" ? true : layerVisible;
-        var layer = this;
+    self.activateLayer = function(layerVisible)
+    {
+      //2013-02-20 DWR
+      //Added so we can use the topic button to add the layers into the Active tab, but not make them visible.
+      var isVisible = typeof(layerVisible) === "undefined" ? true : layerVisible;
+      var layer = this;
 
-        if (!layer.active() && layer.type !== 'placeholder')
+      if (!layer.active() && layer.type !== 'placeholder')
+      {
+        //app.addLayerToMap(layer, isVisible);
+        if(self.type === 'WMST' && self.timeSteps.length === 0)
         {
-            //app.addLayerToMap(layer, isVisible);
-            if(self.type === 'WMST' && self.timeSteps.length === 0)
+          self.get_time_increments(function(results)
+          {
+            self.timeSteps = results['time_steps'];
+
+            self.activateBaseLayer();
+            if (layer.parent)
             {
-              self.get_time_increments(function(results)
-              {
-                self.timeSteps = results['time_steps'];
-                // save reference in parent layer
-                var now_date = new Date();
-                var startingEpochDatetime = now_date.getTime();
-                var closest_date_ndx = bisect_left(Math.round(startingEpochDatetime/1000), layer.timeSteps);
-                if(closest_date_ndx != -1)
-                {
-                  var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
-                  var wms_t = app.viewModel.timelineTool.get_wmst_date(closest_date);
-
-                  this.layer.mergeNewParams({'TIME':wms_t});
-
-                }
-                self.activateBaseLayer();
-
-                if (layer.parent)
-                {
-                  self.activateParentLayer();
-                }
-              });
+              self.activateParentLayer();
             }
-            else
-            {
-              self.activateBaseLayer();
-              // save reference in parent layer
-              if (layer.parent) {
-                self.activateParentLayer();
-              }
-            }
-            if(self.legendTable() === false)
-            {
-              self.getHTMLLegend(self.legend);
-            }
-            //add utfgrid if applicable
-            if (layer.utfgrid) {
-                self.activateUtfGridLayer();
-            }
-
+          });
         }
+        else
+        {
+          self.activateBaseLayer();
+          // save reference in parent layer
+          if (layer.parent) {
+            self.activateParentLayer();
+          }
+        }
+        if(self.legendTable() === false)
+        {
+          self.getHTMLLegend(self.legend);
+        }
+        //add utfgrid if applicable
+        if (layer.utfgrid) {
+            self.activateUtfGridLayer();
+        }
+
+      }
     };
 
     // called from activateLayer
-    self.activateBaseLayer = function() {
-        var layer = this;
+    self.activateBaseLayer = function()
+    {
+      var layer = this;
 
-        app.addLayerToMap(layer);
+      app.addLayerToMap(layer);
+      if(layer.type === 'WMST' && self.timeSteps.length > 0)
+      {
+        // save reference in parent layer
+        var now_date = new Date();
+        var startingEpochDatetime = now_date.getTime();
+        var closest_date_ndx = bisect_left(Math.round(startingEpochDatetime / 1000), layer.timeSteps);
+        if (closest_date_ndx != -1)
+        {
+          var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
+          var wms_t = app.viewModel.timelineTool.get_wmst_date(closest_date);
 
-        //now that we now longer use the selectfeature control we can simply do the following
-        app.viewModel.activeLayers.unshift(layer);
+          layer.layer.mergeNewParams({'TIME':wms_t});
 
-        // set the active flag
-        layer.active(true);
-        layer.visible(true);
+        }
+      }
+      //now that we now longer use the selectfeature control we can simply do the following
+      app.viewModel.activeLayers.unshift(layer);
+
+      // set the active flag
+      layer.active(true);
+      layer.visible(true);
     };
 
     // called from activateLayer
