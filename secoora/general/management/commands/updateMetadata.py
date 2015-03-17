@@ -33,14 +33,14 @@ def buildTimeSteps(**kwargs):
       #just the base url.
       urlParse = urlparse(layer.metadatatable.getcap_link)
       baseUrl = "%s://%s%s" % (urlParse.scheme, urlParse.netloc, urlParse.path)
-      logger.debug("Base url: %s" % (baseUrl))
+      logger.debug("Layer: %s Base url: %s" % (layer.name, baseUrl))
       try:
         wms = WebMapService(baseUrl)
       except (HTTPError, URLError, Exception) as e:
         logger.exception(e)
       else:
         linksParts = layer.metadatatable.links.split(',')
-        logger.debug("Name: %s" % (linksParts[0]))
+        logger.debug("Layer: %s Name: %s" % (layer.name, linksParts[0]))
         if wms[linksParts[0]].timepositions is not None:
           timeSaveList = []
           #We want to validate we have real dates and not garbage dates or empty data as can be
