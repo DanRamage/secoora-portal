@@ -36,7 +36,7 @@ def buildTimeSteps(**kwargs):
       logger.debug("Base url: %s" % (baseUrl))
       try:
         wms = WebMapService(baseUrl)
-      except (HTTPError,URLError,Exception) as e:
+      except (HTTPError, URLError, Exception) as e:
         logger.exception(e)
       else:
         linksParts = layer.metadatatable.links.split(',')
