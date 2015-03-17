@@ -4,7 +4,7 @@ from data_manager.models import *
 from owslib.wms import WebMapService
 from urlparse import urlparse
 from datetime import datetime,timedelta
-from urllib2 import HTTPError
+from urllib2 import HTTPError,URLError
 import logging
 from settings_local import *
 import sys
@@ -36,7 +36,7 @@ def buildTimeSteps(**kwargs):
       logger.debug("Base url: %s" % (baseUrl))
       try:
         wms = WebMapService(baseUrl)
-      except HTTPError,e:
+      except (HTTPError,URLError,Exception) as e:
         logger.exception(e)
       else:
         linksParts = layer.metadatatable.links.split(',')
