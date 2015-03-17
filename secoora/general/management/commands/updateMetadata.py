@@ -22,7 +22,7 @@ metadataList = ['abstract',
 def buildTimeSteps(**kwargs):
   logger.info("Begin buildTimeSteps")
   for layer in Layer.objects.all().order_by('name'):
-    print "Layer: %s start processing" % (layer.name)
+    logger.debug("Layer: %s start processing" % (layer.name))
     #Make sure we've got a metadata object, and that metadata object has a getCapaabilities link, and
     #we've got a links entry.
     if(layer.metadatatable and
@@ -59,12 +59,12 @@ def buildTimeSteps(**kwargs):
                 logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
 
           layer.metadatatable.time_steps = ','.join(timeSaveList)
-          logger.debug("Number of time steps: %d" % (len(timeSaveList)))
+          logger.debug("Layer: %s Number of time steps: %d" % (layer.name, len(timeSaveList)))
           layer.metadatatable.save()
           del timeSaveList[:]
 
         else:
-          logger.debug("No time records.")
+          logger.debug("Layer: %s No time records." % (layer.name))
 
     logger.info("Layer: %s finished processing" % (layer.name))
 
