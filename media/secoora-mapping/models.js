@@ -381,7 +381,7 @@ function layerModel(options, parent) {
                   var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
                   var wms_t = app.viewModel.timelineTool.get_wmst_date(closest_date);
 
-                  layer.layer.mergeNewParams({'TIME':wms_t});
+                  this.layer.mergeNewParams({'TIME':wms_t});
 
                 }
                 self.activateBaseLayer();
