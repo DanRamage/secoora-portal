@@ -368,6 +368,9 @@ function layerModel(options, parent) {
       if (!layer.active() && layer.type !== 'placeholder')
       {
         //app.addLayerToMap(layer, isVisible);
+        //DWR 2015-03-17
+        //For WMST layers that have time steps, we need to first query the
+        //time steps available for the layer before enabling the layer.
         if(self.type === 'WMST' && self.timeSteps.length === 0)
         {
           self.get_time_increments(function(results)
@@ -407,6 +410,9 @@ function layerModel(options, parent) {
       var layer = this;
 
       app.addLayerToMap(layer);
+      //DWR 2015-03-17
+      //For WMST layers that have time steps, we need to provide the initial
+      //time value to use.
       if(layer.type === 'WMST' && self.timeSteps.length > 0)
       {
         // save reference in parent layer
