@@ -15,7 +15,7 @@ var timelineToolModel = function(viewModel) {
   self.get_display_date = function(dateObj)
   {
       var display_date = dateObj.getUTCFullYear().toString() + "-" +
-      ("0" + dateObj.getUTCMonth() + 1).slice(-2) + "-" +
+      ("0" + (dateObj.getUTCMonth() + 1)).slice(-2) + "-" +
       ("0" + dateObj.getUTCDate()).slice(-2) + " " +
       ("0" + dateObj.getUTCHours()).slice(-2) + ":" +
       ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00";
@@ -24,7 +24,7 @@ var timelineToolModel = function(viewModel) {
   self.get_wmst_date = function(dateObj)
   {
     var wmst_date = dateObj.getUTCFullYear().toString() + "-" +
-      ("0" + dateObj.getUTCMonth() + 1).slice(-2) + "-" +
+      ("0" + (dateObj.getUTCMonth() + 1)).slice(-2) + "-" +
       ("0" + dateObj.getUTCDate()).slice(-2) + "T" +
       ("0" + dateObj.getUTCHours()).slice(-2) + ":" +
       ("0" + dateObj.getUTCMinutes()).slice(-2) + ":00.000Z"
