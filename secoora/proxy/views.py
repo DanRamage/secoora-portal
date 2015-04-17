@@ -62,7 +62,8 @@ def getLegendJSON(request, url):
 
 def restQuery(request, url):
     #logger = logging.getLogger(__name__)
-    logger.info("Begin restQuery")
+    if logger:
+      logger.info("Begin restQuery")
     #logger.debug("Request: %s" % (request))
     conn = httplib2.Http()
     # optionally provide authentication for server
@@ -80,7 +81,11 @@ def restQuery(request, url):
             logger.exception(e)
         else:
           if(results.status_code == 200):
+            if logger:
+              logger.info("End restQuery")
             return HttpResponse(results.text)
+          if logger:
+            logger.info("End restQuery")
           return(HttpResponse(''))
 
     elif request.method == "POST":
@@ -93,6 +98,11 @@ def restQuery(request, url):
         if logger:
           logger.debug(resp)
           logger.debug("Content: %s" %(content))
+        if logger:
+          logger.info("End restQuery")
         return HttpResponse(content, content_type=resp['content-type'])
+
+    if logger:
+      logger.info("End restQuery")
 
     return(HttpResponse('Request could not be processed.'))
