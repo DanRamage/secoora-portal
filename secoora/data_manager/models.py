@@ -335,8 +335,8 @@ class Layer(models.Model):
     metadatatable = models.OneToOneField('Metadata', related_name='layer', blank=True, null=True)
     provider = models.ForeignKey('Provider', blank=True, null=True)
 
-    status_platform_handle = models.CharField(max_length=100)
-    status_field = models.CharField(max_length=500)
+    status_platform_handle = models.CharField(max_length=100, blank=True, null=True)
+    status_field = models.CharField(max_length=500, blank=True, null=True)
 
     def __unicode__(self):
         return unicode('%s' % (self.name))
