@@ -40,6 +40,8 @@ def update_status():
                        (status_rec.platform_handle,
                         status_rec.begin_date,
                         status_rec.reason))
+
+    xeniaDb.disconnect()
   else:
     if logger:
       logger.error("Failed to connect to xenia DB")
