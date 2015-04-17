@@ -27,7 +27,7 @@ def update_status():
     if logger:
       logger.debug("Connected to xenia DB")
 
-    for layer in Layer.objects.filter(status_platform_handle__handle_isnull=False)\
+    for layer in Layer.objects.filter(status_platform_handle___isnull=False)\
       .all().order_by('name'):
       if logger:
         logger.debug("Layer: %s status platform: %s" % (layer.name, layer.status_platform_handle))
