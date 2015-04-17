@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 def update_status():
 
-  xeniaDb = xeniaAlchemy()
+  xeniaDb = xeniaAlchemy(logger=logger)
   if xeniaDb.connectDB(databaseType='postgres',
                         dbUser=XENIA_USER,
                         dbPwd=XENIA_PWD,
