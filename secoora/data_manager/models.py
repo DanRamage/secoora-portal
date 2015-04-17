@@ -335,6 +335,9 @@ class Layer(models.Model):
     metadatatable = models.OneToOneField('Metadata', related_name='layer', blank=True, null=True)
     provider = models.ForeignKey('Provider', blank=True, null=True)
 
+    status_platform_handle = models.CharField(max_length=100)
+    status_field = models.CharField(max_length=500)
+
     def __unicode__(self):
         return unicode('%s' % (self.name))
 
@@ -1101,23 +1104,3 @@ class pycsw_records(models.Model):
     db_table = 'records'
 
 
-"""
-class DataNeed(models.Model):
-    name = models.CharField(max_length=100)
-    archived = models.BooleanField(default=False)
-    description = models.TextField(blank=True, null=True)
-    source = models.CharField(max_length=255, blank=True, null=True)
-    status = models.TextField(blank=True, null=True)
-    contact = models.CharField(max_length=255, blank=True, null=True)
-    contact_email = models.CharField(max_length=255, blank=True, null=True)
-    expected_date = models.CharField(max_length=255, blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    themes = models.ManyToManyField("Theme", blank=True, null=True)
-
-    @property
-    def html_name(self):
-        return self.name.lower().replace(' ', '-')
-    
-    def __unicode__(self):
-        return unicode('%s' % (self.name))
-"""
