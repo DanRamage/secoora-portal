@@ -25,16 +25,19 @@ def update_status():
     if logger:
       logger.debug("Connected to xenia DB")
 
-    platform_handle = "uf.uf_eastcoast.service"
-    recs = xeniaDb.session.query(platform_status)\
-        .filter(platform_status.platform_handle == platform_handle)\
-    .all()
-    for status_rec in recs:
+    for layer in Layer.objects.filter(status_platform_handle__handle_isnull=False)\
+      .all().order_by('name'):
       if logger:
-        logger.debug("Platform: %s Begin Data: %s Reason: %s" %\
-                     (status_rec.platform_handle,
-                      status_rec.begin_date,
-                      status_rec.reason))
+        logger.debug("Layer: %s status platform: %s" % (layer.name, layer.status_platform_handle))
+      recs = xeniaDb.session.query(platform_status)\
+          .filter(platform_status.platform_handle == layer.status_platform_handle)\
+      .all()
+      for status_rec in recs:
+        if logger:
+          logger.debug("Platform: %s Begin Data: %s Reason: %s" %\
+                       (status_rec.platform_handle,
+                        status_rec.begin_date,
+                        status_rec.reason))
   else:
     if logger:
       logger.error("Failed to connect to xenia DB")
