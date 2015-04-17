@@ -8,6 +8,7 @@ import logging.config
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 from data_manager.models import *
+from settings_local import *
 
 from xeniaSQLAlchemy import xeniaAlchemy,platform_status
 
