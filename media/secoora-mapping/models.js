@@ -196,7 +196,7 @@ function layerModel(options, parent) {
           if(layer.status_reason.length)
           {
             info_button_status = "class: info_status_layer_issue";
-            return
+            return;
           }
         });
       }
