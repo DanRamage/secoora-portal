@@ -593,7 +593,7 @@
                                                             </a>
                                                         </li>
                                                         <li data-bind="foreach: activeInfoLayer().subLayers">
-                                                            <a data-bind="click: toggleSublayerDescription">
+                                                            <a data-bind="click: toggleSublayerDescription ,css: {'info_status_layer_issue' : layerHasStatus()}">
                                                                 <span data-bind="text: name"></span>
                                                                 <br>
                                                             </a>
