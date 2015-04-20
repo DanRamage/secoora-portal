@@ -497,7 +497,8 @@ class Layer(models.Model):
                 'fill_opacity': layer.vector_fill,
                 'graphic': layer.vector_graphic,
                 'opacity': layer.opacity,
-                'openlayers_options': layer.openlayers_options
+                'openlayers_options': layer.openlayers_options,
+                'status_field': layer.status_field
             }
             for layer in self.sublayers.all()
         ]
@@ -529,7 +530,9 @@ class Layer(models.Model):
             'fill_opacity': self.vector_fill,
             'graphic': self.vector_graphic,
             'opacity': self.opacity,
-            'openlayers_options': layer.openlayers_options
+            'openlayers_options': layer.openlayers_options,
+            'status_field': layer.status_field
+
         }
         return layers_dict
 
