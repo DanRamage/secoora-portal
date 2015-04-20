@@ -185,7 +185,28 @@ function layerModel(options, parent) {
             self.infoActive(false);
         }
     });
-
+    //DWR 2015-04-20
+    self.infoStatus = function()
+    {
+      //Default is normal info button, black background.
+      var info_button_status = "class: info_status_normal";
+      if(self.subLayers.length)
+      {
+        $.each(self.subLayers, function (nd, layer) {
+          if(layer.status_reseason.length)
+          {
+            info_button_status = "class: info_status_layer_issue";
+            return
+          }
+        });
+      }
+      //Layer may not have sublayers.
+      else if(layer.status_reseason.length)
+      {
+        info_button_status = "class: info_status_layer_issue";
+      }
+      return(info_button_status);
+    };
     // is the layer a checkbox layer
     self.isCheckBoxLayer = ko.observable(false);
     if (self.type === 'checkbox') {
