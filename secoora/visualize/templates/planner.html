@@ -257,7 +257,7 @@
                                                                     <li class="layer" data-bind="css: { nosublayers: subLayers.length === 0 }">
                                                                         <div class="btn-group btn-group-layer" data-bind="css: {'open': showSublayers() }, attr: {name: name}">
                                                                             <a class="btn btn-info-sign" data-bind="click: toggleDescription, css: { 'active': infoActive() }">
-                                                                                <i class="icon-info-sign icon-large"></i>
+                                                                                <i class="icon-info-sign icon-large" data-bind="attr: {$parent.infoStatus()}"></i>
                                                                             </a>
 
                                                                             <a class="btn btn-layer" data-bind="css: { 'active': active(), 'not-active': ! active() }, click: toggleActive">
