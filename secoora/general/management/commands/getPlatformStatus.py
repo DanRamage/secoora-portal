@@ -16,6 +16,8 @@ from xeniaSQLAlchemy import xeniaAlchemy,platform_status
 logger = logging.getLogger(__name__)
 
 def update_status():
+  if logger:
+    logger.debug("Starting update_status.")
 
   xeniaDb = xeniaAlchemy(logger=logger)
 
@@ -34,6 +36,7 @@ def update_status():
       recs = xeniaDb.session.query(platform_status)\
           .filter(platform_status.platform_handle == layer.status_platform_handle)\
       .all()
+      layer_has_status = False
       for status_rec in recs:
         if logger:
           logger.debug("Platform: %s Begin Data: %s Reason: %s" %\
@@ -45,12 +48,22 @@ def update_status():
           else:
             layer.status_field = status_rec.reason
           layer.save()
+          layer_has_status = True
+      if not layer_has_status:
+        #Check to see if the layer has an older status, if it does, null it out.
+        if len(layer.status_field):
+          if logger:
+            logger.debug("Clearing previous status.")
+          layer.status_field = None
+          layer.save()
 
     xeniaDb.disconnect()
   else:
     if logger:
       logger.error("Failed to connect to xenia DB")
 
+  if logger:
+    logger.debug("Finished update_status.")
   return
 
 class Command(BaseCommand):
