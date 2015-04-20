@@ -193,7 +193,7 @@ function layerModel(options, parent) {
       if(self.subLayers.length)
       {
         $.each(self.subLayers, function (nd, layer) {
-          if(layer.status_reseason.length)
+          if(layer.status_reason.length)
           {
             info_button_status = "class: info_status_layer_issue";
             return
@@ -201,7 +201,7 @@ function layerModel(options, parent) {
         });
       }
       //Layer may not have sublayers.
-      else if(layer.status_reseason.length)
+      else if(self.status_reason.length)
       {
         info_button_status = "class: info_status_layer_issue";
       }
