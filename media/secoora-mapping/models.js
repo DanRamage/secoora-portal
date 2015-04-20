@@ -189,13 +189,13 @@ function layerModel(options, parent) {
     self.infoStatus = function()
     {
       //Default is normal info button, black background.
-      var info_button_status = "class: info_status_normal";
+      var info_button_status = "info_status_normal";
       if(self.subLayers.length)
       {
         $.each(self.subLayers, function (nd, layer) {
           if(layer.status_reason.length)
           {
-            info_button_status = "class: info_status_layer_issue";
+            info_button_status = "info_status_layer_issue";
             return;
           }
         });
@@ -203,7 +203,7 @@ function layerModel(options, parent) {
       //Layer may not have sublayers.
       else if(self.status_reason.length)
       {
-        info_button_status = "class: info_status_layer_issue";
+        info_button_status = "info_status_layer_issue";
       }
       return(info_button_status);
     };
