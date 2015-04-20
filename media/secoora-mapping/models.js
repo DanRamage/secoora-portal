@@ -56,6 +56,7 @@ function layerModel(options, parent) {
     self.defaultOpacity = options.opacity || 0.5;
     self.opacity = ko.observable(self.defaultOpacity);
     self.graphic = options.graphic || null;
+    self.status_reason = options.status_reason || "";
 
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
