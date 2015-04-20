@@ -1678,17 +1678,57 @@ function viewModel() {
             } else {
                 return self.activeInfoSublayer().overview;
             }
-        } else if (self.activeInfoLayer() ) {
+        }
+        else if (self.activeInfoLayer() ) {
             if ( self.activeInfoLayer().overview === null ) {
                 return '';
             } else {
                 return self.activeInfoLayer().overview;
             }
-        } else {
+        }
+        else {
             return '';
         }
     };
-
+    // DWR 2015-04-20
+    self.layerHasStatus = function()
+    {
+      var has_status = false;
+      if ( self.activeInfoSublayer() )
+      {
+        if(self.activeInfoSublayer().status_field.length)
+        {
+          has_status = true;
+        }
+      }
+      else if(self.activeInfoLayer() )
+      {
+        if(self.activeInfoLayer().status_field.length)
+        {
+          has_status = true;
+        }
+      }
+      return(has_status);
+    };
+    self.getLayerOverviewStatus = function()
+    {
+      var status_field = null;
+      if ( self.activeInfoSublayer() )
+      {
+        if(self.activeInfoSublayer().status_field.length)
+        {
+          status_field = self.activeInfoSublayer().status_field;
+        }
+      }
+      else if(self.activeInfoLayer() )
+      {
+        if(self.activeInfoLayer().status_field.length)
+        {
+          status_field = self.activeInfoLayer().status_field;
+        }
+      }
+      return(status_field);
+    };
     self.activeKmlLink = function() {
         if ( self.activeInfoSublayer() ) {
             return self.activeInfoSublayer().kml;

@@ -605,10 +605,10 @@
                                                 <span><a href="#" style="margin-left: 10px; opacity: .8;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> </span>
                                             </div>
                                             <div id="overview-overlay-text" style="margin-top: 5px">
-                                                <!-- ko if: status_field.length > 0 -->
+                                                <!-- ko if: layerHasStatus -->
                                                 <div class="info_status_layer_issue">
                                                   Status:
-                                                  <span data-bind="text: status_field"></span>
+                                                  <span data-bind="text: getLayerOverviewStatus()"></span>
                                                 </div>
                                                 <!-- /ko -->
                                                 <span class="text" data-bind="text: getOverviewText()" style="white-space: pre-wrap"></span>
