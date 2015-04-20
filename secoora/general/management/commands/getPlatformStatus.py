@@ -28,7 +28,7 @@ def update_status():
       logger.debug("Connected to xenia DB")
 
     for layer in Layer.objects.filter(status_platform_handle__isnull=False)\
-      .all().order_by('name'):
+                  .all().order_by('name'):
       if logger:
         logger.debug("Layer: %s status platform: %s" % (layer.name, layer.status_platform_handle))
       recs = xeniaDb.session.query(platform_status)\
@@ -40,6 +40,11 @@ def update_status():
                        (status_rec.platform_handle,
                         status_rec.begin_date,
                         status_rec.reason))
+          if status_rec.reason is None or len(status_rec.reason) == 0:
+            layer.status_field = "Service temporarily unavailable."
+          else:
+            layer.status_field = status_rec.reason
+          layer.save()
 
     xeniaDb.disconnect()
   else:
