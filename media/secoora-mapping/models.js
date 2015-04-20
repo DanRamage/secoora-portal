@@ -190,7 +190,7 @@ function layerModel(options, parent) {
     self.infoStatus = function()
     {
       //Default is normal info button, black background.
-      var info_button_status = "info_status_normal";
+      var info_button_status = "";
       if(self.subLayers.length)
       {
         $.each(self.subLayers, function (nd, layer) {
