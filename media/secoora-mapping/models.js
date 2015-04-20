@@ -56,7 +56,7 @@ function layerModel(options, parent) {
     self.defaultOpacity = options.opacity || 0.5;
     self.opacity = ko.observable(self.defaultOpacity);
     self.graphic = options.graphic || null;
-    self.status_reason = options.status_reason || "";
+    self.status_field = options.status_field || "";
 
     self.sharedBy = ko.observable(false);
     self.shared = ko.observable(false);
@@ -194,7 +194,7 @@ function layerModel(options, parent) {
       if(self.subLayers.length)
       {
         $.each(self.subLayers, function (nd, layer) {
-          if(layer.status_reason.length)
+          if(layer.status_field.length)
           {
             info_button_status = "info_status_layer_issue";
             return;
@@ -202,7 +202,7 @@ function layerModel(options, parent) {
         });
       }
       //Layer may not have sublayers.
-      else if(self.status_reason.length)
+      else if(self.status_field.length)
       {
         info_button_status = "info_status_layer_issue";
       }
