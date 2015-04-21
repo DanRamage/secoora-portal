@@ -127,9 +127,9 @@ var defaultGuideOverrides = {
         }
         //DWR
         //The right toolbar.
-        else if ($(this).data('idx') === 6)
+        else if ($(this).data('idx') === 5)
         {
-          $('#pageGuideMessage').height(225);
+          $('#pageGuideMessage').height(250);
         }
 
         else {
