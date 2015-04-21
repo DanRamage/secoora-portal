@@ -51,7 +51,7 @@ def update_status():
           layer_has_status = True
       if not layer_has_status:
         #Check to see if the layer has an older status, if it does, null it out.
-        if len(layer.status_field):
+        if layer.status_field is not None and len(layer.status_field):
           if logger:
             logger.debug("Clearing previous status.")
           layer.status_field = None
