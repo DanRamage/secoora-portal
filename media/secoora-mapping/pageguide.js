@@ -31,12 +31,14 @@ var defaultGuide = {
       direction: 'top',
       arrow: {offsetX: 65, offsetY: 10}
     },
+    /*
     {
       target: '#polygonQueryTab',
       content: $('#help-text-polygonQueryTab').html(),
       direction: 'top',
       arrow: {offsetX: 65, offsetY: 10}
     },
+    */
     {
       target: '#topics-frame',
       content: $('#help-text-topicsButtons').html(),
