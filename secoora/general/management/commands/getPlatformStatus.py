@@ -44,9 +44,9 @@ def update_status():
                         status_rec.begin_date,
                         status_rec.reason))
           if status_rec.reason is None or len(status_rec.reason) == 0:
-            layer.status_field = "Service temporarily unavailable."
+            layer.status_field = "Start of Outage: %s Service temporarily unavailable." % (status_rec.begin_date.strftime("%Y-%m-%d %H:%M"))
           else:
-            layer.status_field = status_rec.reason
+            layer.status_field = "Start of Outage: %s %s" % (status_rec.begin_date.strftime("%Y-%m-%d %H:%M"),status_rec.reason)
           layer.save()
           layer_has_status = True
       if not layer_has_status:
