@@ -502,9 +502,9 @@ class Layer(models.Model):
             }
             for layer in self.sublayers.all()
         ]
-        status_field = ""
+        status_field = self.status_field
         if len(sublayers) > 0:
-          status_field = self.status_field
+          status_field = ""
         layers_dict = {
             'id': self.id,
             'name': self.name,
