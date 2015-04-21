@@ -502,6 +502,9 @@ class Layer(models.Model):
             }
             for layer in self.sublayers.all()
         ]
+        status_field = ""
+        if len(sublayers) > 0:
+          status_field = self.status_field
         layers_dict = {
             'id': self.id,
             'name': self.name,
@@ -531,7 +534,7 @@ class Layer(models.Model):
             'graphic': self.vector_graphic,
             'opacity': self.opacity,
             'openlayers_options': layer.openlayers_options,
-            'status_field': layer.status_field
+            'status_field': status_field
 
         }
         return layers_dict
