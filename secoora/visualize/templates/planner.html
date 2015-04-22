@@ -604,8 +604,10 @@
                                                     </ul>
                                                 </span>
                                                 <span class="title" data-bind="text: activeInfoLayer().name, visible: activeInfoLayer() && (!activeInfoLayer().subLayers || activeInfoLayer().subLayers.length == 0)"></span>
+                                                <!-- ko if: getLayerTime().length -->
+                                                <span>Layer Data Time: </span>
                                                 <span data-bind="text: getLayerTime()"></span>
-
+                                                <!-- /ko -->
                                                 <!--<span class="caret" style="display:none" data-bind="visible: activeInfoLayer().subLayers"></span>-->
                                                 <span><a href="#" style="margin-left: 10px; opacity: .8;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> </span>
                                             </div>
