@@ -2309,10 +2309,8 @@ function viewModel() {
         self.usernameError(false);
     };
 
-    self.layerloadcounter = function(count)
-    {
+    self.layerloadcounter = ko.observable(0);
 
-    };
     return self;
 } //end viewModel
 
