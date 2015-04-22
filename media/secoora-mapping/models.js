@@ -63,6 +63,7 @@ function layerModel(options, parent) {
 
     self.requestTime = ko.observable("");
     self.timeSteps = [];
+    self.currentTimeNdx = -1;
 
     self.restLegend = [];
 
@@ -1729,6 +1730,24 @@ function viewModel() {
       }
       return(status_field);
     };
+    self.getLayerTime = function()
+    {
+      if ( self.activeInfoSublayer() )
+      {
+        if(self.activeInfoSublayer().requestTime().length)
+        {
+          return(self.activeInfoSublayer().requestTime());
+        }
+      }
+      else if(self.activeInfoLayer() )
+      {
+        if(self.activeInfoLayer().requestTime().length)
+        {
+          return(self.activeInfoSublayer().requestTime());
+        }
+      }
+      return("");
+    };
     self.activeKmlLink = function() {
         if ( self.activeInfoSublayer() ) {
             return self.activeInfoSublayer().kml;
@@ -1887,9 +1906,8 @@ function viewModel() {
               max: layer.timeSteps.length - 1,
               step: 1,
               slide: function( event, ui ) {
+                layer.currentTimeNdx = ui.value;
                 var val = layer.timeSteps[ui.value];
-                //layer.selectedTime = val;
-                //$popover.find("#time_selected").val(val);
                 layer.requestTime(val);
 
               }
@@ -1898,23 +1916,10 @@ function viewModel() {
             {
               //Get the index of our last selected time so we can then
               //set the slider position.
-              var init_ndx = layer.timeSteps.indexOf(layer.requestTime());
-              $( "#time_slider").slider("option", "value", init_ndx);
-              //layer.requestTime(layer.selectedTime);
-              //$popover.find("#time_selected").val(layer.selectedTime);
+              layer.currentTimeNdx = layer.timeSteps.indexOf(layer.requestTime());
+              $( "#time_slider").slider("option", "value", layer.currentTimeNdx);
             }
 
-            /*
-            $( "#time_slider" ).slider( "option", "min", 0 );
-            $( "#time_slider" ).slider( "option", "max", layer.timeSteps.length - 1 );
-            $( "#time_slider" ).slider( "option", "step", 1 );
-            $( "#time_slider" ).on( "slidechange", function( event, ui ) {
-              var val = layer.timeSteps[ui.value];
-              layer.selectedTime = val;
-              $popover.find("#time_selected").val(val);
-
-            });
-            */
             $popover.show().position({
                 "my": "center top",
                 "at": "center bottom",
