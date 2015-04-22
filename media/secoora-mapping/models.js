@@ -1342,18 +1342,6 @@ function viewModel() {
       });
       self.updateScrollBars();
     });
-    /*
-    self.findQueryResults = function arrayObjectIndexOf(myArray, searchTerm, property)
-    {
-      for(var i = 0, len = myArray.length; i < len; i++)
-      {
-        if (myArray[i][property] === searchTerm)
-        {
-          return i;
-        }
-      }
-      return -1;
-    }*/
 
     self.aggregatedAttributes = ko.observable(false);
     self.aggregatedAttributesWidth = ko.observable('280px');
@@ -2321,6 +2309,10 @@ function viewModel() {
         self.usernameError(false);
     };
 
+    self.layerloadcounter = function(count)
+    {
+
+    };
     return self;
 } //end viewModel
 
