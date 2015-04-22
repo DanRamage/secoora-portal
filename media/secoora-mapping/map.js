@@ -657,88 +657,10 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
 		  }
 
                   //This is the handler for the return click data.
-/*
-                  resultarrived : function(responseText, xy)
-                  {
-                    app.viewModel.featureRequested(false);
-                    app.viewModel.attributeDataArray.remove(function(layerData) {
-                      if(layerData.title == layer.name)
-                      {
-                        return(true);
-                      }
-                      return(false);
-                    });
-
-	            var jsonFormat = new OpenLayers.Format.JSON();
-                    var returnJSON = jsonFormat.read(responseText.text);
-                    //Activate the Identify tab.
-                    $('#identifyTab').tab('show');
-
-                    var layerDataObj = {title : layer.name, attributes: []};
-                    if('features' in returnJSON && returnJSON['features'].length)
-                    {
-                      var attributeObjs = layerDataObj.attributes;
-                      $.each(returnJSON['features'], function(index, feature)
-                      {
-                        if(index == 0)
-                        {
-                          var attributeList = feature['attributes'];
-                          if('fields' in returnJSON)
-                          {
-                            $.each(returnJSON['fields'], function(fieldNdx, field)
-                            {
-                              attributeObjs.push({'display' : field.alias,
-                                                  'data' : attributeList[field.name]});
-                            });
-                          }
-                          else if('fieldAliases' in returnJSON)
-                          {
-                            $.each(returnJSON['fieldAliases'], function(fieldNdx, field)
-                            {
-                              attributeObjs.push({'display' : (field != "null") ? field : fieldNdx,
-                                                  'data' : attributeList[fieldNdx]});
-                            });
-
-                          }
-                          return;
-                        }
-                      });
-                    }
-
-                   else if( 'error' in returnJSON)
-                    {
-                      layerDataObj.attributes.push({'display' : 'Error',
-                                          'data' : returnJSON['error']['message']});
-                    }
-                    else
-                    {
-                      layerDataObj.attributes.push({'display' : '',
-                                          'data' : 'No records found.'});
-
-                    }
-                    app.viewModel.attributeDataArray.push(layerDataObj);
-                    app.viewModel.updateScrollBars();
-                  }
-	
-*/
-
-                //},
                 },
 
-		//var test3 = "http://129.252.37.120/proxy/rest_query/?url="+layer.url;
 		layerUrls : [layer.url],
-                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&TRANSPARENT=true&STYLES=boxfill%2Frainbow&COLORSCALERANGE=19.180286%2C37.85561&NUMCOLORBANDS=250&LOGSCALE=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353&X=389&Y=97&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400',
-                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&TRANSPARENT=true&STYLES=boxfill%2Frainbow&COLORSCALERANGE=19.180286%2C37.85561&NUMCOLORBANDS=250&LOGSCALE=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
-                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&STYLES=boxfill%2Frainbow&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
-                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
-                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml&BBOX='+currentBBOX,
                 url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
-                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml&SRS=EPSG%3A4326&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
-                //url : layer.url+'TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&FORMAT=text/xml&INFO_FORMAT=text/xml',
-                //url : "http://129.252.37.120/proxy/rest_query/?url="+layer.url,
-                //url : test3,
-                //url : layer.url,
-                //layerid : layer.arcgislayers,
                 sr : 102113,
                 clickTolerance: 3,
                 layers: [layer.layer],
