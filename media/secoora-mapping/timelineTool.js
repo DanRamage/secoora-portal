@@ -42,10 +42,15 @@ var timelineToolModel = function(viewModel) {
       //var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       //var new_date = new Date(adjusted);
       var slider_text = "Now";
-      if(ui.value != 0)
+      if(ui.value > 0)
       {
-        slider_text = '+' + ui.value + ' Hour(s) yip';
+        slider_text = '+' + ui.value + ' Hour(s)';
       }
+      else if(ui.value < 0)
+      {
+        slider_text = ui.value + ' Hour(s)';
+      }
+      
       
       //self.selectedDatetime(self.get_display_date(new_date));
       self.selectedDatetime(slider_text);
@@ -61,6 +66,9 @@ var timelineToolModel = function(viewModel) {
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
             var wms_t = self.get_wmst_date(closest_date);
+
+            //JTC 2015-04-07
+            layer.closestTime(wms_t);
 
             layer.layer.mergeNewParams({'TIME':wms_t,
                                         'salt': Math.random()});
