@@ -107,9 +107,12 @@
           color: rgb(184,00,00);
         }
 
-          #overview-overlay {
-            z-index: 1020;
-          }
+        #overview-overlay {
+          z-index: 1020;
+        }
+        .layer-time-field {
+          font-size: 14px;
+        }
         </style>
 
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{MEDIA_URL}}/secoora-mapping/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -605,8 +608,10 @@
                                                 </span>
                                                 <span class="title" data-bind="text: activeInfoLayer().name, visible: activeInfoLayer() && (!activeInfoLayer().subLayers || activeInfoLayer().subLayers.length == 0)"></span>
                                                 <!-- ko if: getLayerTime().length -->
-                                                <span>Layer Data Time: </span>
-                                                <span data-bind="text: getLayerTime()"></span>
+                                                <div class="layer-time-field">
+                                                  <span>Layer Data Time: </span>
+                                                  <span data-bind="text: getLayerTime()"></span>
+                                                </div>
                                                 <!-- /ko -->
                                                 <!--<span class="caret" style="display:none" data-bind="visible: activeInfoLayer().subLayers"></span>-->
                                                 <span><a href="#" style="margin-left: 10px; opacity: .8;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> </span>
