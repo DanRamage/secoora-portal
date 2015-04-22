@@ -1723,16 +1723,16 @@ function viewModel() {
     {
       if ( self.activeInfoSublayer() )
       {
-        if(self.activeInfoSublayer().requestTime().length)
+        if(self.activeInfoSublayer().closestTime().length)
         {
-          return(self.activeInfoSublayer().requestTime());
+          return(self.activeInfoSublayer().closestTime());
         }
       }
       else if(self.activeInfoLayer() )
       {
-        if(self.activeInfoLayer().requestTime().length)
+        if(self.activeInfoLayer().closestTime().length)
         {
-          return(self.activeInfoSublayer().requestTime());
+          return(self.activeInfoSublayer().closestTime());
         }
       }
       return("");
