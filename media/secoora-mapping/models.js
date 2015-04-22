@@ -64,6 +64,7 @@ function layerModel(options, parent) {
     self.requestTime = ko.observable("");
     self.timeSteps = [];
     self.currentTimeNdx = -1;
+    self.closestTime = ko.observable("");
 
     self.restLegend = [];
 
