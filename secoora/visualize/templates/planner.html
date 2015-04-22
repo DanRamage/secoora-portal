@@ -585,9 +585,6 @@
                                                         <span data-bind="text: activeInfoSublayer().name ? activeInfoSublayer().name : activeInfoLayer().name"></span>
                                                         <span class="caret"></span>
                                                     </a>
-                                                    <div>
-                                                      <span data-bind="text: getLayerTime()"></span>
-                                                    </div>
                                                     <ul id="overview-overlay-dropdown" class="dropdown-menu">
                                                         <li>
                                                             <a data-bind="click: activeInfoLayer().toggleSublayerDescription">
@@ -603,6 +600,8 @@
                                                     </ul>
                                                 </span>
                                                 <span class="title" data-bind="text: activeInfoLayer().name, visible: activeInfoLayer() && (!activeInfoLayer().subLayers || activeInfoLayer().subLayers.length == 0)"></span>
+                                                <span data-bind="text: getLayerTime()"></span>
+
                                                 <!--<span class="caret" style="display:none" data-bind="visible: activeInfoLayer().subLayers"></span>-->
                                                 <span><a href="#" style="margin-left: 10px; opacity: .8;" class="btn btn-mini pull-right close" data-bind="click: closeDescription"> x </a> </span>
                                             </div>
