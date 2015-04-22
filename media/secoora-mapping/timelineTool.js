@@ -42,14 +42,11 @@ var timelineToolModel = function(viewModel) {
       //var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
       //var new_date = new Date(adjusted);
       var slider_text = "Now";
-      if(ui.value > 0)
+      if(ui.value != 0)
       {
-        slider_text = '+' + ui.value + ' Hour(s)';
+        slider_text = '+' + ui.value + ' Hour(s) yip';
       }
-      else if(ui.value < 0)
-      {
-        slider_text = ui.value + ' Hour(s)';
-      }
+      
       //self.selectedDatetime(self.get_display_date(new_date));
       self.selectedDatetime(slider_text);
     },

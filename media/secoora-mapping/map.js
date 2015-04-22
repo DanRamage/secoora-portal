@@ -321,6 +321,17 @@ app.init = function () {
         app.viewModel.updateMarker();
     });
 
+
+    // increment counter for WMS loads
+
+    //var layerloadcounter = 0; 
+
+    //map.events.register("loadstart", null, function () {
+    //  layerloadcounter++;
+    //});
+
+
+
 };
 
 app.addLayerToMap = function(layer, isVisible) {
@@ -542,18 +553,22 @@ app.addLayerToMap = function(layer, isVisible) {
                     isBaseLayer: false
                 }
             );
+
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
             //2013-02-20 DWR
-            //ADd the identify control.
+            //Add the identify control.
             app.map.addControl(layer.queryControl);
 
         }
+
         //DWR 2015-03-13
         //Added the WMST(time) as well as attempt to use the params
         //and options.
         else if (layer.type === 'WMS' || layer.type === 'WMST') {
+
+	    //OpenLayers.ProxyHost="\proxy\?url=";
 
             layer.layer = new OpenLayers.Layer.WMS(
                 layer.name,
@@ -561,9 +576,225 @@ app.addLayerToMap = function(layer, isVisible) {
                 layer.openlayers_options.params,
                 layer.openlayers_options.options
             );
+
+/*
+	    layer.layer.getURL = function () {
+		window.alert("test6");
+            }
+*/
+
+/*
+layer.layer.getFullRequestString = function(newParams, altUrl) {
+        var mapProjection = this.map.getProjectionObject();
+        var projectionCode = this.projection && this.projection.equals(mapProjection) ?
+            this.projection.getCode() :
+            mapProjection.getCode();
+        //var value = (projectionCode == "none") ? null : projectionCode;
+        var value = '4326';
+        if (parseFloat(this.params.VERSION) >= 1.3) {
+            this.params.CRS = value;
+        } else {
+            this.params.SRS = value;
+        }
+
+        if (typeof this.params.TRANSPARENT == "boolean") {
+            newParams.TRANSPARENT = this.params.TRANSPARENT ? "TRUE" : "FALSE";
+        }
+
+        return OpenLayers.Layer.Grid.prototype.getFullRequestString.apply(
+                                                    this, arguments);
+    }
+*/
+
+            //2013-02-20 DWR
+            //layer.layer.setVisibility(isVisible);
+            //app.map.addLayer(layer.layer);
+
+	    //JTC 2015-04-03
+	    /*
+	    layer.layer.events.register("loadstart", null, function () {
+	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
+	    });
+
+	    layer.layer.events.register("loadend", null, function () {
+	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+	    });
+
+	    layer.layer.events.register("loadcancel", null, function () {
+	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+	    });
+	   */
+
+	    //JTC 2015-03-08 point query
+
+
+
+	  /* 
+	    layer.queryControl = infoControls = {
+            click: new OpenLayers.Control.WMSGetFeatureInfo({
+                url: 'http://demo.boundlessgeo.com/geoserver/wms', 
+                title: 'Identify features by clicking',
+                layers: [water],
+                queryVisible: true
+            })
+        }; 
+*/
+
+           //var esriQueryFields = [];
+	   //var test3 = "http://129.252.37.120/proxy/rest_query/?url="+layer.url;
+	   //var test3 = "http://129.252.37.120/proxy/";
+	   var test3 = layer.url;
+      	   var currentBBOX = '-101.085752%2C13.163738%2C-67.537218%2C39.37353';
+
+           layer.queryControl = new OpenLayers.Control.WMSGetFeatureInfo(
+              {
+                eventListeners: {
+
+                  getfeatureinfo : function(evt)
+                  {
+                	//window.alert("test1");  
+                	window.alert(evt.text);  
+		  }
+
+                  //This is the handler for the return click data.
+/*
+                  resultarrived : function(responseText, xy)
+                  {
+                    app.viewModel.featureRequested(false);
+                    app.viewModel.attributeDataArray.remove(function(layerData) {
+                      if(layerData.title == layer.name)
+                      {
+                        return(true);
+                      }
+                      return(false);
+                    });
+
+	            var jsonFormat = new OpenLayers.Format.JSON();
+                    var returnJSON = jsonFormat.read(responseText.text);
+                    //Activate the Identify tab.
+                    $('#identifyTab').tab('show');
+
+                    var layerDataObj = {title : layer.name, attributes: []};
+                    if('features' in returnJSON && returnJSON['features'].length)
+                    {
+                      var attributeObjs = layerDataObj.attributes;
+                      $.each(returnJSON['features'], function(index, feature)
+                      {
+                        if(index == 0)
+                        {
+                          var attributeList = feature['attributes'];
+                          if('fields' in returnJSON)
+                          {
+                            $.each(returnJSON['fields'], function(fieldNdx, field)
+                            {
+                              attributeObjs.push({'display' : field.alias,
+                                                  'data' : attributeList[field.name]});
+                            });
+                          }
+                          else if('fieldAliases' in returnJSON)
+                          {
+                            $.each(returnJSON['fieldAliases'], function(fieldNdx, field)
+                            {
+                              attributeObjs.push({'display' : (field != "null") ? field : fieldNdx,
+                                                  'data' : attributeList[fieldNdx]});
+                            });
+
+                          }
+                          return;
+                        }
+                      });
+                    }
+
+                   else if( 'error' in returnJSON)
+                    {
+                      layerDataObj.attributes.push({'display' : 'Error',
+                                          'data' : returnJSON['error']['message']});
+                    }
+                    else
+                    {
+                      layerDataObj.attributes.push({'display' : '',
+                                          'data' : 'No records found.'});
+
+                    }
+                    app.viewModel.attributeDataArray.push(layerDataObj);
+                    app.viewModel.updateScrollBars();
+                  }
+	
+*/
+
+                //},
+                },
+
+		//var test3 = "http://129.252.37.120/proxy/rest_query/?url="+layer.url;
+		layerUrls : [layer.url],
+                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&TRANSPARENT=true&STYLES=boxfill%2Frainbow&COLORSCALERANGE=19.180286%2C37.85561&NUMCOLORBANDS=250&LOGSCALE=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353&X=389&Y=97&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400',
+                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&TRANSPARENT=true&STYLES=boxfill%2Frainbow&COLORSCALERANGE=19.180286%2C37.85561&NUMCOLORBANDS=250&LOGSCALE=false&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
+                //url : 'http://tds.secoora.org/ncWMS/wms?&LAYERS=sabgom%2Fsalt&ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&STYLES=boxfill%2Frainbow&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&QUERY_LAYERS=sabgom%2Fsalt&WIDTH=512&HEIGHT=400&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
+                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&SRS=EPSG%3A4326&INFO_FORMAT=text/xml&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
+                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml&BBOX='+currentBBOX,
+                url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
+                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml&SRS=EPSG%3A4326&BBOX=-101.085752%2C13.163738%2C-67.537218%2C39.37353',
+                //url : layer.url+'TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&FORMAT=text/xml&INFO_FORMAT=text/xml',
+                //url : "http://129.252.37.120/proxy/rest_query/?url="+layer.url,
+                //url : test3,
+                //url : layer.url,
+                //layerid : layer.arcgislayers,
+                sr : 102113,
+                clickTolerance: 3,
+                layers: [layer.layer],
+                queryVisible: true,
+
+                //infoFormat: 'text/xml',
+                //format: new OpenLayers.Format.XML
+
+                //outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
+              });
+	    
+	    /*
+            layer.layer = new OpenLayers.Layer.ArcGIS93Rest(
+                layer.name,
+                layer.url,
+                {
+                    layers: "show:"+layer.arcgislayers,
+                    srs: 'EPSG:102113',
+                    transparent: true
+                },
+                {
+                    isBaseLayer: false
+                }
+            );
+	    */
+
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
+            //2013-02-20 DWR
+            //Add the identify control.
+            app.map.addControl(layer.queryControl);
+
+            //JTC 2015-04-03
+            layer.layer.events.register("loadstart", null, function () {
+              app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
+            });
+
+            layer.layer.events.register("loadend", null, function () {
+              app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+            });
+
+            layer.layer.events.register("loadcancel", null, function () {
+              app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+            });
+
+/*
+            layer.layer.events.register("getfeatureinfo", null, function () {
+              window.alert("test2"); //auto-decrement for knockout
+            });
+
+
+	    //layer.queryControl.click.activate();
+	    layer.layer.click.activate();
+*/
+
         }
         else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
@@ -577,9 +808,11 @@ app.addLayerToMap = function(layer, isVisible) {
                     }
                 )
             );
+
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
+
         }
     }
     else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
