@@ -2324,7 +2324,11 @@ function viewModel() {
     {
       self.clickedLayerName(this.name);
       self.clickedLayerData(feature.attributes.description);
-      $('#kml-popup').show();
+      $('#kml-popup').show().draggable().position({
+              "my": "left top",
+              "at": "left top",
+              "of": $("#map-panel")
+          });
     };
     return self;
 } //end viewModel
