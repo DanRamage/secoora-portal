@@ -534,7 +534,7 @@ class Layer(models.Model):
             'fill_opacity': self.vector_fill,
             'graphic': self.vector_graphic,
             'opacity': self.opacity,
-            'openlayers_options': layer.openlayers_options,
+            'openlayers_options': self.openlayers_options,
             'status_field': status_field
 
         }
