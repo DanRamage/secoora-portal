@@ -590,34 +590,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 layer.openlayers_options.options
             );
 
-/*
-	    layer.layer.getURL = function () {
-		window.alert("test6");
-            }
-*/
 
-/*
-layer.layer.getFullRequestString = function(newParams, altUrl) {
-        var mapProjection = this.map.getProjectionObject();
-        var projectionCode = this.projection && this.projection.equals(mapProjection) ?
-            this.projection.getCode() :
-            mapProjection.getCode();
-        //var value = (projectionCode == "none") ? null : projectionCode;
-        var value = '4326';
-        if (parseFloat(this.params.VERSION) >= 1.3) {
-            this.params.CRS = value;
-        } else {
-            this.params.SRS = value;
-        }
-
-        if (typeof this.params.TRANSPARENT == "boolean") {
-            newParams.TRANSPARENT = this.params.TRANSPARENT ? "TRUE" : "FALSE";
-        }
-
-        return OpenLayers.Layer.Grid.prototype.getFullRequestString.apply(
-                                                    this, arguments);
-    }
-*/
 
 //JTC 2015-04-23
 
@@ -633,110 +606,8 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
      * format - {String} The format from the corresponding GetMap request
      */
 
-
-layer.layer.buildWMSOptions = function(url, layers, clickPosition, format) {
-//OpenLayers.Control.WMSGetFeatureInfo.buildWMSOptions = function(url, layers, clickPosition, format) {
-
-    //buildWMSOptions: function(url, layers, clickPosition, format) {
-        var layerNames = [], styleNames = [];
-        for (var i = 0, len = layers.length; i < len; i++) {
-            if (layers[i].params.LAYERS != null) {
-                layerNames = layerNames.concat(layers[i].params.LAYERS);
-                styleNames = styleNames.concat(this.getStyleNames(layers[i]));
-            }
-        }
-        var firstLayer = layers[0];
-        // use the firstLayer's projection if it matches the map projection -
-        // this assumes that all layers will be available in this projection
-        //var projection = this.map.getProjection();
-        var projection = '4326';
-        var layerProj = firstLayer.projection;
-        if (layerProj && layerProj.equals(this.map.getProjectionObject())) {
-            projection = layerProj.getCode();
-        }
-        var params = OpenLayers.Util.extend({
-            service: "WMS",
-            version: firstLayer.params.VERSION,
-            request: "GetFeatureInfo",
-            exceptions: firstLayer.params.EXCEPTIONS,
-            //bbox: this.map.getExtent().toBBOX(null,
-            //    firstLayer.reverseAxisOrder()),
-            bbox: '-101.085752,13.163738,-67.537218,39.37353',
-            feature_count: this.maxFeatures,
-            height: this.map.getSize().h,
-            width: this.map.getSize().w,
-            format: format,
-            info_format: firstLayer.params.INFO_FORMAT || this.infoFormat
-        }, (parseFloat(firstLayer.params.VERSION) >= 1.3) ?
-            {
-                crs: projection,
-                i: parseInt(clickPosition.x),
-                j: parseInt(clickPosition.y)
-            } :
-            {
-                srs: projection,
-                x: parseInt(clickPosition.x),
-                y: parseInt(clickPosition.y)
-            }
-        );
-        if (layerNames.length != 0) {
-            params = OpenLayers.Util.extend({
-                layers: layerNames,
-                query_layers: layerNames,
-                styles: styleNames
-            }, params);
-        }
-        OpenLayers.Util.applyDefaults(params, this.vendorParams);
-        return {
-            url: url,
-            params: OpenLayers.Util.upperCaseObject(params),
-            callback: function(request) {
-                this.handleResponse(clickPosition, request, url);
-            },
-            scope: this
-        };
-    }
-
-
-
-
-            //2013-02-20 DWR
-            //layer.layer.setVisibility(isVisible);
-            //app.map.addLayer(layer.layer);
-
-	    //JTC 2015-04-03
-	    /*
-	    layer.layer.events.register("loadstart", null, function () {
-	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
-	    });
-
-	    layer.layer.events.register("loadend", null, function () {
-	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
-	    });
-
-	    layer.layer.events.register("loadcancel", null, function () {
-	      app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
-	    });
-	   */
-
 	    //JTC 2015-03-08 point query
 
-
-
-	  /* 
-	    layer.queryControl = infoControls = {
-            click: new OpenLayers.Control.WMSGetFeatureInfo({
-                url: 'http://demo.boundlessgeo.com/geoserver/wms', 
-                title: 'Identify features by clicking',
-                layers: [water],
-                queryVisible: true
-            })
-        }; 
-*/
-
-           //var esriQueryFields = [];
-	   //var test3 = "http://129.252.37.120/proxy/rest_query/?url="+layer.url;
-	   //var test3 = "http://129.252.37.120/proxy/";
 	   var test3 = layer.url;
       	   var currentBBOX = '-101.085752%2C13.163738%2C-67.537218%2C39.37353';
 
@@ -765,21 +636,69 @@ layer.layer.buildWMSOptions = function(url, layers, clickPosition, format) {
 
                 //outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
               });
-	    
-	    /*
-            layer.layer = new OpenLayers.Layer.ArcGIS93Rest(
-                layer.name,
-                layer.url,
+    layer.queryControl.buildWMSOptions = function(url, layers, clickPosition, format) {
+    //OpenLayers.Control.WMSGetFeatureInfo.buildWMSOptions = function(url, layers, clickPosition, format) {
+
+        //buildWMSOptions: function(url, layers, clickPosition, format) {
+            var layerNames = [], styleNames = [];
+            for (var i = 0, len = layers.length; i < len; i++) {
+                if (layers[i].params.LAYERS != null) {
+                    layerNames = layerNames.concat(layers[i].params.LAYERS);
+                    styleNames = styleNames.concat(this.getStyleNames(layers[i]));
+                }
+            }
+            var firstLayer = layers[0];
+            // use the firstLayer's projection if it matches the map projection -
+            // this assumes that all layers will be available in this projection
+            //var projection = this.map.getProjection();
+            var projection = '4326';
+            var layerProj = firstLayer.projection;
+            if (layerProj && layerProj.equals(this.map.getProjectionObject())) {
+                projection = layerProj.getCode();
+            }
+            var params = OpenLayers.Util.extend({
+                service: "WMS",
+                version: firstLayer.params.VERSION,
+                request: "GetFeatureInfo",
+                exceptions: firstLayer.params.EXCEPTIONS,
+                //bbox: this.map.getExtent().toBBOX(null,
+                //    firstLayer.reverseAxisOrder()),
+                bbox: '-101.085752,13.163738,-67.537218,39.37353',
+                feature_count: this.maxFeatures,
+                height: this.map.getSize().h,
+                width: this.map.getSize().w,
+                format: format,
+                info_format: firstLayer.params.INFO_FORMAT || this.infoFormat
+            }, (parseFloat(firstLayer.params.VERSION) >= 1.3) ?
                 {
-                    layers: "show:"+layer.arcgislayers,
-                    srs: 'EPSG:102113',
-                    transparent: true
-                },
+                    crs: projection,
+                    i: parseInt(clickPosition.x),
+                    j: parseInt(clickPosition.y)
+                } :
                 {
-                    isBaseLayer: false
+                    srs: projection,
+                    x: parseInt(clickPosition.x),
+                    y: parseInt(clickPosition.y)
                 }
             );
-	    */
+            if (layerNames.length != 0) {
+                params = OpenLayers.Util.extend({
+                    layers: layerNames,
+                    query_layers: layerNames,
+                    styles: styleNames
+                }, params);
+            }
+            OpenLayers.Util.applyDefaults(params, this.vendorParams);
+            return {
+                url: url,
+                params: OpenLayers.Util.upperCaseObject(params),
+                callback: function(request) {
+                    this.handleResponse(clickPosition, request, url);
+                },
+                scope: this
+            };
+        }
+
 
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
