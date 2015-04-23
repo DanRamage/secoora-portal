@@ -2313,6 +2313,10 @@ function viewModel() {
 
     self.layerloadcounter = ko.observable(0);
 
+    self.kmlClick = function(feature)
+    {
+
+    };
     return self;
 } //end viewModel
 

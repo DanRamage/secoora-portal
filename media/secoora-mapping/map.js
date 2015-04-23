@@ -754,6 +754,13 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
           );
           layer.layer.setVisibility(isVisible);
           app.map.addLayer(layer.layer);
+          //Create the select feature control.
+          layer.queryControl = new OpenLayers.Control.SelectFeature([layer],
+            {
+              onSelect: app.viewModel.kmlClick,
+              scope: layer
+            });
+          this.mapObj.addControl(layer.queryControl);
 
         }
         else { //if XYZ with no utfgrid
