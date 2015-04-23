@@ -380,7 +380,18 @@ app.addLayerToMap = function(layer, isVisible) {
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
-        } else if (layer.type === 'Vector') {
+        }
+        else if (layer.type === 'Vector')
+        {
+          layer.layer = new OpenLayers.Layer.Vector(
+            layer.name,
+            {
+              projection: layer.openlayers_options.projection,
+              strategies: layer.openlayers_options.strategies,
+              protocol: layer.openlayers_options.protocol
+            }
+          );
+          /*
             var styleMap = new OpenLayers.StyleMap( {
                 fillColor: layer.color,
                 fillOpacity: layer.fillOpacity,
@@ -442,6 +453,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 app.map.vectorList.unshift(layer.layer);
                 app.map.selectFeatureControl.setLayer(app.map.vectorList);
             }
+          */
         }
         else if (layer.type === 'ArcRest') {
 
@@ -568,7 +580,6 @@ app.addLayerToMap = function(layer, isVisible) {
         //and options.
         else if (layer.type === 'WMS' || layer.type === 'WMST') {
 
-	    //OpenLayers.ProxyHost="\proxy\?url=";
 
             layer.layer = new OpenLayers.Layer.WMS(
                 layer.name,
@@ -716,6 +727,10 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
 	    //layer.queryControl.click.activate();
 	    layer.layer.click.activate();
 */
+
+        }
+        else if(layer.type === 'KML')
+        {
 
         }
         else { //if XYZ with no utfgrid
