@@ -297,9 +297,12 @@
 <div id="kml-popup" class="popover fade left in">
   <div class="popover-inner">
       <h3 class="popover-title">
-          Measurement Tool
+          <span data-bind="text: clickedLayerName"></span>
       </h3>
-      <div class="popover-content">
+      <div class="popover-content" class="scrollpane">
+        <div>
+          <span data-bind="html: clickedLayerData"></span>
+        </div>
       </div>
   </div>
   <!--
