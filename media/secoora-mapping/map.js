@@ -733,11 +733,16 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
         }
         else if(layer.type === 'KML')
         {
+          var strategies;
+          if(layer.openlayers_options.strategies === "Fixed")
+          {
+            strategies = new OpenLayers.Strategy.Fixed();
+          }
           layer.layer = new OpenLayers.Layer.Vector(
             layer.name,
             {
               projection: layer.openlayers_options.projection,
-              strategies: layer.openlayers_options.strategies,
+              strategies: [strategies],
               protocol: new OpenLayers.Protocol.HTTP(
                 {
                   url: layer.openlayers_options.protocol.url,
