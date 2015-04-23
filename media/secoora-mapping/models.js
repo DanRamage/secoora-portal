@@ -69,7 +69,7 @@ function layerModel(options, parent) {
     self.restLegend = [];
 
 
-    OpenLayers.Proxy = "http://129.252.37.120/proxy?url="
+    OpenLayers.ProxyHost = "http://129.252.37.120/proxy?url="
     //WHen the layer is issued the identify request, if there are results there, this is set to true.
     self.layerDataAvailable = ko.observable(false);
 
