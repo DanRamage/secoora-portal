@@ -68,6 +68,7 @@ function layerModel(options, parent) {
 
     self.restLegend = [];
 
+    self.layer = null;
 
     OpenLayers.ProxyHost = "http://129.252.37.120/proxy/rest_query?url="
     //WHen the layer is issued the identify request, if there are results there, this is set to true.
@@ -166,8 +167,10 @@ function layerModel(options, parent) {
       }
 
     }    // opacity
-    self.opacity.subscribe(function(newOpacity) {
-        if (self.layer.CLASS_NAME === "OpenLayers.Layer.Vector") {
+    self.opacity.subscribe(function(newOpacity)
+    {
+        if (self.layer.CLASS_NAME === "OpenLayers.Layer.Vector")
+        {
             self.layer.styleMap.styles['default'].defaultStyle.strokeOpacity = newOpacity;
             self.layer.styleMap.styles['default'].defaultStyle.graphicOpacity = newOpacity;
             //fill is currently turned off for many of the vector layers
@@ -178,7 +181,9 @@ function layerModel(options, parent) {
                 self.layer.styleMap.styles['default'].defaultStyle.fillOpacity = newFillOpacity;
             }
             self.layer.redraw();
-        } else {
+        }
+        else
+        {
             self.layer.setOpacity(newOpacity);
         }
     });
