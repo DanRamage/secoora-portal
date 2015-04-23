@@ -294,16 +294,17 @@
 </div>
 
 <!-- KML Query Popup -->
-<div id="kml-popup" class="popover-link fade left in">
-  <div class="popover-inner">
-      <h3 class="popover-title">
-          <span data-bind="text: clickedLayerName"></span>
-      </h3>
-      <div class="popover-content" class="scrollpane">
-        <div>
-          <span data-bind="html: clickedLayerData"></span>
-        </div>
-      </div>
+<div id="kml-popup" class="popover fade left in">
+  <div class="popover-header">
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
+    <h3 class="popover-title">
+        <span data-bind="text: clickedLayerName"></span>
+    </h3>
+  </div>
+  <div class="popover-content" class="scrollpane">
+    <div>
+      <span data-bind="html: clickedLayerData"></span>
+    </div>
   </div>
   <!--
   <div id="aggregated-attribute-overlay" class="scrollpane" data-bind="" style="display: none">

@@ -2324,6 +2324,7 @@ function viewModel() {
     {
       self.clickedLayerName(this.name);
       self.clickedLayerData(feature.attributes.description);
+      $('#kml-popup').popover();
       $('#kml-popup').show().draggable().position({
               "my": "left top",
               "at": "left middle",
