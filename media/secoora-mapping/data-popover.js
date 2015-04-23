@@ -1,6 +1,6 @@
 $.fn.extend({
     popoverClosable: function (options) {
-      /*
+
         var defaults = {
             template:
                 '<div class="popover">\
@@ -12,7 +12,7 @@ $.fn.extend({
 <div class="popover-content"></div>\
 </div>'
         };
-        */
+
         options = $.extend({}, defaults, options);
         var $popover_togglers = this;
         $popover_togglers.popover(options);
