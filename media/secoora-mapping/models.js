@@ -2315,7 +2315,7 @@ function viewModel() {
 
     self.kmlClick = function(feature)
     {
-
+      feature;
     };
     return self;
 } //end viewModel
