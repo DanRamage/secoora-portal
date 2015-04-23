@@ -2313,13 +2313,13 @@ function viewModel() {
 
     self.layerloadcounter = ko.observable(0);
 
-    self.clickedLayerName = ko.observable("")
-    self.clickedLayerData = ko.observable("")
+    self.clickedLayerName = ko.observable("");
+    self.clickedLayerData = ko.observable("");
     self.kmlClick = function(feature)
     {
       self.clickedLayerName(this.name);
       self.clickedLayerData(feature.attributes.description);
-      $.('#kml-popup').show();
+      $('#kml-popup').show();
     };
     return self;
 } //end viewModel
