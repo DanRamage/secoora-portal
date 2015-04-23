@@ -270,6 +270,7 @@ class Layer(models.Model):
         ('XYZ', 'XYZ'),
         ('WMS', 'WMS'),
         ('WMST', 'WMST'),
+        ('KML', 'KML'),
         ('ArcRest', 'ArcRest'),
         ('radio', 'radio'),
         ('checkbox', 'checkbox'),
