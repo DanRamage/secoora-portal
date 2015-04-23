@@ -760,7 +760,7 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
               onSelect: app.viewModel.kmlClick,
               scope: layer
             });
-          this.mapObj.addControl(layer.queryControl);
+          app.map.addControl(layer.queryControl);
 
         }
         else { //if XYZ with no utfgrid
