@@ -733,6 +733,22 @@ layer.layer.getFullRequestString = function(newParams, altUrl) {
         }
         else if(layer.type === 'KML')
         {
+          layer.layer = new OpenLayers.Layer.Vector(
+            layer.name,
+            {
+              projection: layer.openlayers_options.projection,
+              strategies: layer.openlayers_options.strategies,
+              protocol: new OpenLayers.Protocol.HTTP(
+                {
+                  url: layer.openlayers_options.protocol.url,
+                  format: new OpenLayers.Format.KML(
+                      layer.openlayers_options.protocol.format
+                    )
+                })
+            }
+          );
+          layer.layer.setVisibility(isVisible);
+          app.map.addLayer(layer.layer);
 
         }
         else { //if XYZ with no utfgrid
