@@ -2326,7 +2326,7 @@ function viewModel() {
       self.clickedLayerData(feature.attributes.description);
       $('#kml-popup').show().draggable().position({
               "my": "left top",
-              "at": "left top",
+              "at": "left middle",
               "of": $("#map-panel")
           });
     };
