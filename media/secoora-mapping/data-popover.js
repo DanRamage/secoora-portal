@@ -21,7 +21,8 @@ $.fn.extend({
             $popover_togglers.not(this).popover('hide');
         });
         $('html').on('click', '[data-dismiss="popover"]', function (e) {
-            $popover_togglers.popover('hide');
+            $popover_togglers.hide();
+            //$popover_togglers.popover('hide');
         });
     }
 });
