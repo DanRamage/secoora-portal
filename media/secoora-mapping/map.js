@@ -391,6 +391,8 @@ app.addLayerToMap = function(layer, isVisible) {
               protocol: layer.openlayers_options.protocol
             }
           );
+          layer.layer.setVisibility(isVisible);
+          app.map.addLayer(layer.layer);
           /*
             var styleMap = new OpenLayers.StyleMap( {
                 fillColor: layer.color,
