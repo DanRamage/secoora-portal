@@ -295,13 +295,13 @@
 
 <!-- KML Query Popup -->
 <style>
-  #kml-popup .h1 {
+  #kml-content .h1 {
     font-size = 14px;
   }
-  #kml-popup .h2 {
+  #kml-content .h2 {
     font-size = 12px;
   }
-  #kml-popup .h3 {
+  #kml-content .h3 {
     font-size = 13px;
   }
 </style>
@@ -312,7 +312,7 @@
         <span data-bind="text: clickedLayerName"></span>
     </h3>
   </div>
-  <div class="popover-content" class="scrollpane">
+  <div id="kml-content" class="popover-content" class="scrollpane">
     <div>
       <span data-bind="html: clickedLayerData"></span>
     </div>
