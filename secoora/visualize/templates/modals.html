@@ -294,6 +294,17 @@
 </div>
 
 <!-- KML Query Popup -->
+<style>
+  #kml-popup .h1 {
+    font-size = 14px;
+  }
+  #kml-popup .h2 {
+    font-size = 12px;
+  }
+  #kml-popup .h3 {
+    font-size = 13px;
+  }
+</style>
 <div id="kml-popup" class="popover fade left in">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
@@ -306,29 +317,6 @@
       <span data-bind="html: clickedLayerData"></span>
     </div>
   </div>
-  <!--
-  <div id="aggregated-attribute-overlay" class="scrollpane" data-bind="" style="display: none">
-    <div id="aggregated-attribute-content" class="accordion">
-      <div data-bind="">
-        <div class="accordion-group">
-          <div data-bind="">
-            <div class="accordion-heading" data-bind="text: clickedLayerName">
-              <a class="accordion-toggle">
-                  <h4 data-bind=""></h4>
-              </a>
-            </div>
-            <div class="accordion-body collapse in" data-bind="" >
-              <div class="accordion-inner">
-                <div data-bind="html: clickedLayerData"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span id="close-attribute-overlay" class="pull-right"><a href="#" style="position: absolute; top: 10px; right: 10px; opacity: .6;" class="btn btn-mini close" data-bind="click: closeAttribution"> x </a> </span>
-  </div>
-  -->
 </div>
 
 <!-- End KML Query Popup -->

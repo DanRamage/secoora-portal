@@ -2320,11 +2320,12 @@ function viewModel() {
 
     self.clickedLayerName = ko.observable("");
     self.clickedLayerData = ko.observable("");
+
+    $('#kml-popup').popoverClosable();
     self.kmlClick = function(feature)
     {
       self.clickedLayerName(this.name);
       self.clickedLayerData(feature.attributes.description);
-      $('#kml-popup').popoverClosable();
       $('#kml-popup').show().draggable().position({
               "my": "left top",
               "at": "left middle",
