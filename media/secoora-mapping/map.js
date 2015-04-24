@@ -763,6 +763,47 @@ app.addLayerToMap = function(layer, isVisible) {
           app.map.addControl(layer.queryControl);
 
         }
+        else if(layer.type === 'GeoJSON')
+        {
+          //new OpenLayers.Projection("EPSG:900913")), 2);
+
+          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
+              protocol: new OpenLayers.Protocol.HTTP({
+                  url: layer.openlayers_options.geojson,
+                  format: new OpenLayers.Format.GeoJSON()
+              }),
+              strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
+              styleMap: new OpenLayers.StyleMap({
+                  'default': new OpenLayers.Style({
+                      strokeWidth: '${strokeFunction}',
+                      strokeOpacity: 0.5,
+                      strokeColor: "#88aaaa",
+                      fillColor: "#99CC55",
+                      fillOpacity: 0.5,
+                      pointRadius: '${radiusfunction}',
+                      label: "${count}",
+                      fontColor: "#ffffff"
+                  }, {
+                      context: {
+                          strokeFunction: function(feature) {
+                              var count = feature.attributes.count;
+                              var stk = Math.max(0.1 * count, 1);
+                              return stk;
+                          },
+                          radiusfunction: function(feature) {
+                              var count = feature.attributes.count;
+                              var radius = Math.max(0.60 * count, 7);
+                              return radius;
+                          }
+                      }
+                  })
+              })
+          });
+          layer.layer.setVisibility(isVisible);
+          app.map.addLayer(layer.layer);
+
+        }
+
         else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
             layer.layer = new OpenLayers.Layer.XYZ(layer.name,
