@@ -799,12 +799,10 @@ app.addLayerToMap = function(layer, isVisible) {
                   })
               })
           });
-          layer.layer.setVisibility(isVisible);
           app.map.addLayer(layer.layer);
-
         }
 
-        else { //if XYZ with no utfgrid
+        /*else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
             layer.layer = new OpenLayers.Layer.XYZ(layer.name,
                 //layer.type === 'XYZ' ? layer.url : layer.url + '.png',
@@ -821,7 +819,7 @@ app.addLayerToMap = function(layer, isVisible) {
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
 
-        }
+        }*/
     }
     else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
         //layer.utfcontrol = app.addUTFControl(layer);
