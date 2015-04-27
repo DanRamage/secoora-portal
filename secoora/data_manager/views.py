@@ -228,7 +228,7 @@ def get_water_temp_stations(request):
         .filter(xenia_sensor.m_type_id == m_type_id)\
         .filter(xenia_platform.active > 0)\
         .filter(xenia_platform.active < 3)\
-        .filter(func.ST_Contains(func.WKTElement(bbox, srid=4326), 'POINT(xenia_platform.the_geom)'))\
+        .filter(func.ST_Contains(func.WKTElement(bbox, srid=4326), xenia_platform.the_geom))\
         .order_by(xenia_platform.short_name)
     platforms = []
     for platform in platform_list:
