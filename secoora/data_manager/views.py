@@ -17,7 +17,8 @@ from settings_local import *
 #Imports for xenia db connection.
 from sqlalchemy import func
 from xeniaSQLAlchemy import xeniaAlchemy, platform as xenia_platform, sensor as xenia_sensor, m_type as xenia_m_type
-from geoalchemy2 import Geometry, elements
+from geoalchemy2 import Geometry
+from geoalchemy2.elements import WKTElement
 
 logger = logging.getLogger(__name__)
 
