@@ -209,7 +209,7 @@ def get_water_temp_stations(request):
     logger.debug("Starting get_water_temp_stations.")
 
   obs_name = "water_temperature"
-  uom_name = "celcius"
+  uom_name = "celsius"
   xeniaDb = xeniaAlchemy(logger=logger)
 
   if xeniaDb.connectDB(databaseType='postgres',
@@ -228,7 +228,7 @@ def get_water_temp_stations(request):
         .filter(xenia_sensor.m_type_id == m_type_id)\
         .filter(xenia_platform.active > 0)\
         .filter(xenia_platform.active < 3)\
-        .filter(func.ST_Contains(func.WKTElement(bbox, srid=4326), Point(xenia_platform.the_geom)))\
+        .filter(func.ST_Contains(func.WKTElement(bbox, srid=4326), 'POINT(xenia_platform.the_geom)'))\
         .order_by(xenia_platform.short_name)
     platforms = []
     for platform in platform_list:
