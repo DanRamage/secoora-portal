@@ -1,4 +1,7 @@
 # Create your views here.
+import sys
+sys.path.append('/usr/local/userapps/secoora-portal/xeniatools')
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -9,6 +12,9 @@ from datetime import datetime,timedelta
 import logging
 from bisect import bisect_left
 from date_time_utils import get_utc_epoch
+from settings_local import *
+from xeniaSQLAlchemy import *
+from geolachemy2 import *
 
 logger = logging.getLogger(__name__)
 
@@ -187,4 +193,49 @@ def get_closest_time_for_ids(request):
   logger.info("End get_closest_time")
 
 
+  return HttpResponse(simplejson.dumps(results))
+
+
+
+def get_water_temp_stations(request):
+  results = {
+    'type': 'FeatureCollection',
+    'features': []
+  }
+  if logger:
+    logger.debug("Starting get_water_temp_stations.")
+
+  obs_name = "water_temperature"
+  uom_name = "celcius"
+  xeniaDb = xeniaAlchemy(logger=logger)
+
+  if xeniaDb.connectDB(databaseType='postgres',
+                        dbUser=XENIA_USER,
+                        dbPwd=XENIA_PWD,
+                        dbHost=XENIA_HOST,
+                        dbName=XENIA_DB):
+    if logger:
+      logger.debug("Connected to xenia DB")
+  try:
+    m_type_id = xeniaDb.mTypeExists(obs_name, uom_name)
+    if id is not None:
+      bbox = "POLYGON((%s))" % (SECOORA_BBOX)
+      platform_list = xeniaDb.session.query(platform.row_id, platform.platform_handle)\
+        .join((sensor, sensor.m_type_id == m_type_id))\
+        .filter(sensor.m_type_id == m_type_id)\
+        .filter(platform.active > 0)\
+        .filter(platform.active < 3)\
+        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), Point(platform.the_geom)))\
+        .order_by(platform.short_name)
+    platforms = []
+    for platform in platform_list:
+      platforms.append(platform.platform_handle)
+    if logger:
+      logger.debug(platforms)
+  except Exception,e:
+    if logger:
+      logger.exception(e)
+
+  if logger:
+    logger.debug("Finsihed get_water_temp_stations.")
   return HttpResponse(simplejson.dumps(results))
