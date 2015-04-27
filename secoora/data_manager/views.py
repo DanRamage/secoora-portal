@@ -217,7 +217,8 @@ def get_water_temp_stations(request):
                         dbUser=XENIA_USER,
                         dbPwd=XENIA_PWD,
                         dbHost=XENIA_HOST,
-                        dbName=XENIA_DB):
+                        dbName=XENIA_DB,
+                        printSQL=True):
     if logger:
       logger.debug("Connected to xenia DB")
   try:
