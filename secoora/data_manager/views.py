@@ -13,7 +13,7 @@ import logging
 from bisect import bisect_left
 from date_time_utils import get_utc_epoch
 from settings_local import *
-from xeniaSQLAlchemy import *
+from xeniaSQLAlchemy import xeniaAlchemy, platform, sensor, m_type
 from geoalchemy import *
 
 logger = logging.getLogger(__name__)
