@@ -13,7 +13,7 @@ import logging
 from bisect import bisect_left
 from date_time_utils import get_utc_epoch
 from settings_local import *
-from xeniaSQLAlchemy import xeniaAlchemy, platform, sensor, m_type
+from xeniaSQLAlchemy import xeniaAlchemy, platform as xenia_platform, sensor as xenia_sensor, m_type as xenia_m_type
 from geoalchemy import *
 
 logger = logging.getLogger(__name__)
@@ -220,18 +220,19 @@ def get_water_temp_stations(request):
     m_type_id = xeniaDb.mTypeExists(obs_name, uom_name)
     if id is not None:
       bbox = "POLYGON((%s))" % (SECOORA_BBOX)
-      platform_list = xeniaDb.session.query(platform.row_id, platform.platform_handle)\
-        .join((sensor, sensor.m_type_id == m_type_id))\
-        .filter(sensor.m_type_id == m_type_id)\
-        .filter(platform.active > 0)\
-        .filter(platform.active < 3)\
-        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), Point(platform.the_geom)))\
-        .order_by(platform.short_name)
+      platform_list = xeniaDb.session.query(xenia_platform.row_id, xenia_platform.platform_handle)\
+        .join((xenia_sensor, xenia_sensor.m_type_id == m_type_id))\
+        .filter(xenia_sensor.m_type_id == m_type_id)\
+        .filter(xenia_platform.active > 0)\
+        .filter(xenia_platform.active < 3)\
+        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), Point(xenia_platform.the_geom)))\
+        .order_by(xenia_platform.short_name)
     platforms = []
     for platform in platform_list:
       platforms.append(platform.platform_handle)
     if logger:
       logger.debug(platforms)
+
   except Exception,e:
     if logger:
       logger.exception(e)
