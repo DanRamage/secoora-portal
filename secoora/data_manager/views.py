@@ -18,7 +18,7 @@ from settings_local import *
 from sqlalchemy import func
 from xeniaSQLAlchemy import xeniaAlchemy, platform as xenia_platform, sensor as xenia_sensor, m_type as xenia_m_type
 from geoalchemy2 import Geometry
-from geoalchemy2.elements import WKTElement
+from geoalchemy2.elements import WKTElement,WKBElement
 
 logger = logging.getLogger(__name__)
 
@@ -229,7 +229,7 @@ def get_water_temp_stations(request):
         .filter(xenia_sensor.m_type_id == m_type_id)\
         .filter(xenia_platform.active > 0)\
         .filter(xenia_platform.active < 3)\
-        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), xenia_platform.the_geom))\
+        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
         .order_by(xenia_platform.short_name)
     platforms = []
     for platform in platform_list:
