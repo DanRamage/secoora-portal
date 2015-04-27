@@ -228,8 +228,7 @@ def get_water_temp_stations(request):
       platform_list = xeniaDb.session.query(xenia_platform.row_id, xenia_platform.platform_handle)\
         .join((xenia_sensor, xenia_sensor.m_type_id == m_type_id))\
         .filter(xenia_sensor.m_type_id == m_type_id)\
-        .filter(xenia_platform.active > 0)\
-        .filter(xenia_platform.active < 3)\
+        .filter(xenia_platform.active.in_((1,2)))\
         .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
         .order_by(xenia_platform.short_name)
     platforms = []
