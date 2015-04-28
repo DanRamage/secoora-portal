@@ -10,6 +10,7 @@ from django.views.decorators.cache import cache_page
 from models import *
 from datetime import datetime,timedelta
 import logging
+import requests
 from bisect import bisect_left
 from date_time_utils import get_utc_epoch
 from settings_local import *
@@ -225,7 +226,7 @@ def get_water_temp_stations(request):
     m_type_id = xeniaDb.mTypeExists(obs_name, uom_name)
     if id is not None:
       bbox = "POLYGON((%s))" % (SECOORA_BBOX)
-      platform_list = xeniaDb.session.query(xenia_platform.row_id, xenia_platform.platform_handle)\
+      platform_list = xeniaDb.session.query(xenia_platform)\
         .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
         .filter(xenia_sensor.m_type_id == m_type_id)\
         .filter(xenia_platform.active.in_((1,2)))\
@@ -233,9 +234,34 @@ def get_water_temp_stations(request):
         .order_by(xenia_platform.short_name)
     platforms = []
     for platform in platform_list:
-      platforms.append(platform.platform_handle)
-    if logger:
-      logger.debug(platforms)
+      json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':'))
+      try:
+        if logger:
+          logger.debug("Opening obs json file: %s" % (json_url))
+        res = requests.get(json_url)
+        if res.status_code == 200:
+          obs_json = res.json()
+          properties = {}
+          properties['platform'] = platform.platform_handle
+          for feature in obs_json['features']:
+            properties['%s_val' % (feature['obsType'])] = feature['value'][-1]
+            properties['%s_uom' % (feature['obsType'])] = feature['uomType']
+            properties['%s_time' % (feature['obsType'])] = feature['time'][-1]
+          feature = {
+            "geometry": {
+              "coordinates": [xenia_platform.fixed_longitude, xenia_platform.fixed_latitude],
+              "type": "Point"
+            },
+            "properties": properties
+          }
+          results['features'].append(feature)
+        else:
+          if logger:
+            logger.debug("Error opening obs json file: %s Code: %d" % (json_url, res.status_code))
+
+      except Exception,e:
+        if logger:
+          logger.exception(e)
 
   except Exception,e:
     if logger:
