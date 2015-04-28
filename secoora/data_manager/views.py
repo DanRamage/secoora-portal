@@ -271,4 +271,4 @@ def get_water_temp_stations(request):
 
   if logger:
     logger.debug("Finsihed get_water_temp_stations. Results: %s" % (results))
-  return HttpResponse(simplejson.dumps(results))
+  return HttpResponse(content=simplejson.dumps(results), content_type='application/json')
