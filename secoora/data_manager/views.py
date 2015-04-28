@@ -240,7 +240,7 @@ def get_water_temp_stations(request):
           logger.debug("Opening obs json file: %s" % (json_url))
         res = requests.get(json_url)
         if res.status_code == 200:
-          obs_json = res.jsonquit()
+          obs_json = res.json
           properties = {}
           properties['platform'] = platform.platform_handle
           for feature in obs_json['properties']['features']:
