@@ -11,6 +11,7 @@ from models import *
 from datetime import datetime,timedelta
 import logging
 import requests
+from collections import OrderedDict
 from bisect import bisect_left
 from date_time_utils import get_utc_epoch
 from settings_local import *
@@ -241,7 +242,7 @@ def get_water_temp_stations(request):
         res = requests.get(json_url)
         if res.status_code == 200:
           obs_json = res.json
-          properties = {}
+          properties = OrderedDict()
           properties['platform'] = platform.platform_handle
           for feature in obs_json['properties']['features']:
             prop = feature['properties']
