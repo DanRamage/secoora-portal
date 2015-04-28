@@ -244,9 +244,10 @@ def get_water_temp_stations(request):
           properties = {}
           properties['platform'] = platform.platform_handle
           for feature in obs_json['properties']['features']:
-            properties['%s_val' % (feature['obsType'])] = feature['value'][-1]
-            properties['%s_uom' % (feature['obsType'])] = feature['uomType']
-            properties['%s_time' % (feature['obsType'])] = feature['time'][-1]
+            prop = feature['properties']
+            properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
+            properties['%s_uom' % (prop['obsType'])] = prop['uomType']
+            properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
           feature = {
             "geometry": {
               "coordinates": [xenia_platform.fixed_longitude, xenia_platform.fixed_latitude],
