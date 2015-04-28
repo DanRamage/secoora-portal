@@ -250,7 +250,7 @@ def get_water_temp_stations(request):
             properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
           feature = {
             "geometry": {
-              "coordinates": [xenia_platform.fixed_longitude, xenia_platform.fixed_latitude],
+              "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
               "type": "Point"
             },
             "properties": properties
