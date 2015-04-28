@@ -226,7 +226,7 @@ def get_water_temp_stations(request):
     if id is not None:
       bbox = "POLYGON((%s))" % (SECOORA_BBOX)
       platform_list = xeniaDb.session.query(xenia_platform.row_id, xenia_platform.platform_handle)\
-        .join((xenia_sensor, xenia_sensor.m_type_id == xenia_platform.row_id))\
+        .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
         .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
         .filter(xenia_sensor.m_type_id == m_type_id)\
         .filter(xenia_platform.active.in_((1,2)))\
