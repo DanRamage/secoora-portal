@@ -269,5 +269,5 @@ def get_water_temp_stations(request):
       logger.exception(e)
 
   if logger:
-    logger.debug("Finsihed get_water_temp_stations.")
+    logger.debug("Finsihed get_water_temp_stations. Results: %s" % (results))
   return HttpResponse(simplejson.dumps(results))
