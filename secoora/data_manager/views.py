@@ -219,7 +219,7 @@ def get_obs_data(obs_name, uom_name):
     'features': []
   }
   if logger:
-    logger.debug("Starting get_obs_data for obs: %s. Results: %s" % (obs_name))
+    logger.debug("Starting get_obs_data for obs: %s." % (obs_name))
 
   xeniaDb = xeniaAlchemy(logger=logger)
 
