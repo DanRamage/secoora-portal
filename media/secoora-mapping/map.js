@@ -953,15 +953,38 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
         else if(layer.type === 'GeoJSON')
         {
           //new OpenLayers.Projection("EPSG:900913")), 2);
-
-          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
-              projection: "EPSG:4326",
-              protocol: new OpenLayers.Protocol.HTTP({
-                  url: layer.openlayers_options.geojson,
-                  format: new OpenLayers.Format.GeoJSON()
-              }),
-              strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
-              styleMap: new OpenLayers.StyleMap({
+          if(steps in layer.openlayers_options)
+          {
+            var style_bldr = new ol_gradient_style_builder()
+            var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps);
+            var style_map = new OpenLayers.StyleMap({
+                  'default': new OpenLayers.Style({
+                      strokeWidth: '${strokeFunction}',
+                      strokeOpacity: 0.5,
+                      pointRadius: '${radiusfunction}',
+                      label: "${" . layer.openlayers_options.label_property . "}",
+                      fontColor: "#ffffff"
+                  },
+                  {
+                    context: {
+                        strokeFunction: function(feature) {
+                            var count = feature.attributes.count;
+                            var stk = Math.max(0.1 * count, 1);
+                            return stk;
+                        },
+                        radiusfunction: function(feature) {
+                            var count = feature.attributes.count;
+                            var radius = Math.max(0.60 * count, 7);
+                            return radius;
+                        }
+                    },
+                    rules: rules
+                })
+              });
+          }
+          else
+          {
+            var style_map = new OpenLayers.StyleMap({
                   'default': new OpenLayers.Style({
                       strokeWidth: '${strokeFunction}',
                       strokeOpacity: 0.5,
@@ -985,12 +1008,19 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                           }
                       }
                   })
-              })
+              });
+          }
+          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
+              projection: "EPSG:4326",
+              protocol: new OpenLayers.Protocol.HTTP({
+                  url: layer.openlayers_options.geojson,
+                  format: new OpenLayers.Format.GeoJSON()
+              }),
+              strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
+              styleMap: style_map
           });
           app.map.addLayer(layer.layer);
 
-          var style_bldr = new ol_gradient_style_builder()
-          style_bldr.build_gradient('#ff0000', '#0000ff', 12);
         }
 
         /*else { //if XYZ with no utfgrid
