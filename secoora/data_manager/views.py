@@ -201,10 +201,16 @@ def get_closest_time_for_ids(request):
 
   return HttpResponse(simplejson.dumps(results))
 
-def get_obs_data(request, observation_name):
+def obs_data_request(request, observation_name):
+  results = {
+    'type': 'FeatureCollection',
+    'features': []
+  }
+
   if logger:
     logger.debug("Starting get_obs_data, obs name: %s" % (observation_name))
 
+  """
   if observation_name == "water_temperature":
     uom_name = 'celsius'
     results = get_water_temp_stations(observation_name, uom_name)
@@ -215,6 +221,7 @@ def get_obs_data(request, observation_name):
 
   if logger:
     logger.debug("Finished get_obs_data, obs name: %s" % (observation_name))
+  """
   return HttpResponse(simplejson.dumps(results))
 
 def get_obs_data(obs_name, uom_name):
