@@ -58,7 +58,7 @@ function ol_gradient_style_builder(options) {
           symbolizer: {
               fillColor: color_val.toString(),
               fillOpacity: 0.7,
-              pointRadius: 7,
+              pointRadius: 10,
               fontSize: "9px"
           }
       }));

@@ -965,7 +965,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                     strokeOpacity: 0.5,
                     //pointRadius: '${radiusfunction}',
                     label: "${" + layer.openlayers_options.label_property + "}",
-                    fontColor: "#ffffff"
+                    fontColor: "#000000"
                 },
                 {
                   /*context: {
