@@ -246,9 +246,10 @@ def get_water_temp_stations(request):
           properties['platform'] = platform.platform_handle
           for feature in obs_json['properties']['features']:
             prop = feature['properties']
-            properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
-            properties['%s_uom' % (prop['obsType'])] = prop['uomType']
-            properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
+            if prop['obsType'] is not None:
+              properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
+              properties['%s_uom' % (prop['obsType'])] = prop['uomType']
+              properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
           feature = {
             "geometry": {
               "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
