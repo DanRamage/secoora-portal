@@ -271,7 +271,7 @@ def get_obs_data(obs_name, uom_name):
           .order_by(xenia_platform.short_name)
       platforms = []
       for platform in platform_list:
-        json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':'))
+        json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':').lower())
         try:
           if logger:
             logger.debug("Opening obs json file: %s" % (json_url))
