@@ -5,19 +5,32 @@ function bisect_left(search_value, values_array)
   var closest_ndx = -1;
   var middle = Math.round((hi + lo) / 2 + 0.5);
   var found = false;
+
+  //exit with highest or lowest value if outside of range
+  if(search_value >= values_array[hi])
+  {
+    found = true;
+    closest_ndx = hi;
+  }
+  if(search_value <= values_array[lo])
+  {
+    found = true;
+    closest_ndx = lo;
+  }
+
   while(!found)
   {
-    if(hi - lo <= 3)
+    if(hi - lo < 3)
     {
       found = true;
       closest_ndx = middle;
       break;
     }
-    if(search_value > values_array[middle])
+    if(search_value >= values_array[middle])
     {
       lo = middle;
     }
-    else if(search_value < values_array[middle])
+    else if(search_value <= values_array[middle])
     {
       hi = middle;
     }
