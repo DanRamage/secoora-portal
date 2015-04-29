@@ -956,31 +956,65 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
           var style_map;
           if('steps' in layer.openlayers_options)
           {
-            var style_bldr = new ol_gradient_style_builder()
-            var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps, layer.openlayers_options.label_property);
+
+            //var style_bldr = new ol_gradient_style_builder()
+            //var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps, layer.openlayers_options.label_property);
             var style = new OpenLayers.Style(
-                {
-                    //strokeWidth: '${strokeFunction}',
-                    strokeOpacity: 0.5,
-                    //pointRadius: '${radiusfunction}',
-                    label: "${" + layer.openlayers_options.label_property + "}",
-                    fontColor: "#ffffff"
-                },
-                {
-                  /*context: {
-                      strokeFunction: function(feature) {
-                          var count = feature.attributes.count;
-                          var stk = Math.max(0.1 * count, 1);
-                          return stk;
-                      },
-                      radiusfunction: function(feature) {
-                          var count = feature.attributes.count;
-                          var radius = Math.max(0.60 * count, 7);
-                          return radius;
-                      }
-                  },*/
-                  rules: rules
-              });
+                    // the first argument is a base symbolizer
+                    // all other symbolizers in rules will extend this one
+                    {
+                        graphicWidth: 21,
+                        graphicHeight: 25,
+                        graphicYOffset: -28, // shift graphic up 28 pixels
+                        label: "${" + layer.openlayers_options.label_property + "}" // label will be foo attribute value
+                    },
+                    // the second argument will include all rules
+                    {
+                        rules: [
+                            new OpenLayers.Rule({
+                                // a rule contains an optional filter
+                                filter: new OpenLayers.Filter.Comparison({
+                                    type: OpenLayers.Filter.Comparison.LESS_THAN,
+                                    property: layer.openlayers_options.label_property, // the "foo" feature attribute
+                                    value: 25
+                                }),
+                                // if a feature matches the above filter, use this symbolizer
+                                symbolizer: {
+                                    externalGraphic: "../img/marker-blue.png"
+                                }
+                            }),
+                            new OpenLayers.Rule({
+                                filter: new OpenLayers.Filter.Comparison({
+                                    type: OpenLayers.Filter.Comparison.BETWEEN,
+                                    property: layer.openlayers_options.label_property,
+                                    lowerBoundary: 25,
+                                    upperBoundary: 50
+                                }),
+                                symbolizer: {
+                                    externalGraphic: "../img/marker-green.png"
+                                }
+                            }),
+                            new OpenLayers.Rule({
+                                filter: new OpenLayers.Filter.Comparison({
+                                    type: OpenLayers.Filter.Comparison.BETWEEN,
+                                    property: layer.openlayers_options.label_property,
+                                    lowerBoundary: 50,
+                                    upperBoundary: 75
+                                }),
+                                symbolizer: {
+                                    externalGraphic: "../img/marker-gold.png"
+                                }
+                            }),
+                            new OpenLayers.Rule({
+                                // apply this rule if no others apply
+                                elseFilter: true,
+                                symbolizer: {
+                                    externalGraphic: "../img/marker.png"
+                                }
+                            })
+                        ]
+                    }
+                );
             style_map = new OpenLayers.StyleMap(style);
           }
           else
