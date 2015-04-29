@@ -988,6 +988,9 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
               })
           });
           app.map.addLayer(layer.layer);
+
+          var style_bldr = new ol_gradient_style_builder()
+          style_bldr.build_gradient('#ff0000', '#0000ff', 12);
         }
 
         /*else { //if XYZ with no utfgrid
