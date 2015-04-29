@@ -30,7 +30,7 @@ function ol_gradient_style_builder(options) {
       {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.LESS_THAN,
-              property: "${" + comparison_property + "}",
+              property: comparison_property,
               value: steps[i]
           });
       }
@@ -38,7 +38,7 @@ function ol_gradient_style_builder(options) {
       {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.BETWEEN,
-              property: "${" + comparison_property + "}",
+              property: comparison_property,
               lowerBoundary: steps[i],
               upperBoundary: steps[i+1]
           });
@@ -47,7 +47,7 @@ function ol_gradient_style_builder(options) {
       {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.GREATER_THAN,
-              property: "${" + comparison_property + "}",
+              property: comparison_property,
               value: steps[i]
           });
       }
