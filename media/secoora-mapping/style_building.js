@@ -48,7 +48,7 @@ function ol_gradient_style_builder(options) {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.GREATER_THAN,
               property: comparison_property,
-              value: steps[i],
+              value: steps[i]
           });
       }
       rules.push(new OpenLayers.Rule({
