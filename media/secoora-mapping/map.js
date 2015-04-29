@@ -1018,8 +1018,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                   url: layer.openlayers_options.geojson,
                   format: new OpenLayers.Format.GeoJSON()
               }),
-              strategies: [new OpenLayers.Strategy.Fixed()],
-              //strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
+              strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
               styleMap: style_map
           });
           app.map.addLayer(layer.layer);
