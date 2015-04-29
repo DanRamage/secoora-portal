@@ -953,7 +953,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
         else if(layer.type === 'GeoJSON')
         {
           //new OpenLayers.Projection("EPSG:900913")), 2);
-          if('steps' in layer.openlayers_options)
+          /*if('steps' in layer.openlayers_options)
           {
             var style_bldr = new ol_gradient_style_builder()
             var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps, layer.openlayers_options.label_property);
@@ -983,6 +983,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
               });
           }
           else
+          */
           {
             var style_map = new OpenLayers.StyleMap({
                   'default': new OpenLayers.Style({
