@@ -220,7 +220,7 @@ def obs_data_request(request, observation_name):
     results = get_obs_data(observation_name, uom_name)
 
   elif observation_name == "air_pressure":
-    uom_name = 'millibar'
+    uom_name = 'mb'
     results = get_obs_data(observation_name, uom_name)
 
   elif observation_name == "salinity":
@@ -232,7 +232,7 @@ def obs_data_request(request, observation_name):
     results = get_obs_data(observation_name, uom_name)
 
   elif observation_name == "relative_humidty":
-    uom_name = 'm'
+    uom_name = 'percent'
     results = get_obs_data(observation_name, uom_name)
 
   if logger:
