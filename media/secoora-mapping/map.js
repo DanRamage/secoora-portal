@@ -956,7 +956,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
           if('steps' in layer.openlayers_options)
           {
             var style_bldr = new ol_gradient_style_builder()
-            var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps);
+            var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps, layer.openlayers_options.label_property);
             var style_map = new OpenLayers.StyleMap({
                   'default': new OpenLayers.Style({
                       strokeWidth: '${strokeFunction}',
