@@ -26,5 +26,6 @@ function ol_gradient_style_builder(options) {
       var color_val = ColorMix.blend(i);
     }
   };
+  return self;
 
 };
