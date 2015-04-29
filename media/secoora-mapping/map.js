@@ -963,7 +963,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
             var style = new OpenLayers.Style(
                 {
                     strokeWidth: '${strokeFunction}',
-                    strokeOpacity: 0.5,
+                    //strokeOpacity: 0.5,
                     pointRadius: '${radiusfunction}',
                     label: "${" + layer.openlayers_options.label_property + "}",
                     fontColor: "#000000"
