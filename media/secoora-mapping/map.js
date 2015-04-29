@@ -962,8 +962,8 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
             var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, layer.openlayers_options.label_property);
             var style = new OpenLayers.Style(
                 {
-                    //strokeWidth: '${strokeFunction}',
-                    //strokeOpacity: 0.5,
+                    strokeWidth: '${strokeFunction}',
+                    strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
                     label: "${" + layer.openlayers_options.label_property + "}",
                     fontColor: "#000000"
