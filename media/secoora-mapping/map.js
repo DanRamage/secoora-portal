@@ -826,13 +826,34 @@ var start_date = isoDateToDate(now);
 //var start_date = $.extend( true, {}, now );
 //var end_date = now;
 start_date.setDate(start_date.getDate() - 2);
+
+          var closest_start_wmst;
+          var closest_date_ndx = bisect_left(Math.round(start_date.getTime()/1000), layer.timeSteps);
+          if(closest_date_ndx != -1)
+          {
+            var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
+            closest_start_wmst = app.viewModel.timelineTool.get_wmst_date(closest_date);
+	  }
+
 //window.alert(start_date.toISOString());
+//window.alert(closest_start_wmst);
  
 var end_date = isoDateToDate(now);
 //end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60); 
 end_date.setDate(end_date.getDate() + 2);
+
+          var closest_end_wmst;
+          var closest_date_ndx = bisect_left(Math.round(end_date.getTime()/1000), layer.timeSteps);
+          if(closest_date_ndx != -1)
+          {
+            var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
+            closest_end_wmst = app.viewModel.timelineTool.get_wmst_date(closest_date);
+          }
+
+
+//window.alert(closest_end_wmst);
 //window.alert(end_date.toISOString());
-window.alert(start_date.toISOString()+'/'+end_date.toISOString());
+//window.alert(start_date.toISOString()+'/'+end_date.toISOString());
 
 
             var params = OpenLayers.Util.extend({
@@ -848,7 +869,8 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                       new OpenLayers.Projection("EPSG:4326")),
 
                 //time: '2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z',
-                time: start_date.toISOString()+'/'+end_date.toISOString(),
+                //time: start_date.toISOString()+'/'+end_date.toISOString(),
+                time: closest_start_wmst+'/'+closest_end_wmst,
 
                 feature_count: this.maxFeatures,
                 height: this.map.getSize().h,
