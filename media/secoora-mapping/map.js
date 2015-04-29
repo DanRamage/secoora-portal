@@ -961,14 +961,14 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
             var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, layer.openlayers_options.label_property);
             var style = new OpenLayers.Style(
                 {
-                    //strokeWidth: '${strokeFunction}',
+                    strokeWidth: '${strokeFunction}',
                     strokeOpacity: 0.5,
-                    //pointRadius: '${radiusfunction}',
+                    pointRadius: '${radiusfunction}',
                     label: "${" + layer.openlayers_options.label_property + "}",
                     fontColor: "#000000"
                 },
                 {
-                  /*context: {
+                  context: {
                       strokeFunction: function(feature) {
                           var count = feature.attributes.count;
                           var stk = Math.max(0.1 * count, 1);
@@ -979,7 +979,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                           var radius = Math.max(0.60 * count, 7);
                           return radius;
                       }
-                  },*/
+                  },
                   rules: rules
               });
             style_map = new OpenLayers.StyleMap(style);
