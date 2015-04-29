@@ -822,14 +822,14 @@ $.plot(
 var now = layer.closestTime();
 
 var start_date = isoDateToDate(now);
-start_date.setHours(start_date.getHours() - start_date.getTimezoneOffset()/60); 
+//start_date.setHours(start_date.getHours() - start_date.getTimezoneOffset()/60); 
 //var start_date = $.extend( true, {}, now );
 //var end_date = now;
 start_date.setDate(start_date.getDate() - 2);
 //window.alert(start_date.toISOString());
  
 var end_date = isoDateToDate(now);
-end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60); 
+//end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60); 
 end_date.setDate(end_date.getDate() + 2);
 //window.alert(end_date.toISOString());
 window.alert(start_date.toISOString()+'/'+end_date.toISOString());
