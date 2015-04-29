@@ -219,6 +219,22 @@ def obs_data_request(request, observation_name):
     uom_name = 'celsius'
     results = get_obs_data(observation_name, uom_name)
 
+  elif observation_name == "air_pressure":
+    uom_name = 'millibar'
+    results = get_obs_data(observation_name, uom_name)
+
+  elif observation_name == "salinity":
+    uom_name = 'psu'
+    results = get_obs_data(observation_name, uom_name)
+
+  elif observation_name == "water_level":
+    uom_name = 'm'
+    results = get_obs_data(observation_name, uom_name)
+
+  elif observation_name == "relative_humidty":
+    uom_name = 'm'
+    results = get_obs_data(observation_name, uom_name)
+
   if logger:
     logger.debug("Finished get_obs_data, obs name: %s" % (observation_name))
 
