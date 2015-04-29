@@ -988,7 +988,7 @@ end_date.setDate(end_date.getDate() + 2);
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
                     label: "${" + layer.openlayers_options.label_property + "}",
-                    fontColor: "#000000"
+                    fontColor: "#FFFFFF"
                 },
                 {
                   context: {
