@@ -281,7 +281,7 @@ def get_obs_data(obs_name, uom_name):
     xeniaDb.disconnect()
 
   if logger:
-    logger.debug("Finished get_obs_data for obs: %s. Results: %s" % (obs_name))
+    logger.debug("Finished get_obs_data for obs: %s." % (obs_name))
   return results
 
 def get_water_temp_stations(request):
