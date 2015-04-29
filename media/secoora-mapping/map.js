@@ -1,3 +1,67 @@
+function isoDateToDate(s) {
+  // 2010-01-01T00:00:00 or 2010-01-01 00:00:00
+  s = s.replace("\n",'');
+  var p = s.split(/T| /);
+  if (p.length == 2) {
+    var ymd = p[0].split('-');
+    var hm = p[1].split(':');
+    return new Date(Date.UTC(
+       ymd[0]
+      ,ymd[1] - 1
+      ,ymd[2]
+      ,hm[0]
+      ,hm[1]
+    ));
+  }
+  else {
+    return false;
+  }
+}
+
+
+
+function showToolTip(x,y,contents) {
+  $('<div id="tooltip">' + contents + '</div>').css({
+     position           : 'absolute'
+    ,display            : 'none'
+    ,top                : y + 10
+    ,left               : x + 10
+    ,border             : '1px solid #99BBE8'
+    ,padding            : '2px'
+    ,'background-color' : '#fff'
+    ,opacity            : 0.80
+    ,'z-index'          : 10000001
+  }).appendTo("body").fadeIn(200);
+}
+
+$('#div-ts-plot').bind('plothover',function(event,pos,item) {
+    if (item) {
+      var x = new Date(item.datapoint[0]);
+      var y = item.datapoint[1];
+      if (prevPoint != item.dataIndex) {
+        $('#tooltip').remove();
+        var d = x.format('UTC:mmm dd, yyyy');
+        // display date from stat calcs if avaialble
+        if (item.series.data[item.dataIndex][2]) {
+          d = item.series.data[item.dataIndex][2].format('UTC:mmm dd, yyyy');
+        }
+        // but only show the year if this is the avg line
+        if (item.series.id == 'avg') {
+          d = x.format('UTC:mmm dd');
+        }
+        showToolTip(
+           item.pageX
+          ,item.pageY
+          ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
+      }
+      prevPoint = item.dataIndex;
+    }
+    else {
+      $('#tooltip').remove();
+      prevPoint = null;
+    }
+  });
+
 
 app.init = function () {
     //to turn basemap indicator off (hide the plus sign)
@@ -608,8 +672,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
 	    //JTC 2015-03-08 point query
 
-	   var test3 = layer.url;
-      	   var currentBBOX = '-101.085752%2C13.163738%2C-67.537218%2C39.37353';
+      	   //var currentBBOX = '-101.085752%2C13.163738%2C-67.537218%2C39.37353';
 
            layer.queryControl = new OpenLayers.Control.WMSGetFeatureInfo(
               {
@@ -617,15 +680,106 @@ app.addLayerToMap = function(layer, isVisible) {
 
                   getfeatureinfo : function(evt)
                   {
-                	//window.alert("test1");  
-                	window.alert(evt.text);  
+
+    //JTC 2015-04-27
+    $('#ts-popup').popoverClosable();
+
+      //clickedLayerName(this.name);
+      //self.clickedLayerData(feature.attributes.description);
+      $('#ts-popup').show().draggable().position({
+              "my": "left top",
+              "at": "left middle",
+              "of": $("#map-panel")
+          });
+
+
+    	//window.alert("test1");  
+      	//window.alert(evt.text);  
+
+        //window.alert(layer.closestTime());
+
+/*
+              var d1 = [];
+              for (var i = 0; i < 14; i += 0.5) {
+                      d1.push([i, Math.sin(i)]);
+              }
+
+              var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+              // A null signifies separate line segments
+
+              var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+              $.plot("#div-ts-plot", [ d1, d2, d3 ]);
+
+              // Add the Flot version string to the footer
+
+              //$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+
+*/
+
+var d = {
+     //url   : url
+    //,title : title
+    //,year  : year
+    data  : []
+  };
+
+//WMS xpath processing
+_.each($(evt.text).find('FeatureInfo'),function(o) {
+      var a = $(o).find('time').text();
+      var b = $(o).find('value').text();
+      if ($.isNumeric(b)) {
+        //console.log(a+':'+b); 
+        d.data.push([isoDateToDate(a),b]);
+      }
+    });
+
+//d.data.push([isoDateToDate(a),b]);
+//d.data.push([isoDateToDate('2014-04-01T02:00:00'),'32.1']);
+//d.data.push([isoDateToDate('2014-04-01T04:00:00'),'33.1']);
+//d.data.push([isoDateToDate('2014-04-01T05:00:00'),'31.1']);
+
+var plotData = [];
+plotData = plotData.concat(d);
+
+$.plot(
+       $('#div-ts-plot')
+      ,plotData
+      ,{
+         xaxis     : {mode  : "time"}
+        ,crosshair : {mode  : 'x'   }
+        ,grid      : {
+           backgroundColor : {colors : ['#fff','#C3DFE5']}
+          ,borderWidth     : 1
+          ,borderColor     : '#A6D1DB'
+          ,hoverable       : true
+        }
+        ,zoom      : {interactive : true}
+        ,pan       : {interactive : true}
+        ,legend    : {
+           backgroundOpacity : 0.3
+          ,labelFormatter: function(label,series) {
+            return /min|max/.test(series.id) ? null : label;
+          }
+        }
+        // repeat 1st color to get outer edges of filled area the same color
+        //,colors : ['rgba(237,194,64,0.50)','rgba(237,194,64,0.50)',"#afd8f8","#cb4b4b","#4da74d","#9440ed"]
+        ,colors : ["#eb4b4b","#4da74d","#9440ed",'rgba(50,100,100,1.0)','rgba(100,50,100,1.0)','rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
+      }
+    );
+
+
+
 		  }
 
                   //This is the handler for the return click data.
                 },
 
 		layerUrls : [layer.url],
-                url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&TIME=2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
+                //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
+                url : 'http://tds.secoora.org/ncWMS/wms?EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
+
                 sr : 102113,
                 clickTolerance: 3,
                 layers: [layer.layer],
@@ -635,7 +789,11 @@ app.addLayerToMap = function(layer, isVisible) {
                 //format: new OpenLayers.Format.XML
 
                 //outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
+
+                //onSelect: app.viewModel.tsClick,
+                //scope: layer
               });
+
     layer.queryControl.buildWMSOptions = function(url, layers, clickPosition, format) {
     //OpenLayers.Control.WMSGetFeatureInfo.buildWMSOptions = function(url, layers, clickPosition, format) {
 
@@ -651,11 +809,32 @@ app.addLayerToMap = function(layer, isVisible) {
             // use the firstLayer's projection if it matches the map projection -
             // this assumes that all layers will be available in this projection
             //var projection = this.map.getProjection();
-            var projection = '4326';
+            var projection = 'EPSG:4326';
             var layerProj = firstLayer.projection;
             if (layerProj && layerProj.equals(this.map.getProjectionObject())) {
                 projection = layerProj.getCode();
             }
+
+            projection = 'EPSG:4326';
+
+//var now = '2015-04-23T02:01:00.000Z';
+ 
+var now = layer.closestTime();
+
+var start_date = isoDateToDate(now);
+start_date.setHours(start_date.getHours() - start_date.getTimezoneOffset()/60); 
+//var start_date = $.extend( true, {}, now );
+//var end_date = now;
+start_date.setDate(start_date.getDate() - 2);
+//window.alert(start_date.toISOString());
+ 
+var end_date = isoDateToDate(now);
+end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60); 
+end_date.setDate(end_date.getDate() + 2);
+//window.alert(end_date.toISOString());
+window.alert(start_date.toISOString()+'/'+end_date.toISOString());
+
+
             var params = OpenLayers.Util.extend({
                 service: "WMS",
                 version: firstLayer.params.VERSION,
@@ -663,7 +842,14 @@ app.addLayerToMap = function(layer, isVisible) {
                 exceptions: firstLayer.params.EXCEPTIONS,
                 //bbox: this.map.getExtent().toBBOX(null,
                 //    firstLayer.reverseAxisOrder()),
-                bbox: '-101.085752,13.163738,-67.537218,39.37353',
+                //bbox: '-101.085752,13.163738,-67.537218,39.37353',
+
+                bbox: this.map.getExtent().transform(this.map.getProjection(),
+                      new OpenLayers.Projection("EPSG:4326")),
+
+                //time: '2015-04-09T00:00:00.000Z/2015-04-10T00:00:00.000Z',
+                time: start_date.toISOString()+'/'+end_date.toISOString(),
+
                 feature_count: this.maxFeatures,
                 height: this.map.getSize().h,
                 width: this.map.getSize().w,
@@ -703,6 +889,7 @@ app.addLayerToMap = function(layer, isVisible) {
             //2013-02-20 DWR
             layer.layer.setVisibility(isVisible);
             app.map.addLayer(layer.layer);
+
             //2013-02-20 DWR
             //Add the identify control.
             app.map.addControl(layer.queryControl);
@@ -864,3 +1051,4 @@ $("#overview-overlay-text").hover(
         }
     }
 )
+
