@@ -320,3 +320,33 @@
 </div>
 
 <!-- End KML Query Popup -->
+
+<!-- TS(Time Series) Query Popup -->
+
+<style>
+  .ts-popup {
+    width: 400px;
+    height: 300px;
+  }
+  .ts-plot {
+    width: 400px;
+    height: 200px;
+  }
+</style>
+
+<!-- <div id="ts-popup" class="popover fade left in"> -->
+<div id="ts-popup" class="popover fade left in ts-popup">
+  <div class="popover-header">
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
+    <h3 class="popover-title">
+        <span data-bind="text: clickedLayerName"></span>
+    </h3>
+  </div>
+  <div class="scrollpane">
+    <div id="div-ts-plot" class="ts-plot">
+    </div>
+  </div>
+</div>
+
+<!-- End TS Query Popup -->
+
