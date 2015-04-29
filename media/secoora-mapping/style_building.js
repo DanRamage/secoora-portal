@@ -25,26 +25,41 @@ function ol_gradient_style_builder(options) {
     for(i = 0; i < steps.length; i += 1)
     {
       var color_val = ColorMix.blend(i);
-      var filter_type = OpenLayers.Filter.Comparison.BETWEEN;
+      var filter;
       if(i === 0)
       {
-        var filter_type = OpenLayers.Filter.Comparison.LESS_THAN;
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.LESS_THAN,
+              property: comparison_property,
+              value: steps[i]
+          });
       }
-      else if(i === steps.length - 1)
+      else if(i < steps.length - 2)
       {
-        var filter_type = OpenLayers.Filter.Comparison.GREATER_THAN;
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.BETWEEN,
+              property: comparison_property,
+              lowerBoundary: steps[i],
+              upperBoundary: steps[i+1]
+          });
+      }
+      else
+      {
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.GREATER_THAN,
+              property: comparison_property,
+              value: steps[i],
+          });
       }
       rules.push(new OpenLayers.Rule({
           // a rule contains an optional filter
-          filter: new OpenLayers.Filter.Comparison({
-              type: filter_type,
-              property: comparison_property,
-              value: steps[i]
-          }),
+          filter: filter,
           // if a feature matches the above filter, use this symbolizer
           symbolizer: {
               fillColor: color_val.toString(),
-              fillOpacity: 0.7
+              fillOpacity: 0.7,
+              pointRadius: 7,
+              fontSize: "9px"
           }
       }));
     }
