@@ -7,7 +7,7 @@ function bisect_left(search_value, values_array)
   var found = false;
   while(!found)
   {
-    if(hi - lo < 3)
+    if(hi - lo <= 3)
     {
       found = true;
       closest_ndx = middle;
