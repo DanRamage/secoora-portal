@@ -794,6 +794,7 @@
         <script src="{{MEDIA_URL}}/secoora-mapping/assets/js/bootstrap-collapse.js"></script>
         <script src="{{MEDIA_URL}}/marco/js/amplify.min.js"></script>
         <script src="{{MEDIA_URL}}/secoora-mapping/assets/js/jquery.ba-bbq.js"></script>
+        <script src="{{MEDIA_URL}}/secoora-mapping/colormix/colormix-2.0.0.js"></script>
         <script src="{{MEDIA_URL}}/marco/js/jquery-ui-1.9.1.custom.js"></script>
 
 
@@ -836,7 +837,7 @@
             };
             {% if user.is_authenticated %} app.is_authenticated = true; {% endif %}
         </script>
-
+        <script src="{{MEDIA_URL}}/secoora-mapping/style_building.js"></script>
         <script src="{{MEDIA_URL}}/secoora-mapping/arcgisrestquery.js"></script>
         <script src="{{MEDIA_URL}}/secoora-mapping/arcgisrestidentify.js"></script>
         <script src="{{MEDIA_URL}}/secoora-mapping/gsaapolygonrestidentify.js"></script>
