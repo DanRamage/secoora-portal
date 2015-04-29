@@ -962,7 +962,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                       //strokeWidth: '${strokeFunction}',
                       strokeOpacity: 0.5,
                       //pointRadius: '${radiusfunction}',
-                      label: layer.openlayers_options.label_property,
+                      label: "${layer.openlayers_options.label_property}",
                       fontColor: "#ffffff"
                   },
                   {
