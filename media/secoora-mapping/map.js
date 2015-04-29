@@ -954,6 +954,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
         {
           //new OpenLayers.Projection("EPSG:900913")), 2);
           var style_map;
+          var strategies;
           if('steps' in layer.openlayers_options)
           {
 
@@ -983,6 +984,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                   rules: rules
               });
             style_map = new OpenLayers.StyleMap(style);
+            strategies = [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster()];
           }
           else
           {
@@ -1011,6 +1013,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                       }
                   })
               });
+            strategies = [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})];
           }
           layer.layer = new OpenLayers.Layer.Vector(layer.name, {
               projection: "EPSG:4326",
@@ -1018,7 +1021,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                   url: layer.openlayers_options.geojson,
                   format: new OpenLayers.Format.GeoJSON()
               }),
-              strategies: [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})],
+              strategies: strategies,
               styleMap: style_map
           });
           app.map.addLayer(layer.layer);
