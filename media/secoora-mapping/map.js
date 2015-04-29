@@ -984,7 +984,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
                   rules: rules
               });
             style_map = new OpenLayers.StyleMap(style);
-            strategies = [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster()];
+            strategies = [new OpenLayers.Strategy.Fixed()];
           }
           else
           {
