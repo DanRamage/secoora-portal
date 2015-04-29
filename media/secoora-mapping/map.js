@@ -958,7 +958,7 @@ window.alert(start_date.toISOString()+'/'+end_date.toISOString());
           {
 
             var style_bldr = new ol_gradient_style_builder()
-            var rules = style_bldr.build_gradient('#ff0000', '#0000ff', layer.openlayers_options.steps, layer.openlayers_options.label_property);
+            var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, layer.openlayers_options.label_property);
             var style = new OpenLayers.Style(
                 {
                     //strokeWidth: '${strokeFunction}',
