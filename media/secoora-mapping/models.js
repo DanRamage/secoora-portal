@@ -2377,12 +2377,14 @@ function viewModel() {
       var layer = feature.layer;
       self.observation_hover_model.set_data(layer.name, feature.attributes);
       self.clickedLayerName(layer.name);
-      var view_px = app.map.getViewPortPxFromLonLat(feature.geometry);
-      $('#obs-hover-popup').show().draggable().position({
+      var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
+      var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
+      $('#obs-hover-popup').show().draggable().position(view_px);
+      /*{
         "my": "left top",
         "at": "left middle",
         "of": $("#" + feature.id)
-      });
+      });*/
     };
     self.obs_hover_unselect = function(feature)
     {
