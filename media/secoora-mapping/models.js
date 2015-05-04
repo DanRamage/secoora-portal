@@ -2345,7 +2345,20 @@ function viewModel() {
               "of": $("#map-panel")
           });
     };
-      
+    self.obs_hover = function(feature)
+    {
+      $('#obs-hover-popup').popoverClosable();
+      self.clickedLayerName(this.name);
+      var layer = feature.layer;
+      feature.style.fillOpacity = 1;
+      feature.style.pointRadius = 20;
+      $('#obs-hover-popup').show().draggable().position({
+        "my": "left top",
+        "at": "left middle",
+        "of": $("#map-panel")
+      });
+    };
+
     return self;
 } //end viewModel
 

@@ -1051,17 +1051,7 @@ end_date.setDate(end_date.getDate() + 2);
           //Add hover handler if used
           layer.queryControl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
-              onSelect: function(feature) {
-                  $('#obs-hover-popup').popoverClosable();
-                  self.clickedLayerName(this.name);
-                  var layer = feature.layer;
-                  feature.style.fillOpacity = 1;
-                  feature.style.pointRadius = 20;
-                  $('#obs-hover-popup').show().draggable().position({
-                          "my": "left top",
-                          "at": "left middle",
-                          "of": $("#map-panel")
-                      });
+              onSelect: app.viewModel.obs_hover,
               },
               onUnselect: function(feature) {
 
