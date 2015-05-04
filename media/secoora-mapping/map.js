@@ -1067,6 +1067,30 @@ end_date.setDate(end_date.getDate() + 2);
           });
           app.map.addLayer(layer.layer);
 
+          //Add hover handler if used
+          var selectControl = new OpenLayers.Control.SelectFeature(layer.layer, {
+              hover: true,
+              onSelect: function(feature) {
+                  $('#obs-hover-popup').popoverClosable();
+                  self.clickedLayerName(this.name);
+                  var layer = feature.layer;
+                  feature.style.fillOpacity = 1;
+                  feature.style.pointRadius = 20;
+                  $('#obs-hover-popup').show().draggable().position({
+                          "my": "left top",
+                          "at": "left middle",
+                          "of": $("#map-panel")
+                      });
+              },
+              onUnselect: function(feature) {
+
+                  var layer = feature.layer;
+                  feature.style.fillOpacity = 0.7;
+                  feature.style.pointRadius = 16;
+                  feature.renderIntent = null;
+              }
+          });
+          app.map.addControl(layer.queryControl);
         }
 
         /*else { //if XYZ with no utfgrid
