@@ -1115,6 +1115,22 @@ function mapLinksModel() {
     return self;
 } // end of mapLinks Model
 
+function obs_data_model()
+{
+  self = this;
+  self.platform_name = ko.observable("");
+  self.organization_name = ko.observable("");
+  self.obs_name = ko.observable("");
+  self.obs_uom = ko.observable("");
+  self.obs_time = ko.observable("");
+
+  self.set_data = function(observaton_name, data)
+  {
+    self.obs_name(observaton_name);
+
+  };
+  return(self);
+}
 
 function viewModel() {
     var self = this;
@@ -2348,9 +2364,11 @@ function viewModel() {
           });
     };
     $('#obs-hover-popup').popoverClosable();
+    self.obs_data_model = new obs_data_model();
     self.obs_hover_select = function(feature)
     {
       var layer = feature.layer;
+      self.obs_data_model.set_data(layer.name, feature.attributes);
       self.clickedLayerName(layer.name);
       $('#obs-hover-popup').show().draggable().position({
         "my": "left top",

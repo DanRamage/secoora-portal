@@ -351,16 +351,23 @@
 <!-- End TS Query Popup -->
 
 <!-- Observation hover popup -->
-<div id="obs-hover-popup" class="popover fade left in">
+<div id="obs-hover-popup" class="popover fade left in" data-bind="with: observation_hover_model">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
         <span data-bind="text: clickedLayerName"></span>
     </h3>
   </div>
-  <div class="popover-content" class="scrollpane">
-    <div>
-      <span class="kml-content" data-bind="html: clickedLayerData"></span>
+  <div class="obs-hover-content" class="scrollpane">
+    <div class="obs_name">
+      <span data_bind="text: observation_name"></span>
+    </div>
+    <div class="obs_data">
+      <span data_bind="text: observation_value"></span>
+      <span data_bind="text: observation_uom"></span>
+    </div>
+    <div class="obs_time">
+      <span data_bind="text: observation_time"></span>
     </div>
   </div>
 </div>
