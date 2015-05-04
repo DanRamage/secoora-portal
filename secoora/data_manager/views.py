@@ -287,7 +287,7 @@ def get_obs_data(obs_name, uom_name):
             for feature in obs_json['properties']['features']:
               prop = feature['properties']
               if obs_name == prop['obsType']:
-                properties['obs_name'] = prop['value'][-1]
+                properties['obs_value'] = prop['value'][-1]
                 properties['obs_uom'] = prop['uomType']
                 properties['obs_time'] = prop['time'][-1]
               else:
