@@ -1071,7 +1071,6 @@ end_date.setDate(end_date.getDate() + 2);
           layer.queryControl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
               onSelect: app.viewModel.obs_hover,
-              },
               onUnselect: function(feature) {
 
                   var layer = feature.layer;
