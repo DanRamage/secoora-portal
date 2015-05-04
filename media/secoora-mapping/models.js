@@ -2352,8 +2352,6 @@ function viewModel() {
       $('#obs-hover-popup').popoverClosable();
       var layer = feature.layer;
       self.clickedLayerName(layer.name);
-      feature.style.fillOpacity = 1;
-      feature.style.pointRadius = 20;
       $('#obs-hover-popup').show().draggable().position({
         "my": "left top",
         "at": "left middle",
