@@ -1000,13 +1000,13 @@ end_date.setDate(end_date.getDate() + 2);
           {
 
             var style_bldr = new ol_gradient_style_builder()
-            var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, layer.openlayers_options.label_property);
+            var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
             var style = new OpenLayers.Style(
                 {
                     strokeWidth: '${strokeFunction}',
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
-                    label: "${" + layer.openlayers_options.label_property + "}",
+                    label: "${obs_value}",
                     fontColor: "#000000"
                 },
                 {
