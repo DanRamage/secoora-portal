@@ -1117,7 +1117,8 @@ function mapLinksModel() {
 
 function obs_data_model()
 {
-  self = this;
+  var self = this;
+
   self.platform_name = ko.observable("");
   self.organization_name = ko.observable("");
   self.obs_name = ko.observable("");
