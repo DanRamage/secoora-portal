@@ -352,7 +352,7 @@
 
 <!-- Observation hover popup -->
 <div id="obs-hover-popup" class="popover fade left in" data-bind="with: $root.observation_hover_model">
-  <pre data-bind="text: JSON.stringify(ko.toJS($data), null, 2)"></pre>
+  <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
 
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
