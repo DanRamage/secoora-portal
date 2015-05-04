@@ -355,8 +355,10 @@
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
+      <span>Platform: </span>
       <span data-bind="text: platform_name"></span>
       <br>
+      <span>Organization: </span>
       <span data-bind="text: organization_name"></span>
     </h3>
   </div>
@@ -368,11 +370,15 @@
       <span data-bind="text: obs_name"></span>
     </div>
     <div>
-      <span data-bind="text: obs_value"></span>
-      <span data-bind="text: obs_uom"></span>
+      <h2>
+        <span data-bind="text: obs_value"></span>
+        <span data-bind="text: obs_uom"></span>
+      </h2>
     </div>
     <div>
-      <span data-bind="text: obs_time"></span>
+      <h3>
+        <span data-bind="text: obs_time"></span>
+      </h3>
     </div>
   </div>
 </div>
