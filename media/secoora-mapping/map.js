@@ -1068,7 +1068,7 @@ end_date.setDate(end_date.getDate() + 2);
           app.map.addLayer(layer.layer);
 
           //Add hover handler if used
-          var selectControl = new OpenLayers.Control.SelectFeature(layer.layer, {
+          layer.queryControl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
               onSelect: function(feature) {
                   $('#obs-hover-popup').popoverClosable();
