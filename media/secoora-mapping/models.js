@@ -1121,6 +1121,7 @@ function obs_data_model()
   self.platform_name = ko.observable("");
   self.organization_name = ko.observable("");
   self.obs_name = ko.observable("");
+  self.obs_value = ko.observable("");
   self.obs_uom = ko.observable("");
   self.obs_time = ko.observable("");
 
@@ -1129,7 +1130,7 @@ function obs_data_model()
     self.obs_name(observaton_name);
     self.organization_name(data.o_name);
     self.platform_name(data.p_name);
-    self.obs_name(data.obs_name);
+    self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
     self.obs_time(data.obs_time);
 
