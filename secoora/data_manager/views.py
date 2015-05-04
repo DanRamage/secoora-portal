@@ -18,7 +18,7 @@ from settings_local import *
 
 #Imports for xenia db connection.
 from sqlalchemy import func
-from xeniaSQLAlchemy import xeniaAlchemy, platform as xenia_platform, sensor as xenia_sensor, m_type as xenia_m_type
+from xeniaSQLAlchemy import xeniaAlchemy, platform as xenia_platform, sensor as xenia_sensor, m_type as xenia_m_type, organization as xenia_organization
 from geoalchemy2 import Geometry
 from geoalchemy2.elements import WKTElement,WKBElement
 
@@ -265,6 +265,7 @@ def get_obs_data(obs_name, uom_name):
         bbox = "POLYGON((%s))" % (SECOORA_BBOX)
         platform_list = xeniaDb.session.query(xenia_platform)\
           .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
+          .join((xenia_organization, xenia_organization.row_id == xenia_platform.organization_id))\
           .filter(xenia_sensor.m_type_id == m_type_id)\
           .filter(xenia_platform.active.in_((1,2)))\
           .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
@@ -279,13 +280,27 @@ def get_obs_data(obs_name, uom_name):
           if res.status_code == 200:
             obs_json = res.json
             properties = OrderedDict()
-            properties['platform'] = platform.platform_handle
+            properties['p_handle'] = platform.platform_handle
+            properties['p_name'] = platform.short_name
+            properties['o_name'] = platform.organization.short_name
+
             for feature in obs_json['properties']['features']:
               prop = feature['properties']
+              if obs_name == prop['obsType']:
+                properties['obs_name'] = prop['value'][-1]
+                properties['obs_uom'] = prop['uomType']
+                properties['obs_time'] = prop['time'][-1]
+              else:
+                if 'other_obs' not in properties:
+                  properties['other_obs'] = []
+                properties['other_obs'].append(properties['obs_name'])
+
+              """
               if prop['obsType'] is not None:
                 properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
                 properties['%s_uom' % (prop['obsType'])] = prop['uomType']
                 properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
+              """
             feature = {
               "geometry": {
                 "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
@@ -312,6 +327,7 @@ def get_obs_data(obs_name, uom_name):
     logger.debug("Finished get_obs_data for obs: %s." % (obs_name))
   return results
 
+"""
 def get_water_temp_stations(request):
   results = {
     'type': 'FeatureCollection',
@@ -382,3 +398,4 @@ def get_water_temp_stations(request):
   if logger:
     logger.debug("Finished get_water_temp_stations. Results: %s" % (results))
   return HttpResponse(content=simplejson.dumps(results), content_type='application/json')
+"""
