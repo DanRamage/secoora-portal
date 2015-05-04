@@ -1127,6 +1127,11 @@ function obs_data_model()
   self.set_data = function(observaton_name, data)
   {
     self.obs_name(observaton_name);
+    self.organization_name(data.o_name);
+    self.platform_name(data.p_name);
+    self.obs_name(data.obs_name);
+    self.obs_uom(data.obs_uom);
+    self.obs_time(data.obs_time);
 
   };
   return(self);
