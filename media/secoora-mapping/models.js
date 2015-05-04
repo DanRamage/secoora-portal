@@ -2379,7 +2379,7 @@ function viewModel() {
       self.clickedLayerName(layer.name);
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-      $('#obs-hover-popup').show().draggable().position(view_px);
+      $('#obs-hover-popup').show().offset({top:view_px.y, left: view_px.x});
       /*{
         "my": "left top",
         "at": "left middle",
