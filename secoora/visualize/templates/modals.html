@@ -364,6 +364,7 @@
     </h3>
   </div>
   <div class="popover-content" class="scrollpane">
+    <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     <div class="obs_name">
       <span data_bind="text: obs_name"></span>
     </div>
