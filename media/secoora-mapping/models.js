@@ -2371,7 +2371,7 @@ function viewModel() {
           });
     };
     $('#obs-hover-popup').popoverClosable();
-    self.obs_data_model = new obs_data_model();
+    self.observation_hover_model = new obs_data_model();
     self.obs_hover_select = function(feature)
     {
       var layer = feature.layer;
