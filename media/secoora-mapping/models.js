@@ -1269,6 +1269,8 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
+          //if(self.queryFeatureActive() && self.isTopLayer(layer))
+          //if(self.queryFeatureActive() && app.viewModel.activeLayers.indexOf(layer) === 0))
           if(self.queryFeatureActive())
           {
             layer.queryControl.activate();
