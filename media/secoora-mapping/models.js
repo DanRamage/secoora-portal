@@ -2377,7 +2377,7 @@ function viewModel() {
       var layer = feature.layer;
       self.observation_hover_model.set_data(layer.name, feature.attributes);
       self.clickedLayerName(layer.name);
-      var view_px = app.map.getViewPortPxFromLonLat(layer.geometry);
+      var view_px = app.map.getViewPortPxFromLonLat(feature.geometry);
       $('#obs-hover-popup').show().draggable().position({
         "my": "left top",
         "at": "left middle",
