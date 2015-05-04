@@ -2375,7 +2375,7 @@ function viewModel() {
     self.obs_hover_select = function(feature)
     {
       var layer = feature.layer;
-      self.obs_data_model.set_data(layer.name, feature.attributes);
+      self.observation_hover_model.set_data(layer.name, feature.attributes);
       self.clickedLayerName(layer.name);
       $('#obs-hover-popup').show().draggable().position({
         "my": "left top",
