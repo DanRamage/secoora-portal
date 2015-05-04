@@ -2345,6 +2345,7 @@ function viewModel() {
               "of": $("#map-panel")
           });
     };
+      
     return self;
 } //end viewModel
 

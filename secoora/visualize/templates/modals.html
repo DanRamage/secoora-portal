@@ -350,3 +350,18 @@
 
 <!-- End TS Query Popup -->
 
+<!-- Observation hover popup -->
+<div id="obs-hover-popup" class="popover fade left in">
+  <div class="popover-header">
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
+    <h3 class="popover-title">
+        <span data-bind="text: clickedLayerName"></span>
+    </h3>
+  </div>
+  <div class="popover-content" class="scrollpane">
+    <div>
+      <span class="kml-content" data-bind="html: clickedLayerData"></span>
+    </div>
+  </div>
+</div>
+<!-- Obs hover popup -->
