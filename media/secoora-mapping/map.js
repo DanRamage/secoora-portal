@@ -1070,14 +1070,8 @@ end_date.setDate(end_date.getDate() + 2);
           //Add hover handler if used
           layer.queryControl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
-              onSelect: app.viewModel.obs_hover,
-              onUnselect: function(feature) {
-
-                  var layer = feature.layer;
-                  feature.style.fillOpacity = 0.7;
-                  feature.style.pointRadius = 16;
-                  feature.renderIntent = null;
-              }
+              onSelect: app.viewModel.obs_hover_select,
+              onUnselect: app.viewModel.obs_hover_unselect
           });
           app.map.addControl(layer.queryControl);
         }

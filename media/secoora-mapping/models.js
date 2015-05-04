@@ -2347,9 +2347,9 @@ function viewModel() {
               "of": $("#map-panel")
           });
     };
-    self.obs_hover = function(feature)
+    $('#obs-hover-popup').popoverClosable();
+    self.obs_hover_select = function(feature)
     {
-      $('#obs-hover-popup').popoverClosable();
       var layer = feature.layer;
       self.clickedLayerName(layer.name);
       $('#obs-hover-popup').show().draggable().position({
@@ -2357,6 +2357,12 @@ function viewModel() {
         "at": "left middle",
         "of": $("#map-panel")
       });
+    };
+    self.obs_hover_unselect = function(feature)
+    {
+      $('#obs-hover-popup').hide();
+      self.clickedLayerName = ko.observable("");
+      self.clickedLayerData = ko.observable("");
     };
 
     return self;
