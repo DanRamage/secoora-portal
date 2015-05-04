@@ -355,12 +355,9 @@
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
-        <div>
-          <span data-bind="text: platform_name"></span>
-        </div>
-        <div>
-          <span data-bind="text: organization_name"></span>
-        </div>
+      <span data-bind="text: platform_name"></span>
+      <br>
+      <span data-bind="text: organization_name"></span>
     </h3>
   </div>
   <div class="popover-content scrollpane">
@@ -368,14 +365,14 @@
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
     <div>
-      <span data_bind="text: obs_name"></span>
+      <span data-bind="text: obs_name"></span>
     </div>
     <div>
-      <span data_bind="text: obs_value"></span>
-      <span data_bind="text: obs_uom"></span>
+      <span data-bind="text: obs_value"></span>
+      <span data-bind="text: obs_uom"></span>
     </div>
     <div>
-      <span data_bind="text: obs_time"></span>
+      <span data-bind="text: obs_time"></span>
     </div>
   </div>
 </div>
