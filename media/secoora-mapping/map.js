@@ -40,15 +40,18 @@ $('#div-ts-plot').bind('plothover',function(event,pos,item) {
       var y = item.datapoint[1];
       if (prevPoint != item.dataIndex) {
         $('#tooltip').remove();
-        var d = x.format('UTC:mmm dd, yyyy');
+        //var d = x.format('UTC:mmm dd, yyyy');
+        var d = x.format('UTC:mmm dd, h TT');
         // display date from stat calcs if avaialble
+        /*
         if (item.series.data[item.dataIndex][2]) {
-          d = item.series.data[item.dataIndex][2].format('UTC:mmm dd, yyyy');
+          d = item.series.data[item.dataIndex][2].format('UTC:mmm dd, h TT');
         }
         // but only show the year if this is the avg line
         if (item.series.id == 'avg') {
           d = x.format('UTC:mmm dd');
         }
+	*/
         showToolTip(
            item.pageX
           ,item.pageY
@@ -684,7 +687,7 @@ app.addLayerToMap = function(layer, isVisible) {
     //JTC 2015-04-27
     $('#ts-popup').popoverClosable();
 
-      //clickedLayerName(this.name);
+      app.viewModel.clickedLayerName(layer.name);
       //self.clickedLayerData(feature.attributes.description);
       $('#ts-popup').show().draggable().position({
               "my": "left top",
@@ -723,6 +726,12 @@ var d = {
     //,title : title
     //,year  : year
     data  : []
+    //,points: { show: true, symbol: "circle" }
+  };
+
+var now_cross = {
+    data  : []
+    ,points: { show: true, symbol: "cross" }
   };
 
 //WMS xpath processing
@@ -738,10 +747,20 @@ _.each($(evt.text).find('FeatureInfo'),function(o) {
 //d.data.push([isoDateToDate(a),b]);
 //d.data.push([isoDateToDate('2014-04-01T02:00:00'),'32.1']);
 //d.data.push([isoDateToDate('2014-04-01T04:00:00'),'33.1']);
-//d.data.push([isoDateToDate('2014-04-01T05:00:00'),'31.1']);
+//d.data.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
+
+//d.data.push(data: generate(7, 1.1), points: { symbol: "cross" });
+
+//works d.data.push([ isoDateToDate('2015-04-30T06:00:00'),'31.1' ]);
 
 var plotData = [];
+
+now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'),'31.1']);
+
 plotData = plotData.concat(d);
+plotData = plotData.concat(now_cross);
+//plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
+//plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1']]);
 
 $.plot(
        $('#div-ts-plot')
@@ -780,7 +799,7 @@ $.plot(
                 //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
                 url : 'http://tds.secoora.org/ncWMS/wms?EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
 
-                sr : 102113,
+                //sr : 102113,
                 clickTolerance: 3,
                 layers: [layer.layer],
                 queryVisible: true,
