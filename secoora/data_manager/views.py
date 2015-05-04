@@ -293,7 +293,7 @@ def get_obs_data(obs_name, uom_name):
               else:
                 if 'other_obs' not in properties:
                   properties['other_obs'] = []
-                properties['other_obs'].append(properties['obs_name'])
+                properties['other_obs'].append(prop['obsType'])
 
               """
               if prop['obsType'] is not None:
