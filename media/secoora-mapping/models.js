@@ -87,10 +87,6 @@ function layerModel(options, parent) {
     //WHen the layer is issued the identify request, if there are results there, this is set to true.
     self.layerDataAvailable = ko.observable(false);
 
-    //DWR 2015-05-05 Move this out from ArcRest layers since any layer could have a control.
-    //Anything added to this list should be a OpenLayers.Control object.
-    self.queryControl = [];
-
     if(self.type === 'ArcRest')
     {
 
@@ -303,10 +299,7 @@ function layerModel(options, parent) {
         //Deactivate the queryControl on the layer if it has one.
         if("queryControl" in layer)
         {
-          $.each(layer.queryControl, function(ndx, queryControl)
-          {
-            queryControl.deactivate();
-          });
+          layer.activate_query_controls(false);
           //layer.queryControl.deactivate();
           app.viewModel.attributeDataArray.remove(function(layerData) {
               if(layerData.title == layer.name)
@@ -393,9 +386,7 @@ function layerModel(options, parent) {
         layer.visibleSublayer(false);
         if("queryControl" in layer)
         {
-          $.each(layer.queryControl, function(ndx, queryControl) {
-            queryControl.deactivate();
-          });
+          layer.activate_query_controls(false);
           //layer.queryControl.deactivate();
           app.viewModel.attributeDataArray.remove(function(layerData) {
               if(layerData.title == layer.name)
@@ -711,6 +702,14 @@ function layerModel(options, parent) {
             // already at top
             return;
         }
+        //DWR 2015-05-05
+        //Disable any active query controls on the other layers.
+        $.each(app.viewModel.activeLayers, function(ndx, lower_layer)
+        {
+          lower_layer.activate_query_controls(false);
+        });
+        layer.activate_query_controls(true);
+
         $(event.target).closest('tr').fadeOut('fast', function() {
             app.viewModel.activeLayers.remove(layer);
             app.viewModel.activeLayers.splice(current - 1, 0, layer);
@@ -842,7 +841,24 @@ function layerModel(options, parent) {
           error: function(result) { }
       });
 
-    }
+    };
+    //DWR 2015-05-05 Move this out from ArcRest layers since any layer could have a control.
+    //Anything added to this list should be a OpenLayers.Control object.
+    self.queryControl = [];
+    self.activate_query_controls = function(activate_flag)
+    {
+      $.each(self.queryControl, function(ndx, q_control)
+      {
+        if(activate_flag)
+        {
+          q_control.activate();
+        }
+        else
+        {
+          q_control.deactivate();
+        }
+      });
+    };
     return self;
 } // end layerModel
 
@@ -1178,17 +1194,12 @@ function viewModel() {
             //If the layer is the first visible layer, enable the identify control.
             if(app.viewModel.queryFeatureActive())
             {
-              $.each(layer.queryControl, function(ndx, queryControl) {
-                queryControl.activate();
-              });
+              layer.activate_query_controls(true);
               //layer.queryControl.activate();
             }
             else
             {
-              $.each(layer.queryControl, function(ndx, queryControl) {
-                queryControl.deactivate();
-              });
-
+              layer.activate_query_controls(false);
               //layer.queryControl.deactivate();
               //Delete any query results from the array.
               app.viewModel.attributeDataArray.remove(function(layerData) {
@@ -1312,18 +1323,12 @@ function viewModel() {
           //if(self.queryFeatureActive() && app.viewModel.activeLayers.indexOf(layer) === 0))
           if(self.queryFeatureActive())
           {
-            $.each(layer.queryControl, function(ndx, queryControl) {
-              queryControl.activate();
-            });
-
+            layer.activate_query_controls(true);
             //layer.queryControl.activate();
           }
           else
           {
-            $.each(layer.queryControl, function(ndx, queryControl) {
-              queryControl.deactivate();
-            });
-
+            layer.activate_query_controls(false);
             //layer.queryControl.deactivate();
           }
         }
@@ -1347,10 +1352,7 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          $.each(layer.queryControl, function(ndx, queryControl) {
-            queryControl.deactivate();
-          });
-
+          layer.activate_query_controls(false);
           //layer.queryControl.deactivate();
         }
       });
@@ -1370,9 +1372,7 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          $.each(layer.queryControl, function(ndx, queryControl) {
-            queryControl.deactivate();
-          });
+          layer.activate_query_controls(false);
           //layer.queryControl.deactivate();
         }
       });
