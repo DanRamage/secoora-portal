@@ -2388,7 +2388,6 @@ function viewModel() {
 
     self.clickedLayerName = ko.observable("");
     self.clickedLayerData = ko.observable("");
-
     $('#kml-popup').popoverClosable();
     self.kmlClick = function(feature)
     {
@@ -2406,7 +2405,6 @@ function viewModel() {
     {
       var layer = feature.layer;
       self.observation_hover_model.set_data(layer.name, feature.attributes);
-      self.clickedLayerName(layer.name);
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
       var map_offset = $("#map").offset();
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
@@ -2420,8 +2418,6 @@ function viewModel() {
     self.obs_hover_unselect = function(feature)
     {
       $('#obs-hover-popup').hide();
-      self.clickedLayerName = ko.observable("");
-      self.clickedLayerData = ko.observable("");
     };
 
     self.isTopLayer = function(layer) {
