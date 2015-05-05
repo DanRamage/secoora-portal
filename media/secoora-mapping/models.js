@@ -728,14 +728,6 @@ function layerModel(options, parent) {
         });
     };
 
-    self.isTopLayer = function(layer) {
-        return app.viewModel.activeLayers.indexOf(layer) === 0;
-    };
-
-    self.isBottomLayer = function(layer) {
-        return app.viewModel.activeLayers.indexOf(layer) === app.viewModel.activeLayers().length - 1;
-    };
-
     self.showingLayerAttribution = ko.observable(true);
     self.toggleLayerAttribution = function() {
         var layerID = '#' + app.viewModel.convertToSlug(self.name);
@@ -2430,6 +2422,14 @@ function viewModel() {
       $('#obs-hover-popup').hide();
       self.clickedLayerName = ko.observable("");
       self.clickedLayerData = ko.observable("");
+    };
+
+    self.isTopLayer = function(layer) {
+        return self.activeLayers.indexOf(layer) === 0;
+    };
+
+    self.isBottomLayer = function(layer) {
+        return self.activeLayers.indexOf(layer) === self.activeLayers().length - 1;
     };
 
     return self;
