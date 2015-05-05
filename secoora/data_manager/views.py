@@ -328,7 +328,7 @@ def get_obs_data(obs_name, uom_name):
     logger.debug("Finished get_obs_data for obs: %s." % (obs_name))
   return results
 
-def obs_time_series_request(request, platform_name):
+def platform_time_series_request(request, platform_name):
   results = {
     'type': 'Feature',
     'features': {}
