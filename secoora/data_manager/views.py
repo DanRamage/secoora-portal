@@ -330,8 +330,8 @@ def get_obs_data(obs_name, uom_name):
 
 def obs_time_series_request(request, platform_name, observation_name):
   results = {
-    'type': 'FeatureCollection',
-    'features': []
+    'type': 'Feature',
+    'features': {}
   }
 
   if logger:
@@ -390,8 +390,16 @@ def obs_time_series_request(request, platform_name, observation_name):
       res = requests.get(json_url)
       if res.status_code == 200:
         obs_json = res.json
-        results['observations'] = obs_json['properties']['features']
+        properties['observations'] = obs_json['properties']['features']
 
+        feature = {
+          "geometry": {
+            "coordinates": [xenia_platform.fixed_longitude, xenia_platform.fixed_latitude],
+            "type": "Point"
+          },
+          "properties": properties
+        }
+        results['features'] = feature
     except Exception,e:
       if logger:
         logger.exception(e)
