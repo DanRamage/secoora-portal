@@ -2427,7 +2427,10 @@ function viewModel() {
     {
       $('#obs-hover-popup').hide();
     };
-
+    self.obs_click_select = function(feature)
+    {
+      feature;
+    };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
     };

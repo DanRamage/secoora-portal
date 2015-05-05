@@ -828,15 +828,15 @@ app.addLayerToMap = function(layer, isVisible) {
 
             projection = 'EPSG:4326';
 
-//var now = '2015-04-23T02:01:00.000Z';
- 
-var now = layer.closestTime();
+          //var now = '2015-04-23T02:01:00.000Z';
 
-var start_date = isoDateToDate(now);
-//start_date.setHours(start_date.getHours() - start_date.getTimezoneOffset()/60); 
-//var start_date = $.extend( true, {}, now );
-//var end_date = now;
-start_date.setDate(start_date.getDate() - 2);
+          var now = layer.closestTime();
+
+          var start_date = isoDateToDate(now);
+          //start_date.setHours(start_date.getHours() - start_date.getTimezoneOffset()/60);
+          //var start_date = $.extend( true, {}, now );
+          //var end_date = now;
+          start_date.setDate(start_date.getDate() - 2);
 
           var closest_start_wmst;
           var closest_date_ndx = bisect_left(Math.round(start_date.getTime()/1000), layer.timeSteps);
@@ -844,14 +844,14 @@ start_date.setDate(start_date.getDate() - 2);
           {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
             closest_start_wmst = app.viewModel.timelineTool.get_wmst_date(closest_date);
-	  }
+      	  }
 
-//window.alert(start_date.toISOString());
-//window.alert(closest_start_wmst);
- 
-var end_date = isoDateToDate(now);
-//end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60); 
-end_date.setDate(end_date.getDate() + 2);
+          //window.alert(start_date.toISOString());
+          //window.alert(closest_start_wmst);
+
+          var end_date = isoDateToDate(now);
+          //end_date.setHours(end_date.getHours() - end_date.getTimezoneOffset()/60);
+          end_date.setDate(end_date.getDate() + 2);
 
           var closest_end_wmst;
           var closest_date_ndx = bisect_left(Math.round(end_date.getTime()/1000), layer.timeSteps);
@@ -862,9 +862,9 @@ end_date.setDate(end_date.getDate() + 2);
           }
 
 
-//window.alert(closest_end_wmst);
-//window.alert(end_date.toISOString());
-//window.alert(start_date.toISOString()+'/'+end_date.toISOString());
+          //window.alert(closest_end_wmst);
+          //window.alert(end_date.toISOString());
+          //window.alert(start_date.toISOString()+'/'+end_date.toISOString());
 
 
             var params = OpenLayers.Util.extend({
@@ -1057,6 +1057,11 @@ end_date.setDate(end_date.getDate() + 2);
               onUnselect: app.viewModel.obs_hover_unselect
           }));
           app.map.addControl(layer.queryControl[0]);
+          layer.queryControl.push(new OpenLayers.Control.SelectFeature(layer.layer, {
+              hover: false,
+              onSelect: app.viewModel.obs_click_select,
+          }));
+          app.map.addControl(layer.queryControl[1]);
         }
 
         /*else { //if XYZ with no utfgrid
