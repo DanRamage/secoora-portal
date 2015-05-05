@@ -1058,8 +1058,8 @@ app.addLayerToMap = function(layer, isVisible) {
           }));
           app.map.addControl(layer.queryControl[0]);
           layer.queryControl.push(new OpenLayers.Control.SelectFeature(layer.layer, {
-              hover: false,
               onSelect: app.viewModel.obs_click_select,
+              scope: layer
           }));
           app.map.addControl(layer.queryControl[1]);
         }
