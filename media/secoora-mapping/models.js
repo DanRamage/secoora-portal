@@ -1309,7 +1309,7 @@ function viewModel() {
       {
         self.queryFeatureActive(true);
         //Activate the Identify tab.
-        $('#identifyTab').tab('show');
+        //$('#identifyTab').tab('show');
       }
       else
       {
@@ -1319,18 +1319,25 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          //if(self.queryFeatureActive() && self.isTopLayer(layer))
-          //if(self.queryFeatureActive() && app.viewModel.activeLayers.indexOf(layer) === 0))
-          if(self.queryFeatureActive())
+          if(self.queryFeatureActive() && self.isTopLayer(layer))
           {
             layer.activate_query_controls(true);
-            //layer.queryControl.activate();
           }
           else
           {
             layer.activate_query_controls(false);
-            //layer.queryControl.deactivate();
           }
+          //if(self.queryFeatureActive() && app.viewModel.activeLayers.indexOf(layer) === 0))
+          /*
+          if(self.queryFeatureActive())
+          {
+            layer.queryControl.activate();
+          }
+          else
+          {
+            layer.queryControl.deactivate();
+          }
+          */
         }
       });
 
