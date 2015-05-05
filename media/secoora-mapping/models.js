@@ -446,6 +446,14 @@ function layerModel(options, parent) {
         }
 
       }
+      //DWR 2015-05-05
+      //If the query control is activate and this is the top layer, enable the control.
+      if(self.queryFeatureActive() && app.viewModel.isTopLayer(layer))
+      {
+        layer.activate_query_controls(true);
+        //Disable the query control in the other layers.
+      }
+
     };
 
     // called from activateLayer
@@ -1180,29 +1188,27 @@ function viewModel() {
         //var firstVisLayer = self.visibleLayers()[0];
         //Disable the identify controls
         $.each(self.activeLayers(), function(i, layer) {
-          if("queryControl" in layer)               //User has clicked the Identify button
+          //if("queryControl" in layer)               //User has clicked the Identify button
 
+          //If the layer is the first visible layer, enable the identify control.
+          if(self.queryFeatureActive() && self.isTopLayer())
           {
-            //If the layer is the first visible layer, enable the identify control.
-            if(app.viewModel.queryFeatureActive())
-            {
-              layer.activate_query_controls(true);
-              //layer.queryControl.activate();
-            }
-            else
-            {
-              layer.activate_query_controls(false);
-              //layer.queryControl.deactivate();
-              //Delete any query results from the array.
-              app.viewModel.attributeDataArray.remove(function(layerData) {
-                  if(layerData.title == layer.name)
-                  {
-                    return(true);
-                  }
-                  return(false);
-                });
+            layer.activate_query_controls(true);
+            //layer.queryControl.activate();
+          }
+          else
+          {
+            layer.activate_query_controls(false);
+            //layer.queryControl.deactivate();
+            //Delete any query results from the array.
+            app.viewModel.attributeDataArray.remove(function(layerData) {
+                if(layerData.title == layer.name)
+                {
+                  return(true);
+                }
+                return(false);
+              });
 
-            }
           }
         });
 
