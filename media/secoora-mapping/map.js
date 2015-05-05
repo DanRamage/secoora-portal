@@ -1065,7 +1065,7 @@ app.addLayerToMap = function(layer, isVisible) {
               onSelect: app.viewModel.obs_click_select,
               scope: layer
           }));
-          app.map.addControl(layer.queryControl[1]);
+          app.map.addControl(layer.queryControl[0]);
         }
 
         /*else { //if XYZ with no utfgrid
