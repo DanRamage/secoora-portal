@@ -1191,7 +1191,7 @@ function viewModel() {
           //if("queryControl" in layer)               //User has clicked the Identify button
 
           //If the layer is the first visible layer, enable the identify control.
-          if(self.queryFeatureActive() && self.isTopLayer())
+          if(self.queryFeatureActive() && self.isTopLayer(layer))
           {
             layer.activate_query_controls(true);
             //layer.queryControl.activate();
