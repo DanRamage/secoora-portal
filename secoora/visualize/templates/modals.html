@@ -385,3 +385,19 @@
   </div>
 </div>
 <!-- Obs hover popup -->
+<!-- Observation click popup -->
+<div id="obs-click-popup" class="popover fade left in" data-bind="with: $root.observation_hover_model">
+  <div class="popover-header">
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
+    <h3 class="popover-title">
+      <span>Platform: </span>
+      <span data-bind="text: platform_name"></span>
+      <br>
+      <span>Organization: </span>
+      <span data-bind="text: organization_name"></span>
+    </h3>
+  </div>
+  <div class="popover-content scrollpane">
+  </div>
+</div>
+<!-- Obs click popup -->

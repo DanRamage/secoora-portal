@@ -327,75 +327,35 @@ def get_obs_data(obs_name, uom_name):
     logger.debug("Finished get_obs_data for obs: %s." % (obs_name))
   return results
 
-"""
-def get_water_temp_stations(request):
+def obs_time_series_request(request, platform_name, observation_name):
   results = {
     'type': 'FeatureCollection',
     'features': []
   }
-  if logger:
-    logger.debug("Starting get_water_temp_stations.")
-
-  obs_name = "water_temperature"
-  uom_name = "celsius"
-  xeniaDb = xeniaAlchemy(logger=logger)
-
-  if xeniaDb.connectDB(databaseType='postgres',
-                        dbUser=XENIA_USER,
-                        dbPwd=XENIA_PWD,
-                        dbHost=XENIA_HOST,
-                        dbName=XENIA_DB,
-                        printSQL=True):
-    if logger:
-      logger.debug("Connected to xenia DB")
-  try:
-    m_type_id = xeniaDb.mTypeExists(obs_name, uom_name)
-    if id is not None:
-      bbox = "POLYGON((%s))" % (SECOORA_BBOX)
-      platform_list = xeniaDb.session.query(xenia_platform)\
-        .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
-        .filter(xenia_sensor.m_type_id == m_type_id)\
-        .filter(xenia_platform.active.in_((1,2)))\
-        .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
-        .order_by(xenia_platform.short_name)
-    platforms = []
-    for platform in platform_list:
-      json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':'))
-      try:
-        if logger:
-          logger.debug("Opening obs json file: %s" % (json_url))
-        res = requests.get(json_url)
-        if res.status_code == 200:
-          obs_json = res.json
-          properties = OrderedDict()
-          properties['platform'] = platform.platform_handle
-          for feature in obs_json['properties']['features']:
-            prop = feature['properties']
-            if prop['obsType'] is not None:
-              properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
-              properties['%s_uom' % (prop['obsType'])] = prop['uomType']
-              properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
-          feature = {
-            "geometry": {
-              "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
-              "type": "Point"
-            },
-            "properties": properties
-          }
-          results['features'].append(feature)
-        else:
-          if logger:
-            logger.debug("Error opening obs json file: %s Code: %d" % (json_url, res.status_code))
-
-      except Exception,e:
-        if logger:
-          logger.exception(e)
-
-  except Exception,e:
-    if logger:
-      logger.exception(e)
 
   if logger:
-    logger.debug("Finished get_water_temp_stations. Results: %s" % (results))
-  return HttpResponse(content=simplejson.dumps(results), content_type='application/json')
-"""
+    logger.debug("Starting obs_time_series_request, platform: %s obs name: %s" % (platform_name, observation_name))
+
+
+  if observation_name == "water_temperature":
+    uom_name = 'celsius'
+
+  elif observation_name == "air_temperature":
+    uom_name = 'celsius'
+
+  elif observation_name == "air_pressure":
+    uom_name = 'mb'
+
+  elif observation_name == "salinity":
+    uom_name = 'psu'
+
+  elif observation_name == "water_level":
+    uom_name = 'm'
+
+  elif observation_name == "relative_humidty":
+    uom_name = 'percent'
+
+  if logger:
+    logger.debug("Finished obs_time_series_request, platform: %s obs name: %s" % (platform_name, observation_name))
+
+  return HttpResponse(simplejson.dumps(results))
