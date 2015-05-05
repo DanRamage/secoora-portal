@@ -1057,6 +1057,10 @@ app.addLayerToMap = function(layer, isVisible) {
               onUnselect: app.viewModel.obs_hover_unselect
           }));
           app.map.addControl(layer.queryControl[0]);
+          //Used so hover control does not handle the click events.
+          layer.queryControl[0].handlers["feature"].stopClick = false;
+          layer.queryControl[0].handlers["feature"].stopDown = false;
+
           layer.queryControl.push(new OpenLayers.Control.SelectFeature(layer.layer, {
               onSelect: app.viewModel.obs_click_select,
               scope: layer
