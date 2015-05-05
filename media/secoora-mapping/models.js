@@ -448,11 +448,13 @@ function layerModel(options, parent) {
       }
       //DWR 2015-05-05
       //If the query control is activate and this is the top layer, enable the control.
+      /*
       if(self.queryFeatureActive() && app.viewModel.isTopLayer(layer))
       {
         layer.activate_query_controls(true);
         //Disable the query control in the other layers.
       }
+      */
 
     };
 
