@@ -282,6 +282,7 @@ def get_obs_data(obs_name, uom_name):
             properties = OrderedDict()
             properties['p_handle'] = platform.platform_handle
             properties['p_name'] = platform.short_name
+            properties['p_description'] = platform.description
             properties['o_name'] = platform.organization.short_name
 
             for feature in obs_json['properties']['features']:
@@ -354,6 +355,47 @@ def obs_time_series_request(request, platform_name, observation_name):
 
   elif observation_name == "relative_humidty":
     uom_name = 'percent'
+
+  xeniaDb = xeniaAlchemy(logger=logger)
+
+  if xeniaDb.connectDB(databaseType='postgres',
+                        dbUser=XENIA_USER,
+                        dbPwd=XENIA_PWD,
+                        dbHost=XENIA_HOST,
+                        dbName=XENIA_DB,
+                        printSQL=True):
+    if logger:
+      logger.debug("Connected to xenia DB")
+    try:
+      #m_type_id = xeniaDb.mTypeExists(observation_name, uom_name)
+      platform_data = xeniaDb.session.query(xenia_platform)\
+        .join((xenia_organization, xenia_organization.row_id == xenia_platform.organization_id))\
+        .get(xenia_platform.short_name == platform_name)
+
+
+      properties = OrderedDict()
+      properties['p_handle'] = platform_data.platform_handle
+      properties['p_name'] = platform_data.short_name
+      properties['p_description'] = platform_data.description
+      properties['o_name'] = platform_data.organization.short_name
+
+    except Exception, e:
+      if logger:
+        logger.exception(e)
+    try:
+      json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
+      if logger:
+        logger.debug("Opening obs json file: %s" % (json_url))
+      res = requests.get(json_url)
+      if res.status_code == 200:
+        obs_json = res.json
+        results['observations'] = obs_json['properties']['features']
+
+    except Exception,e:
+      if logger:
+        logger.exception(e)
+
+  xeniaDb.disconnect()
 
   if logger:
     logger.debug("Finished obs_time_series_request, platform: %s obs name: %s" % (platform_name, observation_name))
