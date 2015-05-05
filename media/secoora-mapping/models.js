@@ -87,10 +87,12 @@ function layerModel(options, parent) {
     //WHen the layer is issued the identify request, if there are results there, this is set to true.
     self.layerDataAvailable = ko.observable(false);
 
+    //DWR 2015-05-05 Move this out from ArcRest layers since any layer could have a control.
+    //Anything added to this list should be a OpenLayers.Control object.
+    self.queryControl = [];
+
     if(self.type === 'ArcRest')
     {
-      //Control for doing a REST query for getting data from the layer when the user clicks on a point.
-      self.queryControl = null;
 
       var url = self.url.replace('export','/identify');
       var srCode = app.map.getProjection().split(':');
@@ -301,7 +303,11 @@ function layerModel(options, parent) {
         //Deactivate the queryControl on the layer if it has one.
         if("queryControl" in layer)
         {
-          layer.queryControl.deactivate();
+          $.each(layer.queryControl, function(ndx, queryControl)
+          {
+            queryControl.deactivate();
+          });
+          //layer.queryControl.deactivate();
           app.viewModel.attributeDataArray.remove(function(layerData) {
               if(layerData.title == layer.name)
               {
@@ -387,7 +393,10 @@ function layerModel(options, parent) {
         layer.visibleSublayer(false);
         if("queryControl" in layer)
         {
-          layer.queryControl.deactivate();
+          $.each(layer.queryControl, function(ndx, queryControl) {
+            queryControl.deactivate();
+          });
+          //layer.queryControl.deactivate();
           app.viewModel.attributeDataArray.remove(function(layerData) {
               if(layerData.title == layer.name)
               {
@@ -1169,11 +1178,18 @@ function viewModel() {
             //If the layer is the first visible layer, enable the identify control.
             if(app.viewModel.queryFeatureActive())
             {
-              layer.queryControl.activate();
+              $.each(layer.queryControl, function(ndx, queryControl) {
+                queryControl.activate();
+              });
+              //layer.queryControl.activate();
             }
             else
             {
-              layer.queryControl.deactivate();
+              $.each(layer.queryControl, function(ndx, queryControl) {
+                queryControl.deactivate();
+              });
+
+              //layer.queryControl.deactivate();
               //Delete any query results from the array.
               app.viewModel.attributeDataArray.remove(function(layerData) {
                   if(layerData.title == layer.name)
@@ -1296,11 +1312,19 @@ function viewModel() {
           //if(self.queryFeatureActive() && app.viewModel.activeLayers.indexOf(layer) === 0))
           if(self.queryFeatureActive())
           {
-            layer.queryControl.activate();
+            $.each(layer.queryControl, function(ndx, queryControl) {
+              queryControl.activate();
+            });
+
+            //layer.queryControl.activate();
           }
           else
           {
-            layer.queryControl.deactivate();
+            $.each(layer.queryControl, function(ndx, queryControl) {
+              queryControl.deactivate();
+            });
+
+            //layer.queryControl.deactivate();
           }
         }
       });
@@ -1323,7 +1347,11 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          layer.queryControl.deactivate();
+          $.each(layer.queryControl, function(ndx, queryControl) {
+            queryControl.deactivate();
+          });
+
+          //layer.queryControl.deactivate();
         }
       });
     };
@@ -1342,7 +1370,10 @@ function viewModel() {
       $.each(layers, function(index, layer) {
         if("queryControl" in layer)
         {
-          layer.queryControl.deactivate();
+          $.each(layer.queryControl, function(ndx, queryControl) {
+            queryControl.deactivate();
+          });
+          //layer.queryControl.deactivate();
         }
       });
     };

@@ -533,7 +533,8 @@ app.addLayerToMap = function(layer, isVisible) {
               //esriQueryFields.push(layer.attributes[i].display);
               esriQueryFields.push(layer.attributes[i].field);
             }
-            layer.queryControl = new OpenLayers.Control.ArcGisRestQuery(
+            //layer.queryControl = new OpenLayers.Control.ArcGisRestQuery(
+              layer.queryControl.push(new OpenLayers.Control.ArcGisRestQuery(
               {
                 eventListeners: {
                   arcfeaturequery : function()
@@ -621,7 +622,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 sr : 102113,
                 clickTolerance: 3,
                 outFields : esriQueryFields.length ? esriQueryFields.join(',') : '*'
-              });
+              })
+            );
             layer.layer = new OpenLayers.Layer.ArcGIS93Rest(
                 layer.name,
                 layer.url,
@@ -640,7 +642,7 @@ app.addLayerToMap = function(layer, isVisible) {
             app.map.addLayer(layer.layer);
             //2013-02-20 DWR
             //Add the identify control.
-            app.map.addControl(layer.queryControl);
+            app.map.addControl(layer.queryControl[0]);
 
         }
 
@@ -677,125 +679,115 @@ app.addLayerToMap = function(layer, isVisible) {
 
       	   //var currentBBOX = '-101.085752%2C13.163738%2C-67.537218%2C39.37353';
 
-           layer.queryControl = new OpenLayers.Control.WMSGetFeatureInfo(
+           //layer.queryControl = new OpenLayers.Control.WMSGetFeatureInfo(
+            layer.queryControl.push(new OpenLayers.Control.WMSGetFeatureInfo(
               {
                 eventListeners: {
 
                   getfeatureinfo : function(evt)
                   {
 
-    //JTC 2015-04-27
-    $('#ts-popup').popoverClosable();
+                    //JTC 2015-04-27
+                    $('#ts-popup').popoverClosable();
 
-      app.viewModel.clickedLayerName(layer.name);
-      //self.clickedLayerData(feature.attributes.description);
-      $('#ts-popup').show().draggable().position({
-              "my": "left top",
-              "at": "left middle",
-              "of": $("#map-panel")
-          });
+                    app.viewModel.clickedLayerName(layer.name);
+                    //self.clickedLayerData(feature.attributes.description);
+                    $('#ts-popup').show().draggable().position({
+                      "my": "left top",
+                      "at": "left middle",
+                      "of": $("#map-panel")
+                    });
 
 
-    	//window.alert("test1");  
-      	//window.alert(evt.text);  
+                    //window.alert("test1");
+                    //window.alert(evt.text);
 
-        //window.alert(layer.closestTime());
+                    //window.alert(layer.closestTime());
 
-/*
-              var d1 = [];
-              for (var i = 0; i < 14; i += 0.5) {
-                      d1.push([i, Math.sin(i)]);
-              }
+                    /*
+                     var d1 = [];
+                     for (var i = 0; i < 14; i += 0.5) {
+                     d1.push([i, Math.sin(i)]);
+                     }
 
-              var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+                     var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
 
-              // A null signifies separate line segments
+                     // A null signifies separate line segments
 
-              var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+                     var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
 
-              $.plot("#div-ts-plot", [ d1, d2, d3 ]);
+                     $.plot("#div-ts-plot", [ d1, d2, d3 ]);
 
-              // Add the Flot version string to the footer
+                     // Add the Flot version string to the footer
 
-              //$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+                     //$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
 
-*/
+                     */
 
-var d = {
-     //url   : url
-    //,title : title
-    //,year  : year
-    data  : []
-    //,points: { show: true, symbol: "circle" }
-  };
+                    var d = {
+                      //url   : url
+                      //,title : title
+                      //,year  : year
+                      data: []
+                      //,points: { show: true, symbol: "circle" }
+                    };
 
-var now_cross = {
-    data  : []
-    ,points: { show: true, symbol: "cross" }
-  };
+                    var now_cross = {
+                      data: [], points: { show: true, symbol: "cross" }
+                    };
 
-//WMS xpath processing
-_.each($(evt.text).find('FeatureInfo'),function(o) {
-      var a = $(o).find('time').text();
-      var b = $(o).find('value').text();
-      if ($.isNumeric(b)) {
-        //console.log(a+':'+b); 
-        d.data.push([isoDateToDate(a),b]);
-      }
-    });
+                    //WMS xpath processing
+                    _.each($(evt.text).find('FeatureInfo'), function (o) {
+                      var a = $(o).find('time').text();
+                      var b = $(o).find('value').text();
+                      if ($.isNumeric(b)) {
+                        //console.log(a+':'+b);
+                        d.data.push([isoDateToDate(a), b]);
+                      }
+                    });
 
-//d.data.push([isoDateToDate(a),b]);
-//d.data.push([isoDateToDate('2014-04-01T02:00:00'),'32.1']);
-//d.data.push([isoDateToDate('2014-04-01T04:00:00'),'33.1']);
-//d.data.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
+                    //d.data.push([isoDateToDate(a),b]);
+                    //d.data.push([isoDateToDate('2014-04-01T02:00:00'),'32.1']);
+                    //d.data.push([isoDateToDate('2014-04-01T04:00:00'),'33.1']);
+                    //d.data.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
 
-//d.data.push(data: generate(7, 1.1), points: { symbol: "cross" });
+                    //d.data.push(data: generate(7, 1.1), points: { symbol: "cross" });
 
-//works d.data.push([ isoDateToDate('2015-04-30T06:00:00'),'31.1' ]);
+                    //works d.data.push([ isoDateToDate('2015-04-30T06:00:00'),'31.1' ]);
 
-var plotData = [];
+                    var plotData = [];
 
-now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'),'31.1']);
+                    now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'), '31.1']);
 
-plotData = plotData.concat(d);
-plotData = plotData.concat(now_cross);
-//plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
-//plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1']]);
+                    plotData = plotData.concat(d);
+                    plotData = plotData.concat(now_cross);
+                    //plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
+                    //plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1']]);
 
-$.plot(
-       $('#div-ts-plot')
-      ,plotData
-      ,{
-         xaxis     : {mode  : "time"}
-        ,crosshair : {mode  : 'x'   }
-        ,grid      : {
-           backgroundColor : {colors : ['#fff','#C3DFE5']}
-          ,borderWidth     : 1
-          ,borderColor     : '#A6D1DB'
-          ,hoverable       : true
-        }
-        ,zoom      : {interactive : true}
-        ,pan       : {interactive : true}
-        ,legend    : {
-           backgroundOpacity : 0.3
-          ,labelFormatter: function(label,series) {
-            return /min|max/.test(series.id) ? null : label;
-          }
-        }
-        // repeat 1st color to get outer edges of filled area the same color
-        //,colors : ['rgba(237,194,64,0.50)','rgba(237,194,64,0.50)',"#afd8f8","#cb4b4b","#4da74d","#9440ed"]
-        ,colors : ["#eb4b4b","#4da74d","#9440ed",'rgba(50,100,100,1.0)','rgba(100,50,100,1.0)','rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
-      }
-    );
+                    $.plot(
+                      $('#div-ts-plot')
+                      , plotData
+                      , {
+                        xaxis: {mode: "time"}, crosshair: {mode: 'x'   }, grid: {
+                          backgroundColor: {colors: ['#fff', '#C3DFE5']}, borderWidth: 1, borderColor: '#A6D1DB', hoverable: true
+                        }, zoom: {interactive: true}, pan: {interactive: true}, legend: {
+                          backgroundOpacity: 0.3, labelFormatter: function (label, series) {
+                            return /min|max/.test(series.id) ? null : label;
+                          }
+                        }
+                        // repeat 1st color to get outer edges of filled area the same color
+                        //,colors : ['rgba(237,194,64,0.50)','rgba(237,194,64,0.50)',"#afd8f8","#cb4b4b","#4da74d","#9440ed"]
+                        , colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
+                      }
+                    );
 
 
 
-		  }
-
+		              }
                   //This is the handler for the return click data.
                 },
 
-		layerUrls : [layer.url],
+		            layerUrls : [layer.url],
                 //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
                 url : 'http://tds.secoora.org/ncWMS/wms?EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
 
@@ -811,9 +803,9 @@ $.plot(
 
                 //onSelect: app.viewModel.tsClick,
                 //scope: layer
-              });
+              }));
 
-    layer.queryControl.buildWMSOptions = function(url, layers, clickPosition, format) {
+    layer.queryControl[0].buildWMSOptions = function(url, layers, clickPosition, format) {
     //OpenLayers.Control.WMSGetFeatureInfo.buildWMSOptions = function(url, layers, clickPosition, format) {
 
         //buildWMSOptions: function(url, layers, clickPosition, format) {
@@ -933,7 +925,7 @@ end_date.setDate(end_date.getDate() + 2);
 
             //2013-02-20 DWR
             //Add the identify control.
-            app.map.addControl(layer.queryControl);
+            app.map.addControl(layer.queryControl[0]);
 
             //JTC 2015-04-03
             layer.layer.events.register("loadstart", null, function () {
@@ -947,16 +939,6 @@ end_date.setDate(end_date.getDate() + 2);
             layer.layer.events.register("loadcancel", null, function () {
               app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
             });
-
-/*
-            layer.layer.events.register("getfeatureinfo", null, function () {
-              window.alert("test2"); //auto-decrement for knockout
-            });
-
-
-	    //layer.queryControl.click.activate();
-	    layer.layer.click.activate();
-*/
 
         }
         else if(layer.type === 'KML')
@@ -983,12 +965,13 @@ end_date.setDate(end_date.getDate() + 2);
           layer.layer.setVisibility(isVisible);
           app.map.addLayer(layer.layer);
           //Create the select feature control.
-          layer.queryControl = new OpenLayers.Control.SelectFeature([layer.layer],
+          //layer.queryControl = new OpenLayers.Control.SelectFeature([layer.layer],
+          layer.queryControl.push(new OpenLayers.Control.SelectFeature([layer.layer],
             {
               onSelect: app.viewModel.kmlClick,
               scope: layer
-            });
-          app.map.addControl(layer.queryControl);
+            }));
+          app.map.addControl(layer.queryControl[0]);
 
         }
         else if(layer.type === 'GeoJSON')
@@ -1068,12 +1051,12 @@ end_date.setDate(end_date.getDate() + 2);
           app.map.addLayer(layer.layer);
 
           //Add hover handler if used
-          layer.queryControl = new OpenLayers.Control.SelectFeature(layer.layer, {
+          layer.queryControl.push(new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
               onSelect: app.viewModel.obs_hover_select,
               onUnselect: app.viewModel.obs_hover_unselect
-          });
-          app.map.addControl(layer.queryControl);
+          }));
+          app.map.addControl(layer.queryControl[0]);
         }
 
         /*else { //if XYZ with no utfgrid
