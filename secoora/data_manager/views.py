@@ -337,25 +337,6 @@ def platform_time_series_request(request, platform_name):
   if logger:
     logger.debug("Starting obs_time_series_request, platform: %s" % (platform_name))
 
-
-  if observation_name == "water_temperature":
-    uom_name = 'celsius'
-
-  elif observation_name == "air_temperature":
-    uom_name = 'celsius'
-
-  elif observation_name == "air_pressure":
-    uom_name = 'mb'
-
-  elif observation_name == "salinity":
-    uom_name = 'psu'
-
-  elif observation_name == "water_level":
-    uom_name = 'm'
-
-  elif observation_name == "relative_humidty":
-    uom_name = 'percent'
-
   xeniaDb = xeniaAlchemy(logger=logger)
 
   if xeniaDb.connectDB(databaseType='postgres',
