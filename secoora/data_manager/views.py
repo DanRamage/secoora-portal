@@ -328,14 +328,14 @@ def get_obs_data(obs_name, uom_name):
     logger.debug("Finished get_obs_data for obs: %s." % (obs_name))
   return results
 
-def obs_time_series_request(request, platform_name, observation_name):
+def obs_time_series_request(request, platform_name):
   results = {
     'type': 'Feature',
     'features': {}
   }
 
   if logger:
-    logger.debug("Starting obs_time_series_request, platform: %s obs name: %s" % (platform_name, observation_name))
+    logger.debug("Starting obs_time_series_request, platform: %s" % (platform_name))
 
 
   if observation_name == "water_temperature":
@@ -407,6 +407,6 @@ def obs_time_series_request(request, platform_name, observation_name):
   xeniaDb.disconnect()
 
   if logger:
-    logger.debug("Finished obs_time_series_request, platform: %s obs name: %s" % (platform_name, observation_name))
+    logger.debug("Finished obs_time_series_request, platform: %s" % (platform_name))
 
   return HttpResponse(simplejson.dumps(results))

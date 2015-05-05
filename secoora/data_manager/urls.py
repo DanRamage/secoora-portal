@@ -8,5 +8,5 @@ urlpatterns = patterns('',
     (r'^get_closest_time', get_closest_time),
     (r'^get_time_increments/([A-Za-z0-9_-]+)$', get_time_increments),
     (r'^obs_data/([A-Za-z0-9_-]+)$', obs_data_request),
-    (r'^platform_data/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$', obs_time_series_request)
+    (r'^platform_data/([A-Za-z0-9_-]+)$', obs_time_series_request)
 )
