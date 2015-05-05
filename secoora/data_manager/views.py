@@ -394,7 +394,7 @@ def obs_time_series_request(request, platform_name, observation_name):
 
         feature = {
           "geometry": {
-            "coordinates": [xenia_platform.fixed_longitude, xenia_platform.fixed_latitude],
+            "coordinates": [platform_data.fixed_longitude, platform_data.fixed_latitude],
             "type": "Point"
           },
           "properties": properties
