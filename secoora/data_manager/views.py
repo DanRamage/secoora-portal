@@ -371,7 +371,7 @@ def obs_time_series_request(request, platform_name, observation_name):
       platform_data = xeniaDb.session.query(xenia_platform)\
         .join((xenia_organization, xenia_organization.row_id == xenia_platform.organization_id))\
         .filter(xenia_platform.short_name == platform_name)\
-        .filter(xenia_platform.active in in_((1,2))).one()
+        .filter(xenia_platform.active.in_((1,2))).one()
 
 
       properties = OrderedDict()
