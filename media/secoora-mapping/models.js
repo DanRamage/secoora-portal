@@ -1155,6 +1155,9 @@ function obs_data_model()
 
   self.flot_data = []
 
+  $('#obs-click-popup').popoverClosable();
+  $('#obs-hover-popup').popoverClosable();
+
   self.set_hover_data = function(observaton_name, data)
   {
     self.obs_name(observaton_name);
@@ -1170,6 +1173,111 @@ function obs_data_model()
   {
 
   };
+
+  self.obs_hover_select = function(event)
+  {
+    $('#obs-click-popup').hide();
+    var feature = event.feature;
+    var layer = feature.layer;
+    self.observation_hover_model.set_hover_data(layer.name, feature.attributes);
+    var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
+    var map_offset = $("#map").offset();
+    var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
+    $('#obs-hover-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
+    /*{
+     "my": "left top",
+     "at": "left middle",
+     "of": $("#" + feature.id)
+     });*/
+  };
+  self.obs_hover_unselect = function(event)
+  {
+    var feature = event.feature;
+    $('#obs-hover-popup').hide();
+  };
+  self.obs_click_select = function(feature)
+  {
+    var self = this;
+    var url = "/data_manager/platform_data/" + feature.attributes.p_name;
+    var json_data = null;
+    $.ajax({
+      url: url,
+      async: false,
+      dataType: 'json',
+      success: function(data)
+      {
+        json_data = data;
+        $('#obs-hover-popup').hide();
+      }
+    });
+    var obs_data_list = json_data.features.properties.observations;
+    //Find the feature that matches our current observation type.
+    var flot_data = [];
+    $.each(obs_data_list, function(ndx, obs_data)
+    {
+      if(obs_data.properties.obsType == feature.attributes.obs_name)
+      {
+        $.each(obs_data.properties.time, function(time_ndx, time_val)
+        {
+          //Data pairs are time_val for x axis and value for y.
+          //Time needs to be javascript date objects.
+          time_val = time_val.replace(' ', 'T');
+          flot_data.push([new Date(time_val), parseFloat(obs_data.properties.value[time_ndx])]);
+        });
+        return;
+      }
+    });
+    var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
+    var map_offset = $("#map").offset();
+    var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
+    $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
+
+    $.plot($("#obs-click-popup #plot_area"), [{data: flot_data, label: feature.attributes.obs_name}],
+    {
+      xaxis: {mode: "time"},
+      crosshair: {mode: 'x'   },
+      grid: {
+        backgroundColor: {colors: ['#fff', '#C3DFE5']},
+        borderWidth: 1,
+        borderColor: '#A6D1DB',
+        hoverable: true
+      },
+      zoom: {interactive: true},
+      pan: {interactive: true},
+      legend: {
+          backgroundOpacity: 0.3, labelFormatter: function (label, series) {
+            return /min|max/.test(series.id) ? null : label;
+        }
+      },
+      colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
+      }
+    );
+
+    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
+    {
+      if (item)
+      {
+        var x = new Date(item.datapoint[0]);
+        var y = item.datapoint[1];
+        if (prevPoint != item.dataIndex)
+        {
+          $('#tooltip').remove();
+          var d = x.format('UTC:mmm dd, h TT');
+          showToolTip(
+          item.pageX
+          ,item.pageY
+          ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
+        }
+        prevPoint = item.dataIndex;
+      }
+      else
+      {
+        $('#tooltip').remove();
+        prevPoint = null;
+      }
+    });
+  };
+
   return(self);
 }
 
@@ -2414,110 +2522,6 @@ function viewModel() {
               "of": $("#map-panel")
           });
     };
-    $('#obs-hover-popup').popoverClosable();
-    self.observation_hover_model = new obs_data_model();
-    self.obs_hover_select = function(event)
-    {
-      $('#obs-click-popup').hide();
-      var feature = event.feature;
-      var layer = feature.layer;
-      self.observation_hover_model.set_hover_data(layer.name, feature.attributes);
-      var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
-      var map_offset = $("#map").offset();
-      var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-      $('#obs-hover-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-      /*{
-       "my": "left top",
-       "at": "left middle",
-       "of": $("#" + feature.id)
-       });*/
-    };
-    self.obs_hover_unselect = function(event)
-    {
-      var feature = event.feature;
-      $('#obs-hover-popup').hide();
-    };
-  $('#obs-click-popup').popoverClosable();
-    self.obs_click_select = function(feature)
-    {
-      var self = this;
-      var url = "/data_manager/platform_data/" + feature.attributes.p_name;
-      var json_data = null;
-      $.ajax({
-        url: url,
-        async: false,
-        dataType: 'json',
-        success: function(data)
-        {
-          json_data = data;
-          $('#obs-hover-popup').hide();
-        }
-      });
-      var obs_data_list = json_data.features.properties.observations;
-      //Find the feature that matches our current observation type.
-      var flot_data = [];
-      $.each(obs_data_list, function(ndx, obs_data)
-      {
-        if(obs_data.properties.obsType == feature.attributes.obs_name)
-        {
-          $.each(obs_data.properties.time, function(time_ndx, time_val)
-          {
-            //Data pairs are time_val for x axis and value for y.
-            //Time needs to be javascript date objects.
-            time_val = time_val.replace(' ', 'T');
-            flot_data.push([new Date(time_val), parseFloat(obs_data.properties.value[time_ndx])]);
-          });
-          return;
-        }
-      });
-      var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
-      var map_offset = $("#map").offset();
-      var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-      $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-
-      $.plot($("#obs-click-popup #plot_area"), [{data: flot_data, label: feature.attributes.obs_name}],
-      {
-        xaxis: {mode: "time"},
-        crosshair: {mode: 'x'   },
-        grid: {
-          backgroundColor: {colors: ['#fff', '#C3DFE5']},
-          borderWidth: 1,
-          borderColor: '#A6D1DB',
-          hoverable: true
-        },
-        zoom: {interactive: true},
-        pan: {interactive: true},
-        legend: {
-            backgroundOpacity: 0.3, labelFormatter: function (label, series) {
-              return /min|max/.test(series.id) ? null : label;
-          }
-        },
-        colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
-        }
-      );
-
-    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
-    {
-      if (item) {
-            var x = new Date(item.datapoint[0]);
-            var y = item.datapoint[1];
-            if (prevPoint != item.dataIndex) {
-              $('#tooltip').remove();
-              //var d = x.format('UTC:mmm dd, yyyy');
-              var d = x.format('UTC:mmm dd, h TT');
-              showToolTip(
-                 item.pageX
-                ,item.pageY
-                ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
-            }
-            prevPoint = item.dataIndex;
-          }
-          else {
-            $('#tooltip').remove();
-            prevPoint = null;
-          }
-    });
-    };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
     };
@@ -2525,6 +2529,9 @@ function viewModel() {
     self.isBottomLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === self.activeLayers().length - 1;
     };
+
+    //Model that handles the point observations from
+    self.observation_hover_model = new obs_data_model();
 
     return self;
 } //end viewModel

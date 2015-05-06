@@ -1059,8 +1059,8 @@ app.addLayerToMap = function(layer, isVisible) {
               //onSelect: app.viewModel.obs_hover_select,
               //onUnselect: app.viewModel.obs_hover_unselect,
               eventListeners: {
-                featurehighlighted: app.viewModel.obs_hover_select,
-                featureunhighlighted: app.viewModel.obs_hover_unselect
+                featurehighlighted: app.viewModel.observation_hover_model.obs_hover_select,
+                featureunhighlighted: app.viewModel.observation_hover_model.obs_hover_unselect
               }
           });
           //Used so hover control does not handle the click events.
