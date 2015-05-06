@@ -399,8 +399,18 @@
   </div>
   <div class="scrollpane">
     <div id="plot_area" class="data-plot">
-
     </div>
   </div>
 </div>
+<style>
+  .plot-tooltip {
+    position: "absolute",
+    display: "none",
+    border: "1px solid #fdd",
+    padding: "2px",
+    "background-color": "#fee",
+    opacity: 0.80
+  };
+</style>
+<div id="plot-hover-tooltip" class="plot-tooltip"></div>
 <!-- Obs click popup -->

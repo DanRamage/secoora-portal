@@ -2496,24 +2496,20 @@ function viewModel() {
         }
       );
 
-    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item) {
+    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
+    {
+      if (item)
+      {
+        var x = item.datapoint[0].toFixed(2),
+          y = item.datapoint[1].toFixed(2);
 
-      if ($("#enablePosition:checked").length > 0) {
-        var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
-        $("#hoverdata").text(str);
+        $("#tooltip").html(item.series.label + " of " + x + " = " + y)
+          .css({top: item.pageY+5, left: item.pageX+5})
+          .fadeIn(200);
       }
-
-      if ($("#enableTooltip:checked").length > 0) {
-        if (item) {
-          var x = item.datapoint[0].toFixed(2),
-            y = item.datapoint[1].toFixed(2);
-
-          $("#tooltip").html(item.series.label + " of " + x + " = " + y)
-            .css({top: item.pageY+5, left: item.pageX+5})
-            .fadeIn(200);
-        } else {
-          $("#tooltip").hide();
-        }
+      else
+      {
+        $("#tooltip").hide();
       }
     });
     };
