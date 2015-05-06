@@ -20,7 +20,9 @@ $.fn.extend({
             e.preventDefault();
             $popover_togglers.not(this).popover('hide');
         });
-        $('html').on('click', '[data-dismiss="popover"]', function (e) {
+
+        //$('html').on('click', '[data-dismiss="popover"]', function (e) {
+        $popover_togglers.on('click', '[data-dismiss="popover"]', function (e) {
             $popover_togglers.hide();
             //$popover_togglers.popover('hide');
         });
