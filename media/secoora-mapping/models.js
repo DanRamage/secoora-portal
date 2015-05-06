@@ -2495,6 +2495,27 @@ function viewModel() {
         colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
         }
       );
+
+    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item) {
+
+      if ($("#enablePosition:checked").length > 0) {
+        var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+        $("#hoverdata").text(str);
+      }
+
+      if ($("#enableTooltip:checked").length > 0) {
+        if (item) {
+          var x = item.datapoint[0].toFixed(2),
+            y = item.datapoint[1].toFixed(2);
+
+          $("#tooltip").html(item.series.label + " of " + x + " = " + y)
+            .css({top: item.pageY+5, left: item.pageX+5})
+            .fadeIn(200);
+        } else {
+          $("#tooltip").hide();
+        }
+      }
+    });
     };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
