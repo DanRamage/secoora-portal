@@ -2420,7 +2420,7 @@ function viewModel() {
     {
       var feature = event.feature;
       var layer = feature.layer;
-      self.observation_hover_model.set_data(layer.name, feature.attributes);
+      self.observation_hover_model.set_hover_data(layer.name, feature.attributes);
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
       var map_offset = $("#map").offset();
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
