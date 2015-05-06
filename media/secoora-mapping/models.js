@@ -2444,7 +2444,27 @@ function viewModel() {
           $('#obs-hover-popup').hide();
         }
       });
-      json_data;
+      var obs_data_list = json_data.features.properties.observations;
+      //Find the feature that matches our current observation type.
+      var flot_data = [];
+      $.each(obs_data_list, function(ndx, obs_data)
+      {
+        if(obs_data.properties.obs_type == feature.attributes.obs_name)
+        {
+          $.each(obs_data.properties.time, function(time_ndx, time_val)
+          {
+            //Data pairs are time_val for x axis and value for y.
+            flot_data.push([time_val, obs_data.properties.value[time_ndx]]);
+          });
+          break;
+        }
+      });
+      var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
+      var map_offset = $("#map").offset();
+      var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
+      $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
+
+      $.plot($("#obs-click-popup #plot_area"), [flot_data]);
     };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
