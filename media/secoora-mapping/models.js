@@ -2437,6 +2437,7 @@ function viewModel() {
       var feature = event.feature;
       $('#obs-hover-popup').hide();
     };
+  $('#obs-click-popup').popoverClosable();
     self.obs_click_select = function(feature)
     {
       var self = this;
