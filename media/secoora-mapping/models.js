@@ -2502,7 +2502,7 @@ function viewModel() {
           padding: "2px",
           "background-color": "#fee",
           opacity: 0.80
-        }).appendTo("#obs-click-popup");
+        }).appendTo("#plot_area");
     $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
     {
       if (item)
