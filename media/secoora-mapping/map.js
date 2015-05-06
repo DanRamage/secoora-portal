@@ -1068,7 +1068,7 @@ app.addLayerToMap = function(layer, isVisible) {
           hoverCtrl.handlers["feature"].stopDown = false;
 
           var clickCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
-              onSelect: app.viewModel.obs_click_select,
+              onSelect: app.viewModel.observation_hover_model.obs_click_select,
               scope: layer
           });
           app.map.addControl(hoverCtrl);
