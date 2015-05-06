@@ -2411,25 +2411,18 @@ function viewModel() {
     self.observation_hover_model = new obs_data_model();
     self.obs_hover_select = function(event)
     {
-      if( 'feature' in event)
-      {
-        var feature = event.feature;
-        var layer = feature.layer;
-        self.observation_hover_model.set_data(layer.name, feature.attributes);
-        var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
-        var map_offset = $("#map").offset();
-        var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-        $('#obs-hover-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-        /*{
-         "my": "left top",
-         "at": "left middle",
-         "of": $("#" + feature.id)
-         });*/
-      }
-      else
-      {
-        event;
-      }
+      var feature = event.feature;
+      var layer = feature.layer;
+      self.observation_hover_model.set_data(layer.name, feature.attributes);
+      var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
+      var map_offset = $("#map").offset();
+      var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
+      $('#obs-hover-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
+      /*{
+       "my": "left top",
+       "at": "left middle",
+       "of": $("#" + feature.id)
+       });*/
     };
     self.obs_hover_unselect = function(event)
     {
@@ -2438,7 +2431,14 @@ function viewModel() {
     };
     self.obs_click_select = function(feature)
     {
-      feature;
+      var feature = event.feature;
+      var url = "/data_manager/platform_data/" + feature.attribute.p_name;
+      $.getJSON(url,
+        function(json_data)
+        {
+          $('#obs-hover-popup').hide();
+
+        });
     };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
