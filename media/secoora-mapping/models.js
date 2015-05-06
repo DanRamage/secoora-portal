@@ -1259,10 +1259,10 @@ function obs_data_model()
         {
           $('#tooltip').remove();
           var d = x.format('UTC:mmm dd, h TT');
-          showToolTip(
-          item.pageX
-          ,item.pageY
-          ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
+          self.showToolTip(
+            item.pageX
+            ,item.pageY
+            ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + self.obs_uom());
         }
         prevPoint = item.dataIndex;
       }
@@ -1272,6 +1272,20 @@ function obs_data_model()
         prevPoint = null;
       }
     });
+  };
+  showToolTip =function(x,y,contents)
+  {
+    $('<div id="tooltip">' + contents + '</div>').css({
+       position           : 'absolute'
+      ,display            : 'none'
+      ,top                : y + 10
+      ,left               : x + 10
+      ,border             : '1px solid #99BBE8'
+      ,padding            : '2px'
+      ,'background-color' : '#fff'
+      ,opacity            : 0.80
+      ,'z-index'          : 10000001
+    }).appendTo("body").fadeIn(200);
   };
 
   return(self);
