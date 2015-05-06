@@ -2495,29 +2495,27 @@ function viewModel() {
         colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
         }
       );
-      $("<div id='plot-hover-tooltip'></div>").css({
-          position: "absolute",
-          display: "none",
-          border: "1px solid #fdd",
-          padding: "2px",
-          "background-color": "#fee",
-          opacity: 0.80
-        }).appendTo("#obs-click-popup");
+
     $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
     {
-      if (item)
-      {
-        var x = item.datapoint[0].toFixed(2),
-          y = item.datapoint[1].toFixed(2);
-
-        $("#plot-hover-tooltip").html(item.series.label + " of " + x + " = " + y)
-          .css({top: item.pageY+5, left: item.pageX+5})
-          .fadeIn(200);
-      }
-      else
-      {
-        $("#plot-hover-tooltip").hide();
-      }
+      if (item) {
+            var x = new Date(item.datapoint[0]);
+            var y = item.datapoint[1];
+            if (prevPoint != item.dataIndex) {
+              $('#tooltip').remove();
+              //var d = x.format('UTC:mmm dd, yyyy');
+              var d = x.format('UTC:mmm dd, h TT');
+              showToolTip(
+                 item.pageX
+                ,item.pageY
+                ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
+            }
+            prevPoint = item.dataIndex;
+          }
+          else {
+            $('#tooltip').remove();
+            prevPoint = null;
+          }
     });
     };
     self.isTopLayer = function(layer) {
