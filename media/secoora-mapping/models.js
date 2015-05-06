@@ -2462,7 +2462,7 @@ function viewModel() {
           $.each(obs_data.properties.time, function(time_ndx, time_val)
           {
             //Data pairs are time_val for x axis and value for y.
-            flot_data.push([time_ndx, parseFloat(obs_data.properties.value[time_ndx]]));
+            flot_data.push([time_ndx, parseFloat(obs_data.properties.value[time_ndx])]);
           });
           return;
         }
