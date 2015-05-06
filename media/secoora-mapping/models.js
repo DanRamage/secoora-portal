@@ -1183,12 +1183,9 @@ function obs_data_model()
     var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
     var map_offset = $("#map").offset();
     var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-    $('#obs-hover-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-    /*{
-     "my": "left top",
-     "at": "left middle",
-     "of": $("#" + feature.id)
-     });*/
+    $('#obs-hover-popup')
+      .show()
+      .offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
   };
   self.obs_hover_unselect = function(event)
   {
@@ -1197,7 +1194,6 @@ function obs_data_model()
   };
   self.obs_click_select = function(feature)
   {
-    var self = this;
     var url = "/data_manager/platform_data/" + feature.attributes.p_name;
     var json_data = null;
     $.ajax({
