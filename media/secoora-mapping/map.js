@@ -1053,6 +1053,9 @@ app.addLayerToMap = function(layer, isVisible) {
           //Add hover handler if used
           var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
+              highlightOnly: true,
+              renderIntent: "temporary",
+              toggle: true,
               //onSelect: app.viewModel.obs_hover_select,
               //onUnselect: app.viewModel.obs_hover_unselect,
               eventListeners: {
