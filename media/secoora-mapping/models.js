@@ -2409,8 +2409,9 @@ function viewModel() {
     };
     $('#obs-hover-popup').popoverClosable();
     self.observation_hover_model = new obs_data_model();
-    self.obs_hover_select = function(feature)
+    self.obs_hover_select = function(event)
     {
+      var feature = event.feature;
       var layer = feature.layer;
       self.observation_hover_model.set_data(layer.name, feature.attributes);
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
@@ -2423,8 +2424,9 @@ function viewModel() {
         "of": $("#" + feature.id)
       });*/
     };
-    self.obs_hover_unselect = function(feature)
+    self.obs_hover_unselect = function(event)
     {
+      var feature = event.feature;
       $('#obs-hover-popup').hide();
     };
     self.obs_click_select = function(feature)

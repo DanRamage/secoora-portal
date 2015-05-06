@@ -1054,7 +1054,11 @@ app.addLayerToMap = function(layer, isVisible) {
           var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
               onSelect: app.viewModel.obs_hover_select,
-              onUnselect: app.viewModel.obs_hover_unselect
+              onUnselect: app.viewModel.obs_hover_unselect,
+              eventListeners: {
+                featurehighlighted: app.viewModel.obs_hover_select,
+                featureunhighlighted: app.viewModel.obs_hover_unselect
+              }
           });
           //Used so hover control does not handle the click events.
           hoverCtrl.handlers["feature"].stopClick = false;
