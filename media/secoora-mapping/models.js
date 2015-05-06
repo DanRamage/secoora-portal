@@ -2472,7 +2472,26 @@ function viewModel() {
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
       $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
 
-      $.plot($("#obs-click-popup #plot_area"), flot_data);
+      $.plot($("#obs-click-popup #plot_area"), flot_data,
+      {
+        xaxis: {mode: "time"},
+        crosshair: {mode: 'x'   },
+        grid: {
+          backgroundColor: {colors: ['#fff', '#C3DFE5']},
+          borderWidth: 1,
+          borderColor: '#A6D1DB',
+          hoverable: true
+        },
+        zoom: {interactive: true},
+        pan: {interactive: true},
+        legend: {
+            backgroundOpacity: 0.3, labelFormatter: function (label, series) {
+              return /min|max/.test(series.id) ? null : label;
+          }
+        },
+        colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
+        }
+      );
     };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
