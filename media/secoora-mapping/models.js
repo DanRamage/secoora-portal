@@ -2431,7 +2431,6 @@ function viewModel() {
     };
     self.obs_click_select = function(feature)
     {
-      var feature = event.feature;
       var url = "/data_manager/platform_data/" + feature.attribute.p_name;
       $.getJSON(url,
         function(json_data)
