@@ -2416,7 +2416,7 @@ function viewModel() {
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
       var map_offset = $("#map").offset();
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
-      $('#obs-hover-popup').show().offset({top:map_offset.top + view_px.y, left: map_offset.left + view_px.x});
+      $('#obs-hover-popup').show().offset({top:map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
       /*{
         "my": "left top",
         "at": "left middle",
