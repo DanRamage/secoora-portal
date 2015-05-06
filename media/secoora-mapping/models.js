@@ -2475,7 +2475,7 @@ function viewModel() {
       var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
       $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
 
-      $.plot($("#obs-click-popup #plot_area"), [flot_data],
+      $.plot($("#obs-click-popup #plot_area"), [{date: flot_data, label: feature.attributes.obs_name}],
       {
         xaxis: {mode: "time"},
         crosshair: {mode: 'x'   },
