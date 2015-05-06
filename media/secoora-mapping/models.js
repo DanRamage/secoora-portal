@@ -1273,7 +1273,7 @@ function obs_data_model()
       }
     });
   };
-  showToolTip =function(x,y,contents)
+  self.showToolTip = function(x,y,contents)
   {
     $('<div id="tooltip">' + contents + '</div>').css({
        position           : 'absolute'
