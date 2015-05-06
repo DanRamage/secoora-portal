@@ -2473,7 +2473,7 @@ function viewModel() {
       $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
 
       $.plot($("#obs-click-popup #plot_area"),
-        flot_data,
+        { data: flot_data, label: feature.attributes.obs_name},
         {
           xaxis: {mode: "time"},
           crosshair: {mode: 'x'   },
