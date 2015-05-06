@@ -2463,7 +2463,7 @@ function viewModel() {
             //Data pairs are time_val for x axis and value for y.
             flot_data.push([time_val, obs_data.properties.value[time_ndx]]);
           });
-          break;
+          return;
         }
       });
       var lon_lat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
