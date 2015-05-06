@@ -1153,7 +1153,9 @@ function obs_data_model()
   self.obs_uom = ko.observable("");
   self.obs_time = ko.observable("");
 
-  self.set_data = function(observaton_name, data)
+  self.flot_data = []
+
+  self.set_hover_data = function(observaton_name, data)
   {
     self.obs_name(observaton_name);
     self.organization_name(data.o_name);
@@ -1161,6 +1163,11 @@ function obs_data_model()
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
     self.obs_time(data.obs_time);
+
+  };
+
+  self.set_click_data = function(observaton_name, data)
+  {
 
   };
   return(self);
