@@ -2456,7 +2456,7 @@ function viewModel() {
       var flot_data = [];
       $.each(obs_data_list, function(ndx, obs_data)
       {
-        if(obs_data.properties.obs_type == feature.attributes.obs_name)
+        if(obs_data.properties.obsType == feature.attributes.obs_name)
         {
           $.each(obs_data.properties.time, function(time_ndx, time_val)
           {
