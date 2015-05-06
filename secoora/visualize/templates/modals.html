@@ -324,18 +324,18 @@
 <!-- TS(Time Series) Query Popup -->
 
 <style>
-  .ts-popup {
+  .data-popup {
     width: 400px;
     height: 240px;
   }
-  .ts-plot {
+  .data-plot {
     width: 400px;
     height: 200px;
   }
 </style>
 
 <!-- <div id="ts-popup" class="popover fade left in"> -->
-<div id="ts-popup" class="popover fade left in ts-popup">
+<div id="ts-popup" class="popover fade left in data-popup">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
@@ -343,7 +343,7 @@
     </h3>
   </div>
   <div class="scrollpane">
-    <div id="div-ts-plot" class="ts-plot">
+    <div id="div-ts-plot" class="data-plot">
     </div>
   </div>
 </div>
@@ -351,7 +351,7 @@
 <!-- End TS Query Popup -->
 
 <!-- Observation hover popup -->
-<div id="obs-hover-popup" class="popover fade left in" data-bind="with: $root.observation_hover_model">
+<div id="obs-hover-popup" class="popover fade left in data-popup" data-bind="with: $root.observation_hover_model">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
@@ -386,7 +386,7 @@
 </div>
 <!-- Obs hover popup -->
 <!-- Observation click popup -->
-<div id="obs-click-popup" class="popover fade left in" data-bind="with: $root.observation_hover_model">
+<div id="obs-click-popup" class="popover fade left in data-popup" data-bind="with: $root.observation_hover_model">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
@@ -398,7 +398,7 @@
     </h3>
   </div>
   <div class="popover-content scrollpane">
-    <div id="plot_area">
+    <div id="plot_area" class="data-plot">
 
     </div>
   </div>
