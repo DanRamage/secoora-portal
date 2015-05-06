@@ -386,6 +386,16 @@
 </div>
 <!-- Obs hover popup -->
 <!-- Observation click popup -->
+<style>
+  .plot-tooltip {
+    position: "absolute",
+    display: "none",
+    border: "1px solid #fdd",
+    padding: "2px",
+    "background-color": "#fee",
+    opacity: 0.80
+  }
+</style>
 <div id="obs-click-popup" class="popover fade left in data-popup" data-bind="with: $root.observation_hover_model">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
@@ -401,16 +411,7 @@
     <div id="plot_area" class="data-plot">
     </div>
   </div>
+  <div id="plot-hover-tooltip" class="plot-tooltip"></div>
 </div>
-<style>
-  .plot-tooltip {
-    position: "absolute",
-    display: "none",
-    border: "1px solid #fdd",
-    padding: "2px",
-    "background-color": "#fee",
-    opacity: 0.80
-  };
-</style>
-<div id="plot-hover-tooltip" class="plot-tooltip"></div>
+
 <!-- Obs click popup -->
