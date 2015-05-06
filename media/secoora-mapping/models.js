@@ -2474,26 +2474,7 @@ function viewModel() {
 
       $.plot($("#obs-click-popup #plot_area"),
         {
-          data: flot_data,
-          points: { show: true, symbol: "cross" }
-        },
-        {
-          xaxis: {mode: "time"},
-          crosshair: {mode: 'x'   },
-          grid: {
-            backgroundColor: {colors: ['#fff', '#C3DFE5']},
-            borderWidth: 1,
-            borderColor: '#A6D1DB',
-            hoverable: true
-          },
-          zoom: {interactive: true},
-          pan: {interactive: true},
-          legend: {
-            backgroundOpacity: 0.3, labelFormatter: function (label, series) {
-              return /min|max/.test(series.id) ? null : label;
-            }
-          },
-          colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
+          data: flot_data
         }
       );
     };
