@@ -2433,16 +2433,18 @@ function viewModel() {
     {
       var self = this;
       var url = "/data_manager/platform_data/" + feature.attributes.p_name;
+      var json_data = null;
       $.ajax({
         url: url,
         async: false,
         dataType: 'json',
         success: function(data)
         {
-          jsonIssues = data.Issues;
+          json_data = data;
           $('#obs-hover-popup').hide();
         }
       });
+      json_data;
     };
     self.isTopLayer = function(layer) {
         return self.activeLayers.indexOf(layer) === 0;
