@@ -272,6 +272,8 @@ class Layer(models.Model):
         ('WMST', 'WMST'),
         ('KML', 'KML'),
         ('GeoJSON', 'GeoJSON'),
+        ('ObsGeoJSON', 'ObsGeoJSON'),
+        ('WindGeoJSON', 'WindGeoJSON'),
         ('ArcRest', 'ArcRest'),
         ('radio', 'radio'),
         ('checkbox', 'checkbox'),
