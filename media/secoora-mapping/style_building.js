@@ -50,8 +50,8 @@ function ol_gradient_style_builder(options) {
               fillColor: rgb_val,
               fillOpacity: 0.7,
               pointRadius: 10,
-              fontSize: "12px",
-              fontWeight: "bold"
+              fontSize: "10px"
+              //fontWeight: "bold"
           }
       }));
     });
