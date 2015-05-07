@@ -5,7 +5,7 @@ function ol_gradient_style_builder(options) {
   //self.start_color = options.start_color || '#ff0000';
   //self.end_color =    options.end_color || '#0000ff';
   //self.gradient_steps = options.steps || 12;
-  self.default_colors = ['#8b0000','#a81002','#c02b01','#d34600','#e46200','#f17d00','#fa9900','#ffb700','#ffd400','#fff100','#17f524','#2be146','#35cd66','#43b3b7','#5297e8','#537ef5','#4d67fb','#424efe','#3033ff','#0000ff'];
+  self.default_colors = ['#8b0000','#960201','#a10a02','#ac1402','#b61f02','#bf2901','#c73301','#ce3e00','#d54900','#dc5300','#e25e00','#e76900','#ec7300','#f17f00','#f58900','#f89500','#fba000','#fdab00','#ffb500','#ffc100','#ffce00','#ffd900','#ffe300','#ffee00','#fff900','#0afc13','#1af328','#23ec37','#29e443','#2edc4e','#32d459','#36cd67','#39c577','#3dba97','#49adc9','#4fa2dd','#5298e7','#538eee','#5386f2','#527cf6','#5072f9','#4e69fb','#4b60fc','#4657fe','#414dfe','#3b42ff','#3438ff','#2a2bff','#1c1cff','#0000ff'];
   self.build_filters = function(lower_bound, upper_bound, number_steps, comparison_property)
   {
     self.default_colors.reverse();
