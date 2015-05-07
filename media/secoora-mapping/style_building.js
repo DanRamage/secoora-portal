@@ -15,7 +15,7 @@ function ol_gradient_style_builder(options) {
     $.each(self.default_colors, function(ndx, rgb_val)
     {
       var filter;
-      var color_val;
+      var color_val = self.default_colors[ndx];
       if(i === 0)
       {
         filter = new OpenLayers.Filter.Comparison({
