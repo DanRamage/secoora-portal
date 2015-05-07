@@ -979,12 +979,15 @@ app.addLayerToMap = function(layer, isVisible) {
           //new OpenLayers.Projection("EPSG:900913")), 2);
           var style_map;
           var strategies;
-          if('steps' in layer.openlayers_options)
+          if('legend' in layer.openlayers_options)
           {
-
+            var legend_info = layer.openlayers_options.legend;
             var style_bldr = new ol_gradient_style_builder()
             //var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
-            var rules = style_bldr.build_filters(layer.openlayers_options.min_range, layer.openlayers_options.max_range, layer.openlayers_options.number_steps, 'obs_value');
+            var rules = style_bldr.build_filters(legend_info.min_range,
+              legend_info.max_range,
+              legend_info.number_steps,
+              'obs_value');
             var style = new OpenLayers.Style(
                 {
                     strokeWidth: '${strokeFunction}',
