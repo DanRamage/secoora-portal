@@ -1063,45 +1063,6 @@ app.addLayerToMap = function(layer, isVisible) {
               //onSelect: app.viewModel.obs_hover_select,
               //onUnselect: app.viewModel.obs_hover_unselect,
               eventListeners: {
-                hofeaturehighlighted: app.viewModel.observation_hover_model.obs_hover_select,
-                featureunhighlighted: app.viewModel.observation_hover_model.obs_hover_unselect
-              }
-          });
-          //Used so hover control does not handle the click events.
-          hoverCtrl.handlers["feature"].stopClick = false;
-          hoverCtrl.handlers["feature"].stopDown = false;
-
-          var clickCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
-              onSelect: app.viewModel.observation_hover_model.obs_click_select,
-              scope: layer
-          });
-          app.map.addControl(hoverCtrl);
-          app.map.addControl(clickCtrl);
-          layer.queryControl.push(hoverCtrl);
-          layer.queryControl.push(clickCtrl);
-        }
-        else if(layer.type === 'WindGeoJSON')
-        {
-          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
-              projection: "EPSG:4326",
-              protocol: new OpenLayers.Protocol.HTTP({
-                  url: layer.openlayers_options.geojson,
-                  format: new OpenLayers.Format.GeoJSON()
-              }),
-              strategies: strategies,
-              styleMap: style_map
-          });
-          app.map.addLayer(layer.layer);
-
-          //Add hover handler if used
-          var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
-              hover: true,
-              highlightOnly: true,
-              renderIntent: "temporary",
-              toggle: true,
-              //onSelect: app.viewModel.obs_hover_select,
-              //onUnselect: app.viewModel.obs_hover_unselect,
-              eventListeners: {
                 featurehighlighted: app.viewModel.observation_hover_model.obs_hover_select,
                 featureunhighlighted: app.viewModel.observation_hover_model.obs_hover_unselect
               }
@@ -1118,9 +1079,7 @@ app.addLayerToMap = function(layer, isVisible) {
           app.map.addControl(clickCtrl);
           layer.queryControl.push(hoverCtrl);
           layer.queryControl.push(clickCtrl);
-
         }
-
 
         /*else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
