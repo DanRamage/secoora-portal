@@ -1200,6 +1200,7 @@ function obs_data_model()
       url: url,
       async: false,
       dataType: 'json',
+      //data: {"longitude": feature.}
       success: function(data)
       {
         json_data = data;
