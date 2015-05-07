@@ -1080,6 +1080,19 @@ app.addLayerToMap = function(layer, isVisible) {
           layer.queryControl.push(hoverCtrl);
           layer.queryControl.push(clickCtrl);
         }
+        else if(layer.type === 'WindGeoJSON')
+        {
+          var strategies = [new OpenLayers.Strategy.Fixed()];
+          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
+              projection: "EPSG:4326",
+              protocol: new OpenLayers.Protocol.HTTP({
+                  url: layer.openlayers_options.geojson,
+                  format: new OpenLayers.Format.GeoJSON()
+              }),
+              strategies: strategies
+              //styleMap: style_map
+          });
+        }
 
         /*else { //if XYZ with no utfgrid
             // adding layer to the map for the first time
