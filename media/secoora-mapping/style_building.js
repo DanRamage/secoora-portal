@@ -15,7 +15,6 @@ function ol_gradient_style_builder(options) {
     $.each(self.default_colors, function(ndx, rgb_val)
     {
       var filter;
-      var color_val = self.default_colors[ndx];
       if(i === 0)
       {
         filter = new OpenLayers.Filter.Comparison({
@@ -48,7 +47,7 @@ function ol_gradient_style_builder(options) {
           filter: filter,
           // if a feature matches the above filter, use this symbolizer
           symbolizer: {
-              fillColor: color_val,
+              fillColor: rgb_val,
               fillOpacity: 0.7,
               pointRadius: 10,
               fontSize: "9px"
