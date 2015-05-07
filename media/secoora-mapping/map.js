@@ -983,8 +983,8 @@ app.addLayerToMap = function(layer, isVisible) {
           {
 
             var style_bldr = new ol_gradient_style_builder()
-            var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
-            //var rules = style_bldr.build_filters(layer.openlayers_options.steps[0], layer.openlayers_options.steps[layer.openlayers_options.steps.length - 1], 20, 'obs_value');
+            //var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
+            var rules = style_bldr.build_filters(layer.openlayers_options.steps[0], layer.openlayers_options.steps[layer.openlayers_options.steps.length - 1], 20, 'obs_value');
             var style = new OpenLayers.Style(
                 {
                     strokeWidth: '${strokeFunction}',
