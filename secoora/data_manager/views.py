@@ -348,23 +348,22 @@ def platform_time_series_request(request, platform_name):
                         printSQL=True):
     if logger:
       logger.debug("Connected to xenia DB")
+    """
     try:
-      #m_type_id = xeniaDb.mTypeExists(observation_name, uom_name)
       platform_data = xeniaDb.session.query(xenia_platform)\
         .join((xenia_organization, xenia_organization.row_id == xenia_platform.organization_id))\
         .filter(xenia_platform.short_name.ilike(platform_name))\
         .filter(xenia_platform.active.in_((1,2))).one()
-
 
       properties = OrderedDict()
       properties['p_handle'] = platform_data.platform_handle
       properties['p_name'] = platform_data.short_name
       properties['p_description'] = platform_data.description
       properties['o_name'] = platform_data.organization.short_name
-
     except Exception, e:
       if logger:
         logger.exception(e)
+    """
     try:
       json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
       if logger:
