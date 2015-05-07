@@ -18,7 +18,7 @@ function ol_gradient_style_builder(options) {
     {
       rgb_val =  self.default_colors[color_ndx];
 
-      if(ndx === lower_bound)
+      if(ndx === 0)
       {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.LESS_THAN,
@@ -27,7 +27,7 @@ function ol_gradient_style_builder(options) {
           });
         last_lower = lower_bound + data_step;
       }
-      else if(ndx + step < upper_bound)
+      else if(ndx < self.default_colors.length - 2)
       {
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.BETWEEN,
