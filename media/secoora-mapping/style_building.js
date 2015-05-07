@@ -62,6 +62,7 @@ function ol_gradient_style_builder(options) {
       {
         color_ndx = self.default_colors.length - 1;
       }
+
     }
     /*
     $.each(self.default_colors, function(ndx, rgb_val)
