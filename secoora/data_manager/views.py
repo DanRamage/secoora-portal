@@ -365,6 +365,7 @@ def platform_time_series_request(request, platform_name):
         logger.exception(e)
     """
     try:
+      properties = {}
       json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
       if logger:
         logger.debug("Opening obs json file: %s" % (json_url))
@@ -375,7 +376,7 @@ def platform_time_series_request(request, platform_name):
 
         feature = {
           "geometry": {
-            "coordinates": [platform_data.fixed_longitude, platform_data.fixed_latitude],
+            "coordinates": [],
             "type": "Point"
           },
           "properties": properties
