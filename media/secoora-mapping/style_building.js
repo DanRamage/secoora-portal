@@ -16,7 +16,7 @@ function ol_gradient_style_builder(options) {
     var color_ndx = 0;
     for( var ndx = 0; ndx < number_steps; ndx += 1)
     {
-      rgb_val =  self.default_colors[color_ndx];
+      var rgb_val =  self.default_colors[color_ndx];
 
       if(ndx === 0)
       {
@@ -57,7 +57,7 @@ function ol_gradient_style_builder(options) {
               fontWeight: "bold"
           }
       }));
-      color_ndx += Math.floor(data_step);
+      color_ndx += Math.floor(color_ndx_step);
       if(color_ndx >= self.default_colors.length)
       {
         color_ndx = self.default_colors.length - 1;
