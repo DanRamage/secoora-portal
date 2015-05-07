@@ -10,8 +10,60 @@ function ol_gradient_style_builder(options) {
   {
     self.default_colors.reverse();
     var rules = [];
-    var step = (upper_bound - lower_bound) / self.default_colors.length;
+    var data_step = (upper_bound - lower_bound) / number_steps;
+    var color_ndx_step = self.default_colors.length / number_steps;
     var last_lower;
+    var color_ndx = 0;
+    for( var ndx = 0; ndx < number_steps; ndx += 1)
+    {
+      rgb_val =  self.default_colors[color_ndx];
+
+      if(ndx === lower_bound)
+      {
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.LESS_THAN,
+              property: comparison_property,
+              value: lower_bound
+          });
+        last_lower = lower_bound + data_step;
+      }
+      else if(ndx + step < upper_bound)
+      {
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.BETWEEN,
+              property: comparison_property,
+              lowerBoundary: last_lower,
+              upperBoundary: last_lower + data_step
+          });
+        last_lower += data_step;
+      }
+      else
+      {
+        filter = new OpenLayers.Filter.Comparison({
+              type: OpenLayers.Filter.Comparison.GREATER_THAN,
+              property: comparison_property,
+              value: upper_bound
+          });
+      }
+      rules.push(new OpenLayers.Rule({
+          // a rule contains an optional filter
+          filter: filter,
+          // if a feature matches the above filter, use this symbolizer
+          symbolizer: {
+              fillColor: rgb_val,
+              fillOpacity: 0.7,
+              pointRadius: 10,
+              fontSize: "10px",
+              fontWeight: "bold"
+          }
+      }));
+      color_ndx += Math.floor(data_step);
+      if(color_ndx >= self.default_colors.length)
+      {
+        color_ndx = self.default_colors.length - 1;
+      }
+    }
+    /*
     $.each(self.default_colors, function(ndx, rgb_val)
     {
       var filter;
@@ -55,6 +107,7 @@ function ol_gradient_style_builder(options) {
           }
       }));
     });
+    */
     return(rules);
   };
 
