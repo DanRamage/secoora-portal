@@ -55,6 +55,7 @@ function ol_gradient_style_builder(options) {
           }
       }));
     });
+    return(rules);
   };
 
   self.build_gradient = function(start_color, end_color, steps, comparison_property)
