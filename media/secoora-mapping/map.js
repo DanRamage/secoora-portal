@@ -1128,6 +1128,7 @@ app.addLayerToMap = function(layer, isVisible) {
           });
           layer.layer.events.on({"loadend": function(e)
           {
+            var features = [];
             $.each(e.response.features, function(feat_ndx, feat)
             {
               var speed = feat.attributes.obs_value;
