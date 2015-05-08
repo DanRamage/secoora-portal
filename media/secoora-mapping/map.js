@@ -1162,6 +1162,32 @@ app.addLayerToMap = function(layer, isVisible) {
             this.removeAllFeatures();
             this.addFeatures(features);*/
           }});
+          //Add hover handler if used
+          var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
+              hover: true,
+              highlightOnly: true,
+              renderIntent: "temporary",
+              toggle: true,
+              //onSelect: app.viewModel.obs_hover_select,
+              //onUnselect: app.viewModel.obs_hover_unselect,
+              eventListeners: {
+                featurehighlighted: app.viewModel.observation_hover_model.obs_hover_select,
+                featureunhighlighted: app.viewModel.observation_hover_model.obs_hover_unselect
+              }
+          });
+          //Used so hover control does not handle the click events.
+          hoverCtrl.handlers["feature"].stopClick = false;
+          hoverCtrl.handlers["feature"].stopDown = false;
+
+          var clickCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
+              onSelect: app.viewModel.observation_hover_model.obs_click_select,
+              scope: layer
+          });
+          app.map.addControl(hoverCtrl);
+          app.map.addControl(clickCtrl);
+          layer.queryControl.push(hoverCtrl);
+          layer.queryControl.push(clickCtrl);
+
           app.map.addLayer(layer.layer);
 
           /*
