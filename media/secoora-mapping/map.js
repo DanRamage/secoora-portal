@@ -1094,9 +1094,9 @@ app.addLayerToMap = function(layer, isVisible) {
                 var ptGeom = new OpenLayers.Geometry.Point(feat.geometry.coordinates[0],feat.geometry.coordinates[1]);
                 var ft = new OpenLayers.Feature.Vector();
                 //ft.geometry = ptGeom;
-                ft.attributes = feature.properties;
-                var speed = feature.properties.obs_value;
-                var angle = feature.properties.dir_value;
+                ft.attributes = feat.properties;
+                var speed = feat.properties.obs_value;
+                var angle = feat.properties.dir_value;
 
                 var xp = ptGeom.geometry.x;
                 var yp = ptGeom.geometry.y;
