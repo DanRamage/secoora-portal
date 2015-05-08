@@ -1129,7 +1129,8 @@ app.addLayerToMap = function(layer, isVisible) {
           });
           layer.layer.events.on({"loadend": function(e)
           {
-            var features = []
+            var features = [];
+            var layer = this;
             $.each(e.response.features, function(feat_ndx, feat)
             {
               var ft = feat.clone();
@@ -1140,7 +1141,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
               var xp = feat_geom.x;
               var yp = feat_geom.y;
-              var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*this.map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
+              var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*layer.map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
               var ftGeomColl = new OpenLayers.Geometry.Collection();
               ftGeomColl.addComponent(line);
