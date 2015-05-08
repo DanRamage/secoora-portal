@@ -1082,7 +1082,56 @@ app.addLayerToMap = function(layer, isVisible) {
         }
         else if(layer.type === 'WindGeoJSON')
         {
+          if('legend' in layer.openlayers_options) {
+            var legend_info = layer.openlayers_options.legend;
+            var style_bldr = new ol_gradient_style_builder()
+            //var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
+            var rules = style_bldr.build_filters(legend_info.min_range,
+              legend_info.max_range,
+              legend_info.number_steps,
+              'obs_value');
+            var style = new OpenLayers.Style(
+              {
+                strokeWidth: '${strokeFunction}',
+                strokeOpacity: 0.1,
+                //pointRadius: '${radiusfunction}',
+                label: "${obs_value}",
+                fontColor: "#2d8998"
+              },
+              {
+                context: {
+                  strokeFunction: function (feature) {
+                    var count = feature.attributes.count;
+                    var stk = Math.max(0.1 * count, 1);
+                    return stk;
+                  },
+                  radiusfunction: function (feature) {
+                    var count = feature.attributes.count;
+                    var radius = Math.max(0.60 * count, 7);
+                    return radius;
+                  }
+                },
+                rules: rules
+              });
+            style_map = new OpenLayers.StyleMap(style);
+          }
+          strategies = [new OpenLayers.Strategy.Fixed()];
           var url = layer.openlayers_options.geojson;
+          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
+              projection: "EPSG:4326",
+              protocol: new OpenLayers.Protocol.HTTP({
+                  url: layer.openlayers_options.geojson,
+                  format: new OpenLayers.Format.GeoJSON(),
+                  callback: function()
+                  {
+                    var i = 0;
+                  }
+              }),
+              strategies: strategies,
+              styleMap: style_map
+          });
+
+          /*
           $.ajax({
             url: url,
             async: false,
@@ -1125,7 +1174,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
             }
           });
-
+          */
         }
 
         /*else { //if XYZ with no utfgrid
