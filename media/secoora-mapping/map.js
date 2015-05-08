@@ -1092,7 +1092,7 @@ app.addLayerToMap = function(layer, isVisible) {
               'obs_value');
             var style = new OpenLayers.Style(
               {
-                strokeWidth: '${strokeFunction}',
+                //strokeWidth: '${strokeFunction}',
                 strokeOpacity: 0.1,
                 pointRadius: '${radiusfunction}',
                 label: "${obs_value}",
