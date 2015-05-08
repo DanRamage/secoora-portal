@@ -1097,7 +1097,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 pointRadius: 10,
                 label: "${obs_value}",
                 fontColor: "#2d8998",
-                rotation: "${dir_value}"
+                rotation: "${dir_value}",
+                graphicName:"triangle"
               },
               {
                 context: {
