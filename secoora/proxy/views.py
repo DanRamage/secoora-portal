@@ -44,7 +44,10 @@ def getLegendJSON(request, url):
             if(results.status_code == 200):
               if logger:
                 logger.debug("Content Type: %s" % (results.headers['content-type']))
-              return HttpResponse(results.text, content_type=results.headers['content-type'])
+              if results.headers['content-type'].lower().find('image') != -1:
+                return HttpResponse(results.content, content_type=results.headers['content-type'])
+              else:
+                return HttpResponse(results.text, content_type=results.headers['content-type'])
             return(HttpResponse(''))
         #else:
         #  logger.error("Illegal domain request attempt!")
