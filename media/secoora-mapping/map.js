@@ -1148,10 +1148,15 @@ app.addLayerToMap = function(layer, isVisible) {
               ftGeomColl.addComponent(line);
               ftGeomColl.addComponent(feat_geom);
 
-              ft.geometry = ftGeomColl;
-              ft.geometry.rotate(angle, feat_geom);
+              var ftColl = new OpenLayers.Feature.Vector();
+              ftColl.geometry = ftGeomColl;
+              ftColl.attributes = ft.attributes;
 
-              features.push(ft);
+              ftColl.geometry = ftGeomColl;
+              ftColl.attributes.dir_value = -angle;
+              ftColl.geometry.rotate(angle, feat_geom);
+
+              features.push(ftColl);
 
             });
             this.removeAllFeatures();
