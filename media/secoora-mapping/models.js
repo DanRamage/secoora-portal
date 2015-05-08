@@ -1176,10 +1176,10 @@ function obs_data_model()
     self.obs_time(data.obs_time);
     if('dir_name' in data)
     {
-      self.obs_name(data.dir_name);
-      self.obs_value(data.dir_value);
-      self.obs_uom(data.dir_uom);
-      self.obs_time(data.dir_time);
+      self.dir_name(data.dir_name);
+      self.dir_value(data.dir_value);
+      self.dir_uom(data.dir_uom);
+      self.dir_time(data.dir_time);
     }
   };
 

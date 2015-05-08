@@ -373,11 +373,15 @@
     </div>
     <div>
       <h3>
-        <span data-bind="text: obs_value"></span>
-        <span data-bind="text: obs_uom"></span>
+        <div>
+          <span data-bind="text: obs_value"></span>
+          <span data-bind="text: obs_uom"></span>
+        </div>
         <!-- ko if: dir_value.length -->
-        <span data-bind="text: dir_value"></span>
-        <span data-bind="text: dir_uom"></span>
+        <div>
+          <span data-bind="text: dir_value"></span>
+          <span data-bind="text: dir_uom"></span>
+        </div>
         <!-- /ko -->
       </h3>
     </div>
