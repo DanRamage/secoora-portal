@@ -1119,6 +1119,10 @@ app.addLayerToMap = function(layer, isVisible) {
               });
               layer.layer.addFeatures(features);
 
+              layer.layer.opacity = layer.opacity();
+              layer.layer.setVisibility(true);
+              app.map.addLayer(layer.layer);
+
             }
           });
 
@@ -1147,8 +1151,11 @@ app.addLayerToMap = function(layer, isVisible) {
         //layer.utfcontrol = app.addUTFControl(layer);
         //app.map.addControl(layer.utfcontrol);
     }
-    layer.layer.opacity = layer.opacity();
-    layer.layer.setVisibility(true);
+    if layer.layer
+    {
+      layer.layer.opacity = layer.opacity();
+      layer.layer.setVisibility(true);
+    }
 };
 
 app.setLayerVisibility = function(layer, visibility) {
