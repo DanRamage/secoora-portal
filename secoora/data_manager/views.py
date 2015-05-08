@@ -271,6 +271,10 @@ def get_obs_data(obs_name, uom_name):
           .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
           .order_by(xenia_platform.short_name)
       platforms = []
+      get_wind_dir = False
+      if obs_name == 'wind_speed':
+        get_wind_dir = True
+
       for platform in platform_list:
         json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':').lower())
         try:
@@ -293,6 +297,12 @@ def get_obs_data(obs_name, uom_name):
                 properties['obs_uom'] = prop['uomType']
                 properties['obs_time'] = prop['time'][-1]
               else:
+                if get_wind_dir and prop['obsType'] == 'wind_from_direction':
+                  properties['dir_name'] = prop['obsType']
+                  properties['dir_value'] = prop['value'][-1]
+                  properties['dir_uom'] = prop['uomType']
+                  properties['dir_time'] = prop['time'][-1]
+
                 if 'other_obs' not in properties:
                   properties['other_obs'] = []
                 properties['other_obs'].append(prop['obsType'])

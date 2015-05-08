@@ -1094,6 +1094,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 var ftpoint = new OpenLayers.Feature.Vector();
                 ftpoint.geometry = ptGeom;
                 ftpoint.attributes = feature.properties;
+                var speed = feature.properties.
                 var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
                 var ftGeomColl = new OpenLayers.Geometry.Collection();
