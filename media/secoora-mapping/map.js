@@ -1128,7 +1128,23 @@ app.addLayerToMap = function(layer, isVisible) {
           });
           layer.layer.events.on({"loadend": function(e)
           {
-            var i = 0;
+            $.each(e.response.features, function(feat_ndx, feat)
+            {
+              var speed = feat.attributes.obs_value;
+              var angle = feat.attributes.dir_value;
+
+              var xp = feat.x;
+              var yp = feat.y;
+              var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
+
+              var ftGeomColl = new OpenLayers.Geometry.Collection();
+              ftGeomColl.addComponent(line);
+              ftGeomColl.addComponent(ptGeom);
+
+              feat.geometry = ftGeomColl;
+              feat.geometry.rotate(angle, feat.geometry);
+
+            });
           }});
           app.map.addLayer(layer.layer);
 
