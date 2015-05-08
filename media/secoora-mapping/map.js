@@ -1096,7 +1096,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 strokeOpacity: 0.1,
                 //pointRadius: '${radiusfunction}',
                 graphicWidth: 10,
-                graphicHeight: '${radiusfunction}',
+                graphicHeight: 20,
                 label: "${obs_value}",
                 fontColor: "#000000",
                 rotation: "${dir_value}",
