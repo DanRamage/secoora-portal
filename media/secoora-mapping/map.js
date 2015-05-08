@@ -1096,7 +1096,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 strokeOpacity: 0.1,
                 pointRadius: 10,
                 label: "${dir_value}",
-                fontColor: "#2d8998",
+                fontColor: "#000000",
                 rotation: "${dir_value}",
                 graphicName:"triangle"
               },
