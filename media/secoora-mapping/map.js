@@ -1126,6 +1126,7 @@ app.addLayerToMap = function(layer, isVisible) {
               strategies: strategies,
               styleMap: style_map
           });
+          app.map.addLayer(layer.layer);
 
           /*
           $.ajax({
