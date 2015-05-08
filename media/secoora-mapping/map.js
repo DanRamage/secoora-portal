@@ -1094,9 +1094,10 @@ app.addLayerToMap = function(layer, isVisible) {
               {
                 strokeWidth: '${strokeFunction}',
                 strokeOpacity: 0.1,
-                //pointRadius: '${radiusfunction}',
+                pointRadius: 10,
                 label: "${obs_value}",
-                fontColor: "#2d8998"
+                fontColor: "#2d8998",
+                rotation: "${dir_value}"
               },
               {
                 context: {
@@ -1139,7 +1140,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
               var xp = feat_geom.x;
               var yp = feat_geom.y;
-              var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
+              var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*this.map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
               var ftGeomColl = new OpenLayers.Geometry.Collection();
               ftGeomColl.addComponent(line);
