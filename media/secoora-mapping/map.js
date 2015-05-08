@@ -1132,12 +1132,12 @@ app.addLayerToMap = function(layer, isVisible) {
             {
               var speed = feat.attributes.obs_value;
               var angle = feat.attributes.dir_value;
+              var feat_geom = feat.geometry;
 
-              var xp = feat.x;
-              var yp = feat.y;
+              var xp = feat_geom.x;
+              var yp = feat_geom.y;
               var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
-              var feat_geom = feat.geometry;
               var ftGeomColl = new OpenLayers.Geometry.Collection();
               ftGeomColl.addComponent(line);
               ftGeomColl.addComponent(feat_geom);
