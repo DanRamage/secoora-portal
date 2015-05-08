@@ -1086,10 +1086,10 @@ app.addLayerToMap = function(layer, isVisible) {
             var legend_info = layer.openlayers_options.legend;
             var style_bldr = new ol_gradient_style_builder()
             //var rules = style_bldr.build_gradient('#0000ff', '#ff0000', layer.openlayers_options.steps, 'obs_value');
-            /*var rules = style_bldr.build_filters(legend_info.min_range,
+            var rules = style_bldr.build_filters(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps,
-              'obs_value');*/
+              'obs_value');
             var style = new OpenLayers.Style(
               {
                 strokeWidth: '${strokeFunction}',
@@ -1109,7 +1109,8 @@ app.addLayerToMap = function(layer, isVisible) {
                   },
                   radiusfunction: function (feature) {
                     var val = feature.attributes.obs_value;
-                    var radius = val;
+                    var max_radius = 15;
+                    var radius = val / max_radius;
                     //var radius = Math.max(0.60 * count, 7);
                     return radius;
                   }
