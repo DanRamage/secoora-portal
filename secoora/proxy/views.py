@@ -42,6 +42,8 @@ def getLegendJSON(request, url):
               logger.exception(e)
           else:
             if(results.status_code == 200):
+              if logger:
+                logger.debug("Content Type: %s" % (results.headers['content-type']))
               return HttpResponse(results.text, content_type=results.headers['content-type'])
             return(HttpResponse(''))
         #else:
@@ -54,6 +56,8 @@ def getLegendJSON(request, url):
         if(parsedURL.hostname == allowedDomain):
           data = urlencode(request.POST)
           resp, content = conn.request(url, request.method, data)
+          if logger:
+            logger.debug("Content Type: %s" % (results.headers['content-type']))
           return HttpResponse(content, content_type=resp['content-type'])
         else:
           return(HttpResponse(status=403))
