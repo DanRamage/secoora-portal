@@ -1151,7 +1151,7 @@ app.addLayerToMap = function(layer, isVisible) {
         //layer.utfcontrol = app.addUTFControl(layer);
         //app.map.addControl(layer.utfcontrol);
     }
-    if layer.layer
+    if(layer.layer)
     {
       layer.layer.opacity = layer.opacity();
       layer.layer.setVisibility(true);
