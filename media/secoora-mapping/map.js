@@ -1128,7 +1128,6 @@ app.addLayerToMap = function(layer, isVisible) {
           });
           layer.layer.events.on({"loadend": function(e)
           {
-            var features = [];
             $.each(e.response.features, function(feat_ndx, feat)
             {
               var speed = feat.attributes.obs_value;
@@ -1138,12 +1137,13 @@ app.addLayerToMap = function(layer, isVisible) {
               var yp = feat.y;
               var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
+              var feat_geom = feat.geometry;
               var ftGeomColl = new OpenLayers.Geometry.Collection();
               ftGeomColl.addComponent(line);
-              ftGeomColl.addComponent(ptGeom);
+              ftGeomColl.addComponent(feat_geom);
 
               feat.geometry = ftGeomColl;
-              feat.geometry.rotate(angle, feat.geometry);
+              feat.geometry.rotate(angle, feat_geom);
 
             });
           }});
