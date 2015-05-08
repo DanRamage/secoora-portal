@@ -1128,11 +1128,14 @@ app.addLayerToMap = function(layer, isVisible) {
           });
           layer.layer.events.on({"loadend": function(e)
           {
+            var features = []
             $.each(e.response.features, function(feat_ndx, feat)
             {
-              var speed = feat.attributes.obs_value;
-              var angle = feat.attributes.dir_value;
-              var feat_geom = feat.geometry;
+              var ft = feat.clone();
+
+              var speed = ft.attributes.obs_value;
+              var angle = ft.attributes.dir_value;
+              var feat_geom = ft.geometry;
 
               var xp = feat_geom.x;
               var yp = feat_geom.y;
@@ -1142,10 +1145,14 @@ app.addLayerToMap = function(layer, isVisible) {
               ftGeomColl.addComponent(line);
               ftGeomColl.addComponent(feat_geom);
 
-              feat.geometry = ftGeomColl;
-              feat.geometry.rotate(angle, feat_geom);
+              ft.geometry = ftGeomColl;
+              ft.geometry.rotate(angle, feat_geom);
+
+              features.push(ft);
 
             });
+            this.removeAllFeatures();
+            this.addFeatures(features);
           }});
           app.map.addLayer(layer.layer);
 
