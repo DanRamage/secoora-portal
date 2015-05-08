@@ -1088,36 +1088,37 @@ app.addLayerToMap = function(layer, isVisible) {
             async: false,
             dataType: 'json',
             success: function (data) {
+              var features = [];
               $.each(data.features, function(feat_ndx, feat)
               {
                 var ptGeom = new OpenLayers.Geometry.Point(feat.geometry.coordinates[0],feat.geometry.coordinates[1]);
-                var ftpoint = new OpenLayers.Feature.Vector();
-                ftpoint.geometry = ptGeom;
-                ftpoint.attributes = feature.properties;
-                var speed = feature.properties.
+                var ft = new OpenLayers.Feature.Vector();
+                //ft.geometry = ptGeom;
+                ft.attributes = feature.properties;
+                var speed = feature.properties.obs_value;
+                var angle = feature.properties.dir_value;
+
+                var xp = ptGeom.geometry.x;
+                var yp = ptGeom.geometry.y;
                 var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
                 var ftGeomColl = new OpenLayers.Geometry.Collection();
                 ftGeomColl.addComponent(line);
-                ftGeomColl.addComponent(ft.geometry);
+                ftGeomColl.addComponent(ptGeom);
 
-                var ftColl = new OpenLayers.Feature.Vector();
-                ftColl.geometry = ftGeomColl;
-                ftColl.attributes = ft.attributes;
-
-                features.push(ftpoint);
+                ft.geometry = ftGeomColl;
+                ft.geometry.rotate(angle, ft.geometry);
+                features.push(ft);
 
               });
               var strategies = [new OpenLayers.Strategy.Fixed()];
               layer.layer = new OpenLayers.Layer.Vector(layer.name, {
                   projection: "EPSG:4326",
-                  protocol: new OpenLayers.Protocol.HTTP({
-                      url: layer.openlayers_options.geojson,
-                      format: new OpenLayers.Format.GeoJSON()
-                  }),
                   strategies: strategies
                   //styleMap: style_map
               });
+              layer.layer.addFeatures(features);
+
             }
           });
 
