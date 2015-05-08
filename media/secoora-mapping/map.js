@@ -1082,16 +1082,44 @@ app.addLayerToMap = function(layer, isVisible) {
         }
         else if(layer.type === 'WindGeoJSON')
         {
-          var strategies = [new OpenLayers.Strategy.Fixed()];
-          layer.layer = new OpenLayers.Layer.Vector(layer.name, {
-              projection: "EPSG:4326",
-              protocol: new OpenLayers.Protocol.HTTP({
-                  url: layer.openlayers_options.geojson,
-                  format: new OpenLayers.Format.GeoJSON()
-              }),
-              strategies: strategies
-              //styleMap: style_map
+          var url = layer.openlayers_options.geojson;
+          $.ajax({
+            url: url,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+              $.each(data.features, function(feat_ndx, feat)
+              {
+                var ptGeom = new OpenLayers.Geometry.Point(feat.geometry.coordinates[0],feat.geometry.coordinates[1]);
+                var ftpoint = new OpenLayers.Feature.Vector();
+                ftpoint.geometry = ptGeom;
+                ftpoint.attributes = feature.properties;
+                var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
+
+                var ftGeomColl = new OpenLayers.Geometry.Collection();
+                ftGeomColl.addComponent(line);
+                ftGeomColl.addComponent(ft.geometry);
+
+                var ftColl = new OpenLayers.Feature.Vector();
+                ftColl.geometry = ftGeomColl;
+                ftColl.attributes = ft.attributes;
+
+                features.push(ftpoint);
+
+              });
+              var strategies = [new OpenLayers.Strategy.Fixed()];
+              layer.layer = new OpenLayers.Layer.Vector(layer.name, {
+                  projection: "EPSG:4326",
+                  protocol: new OpenLayers.Protocol.HTTP({
+                      url: layer.openlayers_options.geojson,
+                      format: new OpenLayers.Format.GeoJSON()
+                  }),
+                  strategies: strategies
+                  //styleMap: style_map
+              });
+            }
           });
+
         }
 
         /*else { //if XYZ with no utfgrid
