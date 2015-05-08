@@ -42,7 +42,7 @@ def getLegendJSON(request, url):
               logger.exception(e)
           else:
             if(results.status_code == 200):
-              return HttpResponse(results.text)
+              return HttpResponse(results.text, results.headers['content-type'])
             return(HttpResponse(''))
         #else:
         #  logger.error("Illegal domain request attempt!")
@@ -54,7 +54,7 @@ def getLegendJSON(request, url):
         if(parsedURL.hostname == allowedDomain):
           data = urlencode(request.POST)
           resp, content = conn.request(url, request.method, data)
-          return HttpResponse(content)
+          return HttpResponse(content, content_type=resp['content-type'])
         else:
           return(HttpResponse(status=403))
 
@@ -83,7 +83,7 @@ def restQuery(request, url):
           if(results.status_code == 200):
             if logger:
               logger.info("End restQuery")
-            return HttpResponse(results.text)
+            return HttpResponse(results.text, results.headers['content-type'])
           if logger:
             logger.info("End restQuery")
           return(HttpResponse(''))
