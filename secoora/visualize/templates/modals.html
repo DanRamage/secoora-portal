@@ -372,10 +372,14 @@
       </h4>
     </div>
     <div>
-      <h2>
+      <h3>
         <span data-bind="text: obs_value"></span>
         <span data-bind="text: obs_uom"></span>
-      </h2>
+        <!-- ko if: dir_value.length -->
+        <span data-bind="text: dir_value"></span>
+        <span data-bind="text: dir_uom"></span>
+        <!-- /ko -->
+      </h3>
     </div>
     <div>
       <h4>

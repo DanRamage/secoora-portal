@@ -1156,6 +1156,10 @@ function obs_data_model()
   self.obs_value = ko.observable("");
   self.obs_uom = ko.observable("");
   self.obs_time = ko.observable("");
+  self.dir_name = ko.observable("");
+  self.dir_value = ko.observable("");
+  self.dir_uom = ko.observable("");
+  self.dir_time = ko.observable("");
 
   self.flot_data = []
 
@@ -1170,7 +1174,13 @@ function obs_data_model()
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
     self.obs_time(data.obs_time);
-
+    if('dir_name' in data)
+    {
+      self.obs_name(data.dir_name);
+      self.obs_value(data.dir_value);
+      self.obs_uom(data.dir_uom);
+      self.obs_time(data.dir_time);
+    }
   };
 
   self.set_click_data = function(observaton_name, data)
