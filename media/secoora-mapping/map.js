@@ -1095,7 +1095,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 strokeWidth: '${strokeFunction}',
                 strokeOpacity: 0.1,
                 pointRadius: 10,
-                label: "${dir_value}",
+                label: "${obs_value}",
                 fontColor: "#000000",
                 rotation: "${dir_value}",
                 graphicName:"triangle"
