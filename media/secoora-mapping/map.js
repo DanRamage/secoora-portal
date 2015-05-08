@@ -1095,7 +1095,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 strokeWidth: '${strokeFunction}',
                 strokeOpacity: 0.1,
                 pointRadius: 10,
-                label: "${obs_value}",
+                label: "${dir_value}",
                 fontColor: "#2d8998",
                 rotation: "${dir_value}",
                 graphicName:"triangle"
@@ -1132,7 +1132,7 @@ app.addLayerToMap = function(layer, isVisible) {
           {
             var features = [];
             var layer = this;
-            $.each(e.response.features, function(feat_ndx, feat)
+            /*$.each(e.response.features, function(feat_ndx, feat)
             {
               var ft = feat.clone();
 
@@ -1160,7 +1160,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
             });
             this.removeAllFeatures();
-            this.addFeatures(features);
+            this.addFeatures(features);*/
           }});
           app.map.addLayer(layer.layer);
 
