@@ -1126,7 +1126,7 @@ app.addLayerToMap = function(layer, isVisible) {
               strategies: strategies,
               styleMap: style_map
           });
-          layer.events.on({"loadend": function(e)
+          layer.layer.events.on({"loadend": function(e)
           {
             var i = 0;
           }});
