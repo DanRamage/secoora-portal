@@ -1121,11 +1121,7 @@ app.addLayerToMap = function(layer, isVisible) {
               projection: "EPSG:4326",
               protocol: new OpenLayers.Protocol.HTTP({
                   url: layer.openlayers_options.geojson,
-                  format: new OpenLayers.Format.GeoJSON(),
-                  callback: function()
-                  {
-                    var i = 0;
-                  }
+                  format: new OpenLayers.Format.GeoJSON()
               }),
               strategies: strategies,
               styleMap: style_map
