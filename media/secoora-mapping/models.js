@@ -180,21 +180,26 @@ function layerModel(options, parent) {
     }    // opacity
     self.opacity.subscribe(function(newOpacity)
     {
-      //if(self.layer !== null) {
-      if (self.layer.CLASS_NAME === "OpenLayers.Layer.Vector") {
-        self.layer.styleMap.styles['default'].defaultStyle.strokeOpacity = newOpacity;
-        self.layer.styleMap.styles['default'].defaultStyle.graphicOpacity = newOpacity;
-        //fill is currently turned off for many of the vector layers
-        //the following should not override the zeroed out fill opacity
-        //however we do still need to account for shipping lanes (in which styling is handled via lookup)
-        if (self.fillOpacity > 0) {
-          var newFillOpacity = self.fillOpacity - (self.defaultOpacity - newOpacity);
-          self.layer.styleMap.styles['default'].defaultStyle.fillOpacity = newFillOpacity;
+      //DWR 2015-05-08 Check to make sure the layer has been created. Currently for WMST layers,
+      //we query the server to get the timesteps for the layer before creating it, so when we load
+      //a bookmark, the loadCompressedState function that unpacks the bookmark was attempting to
+      //set the opacity assuming that the layer exists. Normally this is the case.
+      if(self.layer) {
+        if (self.layer.CLASS_NAME === "OpenLayers.Layer.Vector") {
+          self.layer.styleMap.styles['default'].defaultStyle.strokeOpacity = newOpacity;
+          self.layer.styleMap.styles['default'].defaultStyle.graphicOpacity = newOpacity;
+          //fill is currently turned off for many of the vector layers
+          //the following should not override the zeroed out fill opacity
+          //however we do still need to account for shipping lanes (in which styling is handled via lookup)
+          if (self.fillOpacity > 0) {
+            var newFillOpacity = self.fillOpacity - (self.defaultOpacity - newOpacity);
+            self.layer.styleMap.styles['default'].defaultStyle.fillOpacity = newFillOpacity;
+          }
+          self.layer.redraw();
         }
-        self.layer.redraw();
-      }
-      else {
-        self.layer.setOpacity(newOpacity);
+        else {
+          self.layer.setOpacity(newOpacity);
+        }
       }
     });
 
