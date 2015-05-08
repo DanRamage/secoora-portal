@@ -1098,8 +1098,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 var speed = feat.properties.obs_value;
                 var angle = feat.properties.dir_value;
 
-                var xp = ptGeom.geometry.x;
-                var yp = ptGeom.geometry.y;
+                var xp = ptGeom.x;
+                var yp = ptGeom.y;
                 var line = new OpenLayers.Geometry.LineString([new OpenLayers.Geometry.Point(xp, yp-speed/20 - 12*map.resolution), new OpenLayers.Geometry.Point(xp, yp)]);
 
                 var ftGeomColl = new OpenLayers.Geometry.Collection();
