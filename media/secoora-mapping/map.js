@@ -1109,8 +1109,12 @@ app.addLayerToMap = function(layer, isVisible) {
                   },
                   radiusfunction: function (feature) {
                     var val = feature.attributes.obs_value;
+                    var min_speed = 0;
+                    var max_speed = 55;
+                    var min_radius = 0;
                     var max_radius = 15;
-                    var radius = val / max_radius;
+                    //new_value = ( (old_value - old_min) / (old_max - old_min) ) * (new_max - new_min) + new_min
+                    var radius = ((val - min_speed) / (max_speed - min_speed)) * (max_radius - min_radius) + min_radius;
                     //var radius = Math.max(0.60 * count, 7);
                     return radius;
                   }
