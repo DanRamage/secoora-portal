@@ -31,11 +31,11 @@ function ol_gradient_style_builder(options) {
     self.default_colors.reverse();
     var rules = [];
     var data_step = (upper_bound - lower_bound) / number_steps;
-    var color_ndx_step = self.default_colors.length / number_steps;
-    var last_lower;
-    var color_ndx = 0;
+    var color_ndx_step =  Math.floor(self.default_colors.length / number_steps);
+    var last_lower = lower_bound;
+    var step_marker = 0;
     var steps = [];
-    for( var ndx = 0; ndx < number_steps; ndx += 1)
+    for( var ndx = 0; ndx < self.default_colors.length; ndx += 1)
     {
       var rgb_val = self.default_colors[color_ndx];
       var color_col = "<td><div class='legend' style='background: none repeat scroll 0% 0% " + rgb_val + ";'></div></td>";
@@ -43,11 +43,10 @@ function ol_gradient_style_builder(options) {
       if(ndx === 0)
       {
         step_col = '<td>' + lower_bound + '</td>';
-        last_lower = lower_bound + data_step;
       }
-      else if(ndx < self.default_colors.length - 2)
+      else if(ndx % color_ndx_step && ndx < self.default_colors.length - 2)
       {
-        step_col = '<td>' + lower_bound + '</td>';
+        step_col = '<td>' + last_lower + '</td>';
       }
       else
       {

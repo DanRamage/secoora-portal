@@ -165,12 +165,11 @@ function layerModel(options, parent) {
     self.source = options.source || null;
     self.tiles = options.tiles || null;
 
-    // opacity
     if(self.legend.length)
     {
       var parseUrl = document.createElement('a');
       parseUrl.href = self.legend;
-      self.legendType = 'json';
+      self.legendType = 'html';
       if(parseUrl.search.length)
       {
         self.legendType = 'json';
