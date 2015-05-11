@@ -55,7 +55,7 @@ function ol_gradient_style_builder(options) {
         step_col = '<td>' + upper_bound + '</td>';
         last_lower += data_step;
       }
-      if((ndx != 0 && ndx != (ndx === self.default_colors.length - 1)) || ndx % 2) {
+      if((ndx != 0 && ndx != (ndx === self.default_colors.length - 1)) || ndx % 5) {
         steps.push("<tr>" + color_col + step_col + "</tr>");
       }
     }
