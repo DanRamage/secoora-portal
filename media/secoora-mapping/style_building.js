@@ -38,21 +38,23 @@ function ol_gradient_style_builder(options) {
     for( var ndx = 0; ndx < self.default_colors.length; ndx += 1)
     {
       var rgb_val = self.default_colors[ndx];
-      var color_col = "<td><div class='legend' style='background: none repeat scroll 0% 0% " + rgb_val + ";'></div></td>";
+      var color_col = "<td class='legend_color_td' style='background: none repeat scroll 0% 0% " + rgb_val + ";'></td>";
       var step_col;
       if(ndx === 0)
       {
         step_col = '<td>' + lower_bound + '</td>';
+        last_lower += data_step;
       }
       else if((ndx % color_ndx_step === 0) && (ndx < self.default_colors.length - 2))
       {
         step_col = '<td>' + last_lower + '</td>';
+        last_lower += data_step;
       }
       else
       {
         step_col = '<td>' + upper_bound + '</td>';
+        last_lower += data_step;
       }
-      last_lower += data_step;
       steps.push("<tr>" + color_col + step_col + "</tr>");
     }
     legend_html = "<table>" + steps.join("\n") + "</table>";
