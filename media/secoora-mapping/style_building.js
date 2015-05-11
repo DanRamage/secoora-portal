@@ -63,8 +63,7 @@ function ol_gradient_style_builder(options) {
       }
     }
     steps.push("</tbody>");
-    var table_head = "<thead><tr>" + uom + "</tr></thead>";
-    legend_html = "<table class='legend_table'>" + table_head + steps.join("\n") + "</table>";
+    legend_html = "<table class='legend_table'>" + steps.join("\n") + "</table>";
     return(legend_html);
   };
   self.build_filters = function(lower_bound, upper_bound, number_steps, comparison_property)
