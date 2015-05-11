@@ -55,7 +55,9 @@ function ol_gradient_style_builder(options) {
         step_col = '<td>' + upper_bound + '</td>';
         last_lower += data_step;
       }
-      steps.push("<tr>" + color_col + step_col + "</tr>");
+      if( ndx != 0 && ndx != (ndx === self.default_colors.length - 1) && ndx % 2) {
+        steps.push("<tr>" + color_col + step_col + "</tr>");
+      }
     }
     legend_html = "<table class='legend_table'>" + steps.join("\n") + "</table>";
     return(legend_html);
