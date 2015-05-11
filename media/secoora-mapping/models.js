@@ -440,7 +440,7 @@ function layerModel(options, parent) {
             self.activateParentLayer();
           }
         }
-        if(self.legendTable() === false && self.legendType !== "img")
+        if(self.legendTable() === false && self.legendType !== "img" && self.legend.length)
         {
           self.getHTMLLegend(self.legend);
         }
