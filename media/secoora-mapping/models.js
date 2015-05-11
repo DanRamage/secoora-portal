@@ -171,7 +171,7 @@ function layerModel(options, parent) {
       var parseUrl = document.createElement('a');
       parseUrl.href = self.legend;
       //if(parseUrl.search.length)
-      if(self.legend.indexOf("GetLegendGraphic"))
+      if(self.legend.indexOf("GetLegendGraphic") !== -1)
       {
         self.legendType = 'img';
       }
