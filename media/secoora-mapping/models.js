@@ -126,6 +126,19 @@ function layerModel(options, parent) {
     } else {
         self.description = null;
     }
+    self.legendType = 'html';
+    if(self.legend.length)
+    {
+      var parseUrl = document.createElement('a');
+      parseUrl.href = self.legend;
+      //if(parseUrl.search.length)
+      if(self.legend.indexOf("GetLegendGraphic") !== -1 || self.legend.indexOf(".png"))
+      {
+        self.legendType = 'img';
+      }
+
+    }    // opacity
+
     self.getHTMLLegend = function(legendURL)
     {
       self.legendTable('Loading: ' + legendURL);
@@ -165,18 +178,6 @@ function layerModel(options, parent) {
     self.source = options.source || null;
     self.tiles = options.tiles || null;
 
-    self.legendType = 'html';
-    if(self.legend.length)
-    {
-      var parseUrl = document.createElement('a');
-      parseUrl.href = self.legend;
-      //if(parseUrl.search.length)
-      if(self.legend.indexOf("GetLegendGraphic") !== -1)
-      {
-        self.legendType = 'img';
-      }
-
-    }    // opacity
     self.opacity.subscribe(function(newOpacity)
     {
       //DWR 2015-05-08 Check to make sure the layer has been created. Currently for WMST layers,
@@ -439,7 +440,7 @@ function layerModel(options, parent) {
             self.activateParentLayer();
           }
         }
-        if(self.legendTable() === false)
+        if(self.legendTable() === false && self.legendType !== "img")
         {
           self.getHTMLLegend(self.legend);
         }
