@@ -39,7 +39,7 @@ function ol_gradient_style_builder(options) {
     {
       var rgb_val = self.default_colors[ndx];
       var color_col = "<td class='legend_color_td' style='background: none repeat scroll 0% 0% " + rgb_val + ";'></td>";
-      var step_col;
+      var step_col = '';
       if(ndx === 0)
       {
         step_col = '<td>' + lower_bound + '</td>';
