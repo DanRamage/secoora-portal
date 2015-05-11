@@ -165,15 +165,15 @@ function layerModel(options, parent) {
     self.source = options.source || null;
     self.tiles = options.tiles || null;
 
+    self.legendType = 'html';
     if(self.legend.length)
     {
       var parseUrl = document.createElement('a');
       parseUrl.href = self.legend;
-      self.legendType = 'html';
-      if(parseUrl.search.length)
+      //if(parseUrl.search.length)
+      if(self.legend.indexOf("GetLegendGraphic"))
       {
-        self.legendType = 'html';
-        //self.getJSONLegend('/proxy/get_legend_json?url=' + self.legend);
+        self.legendType = 'img';
       }
 
     }    // opacity

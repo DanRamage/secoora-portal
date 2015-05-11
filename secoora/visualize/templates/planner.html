@@ -723,10 +723,12 @@
                                         <img data-bind="attr: { src: legend }" />
                                     </div>
                                   <!-- /ko -->
+                                  <!-- ko if: legendType === "html" -->
                                     <div data-bind="css: { 'in': legendVisibility }" style="padding-top: 5px;">
                                       <div data-bind="html: legendTable">
                                       </div>
                                     </div>
+                                  <!-- /ko -->
 								<!--
                                     <div data-bind="css: { 'in': legendVisibility }" style="padding-top: 5px;">
                                         <img data-bind="attr: { src: legend }" />

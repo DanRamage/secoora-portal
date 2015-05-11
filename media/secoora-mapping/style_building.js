@@ -12,6 +12,23 @@ function ol_gradient_style_builder(options) {
   {
     self.default_colors.reverse();
 
+    /*
+    <table>
+      <thead>
+        <tr>
+          {{units}}
+        </tr>
+      </thead>
+      <tbody>
+        {% for legendObj in legend %}
+          <tr>
+            <td><img border='0', src="data:{{ legendObj.contentType }};base64,{{ legendObj.imageData }}", style='opacity:1'></img></td>
+            <td>{{legendObj.label}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+     */
     var legend_html = '';
     self.default_colors.reverse();
     var rules = [];
@@ -20,6 +37,7 @@ function ol_gradient_style_builder(options) {
     var last_lower = lower_bound;
     var step_marker = 0;
     var steps = [];
+    steps.push("<tbody");
     for( var ndx = 0; ndx < self.default_colors.length; ndx += 1)
     {
       var rgb_val = self.default_colors[ndx];
@@ -44,7 +62,9 @@ function ol_gradient_style_builder(options) {
         steps.push("<tr>" + color_col + step_col + "</tr>");
       }
     }
-    legend_html = "<table class='legend_table'>" + steps.join("\n") + "</table>";
+    steps.push("</tbody>");
+    var table_head = "<thead><tr>" + uom + "</tr></thead>";
+    legend_html = "<table class='legend_table'>" + table_head + steps.join("\n") + "</table>";
     return(legend_html);
   };
   self.build_filters = function(lower_bound, upper_bound, number_steps, comparison_property)
