@@ -1954,7 +1954,8 @@ function viewModel() {
       {
         if(self.activeInfoLayer().closestTime().length)
         {
-          return(self.activeInfoSublayer().closestTime());
+          return(self.activeInfoLayer().closestTime());
+          //return(self.activeInfoSublayer().closestTime());
         }
       }
       return("");
