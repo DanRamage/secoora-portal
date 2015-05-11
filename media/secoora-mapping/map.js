@@ -1093,6 +1093,10 @@ app.addLayerToMap = function(layer, isVisible) {
               legend_info.max_range,
               legend_info.number_steps,
               'obs_value');
+            layer.legendTable(style_bldr.build_legend(legend_info.min_range,
+              legend_info.max_range,
+              legend_info.number_steps));
+
             var style = new OpenLayers.Style(
               {
                 //strokeWidth: '${strokeFunction}',
