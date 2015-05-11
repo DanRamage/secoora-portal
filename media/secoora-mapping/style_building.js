@@ -10,23 +10,8 @@ function ol_gradient_style_builder(options) {
   ];
   self.build_legend = function(lower_bound, upper_bound, number_steps)
   {
-    /*
-    <table>
-      <thead>
-        <tr>
-          {{units}}
-        </tr>
-      </thead>
-      <tbody>
-        {% for legendObj in legend %}
-          <tr>
-            <td><img border='0', src="data:{{ legendObj.contentType }};base64,{{ legendObj.imageData }}", style='opacity:1'></img></td>
-            <td>{{legendObj.label}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-     */
+    self.default_colors.reverse();
+
     var legend_html = '';
     self.default_colors.reverse();
     var rules = [];
