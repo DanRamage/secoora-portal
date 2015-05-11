@@ -172,7 +172,7 @@ function layerModel(options, parent) {
       self.legendType = 'html';
       if(parseUrl.search.length)
       {
-        self.legendType = 'json';
+        self.legendType = 'html';
         //self.getJSONLegend('/proxy/get_legend_json?url=' + self.legend);
       }
 
