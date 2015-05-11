@@ -47,7 +47,7 @@ function ol_gradient_style_builder(options) {
       }
       else if((ndx % color_ndx_step === 0) && (ndx < self.default_colors.length - 2))
       {
-        step_col = '<td>' + last_lower + '</td>';
+        step_col = '<td>' + Math.floor(last_lower + 0.5) + '</td>';
         last_lower += data_step;
       }
       else if (ndx === self.default_colors.length - 1)
@@ -57,7 +57,7 @@ function ol_gradient_style_builder(options) {
       }
       steps.push("<tr>" + color_col + step_col + "</tr>");
     }
-    legend_html = "<table>" + steps.join("\n") + "</table>";
+    legend_html = "<table class='legend_table'>" + steps.join("\n") + "</table>";
     return(legend_html);
   };
   self.build_filters = function(lower_bound, upper_bound, number_steps, comparison_property)
