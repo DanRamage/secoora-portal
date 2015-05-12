@@ -1056,7 +1056,18 @@ app.addLayerToMap = function(layer, isVisible) {
               styleMap: style_map
           });
           app.map.addLayer(layer.layer);
+          layer.layer.events.on({"loadstart": function(e)
+            {
+              var i = 0;
+            }
+          });
 
+          layer.layer.events.on({"loadend": function (e)
+            {
+              var i = 0;
+
+            }
+          });
           //Add hover handler if used
           var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
