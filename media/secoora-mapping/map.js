@@ -1277,18 +1277,21 @@ app.addLayerToMap = function(layer, isVisible) {
     }
     if(layer.layer)
     {
-      layer.layer.events.register("loadstart", layer_model, function () {
-        layer_model.layerLoading(true);
+      layer.layer.events.register("loadstart", layer, function () {
+        var layer = this;
+        layer.layerLoading(true);
         app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
       });
 
-      layer.layer.events.register("loadend", layer_model, function () {
-        layer_model.layerLoading(false);
+      layer.layer.events.register("loadend", layer, function () {
+        var layer = this;
+        layer.layerLoading(false);
         app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
       });
 
-      layer.layer.events.register("loadcancel", layer_model, function () {
-        layer_model.layerLoading(false);
+      layer.layer.events.register("loadcancel", layer, function () {
+        var layer = this;
+        layer.layerLoading(false);
         app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
       });
 
