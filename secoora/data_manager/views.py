@@ -340,6 +340,8 @@ def get_obs_data(obs_name, uom_name):
               "properties": properties
             }
             results['features'].append(feature)
+
+            json_file.close()
           #else:
           #  if logger:
           #    logger.debug("Error opening obs json file: %s Code: %d" % (json_url, res.status_code))
@@ -392,11 +394,21 @@ def platform_time_series_request(request, platform_name):
       if logger:
         logger.exception(e)
     try:
-      json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
+      #json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
+      file_name = platform.platform_handle.replace('.', ':').lower()
+      json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
+
       if logger:
-        logger.debug("Opening obs json file: %s" % (json_url))
-      res = requests.get(json_url)
-      if res.status_code == 200:
+        logger.debug("Opening obs json file: %s" % (file_name))
+      json_file = open(json_file_dir, "r")
+
+    except IOError,e:
+      if logger:
+        logger.exception(e)
+    else:
+      try:
+        #res = requests.get(json_url)
+        #if res.status_code == 200:
         obs_json = res.json
         properties['observations'] = obs_json['properties']['features']
 
@@ -408,9 +420,11 @@ def platform_time_series_request(request, platform_name):
           "properties": properties
         }
         results['features'] = feature
-    except Exception,e:
-      if logger:
-        logger.exception(e)
+
+        json_file.close()
+      except Exception,e:
+        if logger:
+          logger.exception(e)
 
   xeniaDb.disconnect()
 
