@@ -1295,7 +1295,7 @@ function obs_data_model()
     var map_offset = $("#map").offset();
     var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
     $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-    self.add_plot(obs_data.properties.obsType, obs_data.properties.uomType, flot_data, "#plot_area");
+    self.add_plot(self.obs_name, self.obs_uom, flot_data, "#plot_area");
     /*
     $.plot($("#obs-click-popup #plot_area"), [{data: flot_data, label: feature.attributes.obs_name}],
     {
