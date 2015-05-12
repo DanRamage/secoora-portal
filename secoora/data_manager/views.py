@@ -395,7 +395,7 @@ def platform_time_series_request(request, platform_name):
         logger.exception(e)
     try:
       #json_url = "%s/%s_data.json" % (OBSJSON_URL, platform_data.platform_handle.replace('.', ':').lower())
-      file_name = platform.platform_handle.replace('.', ':').lower()
+      file_name = platform_data.platform_handle.replace('.', ':').lower()
       json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
 
       if logger:
