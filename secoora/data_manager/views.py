@@ -409,7 +409,8 @@ def platform_time_series_request(request, platform_name):
       try:
         #res = requests.get(json_url)
         #if res.status_code == 200:
-        obs_json = res.json
+        #obs_json = res.json
+        obs_json = simplejson.load(json_file)
         properties['observations'] = obs_json['properties']['features']
 
         feature = {
