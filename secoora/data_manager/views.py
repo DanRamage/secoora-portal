@@ -274,6 +274,10 @@ def get_obs_data(obs_name, uom_name):
           .filter(xenia_platform.active.in_((1,2)))\
           .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
           .order_by(xenia_platform.short_name)
+    except Exception,e:
+      if logger:
+        logger.exception(e)
+    else:
       platforms = []
       get_wind_dir = False
       if obs_name == 'wind_speed':
@@ -290,6 +294,7 @@ def get_obs_data(obs_name, uom_name):
           if logger:
             logger.exception(e)
         else:
+          try:
           #res = requests.get(json_url)
           #if res.status_code == 200:
             #obs_json = res.json
@@ -332,17 +337,14 @@ def get_obs_data(obs_name, uom_name):
               "properties": properties
             }
             results['features'].append(feature)
-          else:
+          #else:
+          #  if logger:
+          #    logger.debug("Error opening obs json file: %s Code: %d" % (json_url, res.status_code))
+
+          except Exception,e:
             if logger:
-              logger.debug("Error opening obs json file: %s Code: %d" % (json_url, res.status_code))
+              logger.exception(e)
 
-        except Exception,e:
-          if logger:
-            logger.exception(e)
-
-    except Exception,e:
-      if logger:
-        logger.exception(e)
 
     xeniaDb.disconnect()
 
