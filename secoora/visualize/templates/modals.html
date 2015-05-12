@@ -295,7 +295,7 @@
 <style>
   .data-popup {
     width: 400px;
-    height: 300px;
+    height: 260px;
     z-index: 1200;
   }
   .data-plot {
@@ -306,6 +306,9 @@
 
 <!-- KML Query Popup -->
 <style>
+  .kml-popup {
+    height: 300px;
+  }
   .kml-content h1 {
     font-size: 14px;
   }
@@ -316,7 +319,7 @@
     font-size: 10px;
   }
 </style>
-<div id="kml-popup" class="popover fade left in data-popup">
+<div id="kml-popup" class="popover fade left in data-popup kml-popup">
   <div class="popover-header">
     <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>
     <h3 class="popover-title">
