@@ -79,6 +79,9 @@ function layerModel(options, parent) {
     self.currentTimeNdx = -1;
     self.closestTime = ko.observable("");
 
+    //DWR 2015-05-12
+    self.layerLoading = ko.observable(false);
+
     self.restLegend = [];
 
     //self.layer = null;

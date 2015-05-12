@@ -1055,13 +1055,13 @@ app.addLayerToMap = function(layer, isVisible) {
               strategies: strategies,
               styleMap: style_map
           });
-          layer.layer.events.register("loadstart", null, function () {
+          layer.layer.events.register("loadstart", layer, function () {
             {
               var i = 0;
             }
           });
 
-          layer.layer.events.register("loadstart", null, function () {
+          layer.layer.events.register("loadstart", layer, function () {
             {
               var i = 0;
 
