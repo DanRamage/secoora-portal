@@ -309,7 +309,9 @@
                                                                                             <i style="opacity: .4" class="icon-check-empty" data-bind="style: {display: ! active() ? 'inline': 'none' }"></i>
                                                                                         </span>
                                                                                         <span data-bind="text: name, css: infoStatus()"></span>
-                                                                                        <span>abx</span>
+                                                                                        <span>
+                                                                                          <i class="icon-large query-loader icon-loader" data-bind="visible : layerLoading()"></i>
+                                                                                        </span>
 
                                                                                     </a>
                                                                                 </li>
