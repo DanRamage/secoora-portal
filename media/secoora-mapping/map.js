@@ -445,8 +445,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 )
             );
             //2013-02-20 DWR
-            layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);
+            //layer.layer.setVisibility(isVisible);
+            //app.map.addLayer(layer.layer);
         }
         else if (layer.type === 'Vector')
         {
@@ -458,8 +458,8 @@ app.addLayerToMap = function(layer, isVisible) {
               protocol: layer.openlayers_options.protocol
             }
           );
-          layer.layer.setVisibility(isVisible);
-          app.map.addLayer(layer.layer);
+          //layer.layer.setVisibility(isVisible);
+          //app.map.addLayer(layer.layer);
           /*
             var styleMap = new OpenLayers.StyleMap( {
                 fillColor: layer.color,
@@ -638,8 +638,8 @@ app.addLayerToMap = function(layer, isVisible) {
             );
 
             //2013-02-20 DWR
-            layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);
+            //layer.layer.setVisibility(isVisible);
+            //app.map.addLayer(layer.layer);
             //2013-02-20 DWR
             //Add the identify control.
             app.map.addControl(layer.queryControl[0]);
@@ -920,14 +920,16 @@ app.addLayerToMap = function(layer, isVisible) {
 
 
             //2013-02-20 DWR
-            layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);
+            //layer.layer.setVisibility(isVisible);
+            //app.map.addLayer(layer.layer);
 
             //2013-02-20 DWR
             //Add the identify control.
             app.map.addControl(layer.queryControl[0]);
 
             //JTC 2015-04-03
+            //DWR 2015-05-12 Move to common point below
+            /*
             layer.layer.events.register("loadstart", null, function () {
               app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
             });
@@ -939,7 +941,7 @@ app.addLayerToMap = function(layer, isVisible) {
             layer.layer.events.register("loadcancel", null, function () {
               app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
             });
-
+            */
         }
         else if(layer.type === 'KML')
         {
@@ -962,8 +964,8 @@ app.addLayerToMap = function(layer, isVisible) {
                 })
             }
           );
-          layer.layer.setVisibility(isVisible);
-          app.map.addLayer(layer.layer);
+          //layer.layer.setVisibility(isVisible);
+          //app.map.addLayer(layer.layer);
           //Create the select feature control.
           //layer.queryControl = new OpenLayers.Control.SelectFeature([layer.layer],
           layer.queryControl.push(new OpenLayers.Control.SelectFeature([layer.layer],
@@ -1067,7 +1069,7 @@ app.addLayerToMap = function(layer, isVisible) {
 
             }
           });
-          app.map.addLayer(layer.layer);
+          //app.map.addLayer(layer.layer);
           //Add hover handler if used
           var hoverCtrl = new OpenLayers.Control.SelectFeature(layer.layer, {
               hover: true,
@@ -1214,7 +1216,7 @@ app.addLayerToMap = function(layer, isVisible) {
           layer.queryControl.push(hoverCtrl);
           layer.queryControl.push(clickCtrl);
 
-          app.map.addLayer(layer.layer);
+          //app.map.addLayer(layer.layer);
 
           /*
           $.ajax({
@@ -1287,6 +1289,25 @@ app.addLayerToMap = function(layer, isVisible) {
     }
     if(layer.layer)
     {
+      layer.layer.events.register("loadstart", layer_model, function () {
+        layer_model.layerLoading(true);
+        app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()+1); //auto-increment for knockout
+      });
+
+      layer.layer.events.register("loadend", layer_model, function () {
+        layer_model.layerLoading(false);
+        app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+      });
+
+      layer.layer.events.register("loadcancel", layer_model, function () {
+        layer_model.layerLoading(false);
+        app.viewModel.layerloadcounter(app.viewModel.layerloadcounter()-1); //auto-decrement for knockout
+      });
+
+      //2015-05-12
+      //Move the set visibility and addLayer to a common point instead of in each layer creation.
+      layer.layer.setVisibility(isVisible);
+      app.map.addLayer(layer.layer);
       layer.layer.opacity = layer.opacity();
       layer.layer.setVisibility(true);
     }
