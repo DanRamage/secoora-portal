@@ -278,8 +278,7 @@
                                                                             <a class="btn btn-layer" data-bind="css: { 'active': active(), 'not-active': ! active() }, click: toggleActive">
                                                                                 <div style="font-weight: normal">
                                                                                     <span style="padding-left: 2px;" data-bind="text: name"></span>
-                                                                                    <span class="caret" style="display:none" data-bind="visible: subLayers.length > 0"></span>
-                                                                                    <span>
+                                                                                    <span class="caret" style="display:none" data-bind="visible: subLayers.length > 0">
                                                                                       <i class="icon-large query-loader icon-loader" data-bind="visible : layerLoading()"></i>
                                                                                     </span>
                                                                                     <i class="check icon-large icon-check" data-bind="visible: active() && visible()"></i>
