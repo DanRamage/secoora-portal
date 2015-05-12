@@ -285,8 +285,10 @@ def get_obs_data(obs_name, uom_name):
 
       for platform in platform_list:
         try:
-          json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':').lower())
-          #file_name = platform.platform_handle.replace('.', ':').lower()
+          file_name = platform.platform_handle.replace('.', ':').lower()
+
+          json_url = "%s/%s_data.json" % (OBSJSON_URL, file_name)
+
           #json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
           if logger:
             logger.debug("Opening obs json file: %s" % (file_name))
