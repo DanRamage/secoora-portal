@@ -289,7 +289,7 @@ def get_obs_data(obs_name, uom_name):
         except IOError,e:
           if logger:
             logger.exception(e)
-        else
+        else:
           #res = requests.get(json_url)
           #if res.status_code == 200:
             #obs_json = res.json
