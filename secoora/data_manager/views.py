@@ -288,7 +288,7 @@ def get_obs_data(obs_name, uom_name):
         try:
           json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, platform.platform_handle.replace('.', ':').lower())
           if logger:
-            logger.debug("Opening obs json file: %s" % (json_url))
+            logger.debug("Opening obs json file: %s" % (json_file_dir))
           json_file = open(json_file_dir, "r")
         except IOError,e:
           if logger:
