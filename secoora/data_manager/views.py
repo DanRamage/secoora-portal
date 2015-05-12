@@ -298,8 +298,8 @@ def get_obs_data(obs_name, uom_name):
           #try:
           res = requests.get(json_url)
           if res.status_code == 200:
-            #obs_json = res.json
-            obs_json = simplejson.load(json_file)
+            obs_json = res.json
+            #obs_json = simplejson.load(json_file)
             properties = OrderedDict()
             properties['p_handle'] = platform.platform_handle
             properties['p_name'] = platform.short_name
