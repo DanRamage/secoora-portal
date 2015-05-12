@@ -280,13 +280,20 @@ def get_obs_data(obs_name, uom_name):
         get_wind_dir = True
 
       for platform in platform_list:
-        json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':').lower())
+        #json_url = "%s/%s_data.json" % (OBSJSON_URL, platform.platform_handle.replace('.', ':').lower())
         try:
+          json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, platform.platform_handle.replace('.', ':').lower())
           if logger:
             logger.debug("Opening obs json file: %s" % (json_url))
-          res = requests.get(json_url)
-          if res.status_code == 200:
-            obs_json = res.json
+          json_file = open(json_file_dir, "r")
+        except IOError,e:
+          if logger:
+            logger.exception(e)
+        else
+          #res = requests.get(json_url)
+          #if res.status_code == 200:
+            #obs_json = res.json
+            obs_json = simplejson.load(json_file)
             properties = OrderedDict()
             properties['p_handle'] = platform.platform_handle
             properties['p_name'] = platform.short_name
