@@ -1217,7 +1217,7 @@ function obs_data_model()
     $("#obs-click-popup " + plot_div).bind("plothover", self.plot_hover_handler);
 
   };
-  plot_hover_handler = function (event, pos, item)
+  self.plot_hover_handler = function (event, pos, item)
   {
     if (item)
     {
