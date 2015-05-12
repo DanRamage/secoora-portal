@@ -1166,7 +1166,8 @@ function obs_data_model()
 
   self.active_obs_name = ko.observable("");
   self.active_obs_uom = ko.observable("");
-  self.flot_data = []
+  self.flot_data = [];
+  self.prev_tooltip_point = null;
 
   $('#obs-click-popup').popoverClosable();
   $('#obs-hover-popup').popoverClosable();
@@ -1223,7 +1224,7 @@ function obs_data_model()
     {
       var x = new Date(item.datapoint[0]);
       var y = item.datapoint[1];
-      if (prevPoint != item.dataIndex)
+      if (self.prev_tooltip_point != item.dataIndex)
       {
         $('#tooltip').remove();
         var d = x.format('UTC:mmm dd, h TT');
@@ -1232,12 +1233,12 @@ function obs_data_model()
           ,item.pageY
           ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + self.active_obs_uom());
       }
-      prevPoint = item.dataIndex;
+      self.prev_tooltip_point = item.dataIndex;
     }
     else
     {
       $('#tooltip').remove();
-      prevPoint = null;
+      self.prev_tooltip_point = null;
     }
   };
 
