@@ -1387,7 +1387,7 @@ function viewModel() {
         //Disable the queryControl on layers that have it when they are no longer visible.
         //var firstVisLayer = self.visibleLayers()[0];
         //Disable the identify controls
-        $.each(self.activeLayers(), function(i, layer) {
+        /*$.each(self.activeLayers(), function(i, layer) {
           //if("queryControl" in layer)               //User has clicked the Identify button
 
           //If the layer is the first visible layer, enable the identify control.
@@ -1410,7 +1410,7 @@ function viewModel() {
               });
 
           }
-        });
+        });*/
 
     });
 
@@ -2266,6 +2266,16 @@ function viewModel() {
             // also save the layer state
             app.setLayerZIndex(layer, index);
             index--;
+            //If the layer is the first visible layer, enable the identify control.
+            if(self.queryFeatureActive() && i === 0)
+            {
+              layer.activate_query_controls(true);
+            }
+            else
+            {
+              layer.activate_query_controls(false);
+            }
+
         });
 
         // re-ordering map layers by z value
@@ -2279,6 +2289,7 @@ function viewModel() {
 
         // update the url hash
         app.updateUrl();
+
 
     });
 
