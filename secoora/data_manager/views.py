@@ -480,10 +480,41 @@ def get_platforms_by_org(request, organization):
           json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
           if logger:
             logger.debug("Opening obs json file: %s" % (file_name))
-          #json_file = open(json_file_dir, "r")
+          json_file = open(json_file_dir, "r")
         except IOError,e:
           if logger:
             logger.exception(e)
+        else:
+          try:
+            obs_json = simplejson.load(json_file)
+            properties = OrderedDict()
+            properties['p_handle'] = platform.platform_handle
+            properties['p_name'] = platform.short_name
+            properties['p_description'] = platform.description
+            properties['o_name'] = platform.organization.short_name
+
+            for feature in obs_json['properties']['features']:
+              prop = feature['properties']
+
+              if prop['obsType'] is not None:
+                properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
+                properties['%s_uom' % (prop['obsType'])] = prop['uomType']
+                properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
+
+            feature = {
+              "geometry": {
+                "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
+                "type": "Point"
+              },
+              "properties": properties
+            }
+            results['features'].append(feature)
+
+            json_file.close()
+          except Exception,e:
+            if logger:
+              logger.exception(e)
+
   if logger:
     logger.debug("Finished get_platforms_by_org for org: %s." % (organization))
 
