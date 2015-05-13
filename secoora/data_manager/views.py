@@ -456,9 +456,9 @@ def get_platforms_by_org(request, organization):
                         printSQL=True):
     if logger:
       logger.debug("Connected to xenia DB")
-    try:
-      org_id = xeniaDb.organizationExists(organization)
-      if org_id is not None:
+    org_id = xeniaDb.organizationExists(organization)
+    if org_id is not None:
+      try:
         bbox = "POLYGON((%s))" % (SECOORA_BBOX)
         platform_list = xeniaDb.session.query(xenia_platform)\
           .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
@@ -467,54 +467,54 @@ def get_platforms_by_org(request, organization):
           .filter(xenia_platform.active.in_((1,2)))\
           .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
           .order_by(xenia_platform.short_name)
-    except Exception,e:
-      if logger:
-        logger.exception(e)
-    else:
-      platforms = []
+      except Exception,e:
+        if logger:
+          logger.exception(e)
+      else:
+        platforms = []
+        if platform_list is not None:
+          for platform in platform_list:
+            try:
+              file_name = platform.platform_handle.replace('.', ':').lower()
 
-      for platform in platform_list:
-        try:
-          file_name = platform.platform_handle.replace('.', ':').lower()
+              json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
+              if logger:
+                logger.debug("Opening obs json file: %s" % (file_name))
+              json_file = open(json_file_dir, "r")
+            except IOError,e:
+              if logger:
+                logger.exception(e)
+            else:
+              try:
+                obs_json = simplejson.load(json_file)
+                properties = OrderedDict()
+                properties['p_handle'] = platform.platform_handle
+                properties['p_name'] = platform.short_name
+                properties['p_description'] = platform.description
+                properties['o_name'] = platform.organization.short_name
+                properties['obs'] = OrderedDict()
+                obs_dict = properties['obs']
+                for feature in obs_json['properties']['features']:
+                  prop = feature['properties']
 
-          json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
-          if logger:
-            logger.debug("Opening obs json file: %s" % (file_name))
-          json_file = open(json_file_dir, "r")
-        except IOError,e:
-          if logger:
-            logger.exception(e)
-        else:
-          try:
-            obs_json = simplejson.load(json_file)
-            properties = OrderedDict()
-            properties['p_handle'] = platform.platform_handle
-            properties['p_name'] = platform.short_name
-            properties['p_description'] = platform.description
-            properties['o_name'] = platform.organization.short_name
-            properties['obs'] = OrderedDict()
-            obs_dict = properties['obs']
-            for feature in obs_json['properties']['features']:
-              prop = feature['properties']
+                  if prop['obsType'] is not None:
+                    obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                                        'uom': prop['uomType'],
+                                        'time': prop['time'][-1]}
 
-              if prop['obsType'] is not None:
-                obs_dict[prop['obsType']] = {'value': prop['value'][-1],
-                                    'uom': prop['uomType'],
-                                    'time': prop['time'][-1]}
+                feature = {
+                  "geometry": {
+                    "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
+                    "type": "Point"
+                  },
+                  "properties": properties
+                }
+                results['features'].append(feature)
 
-            feature = {
-              "geometry": {
-                "coordinates": [platform.fixed_longitude, platform.fixed_latitude],
-                "type": "Point"
-              },
-              "properties": properties
-            }
-            results['features'].append(feature)
-
-            json_file.close()
-          except Exception,e:
-            if logger:
-              logger.exception(e)
+                json_file.close()
+              except Exception,e:
+                if logger:
+                  logger.exception(e)
 
   if logger:
     logger.debug("Finished get_platforms_by_org for org: %s." % (organization))
