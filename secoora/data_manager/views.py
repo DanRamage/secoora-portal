@@ -492,14 +492,15 @@ def get_platforms_by_org(request, organization):
             properties['p_name'] = platform.short_name
             properties['p_description'] = platform.description
             properties['o_name'] = platform.organization.short_name
-
+            properties['obs'] = OrderedDict()
+            obs_dict = properties['obs']
             for feature in obs_json['properties']['features']:
               prop = feature['properties']
 
               if prop['obsType'] is not None:
-                properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
-                properties['%s_uom' % (prop['obsType'])] = prop['uomType']
-                properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
+                obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                                    'uom': prop['uomType'],
+                                    'time': prop['time'][-1]}
 
             feature = {
               "geometry": {
