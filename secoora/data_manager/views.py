@@ -238,6 +238,9 @@ def obs_data_request(request, observation_name):
   elif observation_name == "ph":
     uom_name = 'units'
 
+  elif observation_name == "chl_concentration":
+    uom_name = 'ug_L-1'
+
   results = get_obs_data(observation_name, uom_name)
 
   if logger:

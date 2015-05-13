@@ -1252,24 +1252,19 @@ app.addLayerToMap = function(layer, isVisible) {
           */
         }
 
-        /*else { //if XYZ with no utfgrid
-            // adding layer to the map for the first time
-            layer.layer = new OpenLayers.Layer.XYZ(layer.name,
-                //layer.type === 'XYZ' ? layer.url : layer.url + '.png',
-                layer.url,
-                $.extend({}, opts,
-                    {
-                        sphericalMercator: true,
-                        isBaseLayer: false //previously set automatically when allOverlays was set to true, must now be set manually
-                    }
-                )
-            );
-
-            //2013-02-20 DWR
-            layer.layer.setVisibility(isVisible);
-            app.map.addLayer(layer.layer);
-
-        }*/
+        else if(layer.type === 'XYZ')
+        { //if XYZ with no utfgrid
+          // adding layer to the map for the first time
+          layer.layer = new OpenLayers.Layer.XYZ(layer.name,
+            layer.url,
+            $.extend({}, opts,
+              {
+                  sphericalMercator: true,
+                  isBaseLayer: false //previously set automatically when allOverlays was set to true, must now be set manually
+              }
+            )
+          );
+        }
     }
     else if ( layer.utfurl ) { //re-adding utfcontrol for existing utf layers (they are destroyed in layer.deactivateLayer)
         //layer.utfcontrol = app.addUTFControl(layer);
