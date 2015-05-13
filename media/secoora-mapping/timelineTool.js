@@ -62,17 +62,20 @@ var timelineToolModel = function(viewModel) {
         {
           var adjusted = self.startingEpochDatetime + (ui.value * 3600000);
           var closest_date_ndx = bisect_left(Math.round(adjusted/1000), layer.timeSteps);
-          if(closest_date_ndx != -1)
-          {
+          if(closest_date_ndx != -1) {
             var closest_date = new Date(layer.timeSteps[closest_date_ndx] * 1000);
             var wms_t = self.get_wmst_date(closest_date);
+            //If the time turns out to be the same as the last time, then no need
+            //to re-request the layer.
+            if (wms_t !== layer.closestTime())
+            {
+              //JTC 2015-04-07
+              layer.closestTime(wms_t);
 
-            //JTC 2015-04-07
-            layer.closestTime(wms_t);
+              layer.layer.mergeNewParams({'TIME': wms_t,
+                'salt': Math.random()});
 
-            layer.layer.mergeNewParams({'TIME':wms_t,
-                                        'salt': Math.random()});
-
+            }
           }
         }
       });
