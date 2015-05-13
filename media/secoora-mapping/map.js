@@ -55,7 +55,6 @@ $('#div-ts-plot').bind('plothover',function(event,pos,item) {
         showToolTip(
            item.pageX
           ,item.pageY
-          //,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
           ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
       }
       prevPoint = item.dataIndex;
@@ -754,30 +753,25 @@ app.addLayerToMap = function(layer, isVisible) {
                       }
                     });
 
-                    //d.data.push([isoDateToDate(a),b]);
-                    //d.data.push([isoDateToDate('2014-04-01T02:00:00'),'32.1']);
-                    //d.data.push([isoDateToDate('2014-04-01T04:00:00'),'33.1']);
-                    //d.data.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
-
-                    //d.data.push(data: generate(7, 1.1), points: { symbol: "cross" });
-
-                    //works d.data.push([ isoDateToDate('2015-04-30T06:00:00'),'31.1' ]);
-
                     var plotData = [];
 
-                    //now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'), '31.1']);
+                    /* convert to local time
+                    var localDate = new Date();
+                    var closestDate = new Date(layer.closestTime());
+                    var milliseconds = closestDate.getTime()-localDate.getTimezoneOffset() * 60000; 
+                    now_cross.data.push([new Date(milliseconds), now_value]);
+                    */
+
                     now_cross.data.push([isoDateToDate(layer.closestTime()), now_value]);
 
                     plotData = plotData.concat(d);
                     plotData = plotData.concat(now_cross);
-                    //plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1'], points: { symbol: "cross" } ]);
-                    //plotData.push([ data: [isoDateToDate('2015-04-30T06:00:00'),'31.1']]);
 
                     $.plot(
                       $('#div-ts-plot')
                       , plotData
                       , {
-                        xaxis: {mode: "time"}, crosshair: {mode: 'x'   }, grid: {
+                        xaxis: {mode: "time", timeformat: "%m/%d %h%P", twelveHourClock: true }, crosshair: {mode: 'x' }, grid: {
                           backgroundColor: {colors: ['#fff', '#C3DFE5']}, borderWidth: 1, borderColor: '#A6D1DB', hoverable: true
                         }, zoom: {interactive: true}, pan: {interactive: true}, legend: {
                           backgroundOpacity: 0.3, labelFormatter: function (label, series) {
