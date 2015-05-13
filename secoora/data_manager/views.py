@@ -444,7 +444,7 @@ def get_platforms_by_org(request, organization):
     'features': []
   }
   if logger:
-    logger.debug("Starting get_obs_data for obs: %s." % (obs_name))
+    logger.debug("Starting get_platforms_by_org for org: %s." % (organization))
 
   xeniaDb = xeniaAlchemy(logger=logger)
 
@@ -484,5 +484,7 @@ def get_platforms_by_org(request, organization):
         except IOError,e:
           if logger:
             logger.exception(e)
+  if logger:
+    logger.debug("Finished get_platforms_by_org for org: %s." % (organization))
 
   return HttpResponse(simplejson.dumps(results))
