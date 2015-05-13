@@ -437,3 +437,52 @@ def platform_time_series_request(request, platform_name):
     logger.debug("Finished obs_time_series_request, platform: %s" % (platform_name))
 
   return HttpResponse(simplejson.dumps(results))
+
+def get_platforms_by_org(request, organization):
+  results = {
+    'type': 'FeatureCollection',
+    'features': []
+  }
+  if logger:
+    logger.debug("Starting get_obs_data for obs: %s." % (obs_name))
+
+  xeniaDb = xeniaAlchemy(logger=logger)
+
+  if xeniaDb.connectDB(databaseType='postgres',
+                        dbUser=XENIA_USER,
+                        dbPwd=XENIA_PWD,
+                        dbHost=XENIA_HOST,
+                        dbName=XENIA_DB,
+                        printSQL=True):
+    if logger:
+      logger.debug("Connected to xenia DB")
+    try:
+      org_id = xeniaDb.organizationExists(organization)
+      if org_id is not None:
+        bbox = "POLYGON((%s))" % (SECOORA_BBOX)
+        platform_list = xeniaDb.session.query(xenia_platform)\
+          .join((xenia_sensor, xenia_sensor.platform_id == xenia_platform.row_id))\
+          .join((xenia_organization, xenia_organization.row_id == xenia_platform.organization_id))\
+          .filter(xenia_platform.organization_id == org_id)\
+          .filter(xenia_platform.active.in_((1,2)))\
+          .filter(func.ST_Contains(WKTElement(bbox, srid=4326), WKBElement(xenia_platform.the_geom, srid=4326)))\
+          .order_by(xenia_platform.short_name)
+    except Exception,e:
+      if logger:
+        logger.exception(e)
+    else:
+      platforms = []
+
+      for platform in platform_list:
+        try:
+          file_name = platform.platform_handle.replace('.', ':').lower()
+
+          json_file_dir = "%s/%s_data.json" % (OBSJSON_DIR, file_name)
+          if logger:
+            logger.debug("Opening obs json file: %s" % (file_name))
+          #json_file = open(json_file_dir, "r")
+        except IOError,e:
+          if logger:
+            logger.exception(e)
+
+  return HttpResponse(simplejson.dumps(results))
