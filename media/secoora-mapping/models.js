@@ -1386,23 +1386,7 @@ function viewModel() {
 
     self.visibleLayers.subscribe( function() {
         self.updateAttributeLayers();
-        //DWR
-        //Disable the queryControl on layers that have it when they are no longer visible.
-        //var firstVisLayer = self.visibleLayers()[0];
-        //Disable the identify controls
-        /*$.each(self.activeLayers(), function(i, layer) {
-          //if("queryControl" in layer)               //User has clicked the Identify button
-
-          //If the layer is the first visible layer, enable the identify control.
-          if(self.queryFeatureActive() && self.isTopLayer(layer))
-          {
-            layer.activate_query_controls(true);
-            //layer.queryControl.activate();
-          }
-          else
-          {
-            layer.activate_query_controls(false);
-            //layer.queryControl.deactivate();
+        $.each(self.activeLayers(), function(i, layer) {
             //Delete any query results from the array.
             app.viewModel.attributeDataArray.remove(function(layerData) {
                 if(layerData.title == layer.name)
@@ -1411,9 +1395,7 @@ function viewModel() {
                 }
                 return(false);
               });
-
-          }
-        });*/
+        });
 
     });
 

@@ -1002,7 +1002,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
                     label: "${obs_value}",
-                    fontColor: "#2d8998"
+                    fontColor: "#ffffff"
                 },
                 {
                   context: {
