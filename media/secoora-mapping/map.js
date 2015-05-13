@@ -55,6 +55,7 @@ $('#div-ts-plot').bind('plothover',function(event,pos,item) {
         showToolTip(
            item.pageX
           ,item.pageY
+          //,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
           ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + item.series.uom);
       }
       prevPoint = item.dataIndex;
@@ -703,6 +704,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     //window.alert(evt.text);
 
                     //window.alert(layer.closestTime());
+                    //window.alert(layer.units_display);
 
                     /*
                      var d1 = [];
@@ -730,11 +732,16 @@ app.addLayerToMap = function(layer, isVisible) {
                       //,year  : year
                       data: []
                       //,points: { show: true, symbol: "circle" }
+                      ,uom: layer.units_display
                     };
 
                     var now_cross = {
-                      data: [], points: { show: true, symbol: "cross" }
+                      data: []
+                      ,points: { show: true, symbol: "cross" }
+                      ,uom: layer.units_display
                     };
+
+                    var now_value;
 
                     //WMS xpath processing
                     _.each($(evt.text).find('FeatureInfo'), function (o) {
@@ -743,6 +750,7 @@ app.addLayerToMap = function(layer, isVisible) {
                       if ($.isNumeric(b)) {
                         //console.log(a+':'+b);
                         d.data.push([isoDateToDate(a), b]);
+                        if (a === layer.closestTime()) { now_value = b; }   
                       }
                     });
 
@@ -757,7 +765,8 @@ app.addLayerToMap = function(layer, isVisible) {
 
                     var plotData = [];
 
-                    now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'), '31.1']);
+                    //now_cross.data.push([isoDateToDate('2015-04-30T06:00:00'), '31.1']);
+                    now_cross.data.push([isoDateToDate(layer.closestTime()), now_value]);
 
                     plotData = plotData.concat(d);
                     plotData = plotData.concat(now_cross);
@@ -787,7 +796,7 @@ app.addLayerToMap = function(layer, isVisible) {
                   //This is the handler for the return click data.
                 },
 
-		            layerUrls : [layer.url],
+		layerUrls : [layer.url],
                 //url : 'http://tds.secoora.org/ncWMS/wms?ELEVATION=-0.013888888888888888&EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
                 url : 'http://tds.secoora.org/ncWMS/wms?EXCEPTIONS=application%2Fvnd.ogc.se_inimage&FORMAT=text%2Fxml&INFO_FORMAT=text/xml',
 
