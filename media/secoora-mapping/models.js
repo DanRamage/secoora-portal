@@ -1175,7 +1175,7 @@ function obs_data_model()
   self.active_obs_uom = ko.observable("");
   self.flot_data = [];
   self.prev_tooltip_point = null;
-
+  self.is_vector = false;
   $('#obs-click-popup').popoverClosable();
   $('#obs-hover-popup').popoverClosable();
 
@@ -1189,6 +1189,10 @@ function obs_data_model()
     {
       obs['name'] = key;
       self.obs_array.push(obs);
+      if(key.indexOf('direction') != -1)
+      {
+        self.is_vector = true;
+      }
     });
     self.active_obs_name = self.obs_array()[0].name;
     /*
@@ -1298,13 +1302,14 @@ function obs_data_model()
     {
       if(obs_data.properties.obsType in feature.attributes.obs)
       {
-        $.each(obs_data.properties.time, function(time_ndx, time_val)
-        {
-          //Data pairs are time_val for x axis and value for y.
-          //Time needs to be javascript date objects.
-          time_val = time_val.replace(' ', 'T');
-          flot_data.push([new Date(time_val), parseFloat(obs_data.properties.value[time_ndx])]);
-        });
+        if(self.is_vector && obs_data.properties.obsType.indexOf('direction') === -1) {
+          $.each(obs_data.properties.time, function (time_ndx, time_val) {
+            //Data pairs are time_val for x axis and value for y.
+            //Time needs to be javascript date objects.
+            time_val = time_val.replace(' ', 'T');
+            flot_data.push([new Date(time_val), parseFloat(obs_data.properties.value[time_ndx])]);
+          });
+        }
         return;
       }
     });
