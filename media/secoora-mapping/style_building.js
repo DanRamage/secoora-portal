@@ -84,9 +84,12 @@ function ol_gradient_style_builder(options) {
           params: {'compare': comparison_property},
           evaluate: function(feature)
           {
-            var property = feature.obs[this.params.compare];
-            var value = property.value;
-            return(value < lower_bound);
+            if(this.params.compare in feature.obs) {
+              var property = feature.obs[this.params.compare];
+              var value = property.value;
+              return(value < lower_bound);
+            }
+            return(false);
           }
         });
         /*
@@ -104,9 +107,13 @@ function ol_gradient_style_builder(options) {
           params: {'compare': comparison_property},
           evaluate: function(feature)
           {
-            var property = feature.obs[this.params.compare];
-            var value = property.value;
-            return((value >= lower_bound) && (value < (last_lower + data_step)));
+            if(this.params.compare in feature.obs)
+            {
+              var property = feature.obs[this.params.compare];
+              var value = property.value;
+              return((value >= lower_bound) && (value < (last_lower + data_step)));
+            }
+            return(false);
           }
         });
 
@@ -124,9 +131,12 @@ function ol_gradient_style_builder(options) {
           params: {'compare': comparison_property},
           evaluate: function(feature)
           {
-            var property = feature.obs[this.params.compare];
-            var value = property.value;
-            return(value > upper_bound);
+            if(this.params.compare in feature.obs) {
+              var property = feature.obs[this.params.compare];
+              var value = property.value;
+              return(value > upper_bound);
+            }
+            return(false);
           }
         });
 
