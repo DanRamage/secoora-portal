@@ -1288,7 +1288,6 @@ function obs_data_model()
       url: url,
       async: false,
       dataType: 'json',
-      //data: {"longitude": feature.}
       success: function(data)
       {
         json_data = data;
@@ -1319,54 +1318,7 @@ function obs_data_model()
     var map_offset = $("#map").offset();
     var view_px = app.map.getViewPortPxFromLonLat(lon_lat);
     $('#obs-click-popup').show().offset({top: map_offset.top + view_px.y + 5, left: map_offset.left + view_px.x + 5});
-    self.add_plot(feature.attributes.obs_name, feature.attributes.obs_uom, flot_data, "#plot_area");
-    /*
-    $.plot($("#obs-click-popup #plot_area"), [{data: flot_data, label: feature.attributes.obs_name}],
-    {
-      xaxis: {mode: "time"},
-      crosshair: {mode: 'x'   },
-      grid: {
-        backgroundColor: {colors: ['#fff', '#C3DFE5']},
-        borderWidth: 1,
-        borderColor: '#A6D1DB',
-        hoverable: true
-      },
-      zoom: {interactive: true},
-      pan: {interactive: true},
-      legend: {
-          backgroundOpacity: 0.3, labelFormatter: function (label, series) {
-            return /min|max/.test(series.id) ? null : label;
-        }
-      },
-      colors: ["#eb4b4b", "#4da74d", "#9440ed", 'rgba(50,100,100,1.0)', 'rgba(100,50,100,1.0)', 'rgba(100,100,50,1.0)'] //note - 6 default colors, add more if > 6 needed
-      }
-    );
-    self.active_obs_uom(self.obs_uom());
-
-    $("#obs-click-popup #plot_area").bind("plothover", function (event, pos, item)
-    {
-      if (item)
-      {
-        var x = new Date(item.datapoint[0]);
-        var y = item.datapoint[1];
-        if (prevPoint != item.dataIndex)
-        {
-          $('#tooltip').remove();
-          var d = x.format('UTC:mmm dd, h TT');
-          self.showToolTip(
-            item.pageX
-            ,item.pageY
-            ,d + ' : ' + (Math.round(y * 100) / 100) + ' ' + self.obs_uom());
-        }
-        prevPoint = item.dataIndex;
-      }
-      else
-      {
-        $('#tooltip').remove();
-        prevPoint = null;
-      }
-    });
-    */
+    self.add_plot(self.active_obs_name, self.active_obs_uom, flot_data, "#plot_area");
   };
   self.showToolTip = function(x,y,contents)
   {
