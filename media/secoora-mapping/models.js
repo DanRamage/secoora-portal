@@ -1190,7 +1190,7 @@ function obs_data_model()
       obs['name'] = key;
       self.obs_array.push(obs);
     });
-    self.active_obs_name = self.obs_array[0].name;
+    self.active_obs_name = self.obs_array()[0].name;
     /*
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
