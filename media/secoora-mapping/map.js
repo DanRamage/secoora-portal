@@ -1002,7 +1002,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
                     label: '${labelFunction}',
-                    fontColor: "#ffffff"
+                    fontColor: "#000000"
                 },
                 {
                   context: {
@@ -1066,14 +1066,15 @@ app.addLayerToMap = function(layer, isVisible) {
           {
             style_map = new OpenLayers.StyleMap({
                   'default': new OpenLayers.Style({
+                      graphicName: 'circle',
                       //strokeWidth: '${strokeFunction}',
                       strokeOpacity: 0.5,
                       strokeColor: "#88aaaa",
                       fillColor: "#99CC55",
                       fillOpacity: 0.5,
                       //pointRadius: '${radiusfunction}',
-                      //label: "${count}",
-                      fontColor: "#ffffff"
+                      label: "${p_name}",
+                      fontColor: "#000000"
                   }, {
                       context: {
                       }
