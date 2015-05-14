@@ -81,6 +81,7 @@ function ol_gradient_style_builder(options) {
       if(ndx === 0)
       {
         filter = new OpenLayers.Filter.Function({
+          params: {'compare': comparison_property},
           evaluate: function(feature)
           {
             var property = feature.obs.comparison_property;
