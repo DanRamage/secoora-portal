@@ -369,7 +369,7 @@
     <!--
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
-    <div data-bind="foreach: obs_array">
+    <div data-bind="foreach: obs_array" style="overflow-y: scroll">
       <div>
         <h5>
           <span data-bind="text: name"></span>
