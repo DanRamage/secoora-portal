@@ -992,7 +992,7 @@ app.addLayerToMap = function(layer, isVisible) {
             var rules = style_bldr.build_filters(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps,
-              'obs.' + layer.observation_name);
+              layer.observation_name);
             layer.legendTable(style_bldr.build_legend(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps));
