@@ -188,7 +188,7 @@ class Metadata(models.Model):
 
   keywords_project = models.ManyToManyField('ProjectName', blank=True, null=True)
   keywords_funding = models.ManyToManyField('Funding', blank=True, null=True)
-  keywords_topic = models.ManyToManyField('Topic', blank=True, null=True)
+  #keywords_topic = models.ManyToManyField('Topic', blank=True, null=True)
   keywords_theme = models.ManyToManyField('Theme', blank=True, null=True)
 
   keywords_instrumentation = models.TextField(blank=True)
