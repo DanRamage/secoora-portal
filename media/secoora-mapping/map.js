@@ -1107,7 +1107,7 @@ app.addLayerToMap = function(layer, isVisible) {
             var rules = style_bldr.build_filters(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps,
-              'obs_value');
+              layer.observation_name);
             layer.legendTable(style_bldr.build_legend(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps));
@@ -1119,13 +1119,35 @@ app.addLayerToMap = function(layer, isVisible) {
                 //pointRadius: '${radiusfunction}',
                 graphicWidth: 10,
                 graphicHeight: 20,
-                label: "${obs_value}",
+                label: "${labelFunction}",
                 fontColor: "#000000",
-                rotation: "${dir_value}",
+                rotation: "${rotateFunction}",
                 graphicName:"triangle"
               },
               {
                 context: {
+                  labelFunction: function(feature) {
+                    var key;
+                    for(key in feature.attributes.obs)
+                    {
+                      break;
+                    }
+                    if(key) {
+                      return feature.attributes.obs[key].value;
+                    }
+                  },
+                  rotateFunction: function(feature) {
+                    var key;
+                    for(key in feature.attributes.obs)
+                    {
+                      if(key.indexOf('direction') != -1)
+                        break;
+                    }
+                    if(key) {
+                      return feature.attributes.obs[key].value;
+                    }
+                  },
+
                   strokeFunction: function (feature) {
                     var count = feature.attributes.count;
                     var stk = Math.max(0.1 * count, 1);
