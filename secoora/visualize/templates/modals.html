@@ -355,9 +355,6 @@
 
 <!-- Observation hover popup -->
 <style>
-  #obs-hover-popup {
-    width: 300px;
-  }
   .hover_popup {
   }
   .hover_popup tr {
@@ -393,9 +390,9 @@
     <table class="table">
       <tbody data-bind="foreach: obs_array">
         <tr>
-          <td data-bind="text: name"></td>
-          <td data-bind="text: value"></td>
-          <td data-bind="text: uom"></td>
+          <td class="span3" data-bind="text: name"></td>
+          <td class="span2" data-bind="text: value"></td>
+          <td class="span2" data-bind="text: uom"></td>
         </tr>
       </tbody>
       <!--
