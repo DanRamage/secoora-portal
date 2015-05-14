@@ -1079,6 +1079,7 @@ app.addLayerToMap = function(layer, isVisible) {
                       }
                   })
               });
+              strategies = [new OpenLayers.Strategy.Fixed()];
           }
           layer.layer = new OpenLayers.Layer.Vector(layer.name, {
               projection: "EPSG:4326",
