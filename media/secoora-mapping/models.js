@@ -1301,7 +1301,9 @@ function obs_data_model()
     {
       if(obs_data.properties.obsType in feature.attributes.obs)
       {
-        if(self.is_vector && obs_data.properties.obsType.indexOf('direction') === -1) {
+        if((self.is_vector && obs_data.properties.obsType.indexOf('direction') === -1) ||
+          (!self.is_vector))
+        {
           $.each(obs_data.properties.time, function (time_ndx, time_val) {
             //Data pairs are time_val for x axis and value for y.
             //Time needs to be javascript date objects.
