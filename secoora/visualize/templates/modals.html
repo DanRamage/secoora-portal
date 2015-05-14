@@ -356,6 +356,10 @@
 <!-- Observation hover popup -->
 <style>
   .hover_popup {
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+    position: absolute;
   }
   .hover_popup tr {
   width: 100%;
@@ -389,9 +393,9 @@
     -->
     <div data-bind="foreach: obs_array">
       <div class="row">
-        <div class="span4" data-bind="text: name"></div>
-        <div class="span2" data-bind="text: value"></div>
-        <div class="span2" data-bind="text: uom"></div>
+        <div class="span2" data-bind="text: name"></div>
+        <div class="span1" data-bind="text: value"></div>
+        <div class="span1" data-bind="text: uom"></div>
       </div>
     </div>
     <!--
