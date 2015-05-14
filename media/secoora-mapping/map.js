@@ -1062,6 +1062,24 @@ app.addLayerToMap = function(layer, isVisible) {
               });
             strategies = [new OpenLayers.Strategy.Fixed(), new OpenLayers.Strategy.Cluster({distance: 25})];
           }
+          else
+          {
+            style_map = new OpenLayers.StyleMap({
+                  'default': new OpenLayers.Style({
+                      //strokeWidth: '${strokeFunction}',
+                      strokeOpacity: 0.5,
+                      strokeColor: "#88aaaa",
+                      fillColor: "#99CC55",
+                      fillOpacity: 0.5,
+                      //pointRadius: '${radiusfunction}',
+                      label: "${count}",
+                      fontColor: "#ffffff"
+                  }, {
+                      context: {
+                      }
+                  })
+              });
+          }
           layer.layer = new OpenLayers.Layer.Vector(layer.name, {
               projection: "EPSG:4326",
               protocol: new OpenLayers.Protocol.HTTP({
