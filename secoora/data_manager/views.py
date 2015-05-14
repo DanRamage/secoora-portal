@@ -283,9 +283,9 @@ def get_obs_data(obs_name, uom_name):
         logger.exception(e)
     else:
       platforms = []
-      get_wind_dir = False
-      if obs_name == 'wind_speed':
-        get_wind_dir = True
+      is_vector_data = False
+      if obs_name == 'wind_speed' or obs_name == 'current_speed':
+        is_vector_data = True
 
       for platform in platform_list:
         try:
@@ -312,9 +312,32 @@ def get_obs_data(obs_name, uom_name):
             properties['p_description'] = platform.description
             properties['o_name'] = platform.organization.short_name
 
+            properties['obs'] = OrderedDict()
+            obs_dict = properties['obs']
+
             for feature in obs_json['properties']['features']:
               prop = feature['properties']
               if obs_name == prop['obsType']:
+                prop = feature['properties']
+                if prop['obsType'] is not None:
+                  obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                                      'uom': prop['uomType'],
+                                      'time': prop['time'][-1]}
+              else:
+                if is_vector_data and\
+                  (prop['obsType'] == 'wind_from_direction' or prop['obsType'] == 'current_from_direction'):
+                    obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                                        'uom': prop['uomType'],
+                                        'time': prop['time'][-1]}
+                else:
+                  if 'other_obs' not in properties:
+                    properties['other_obs'] = []
+                  properties['other_obs'].append(prop['obsType'])
+
+
+
+
+                """
                 properties['obs_name'] = obs_name
                 properties['obs_value'] = prop['value'][-1]
                 properties['obs_uom'] = prop['uomType']
@@ -325,11 +348,10 @@ def get_obs_data(obs_name, uom_name):
                   properties['dir_value'] = prop['value'][-1]
                   properties['dir_uom'] = prop['uomType']
                   properties['dir_time'] = prop['time'][-1]
-
                 if 'other_obs' not in properties:
                   properties['other_obs'] = []
                 properties['other_obs'].append(prop['obsType'])
-
+              """
               """
               if prop['obsType'] is not None:
                 properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
