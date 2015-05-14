@@ -1072,7 +1072,7 @@ app.addLayerToMap = function(layer, isVisible) {
                       fillColor: "#99CC55",
                       fillOpacity: 0.5,
                       //pointRadius: '${radiusfunction}',
-                      label: "${count}",
+                      //label: "${count}",
                       fontColor: "#ffffff"
                   }, {
                       context: {
