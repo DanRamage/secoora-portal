@@ -1012,7 +1012,10 @@ app.addLayerToMap = function(layer, isVisible) {
                         {
                           break;
                         }
-                        return feature.attributes.obs[key].value;
+                        if(key) {
+                          return feature.attributes.obs[key].value;
+                        }
+                        return('');
                       },
                       strokeFunction: function(feature) {
                           var count = feature.attributes.count;
