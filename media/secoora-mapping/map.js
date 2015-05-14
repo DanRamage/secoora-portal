@@ -1054,7 +1054,7 @@ app.addLayerToMap = function(layer, isVisible) {
           layer.layer = new OpenLayers.Layer.Vector(layer.name, {
               projection: "EPSG:4326",
               protocol: new OpenLayers.Protocol.HTTP({
-                  url: layer.openlayers_options.geojson,
+                  url: layer.url,
                   format: new OpenLayers.Format.GeoJSON()
               }),
               strategies: strategies,

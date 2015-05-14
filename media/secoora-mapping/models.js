@@ -79,6 +79,7 @@ function layerModel(options, parent) {
     self.currentTimeNdx = -1;
     self.closestTime = ko.observable("");
 
+    self.observation_name = options.observation_name || null;
     self.units = options.units || null;
     self.units_display = options.units_display || null;
 
