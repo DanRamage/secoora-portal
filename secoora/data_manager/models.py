@@ -41,6 +41,7 @@ class Topic(models.Model):
     @property
     def toDict(self):
         layers = [layer.id for layer in self.layer_set.filter(is_sublayer=False).exclude(layer_type='placeholder')]
+
         topics_dict = {
             'id': self.id,
             'display_name': self.display_name,
@@ -48,6 +49,7 @@ class Topic(models.Model):
             'layers': layers,
             'description': self.description
         }
+
         return topics_dict
 
 
@@ -288,7 +290,7 @@ class Layer(models.Model):
     arcgis_layers = models.CharField(max_length=255, blank=True, null=True)
     sublayers = models.ManyToManyField('self', blank=True, null=True)
     themes = models.ManyToManyField('Theme', blank=True, null=True)
-    topics = models.ManyToManyField('Topic', blank=True, null=True)
+    #topics = models.ManyToManyField('Topic', blank=True, null=True)
     is_sublayer = models.BooleanField(default=False)
     legend = models.CharField(max_length=2000, blank=True, null=True)
     legend_title = models.CharField(max_length=255, blank=True, null=True)
