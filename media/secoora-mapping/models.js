@@ -1159,6 +1159,8 @@ function obs_data_model()
 
   self.platform_name = ko.observable("");
   self.organization_name = ko.observable("");
+  self.obs_array = ko.observableArray([]);
+
   self.obs_name = ko.observable("");
   self.obs_value = ko.observable("");
   self.obs_uom = ko.observable("");
@@ -1181,6 +1183,9 @@ function obs_data_model()
     self.obs_name(observaton_name);
     self.organization_name(data.o_name);
     self.platform_name(data.p_name);
+    self.obs_array.removeAll();
+    self.obs_array(data.obs);
+    /*
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
     self.obs_time(data.obs_time);
@@ -1191,6 +1196,7 @@ function obs_data_model()
       self.dir_uom(data.dir_uom);
       self.dir_time(data.dir_time);
     }
+    */
   };
 
   self.set_click_data = function(observaton_name, data)

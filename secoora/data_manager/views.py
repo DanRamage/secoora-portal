@@ -312,27 +312,39 @@ def get_obs_data(obs_name, uom_name):
             properties['p_description'] = platform.description
             properties['o_name'] = platform.organization.short_name
 
-            properties['obs'] = OrderedDict()
+            #properties['obs'] = OrderedDict()
+            properties['obs'] = []
             obs_dict = properties['obs']
 
+            #FInd the observation of interest first.
             for feature in obs_json['properties']['features']:
               prop = feature['properties']
               if obs_name == prop['obsType']:
                 prop = feature['properties']
                 if prop['obsType'] is not None:
+                  obs_dict.append({'name': prop['obsType'],
+                                   'value': prop['value'][-1],
+                                    'uom': prop['uomType'],
+                                    'time': prop['time'][-1]})
+                  """
                   obs_dict[prop['obsType']] = {'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
-              else:
-                if is_vector_data and\
-                  (prop['obsType'] == 'wind_from_direction' or prop['obsType'] == 'current_from_direction'):
-                    obs_dict[prop['obsType']] = {'value': prop['value'][-1],
-                                        'uom': prop['uomType'],
-                                        'time': prop['time'][-1]}
+                  """
+
                 else:
                   if 'other_obs' not in properties:
                     properties['other_obs'] = []
                   properties['other_obs'].append(prop['obsType'])
+
+            if is_vector_data:
+              for feature in obs_json['properties']['features']:
+                prop = feature['properties']
+                if(prop['obsType'] == 'wind_from_direction' or prop['obsType'] == 'current_from_direction'):
+                  obs_dict.append({'name': prop['obsType'],
+                                   'value': prop['value'][-1],
+                                    'uom': prop['uomType'],
+                                    'time': prop['time'][-1]})
 
 
 

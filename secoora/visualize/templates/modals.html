@@ -369,29 +369,31 @@
     <!--
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
-    <div>
-      <h4>
-        <span data-bind="text: obs_name"></span>
-      </h4>
-    </div>
-    <div>
-      <h3>
-        <div>
-          <span data-bind="text: obs_value"></span>
-          <span data-bind="text: obs_uom"></span>
-        </div>
-        <!-- ko if: dir_value().length -->
-        <div>
-          <span data-bind="text: dir_value"></span>
-          <span data-bind="text: dir_uom"></span>
-        </div>
-        <!-- /ko -->
-      </h3>
-    </div>
-    <div>
-      <h4>
-        <span data-bind="text: obs_time"></span>
-      </h4>
+    <div data-bind="foreach: obs_array">
+      <div>
+        <h4>
+          <span data-bind="text: obs_name"></span>
+        </h4>
+      </div>
+      <div>
+        <h3>
+          <div>
+            <span data-bind="text: obs_value"></span>
+            <span data-bind="text: obs_uom"></span>
+          </div>
+          <!-- ko if: dir_value().length -->
+          <div>
+            <span data-bind="text: dir_value"></span>
+            <span data-bind="text: dir_uom"></span>
+          </div>
+          <!-- /ko -->
+        </h3>
+      </div>
+      <div>
+        <h4>
+          <span data-bind="text: obs_time"></span>
+        </h4>
+      </div>
     </div>
   </div>
 </div>
