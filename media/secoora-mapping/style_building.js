@@ -80,30 +80,60 @@ function ol_gradient_style_builder(options) {
 
       if(ndx === 0)
       {
+        filter = new OpenLayers.Filter.Function({
+          evaluate: function(feature)
+          {
+            var property = feature.attributes.obs.comparison_property;
+            var value = property.value;
+            return(value < lower_bound);
+          }
+        });
+        /*
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.LESS_THAN,
               property: comparison_property,
               value: lower_bound
           });
+          */
         last_lower = lower_bound + data_step;
       }
       else if(ndx < self.default_colors.length - 2)
       {
-        filter = new OpenLayers.Filter.Comparison({
+        filter = new OpenLayers.Filter.Function({
+          evaluate: function(feature)
+          {
+            var property = feature.attributes.obs.comparison_property;
+            var value = property.value;
+            return((value >= lower_bound) && (value < (last_lower + data_step)));
+          }
+        });
+
+        /*filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.BETWEEN,
               property: comparison_property,
               lowerBoundary: last_lower,
               upperBoundary: last_lower + data_step
-          });
+          });*/
         last_lower += data_step;
       }
       else
       {
+        filter = new OpenLayers.Filter.Function({
+          evaluate: function(feature)
+          {
+            var property = feature.attributes.obs.comparison_property;
+            var value = property.value;
+            return(value > upper_bound);
+          }
+        });
+
+        /*
         filter = new OpenLayers.Filter.Comparison({
               type: OpenLayers.Filter.Comparison.GREATER_THAN,
               property: comparison_property,
               value: upper_bound
           });
+        */
       }
       rules.push(new OpenLayers.Rule({
           // a rule contains an optional filter
