@@ -356,10 +356,20 @@
 <!-- Observation hover popup -->
 <style>
   .hover_popup {
+  }
+  .hover_popup tr {
+  width: 100%;
+  display: inline-table;
+  }
+
+  .hover_popup table{
+   height:300px;
+  }
+  .hover_popup tbody{
     overflow-y: scroll;
-    position: absolute;
-    height: 220px;
+    height: 200px;
     width: 100%;
+    position: absolute;
   }
 </style>
 <div id="obs-hover-popup" class="popover fade left in data-popup" data-bind="with: $root.observation_hover_model">
@@ -377,7 +387,13 @@
     <!--
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
-    <div data-bind="foreach: obs_array">
+    <table data-bind="foreach: obs_array">
+      <tr>
+        <td data-bind="text: name"></td>
+        <td data-bind="text: value"></td>
+        <td data-bind="text: uom"></td>
+      </tr>
+      <!--
       <div>
         <h5>
           <span data-bind="text: name"></span>
@@ -396,6 +412,8 @@
           <span data-bind="text: time"></span>
         </h5>
       </div>
+      -->
+      </table>
     </div>
   </div>
 </div>
