@@ -111,7 +111,7 @@ function ol_gradient_style_builder(options) {
             {
               var property = feature.obs[this.params.compare];
               var value = property.value;
-              return((value >= lower_bound) && (value < (last_lower + data_step)));
+              return((value >= last_lower) && (value < (last_lower + data_step)));
             }
             return(false);
           }
