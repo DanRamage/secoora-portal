@@ -81,13 +81,14 @@ function ol_gradient_style_builder(options) {
       if(ndx === 0)
       {
         filter = new OpenLayers.Filter.Function({
-          params: {'compare': comparison_property},
+          params: {'compare': comparison_property,
+          'lower_bound': lower_bound},
           evaluate: function(feature)
           {
             if(this.params.compare in feature.obs) {
               var property = feature.obs[this.params.compare];
               var value = property.value;
-              return(value < lower_bound);
+              return(value < this.params.lower_bound);
             }
             return(false);
           }
@@ -105,14 +106,16 @@ function ol_gradient_style_builder(options) {
       {
         var next_step = last_lower + data_step;
         filter = new OpenLayers.Filter.Function({
-          params: {'compare': comparison_property},
+          params: {'compare': comparison_property,
+            'lower_bound': last_lower,
+            'upper_bound': next_step},
           evaluate: function(feature)
           {
             if(this.params.compare in feature.obs)
             {
               var property = feature.obs[this.params.compare];
               var value = property.value;
-              return((value >= last_lower) && (value < next_step));
+              return((value >= this.params.lower_bound) && (value < this.params.upper_bound));
             }
             return(false);
           }
@@ -129,13 +132,14 @@ function ol_gradient_style_builder(options) {
       else
       {
         filter = new OpenLayers.Filter.Function({
-          params: {'compare': comparison_property},
+          params: {'compare': comparison_property,
+          'upper_bound': next_step},
           evaluate: function(feature)
           {
             if(this.params.compare in feature.obs) {
               var property = feature.obs[this.params.compare];
               var value = property.value;
-              return(value > upper_bound);
+              return(value > this.params.upper_bound);
             }
             return(false);
           }
