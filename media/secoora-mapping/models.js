@@ -1184,11 +1184,11 @@ function obs_data_model()
     self.organization_name(data.o_name);
     self.platform_name(data.p_name);
     self.obs_array.removeAll();
-    $.each(data.obs, function(key, obs))
+    $.each(data.obs, function(key, obs)
     {
       obs['name'] = key;
       self.obs_array.push(obs);
-    }
+    });
     /*
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
