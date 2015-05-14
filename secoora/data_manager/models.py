@@ -342,6 +342,9 @@ class Layer(models.Model):
     status_platform_handle = models.CharField(max_length=100, blank=True, null=True)
     status_field = models.CharField(max_length=500, blank=True, null=True)
 
+    units = models.CharField(max_length=100, blank=True, null=True)
+    units_display = models.CharField(max_length=100, blank=True, null=True)
+
     def __unicode__(self):
         return unicode('%s' % (self.name))
 
@@ -502,7 +505,9 @@ class Layer(models.Model):
                 'graphic': layer.vector_graphic,
                 'opacity': layer.opacity,
                 'openlayers_options': layer.openlayers_options,
-                'status_field': layer.status_field
+                'status_field': layer.status_field,
+                'units': layer.units,
+                'units_display': layer.units_display
             }
             for layer in self.sublayers.all()
         ]
@@ -538,7 +543,9 @@ class Layer(models.Model):
             'graphic': self.vector_graphic,
             'opacity': self.opacity,
             'openlayers_options': self.openlayers_options,
-            'status_field': status_field
+            'status_field': status_field,
+            'units': self.units,
+            'units_display': self.units_display
 
         }
         return layers_dict
