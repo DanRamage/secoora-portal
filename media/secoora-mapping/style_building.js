@@ -84,7 +84,7 @@ function ol_gradient_style_builder(options) {
           params: {'compare': comparison_property},
           evaluate: function(feature)
           {
-            var property = feature.obs.comparison_property;
+            var property = feature.obs[this.compare];
             var value = property.value;
             return(value < lower_bound);
           }
@@ -103,7 +103,7 @@ function ol_gradient_style_builder(options) {
         filter = new OpenLayers.Filter.Function({
           evaluate: function(feature)
           {
-            var property = feature.obs.comparison_property;
+            var property = feature.obs[this.compare];
             var value = property.value;
             return((value >= lower_bound) && (value < (last_lower + data_step)));
           }
@@ -122,7 +122,7 @@ function ol_gradient_style_builder(options) {
         filter = new OpenLayers.Filter.Function({
           evaluate: function(feature)
           {
-            var property = feature.obs.comparison_property;
+            var property = feature.obs[this.compare];
             var value = property.value;
             return(value > upper_bound);
           }
