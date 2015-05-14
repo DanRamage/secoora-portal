@@ -387,8 +387,8 @@
     <!--
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
-    <table data-bind="foreach: obs_array">
-      <tr>
+    <table class="table">
+      <tr data-bind="foreach: obs_array">
         <td data-bind="text: name"></td>
         <td data-bind="text: value"></td>
         <td data-bind="text: uom"></td>
