@@ -1162,6 +1162,7 @@ function obs_data_model()
   self.obs_array = ko.observableArray([]);
 
   self.obs_name = ko.observable("");
+  /*
   self.obs_value = ko.observable("");
   self.obs_uom = ko.observable("");
   self.obs_time = ko.observable("");
@@ -1169,8 +1170,8 @@ function obs_data_model()
   self.dir_value = ko.observable("");
   self.dir_uom = ko.observable("");
   self.dir_time = ko.observable("");
-
-  self.active_obs_name = ko.observable("");
+  */
+  self.active_obs_name = null;
   self.active_obs_uom = ko.observable("");
   self.flot_data = [];
   self.prev_tooltip_point = null;
@@ -1189,6 +1190,7 @@ function obs_data_model()
       obs['name'] = key;
       self.obs_array.push(obs);
     });
+    self.active_obs_name = self.obs_array[0].name;
     /*
     self.obs_value(data.obs_value);
     self.obs_uom(data.obs_uom);
@@ -1294,7 +1296,7 @@ function obs_data_model()
     var flot_data = [];
     $.each(obs_data_list, function(ndx, obs_data)
     {
-      if(obs_data.properties.obsType == feature.attributes.obs[0].name)
+      if(obs_data.properties.obsType in feature.attributes.obs)
       {
         $.each(obs_data.properties.time, function(time_ndx, time_val)
         {
