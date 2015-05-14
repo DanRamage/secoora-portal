@@ -369,7 +369,8 @@ def get_obs_data(obs_name, uom_name):
               },
               "properties": properties
             }
-            results['features'].append(feature)
+            if len(obs_dict):
+              results['features'].append(feature)
 
             json_file.close()
           #else:
