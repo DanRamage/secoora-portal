@@ -1033,7 +1033,7 @@ app.addLayerToMap = function(layer, isVisible) {
             style_map = new OpenLayers.StyleMap(style);
             strategies = [new OpenLayers.Strategy.Fixed()];
           }
-          else if(if(layer.openlayers_options && 'cluster' in layer.openlayers_options)
+          else if(layer.openlayers_options && 'cluster' in layer.openlayers_options)
           {
             style_map = new OpenLayers.StyleMap({
                   'default': new OpenLayers.Style({
