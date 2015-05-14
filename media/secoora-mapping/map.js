@@ -992,7 +992,7 @@ app.addLayerToMap = function(layer, isVisible) {
             var rules = style_bldr.build_filters(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps,
-              'obs_value');
+              'obs.' + layer.observation_name);
             layer.legendTable(style_bldr.build_legend(legend_info.min_range,
               legend_info.max_range,
               legend_info.number_steps));
@@ -1001,7 +1001,7 @@ app.addLayerToMap = function(layer, isVisible) {
                     strokeWidth: '${strokeFunction}',
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
-                    label: "${obs_value}",
+                    label: "${obs."+ layer.observation_name + "}",
                     fontColor: "#ffffff"
                 },
                 {
