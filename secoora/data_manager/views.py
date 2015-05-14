@@ -320,6 +320,7 @@ def get_obs_data(obs_name, uom_name):
               prop = feature['properties']
               if obs_name == prop['obsType']:
                 prop = feature['properties']
+
                 if prop['obsType'] is not None:
                   obs_dict[prop['obsType']] = {'value': prop['value'][-1],
                                       'uom': prop['uomType'],
