@@ -1001,11 +1001,14 @@ app.addLayerToMap = function(layer, isVisible) {
                     strokeWidth: '${strokeFunction}',
                     strokeOpacity: 0.1,
                     //pointRadius: '${radiusfunction}',
-                    label: "${obs."+ layer.observation_name + "}",
+                    label: '${labelFunction}',
                     fontColor: "#ffffff"
                 },
                 {
                   context: {
+                      labelFunction: function(feature) {
+                        return feature.obs.value;
+                      },
                       strokeFunction: function(feature) {
                           var count = feature.attributes.count;
                           var stk = Math.max(0.1 * count, 1);
