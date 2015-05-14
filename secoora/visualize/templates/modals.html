@@ -387,6 +387,12 @@
     <!--
     <pre data-bind="text: JSON.stringify(ko.toJS($root.observation_hover_model), null, 2)"></pre>
     -->
+    <div class="row" data-bind="foreach: obs_array">
+      <div class="span4" data-bind="text: name"></div>
+      <div class="span2" data-bind="text: value"></div>
+      <div class="span2" data-bind="text: uom"></div>
+    </div>
+    <!--
     <table class="table">
       <tbody data-bind="foreach: obs_array">
         <tr>
@@ -395,6 +401,8 @@
           <td class="span2" data-bind="text: uom"></td>
         </tr>
       </tbody>
+    </table>
+    -->
       <!--
       <div>
         <h5>
@@ -415,7 +423,6 @@
         </h5>
       </div>
       -->
-      </table>
     </div>
   </div>
 </div>
