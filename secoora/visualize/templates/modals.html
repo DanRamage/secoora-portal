@@ -372,26 +372,20 @@
     <div data-bind="foreach: obs_array">
       <div>
         <h4>
-          <span data-bind="text: obs_name"></span>
+          <span data-bind="text: name"></span>
         </h4>
       </div>
       <div>
         <h3>
           <div>
-            <span data-bind="text: obs_value"></span>
-            <span data-bind="text: obs_uom"></span>
+            <span data-bind="text: value"></span>
+            <span data-bind="text: uom"></span>
           </div>
-          <!-- ko if: dir_value().length -->
-          <div>
-            <span data-bind="text: dir_value"></span>
-            <span data-bind="text: dir_uom"></span>
-          </div>
-          <!-- /ko -->
         </h3>
       </div>
       <div>
         <h4>
-          <span data-bind="text: obs_time"></span>
+          <span data-bind="text: time"></span>
         </h4>
       </div>
     </div>
