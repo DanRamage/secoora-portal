@@ -101,6 +101,7 @@ function ol_gradient_style_builder(options) {
       else if(ndx < self.default_colors.length - 2)
       {
         filter = new OpenLayers.Filter.Function({
+          params: {'compare': comparison_property},
           evaluate: function(feature)
           {
             var property = feature.obs[this.params.compare];
@@ -120,6 +121,7 @@ function ol_gradient_style_builder(options) {
       else
       {
         filter = new OpenLayers.Filter.Function({
+          params: {'compare': comparison_property},
           evaluate: function(feature)
           {
             var property = feature.obs[this.params.compare];
