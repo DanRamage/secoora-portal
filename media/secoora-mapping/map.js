@@ -1007,7 +1007,7 @@ app.addLayerToMap = function(layer, isVisible) {
                 {
                   context: {
                       labelFunction: function(feature) {
-                        var key = feature.obs.keys();
+                        var key = feature.attributes.obs.keys();
                         return feature.attributes.obs[key[0]].value;
                       },
                       strokeFunction: function(feature) {
