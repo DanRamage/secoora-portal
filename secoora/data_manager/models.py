@@ -11,6 +11,7 @@ import datetime
 import logging
 logger = logging.getLogger(__name__)
 
+"""
 class Topic(models.Model):
     display_name = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
@@ -51,7 +52,7 @@ class Topic(models.Model):
         }
 
         return topics_dict
-
+"""
 
 class Theme(models.Model):
     display_name = models.CharField(max_length=100)
