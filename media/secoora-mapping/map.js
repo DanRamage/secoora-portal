@@ -984,7 +984,7 @@ app.addLayerToMap = function(layer, isVisible) {
           //new OpenLayers.Projection("EPSG:900913")), 2);
           var style_map;
           var strategies;
-          if('openlayers_options' in layer && 'legend' in layer.openlayers_options)
+          if(layer.openlayers_options && 'legend' in layer.openlayers_options)
           {
             var legend_info = layer.openlayers_options.legend;
             var style_bldr = new ol_gradient_style_builder()
