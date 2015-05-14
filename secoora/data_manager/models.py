@@ -342,6 +342,7 @@ class Layer(models.Model):
     status_platform_handle = models.CharField(max_length=100, blank=True, null=True)
     status_field = models.CharField(max_length=500, blank=True, null=True)
 
+    observation_name = models.CharField(max_length=50, blank=True, null=True)
     units = models.CharField(max_length=100, blank=True, null=True)
     units_display = models.CharField(max_length=100, blank=True, null=True)
 
@@ -506,6 +507,7 @@ class Layer(models.Model):
                 'opacity': layer.opacity,
                 'openlayers_options': layer.openlayers_options,
                 'status_field': layer.status_field,
+                'observation_name': layer.observation_name,
                 'units': layer.units,
                 'units_display': layer.units_display
             }
@@ -544,6 +546,7 @@ class Layer(models.Model):
             'opacity': self.opacity,
             'openlayers_options': self.openlayers_options,
             'status_field': status_field,
+            'observation_name': self.observation_name,
             'units': self.units,
             'units_display': self.units_display
 
