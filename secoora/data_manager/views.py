@@ -537,6 +537,7 @@ def get_platforms_by_org(request, organization):
                   prop = feature['properties']
 
                   if prop['obsType'] is not None:
+                    obs_disp = prop['obsType']
                     if 'obsDisp' in prop:
                       obs_disp = prop['obsDisp']
                     uom_disp = prop['uomType']
