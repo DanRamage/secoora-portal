@@ -322,7 +322,10 @@ def get_obs_data(obs_name, uom_name):
                 prop = feature['properties']
 
                 if prop['obsType'] is not None:
-                  obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                  obs_dict[prop['obsType']] = {
+                                      'obs_disp': prop['obsDisp'],
+                                      'uom_disp': prop['uomDisp'],
+                                      'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
 
@@ -335,7 +338,10 @@ def get_obs_data(obs_name, uom_name):
               for feature in obs_json['properties']['features']:
                 prop = feature['properties']
                 if(prop['obsType'] == 'wind_from_direction' or prop['obsType'] == 'current_from_direction'):
-                  obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                  obs_dict[prop['obsType']] = {
+                                      'obs_disp': prop['obsDisp'],
+                                      'uom_disp': prop['uomDisp'],
+                                      'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
 
@@ -356,12 +362,6 @@ def get_obs_data(obs_name, uom_name):
                 if 'other_obs' not in properties:
                   properties['other_obs'] = []
                 properties['other_obs'].append(prop['obsType'])
-              """
-              """
-              if prop['obsType'] is not None:
-                properties['%s_val' % (prop['obsType'])] = prop['value'][-1]
-                properties['%s_uom' % (prop['obsType'])] = prop['uomType']
-                properties['%s_time' % (prop['obsType'])] = prop['time'][-1]
               """
             feature = {
               "geometry": {
