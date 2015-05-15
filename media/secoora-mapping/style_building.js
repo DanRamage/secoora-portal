@@ -48,7 +48,7 @@ function ol_gradient_style_builder(options) {
         step_col = '<td>' + lower_bound + '</td>';
         last_lower += data_step;
       }
-      else if(((ndx % color_ndx_step === 0) && (ndx < self.default_colors.length - 2)) && (last_lower !== upper_bound))
+      else if(((ndx % color_ndx_step === 0) && (ndx < self.default_colors.length - 2)) && (Math.floor(last_lower + 0.5) !== upper_bound))
       {
         step_col = '<td>' + Math.floor(last_lower + 0.5) + '</td>';
         last_lower += data_step;
