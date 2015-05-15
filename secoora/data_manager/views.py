@@ -328,8 +328,8 @@ def get_obs_data(obs_name, uom_name):
                   if 'uomDisp' in prop:
                     uom_disp = prop['uomDisp']
                   obs_dict[prop['obsType']] = {
-                                      'obsDisp': obs_disp,
-                                      'uomDisp': uom_disp,
+                                      'obs_disp': obs_disp,
+                                      'uom_disp': uom_disp,
                                       'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
@@ -350,8 +350,8 @@ def get_obs_data(obs_name, uom_name):
                   if 'uomDisp' in prop:
                     uom_disp = prop['uomDisp']
                   obs_dict[prop['obsType']] = {
-                                      'obsDisp': obs_disp,
-                                      'uomDisp': uom_disp,
+                                      'obs_disp': obs_disp,
+                                      'uom_disp': uom_disp,
                                       'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
@@ -537,7 +537,15 @@ def get_platforms_by_org(request, organization):
                   prop = feature['properties']
 
                   if prop['obsType'] is not None:
-                    obs_dict[prop['obsType']] = {'value': prop['value'][-1],
+                    if 'obsDisp' in prop:
+                      obs_disp = prop['obsDisp']
+                    uom_disp = prop['uomType']
+                    if 'uomDisp' in prop:
+                      uom_disp = prop['uomDisp']
+                    obs_dict[prop['obsType']] = {
+                                        'obs_disp': obs_disp,
+                                        'uom_disp': uom_disp,
+                                        'value': prop['value'][-1],
                                         'uom': prop['uomType'],
                                         'time': prop['time'][-1]}
 
