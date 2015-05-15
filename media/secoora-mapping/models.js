@@ -1158,6 +1158,7 @@ function obs_data_model()
   var self = this;
 
   self.platform_name = ko.observable("");
+  self.platform_desc = ko.observable("");
   self.organization_name = ko.observable("");
   self.obs_array = ko.observableArray([]);
 
@@ -1184,6 +1185,7 @@ function obs_data_model()
     self.obs_name(observaton_name);
     self.organization_name(data.o_name);
     self.platform_name(data.p_name);
+    self.platform_desc(data.p_description);
     self.obs_array.removeAll();
     $.each(data.obs, function(key, obs)
     {
