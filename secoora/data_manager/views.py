@@ -322,9 +322,14 @@ def get_obs_data(obs_name, uom_name):
                 prop = feature['properties']
 
                 if prop['obsType'] is not None:
+                  if 'obsDisp' in prop:
+                    obs_disp = prop['obsDisp']
+                  uom_disp = prop['uomType']
+                  if 'uomDisp' in prop:
+                    uom_disp = prop['uomDisp']
                   obs_dict[prop['obsType']] = {
-                                      'obs_disp': prop['obsDisp'],
-                                      'uom_disp': prop['uomDisp'],
+                                      'obs_disp': obs_disp,
+                                      'uom_disp': uom_disp,
                                       'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
@@ -338,9 +343,15 @@ def get_obs_data(obs_name, uom_name):
               for feature in obs_json['properties']['features']:
                 prop = feature['properties']
                 if(prop['obsType'] == 'wind_from_direction' or prop['obsType'] == 'current_from_direction'):
+                  obs_disp = prop['obsType']
+                  if 'obsDisp' in prop:
+                    obs_disp = prop['obsDisp']
+                  uom_disp = prop['uomType']
+                  if 'uomDisp' in prop:
+                    uom_disp = prop['uomDisp']
                   obs_dict[prop['obsType']] = {
-                                      'obs_disp': prop['obsDisp'],
-                                      'uom_disp': prop['uomDisp'],
+                                      'obs_disp': obs_disp,
+                                      'uom_disp': uom_disp,
                                       'value': prop['value'][-1],
                                       'uom': prop['uomType'],
                                       'time': prop['time'][-1]}
