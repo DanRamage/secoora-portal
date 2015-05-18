@@ -324,7 +324,7 @@ def get_obs_data(obs_name, uom_name):
                 allow_rec = True
                 if len(qc_level) and (int(qc_level[-1]) < 3):
                   if logger:
-                    logger.debug("Platform: %s obs: obs_name has failed qc: %s" % (properties['p_handle'], obs_name, qc_level[1]))
+                    logger.debug("Platform: %s obs: %s has failed qc: %s" % (properties['p_handle'], obs_name, qc_level[1]))
                   allow_rec = False
                 if allow_rec:
                   prop = feature['properties']
