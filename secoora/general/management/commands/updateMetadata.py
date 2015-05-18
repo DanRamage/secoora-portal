@@ -39,32 +39,37 @@ def buildTimeSteps(**kwargs):
       except (HTTPError, URLError, Exception) as e:
         logger.exception(e)
       else:
-        linksParts = layer.metadatatable.links.split(',')
-        logger.debug("Layer: %s Name: %s" % (layer.name, linksParts[0]))
-        if wms[linksParts[0]].timepositions is not None:
-          timeSaveList = []
-          #We want to validate we have real dates and not garbage dates or empty data as can be
-          #seen in Ruoyings data. We also normalize the datetimes into the %Y-%m-%dT%H:%M:%SZ format.
-          for time in wms[linksParts[0]].timepositions:
-            #print "Time: %s" % (time)
-            try:
-              timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ")
-              timeSaveList.append(time)
-            except Exception,e:
+        try:
+          linksParts = layer.metadatatable.links.split(',')
+          logger.debug("Layer: %s Name: %s" % (layer.name, linksParts[0]))
+          if wms[linksParts[0]].timepositions is not None:
+            timeSaveList = []
+            #We want to validate we have real dates and not garbage dates or empty data as can be
+            #seen in Ruoyings data. We also normalize the datetimes into the %Y-%m-%dT%H:%M:%SZ format.
+            for time in wms[linksParts[0]].timepositions:
+              #print "Time: %s" % (time)
               try:
-                timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
-                timeSaveList.append(timeObj.strftime("%Y-%m-%dT%H:%M:%SZ"))
-                #timeSaveList.append(time)
+                timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ")
+                timeSaveList.append(time)
               except Exception,e:
-                logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
+                try:
+                  timeObj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
+                  timeSaveList.append(timeObj.strftime("%Y-%m-%dT%H:%M:%SZ"))
+                  #timeSaveList.append(time)
+                except Exception,e:
+                  logger.error("Layer: %s Invalid date: %s" % (layer.name, time))
 
-          layer.metadatatable.time_steps = ','.join(timeSaveList)
-          logger.debug("Layer: %s Number of time steps: %d" % (layer.name, len(timeSaveList)))
-          layer.metadatatable.save()
-          del timeSaveList[:]
+            layer.metadatatable.time_steps = ','.join(timeSaveList)
+            logger.debug("Layer: %s Number of time steps: %d" % (layer.name, len(timeSaveList)))
+            layer.metadatatable.save()
+            del timeSaveList[:]
 
-        else:
-          logger.debug("Layer: %s No time records." % (layer.name))
+          else:
+            logger.debug("Layer: %s No time records." % (layer.name))
+
+        except Exception,e:
+          if logger:
+            logger.exception(e)
 
     logger.info("Layer: %s finished processing" % (layer.name))
 
@@ -80,30 +85,34 @@ def buildRemoteSensingTimeSteps(**kwargs):
                         dbName=XENIA_DB):
     logger.debug("Connected to xenia DB")
     for layerName in kwargs['remoteSensingLayers']:
-      logger.debug("Layer: %s start processing" % (layerName))
-      #Search for our layer name.
-      for layer in Layer.objects.all().filter(name=layerName):
-        logger.debug("Matched: %s" % (layer.name))
-        #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
-        if layer.metadatatable is not None and len(layer.metadatatable.links):
-          linksParts = layer.metadatatable.links.split(',')
-          logger.debug("Data name: %s" % (linksParts[0]))
-          try:
-            recs = xeniaDb.session.query(timestamp_lkp.pass_timestamp)\
-              .join((product_type, product_type.row_id == timestamp_lkp.product_id))\
-              .filter(product_type.type_name == linksParts[0])\
-              .order_by(timestamp_lkp.pass_timestamp).\
-              all()
-            times = []
-            for rec in recs:
-              times.append(rec.pass_timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"))
-              #logger.debug("%s" % (rec.pass_timestamp))
-            layer.metadatatable.time_steps = ','.join(times)
-            logger.debug("Number of time steps: %d" % (len(times)))
-            layer.metadatatable.save()
+      try:
+        logger.debug("Layer: %s start processing" % (layerName))
+        #Search for our layer name.
+        for layer in Layer.objects.all().filter(name=layerName):
+          logger.debug("Matched: %s" % (layer.name))
+          #If we find the layer and it has a metadatatable entry, let's see if we have valid links.
+          if layer.metadatatable is not None and len(layer.metadatatable.links):
+            linksParts = layer.metadatatable.links.split(',')
+            logger.debug("Data name: %s" % (linksParts[0]))
+            try:
+              recs = xeniaDb.session.query(timestamp_lkp.pass_timestamp)\
+                .join((product_type, product_type.row_id == timestamp_lkp.product_id))\
+                .filter(product_type.type_name == linksParts[0])\
+                .order_by(timestamp_lkp.pass_timestamp).\
+                all()
+              times = []
+              for rec in recs:
+                times.append(rec.pass_timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"))
+                #logger.debug("%s" % (rec.pass_timestamp))
+              layer.metadatatable.time_steps = ','.join(times)
+              logger.debug("Number of time steps: %d" % (len(times)))
+              layer.metadatatable.save()
 
-          except Exception,e:
-            logger.exception(e)
+            except Exception,e:
+              logger.exception(e)
+      except Exception, e:
+        if logger:
+          logger.exception(e)
       logger.debug("Layer: %s end processing" % (layerName))
 
     #Find the layer models from the name.
