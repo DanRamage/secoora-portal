@@ -322,7 +322,7 @@ def get_obs_data(obs_name, uom_name):
                 #If we have qc data, we want to check it and only allow good data out.
                 qc_level = prop['qc_level']
                 allow_rec = True
-                if len(qc_level) and (int(qc_level[-1]) < 3):
+                if len(qc_level[-1]) and (int(qc_level[-1]) < 3):
                   if logger:
                     logger.debug("Platform: %s obs: %s has failed qc: %s" % (properties['p_handle'], obs_name, qc_level[-1]))
                   allow_rec = False
