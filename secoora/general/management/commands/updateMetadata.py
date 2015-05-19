@@ -198,8 +198,8 @@ class Command(BaseCommand):
 
     if options['updateTimeSteps'] == True:
       buildTimeSteps()
-      if options['remoteSensingLayers']:
-        buildRemoteSensingTimeSteps(remoteSensingLayers=options['remoteSensingLayers'].split(','))
+    if options['remoteSensingLayers']:
+      buildRemoteSensingTimeSteps(remoteSensingLayers=options['remoteSensingLayers'].split(','))
 
     if options['updateMetadata'] == True:
       updateMetaData()
