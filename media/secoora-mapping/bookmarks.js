@@ -52,7 +52,7 @@ function bookmarkModel(options) {
     // get the url from a bookmark
     self.getBookmarkUrl = function() {
         var host = window.location.href.split('#')[0];
-        host = 'http://gsaaportal.org/visualize/';
+        host = 'http://129.252.37.120/visualize/';
         return host + "#" + self.getBookmarkHash();
         //return host + "#" + self.state;
     };

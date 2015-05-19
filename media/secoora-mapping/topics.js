@@ -10,7 +10,7 @@ function topicsModel(options) {
     
     self.setMapViewURL = function(urlHash) {
         debugger;
-        var url = "http://gsaaportal.org/embed/map/#" + urlHash;
+        var url = "http://129.252.37.120/embed/map/#" + urlHash;
         self.activeMapViewURL(url);
     };
     
