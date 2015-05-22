@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load url from future %}
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Secoora Data
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Le styles -->
+        <!--
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="{{MEDIA_URL}}/marco/css/smoothness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+        -->
+
+<!--
+        <link href="{{MEDIA_URL}}/secoora/css/bootstrap-combined.min.css" rel="stylesheet">
+        <script src="{{MEDIA_URL}}/secoora/js/bootstrap.js"></script>
+-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+     </head>
+<!-- <body  style="background-color:lightgrey"> -->
+<body>
+
+
+<!-- <div class="container-fluid"> -->
+<div class="container">
+
+<a href="http://secoora.org"><img src="http://129.252.37.86/rcoos/resources/images/default/secoora_logo.png" height=20% width=20%></img></a>
+<h1 style="border-style: solid">Data</h1>
+<!-- <p>This is some text.</p> -->
+
+<!--
+<div class="list-group">
+  <a href="#" class="list-group-item active">First item</a>
+  <a href="#" class="list-group-item">Second item</a>
+  <a href="#" class="list-group-item">Third item</a>
+</div>
+-->
+
+<!-- http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=20&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true -->
+
+
+<!-- ============================================================= -->
+<div class="col-md-6">
+
+<p>Click below keywords to show related map layers</p>
+<div class="col-md-12" style="background-color:yellow; border-style: solid; padding-bottom: 25px">
+<h2>Parameters</h2>
+<ul style="list-style: none;">
+
+    <div class="col-md-6">
+
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=3&dls[]=false&dls[]=0.5&dls[]=44&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Air Temperature</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=43&dls[]=false&dls[]=0.5&dls[]=4&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Wind</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=5&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Tides</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=40&dls[]=false&dls[]=0.5&dls[]=41&dls[]=false&dls[]=0.5&dls[]=42&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Waves</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=82&dls[]=false&dls[]=0.5&dls[]=22&dls[]=false&dls[]=0.5&dls[]=30&dls[]=false&dls[]=0.5&dls[]=52&dls[]=false&dls[]=0.5&dls[]=53&dls[]=false&dls[]=0.5&dls[]=54&dls[]=false&dls[]=0.5&dls[]=55&dls[]=false&dls[]=0.5&dls[]=56&dls[]=false&dls[]=0.5&dls[]=73&dls[]=0.5&dls[]=67&dls[]=false&dls[]=0.5&dls[]=66&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Currents</strong></a>
+    </li>
+    <li>  
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=57&dls[]=false&dls[]=0.5&dls[]=58&dls[]=false&dls[]=0.5&dls[]=80&dls[]=false&dls[]=0.5&dls[]=24&dls[]=false&dls[]=0.5&dls[]=29&dls[]=false&dls[]=0.5&dls[]=71&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Water Temperature</strong></a>
+    </li>
+
+    </div>
+
+    <div class="col-md-6">
+
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=79&dls[]=false&dls[]=0.5&dls[]=25&dls[]=false&dls[]=0.5&dls[]=28&dls[]=false&dls[]=0.5&dls[]=72&dls[]=false&dls[]=0.5&dls[]=64&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Salinity</strong></a>
+    </li>
+<!--
+    <li>   
+      <a href="#" class="list-group-item"><strong>Dissolved Oxygen</strong></a>
+    </li>
+-->
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=74&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Turbidity</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=75&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>pH</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=76&dls[]=false&dls[]=0.5&dls[]=61&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true#" class="list-group-item"><strong>Chlorophyll</strong></a>
+    </li>
+    <li>   
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=77&basemap=ESRI+Ocean&themes[ids][]=1&&tab=active&legends=false&layers=true" class="list-group-item"><strong>Bathymetry</strong></a>
+    </li>
+    </div>
+
+</ul>
+
+</div>
+
+<!-- ============================================================= -->
+<div class="col-md-12" style="background-color:#99ff66; border-style: solid; padding-bottom: 25px">
+<h2>Instrumentation</h2>
+<ul style="list-style: none;">
+    <div class="col-md-6">
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=44&dls[]=false&dls[]=0.5&dls[]=45&dls[]=false&dls[]=0.5&dls[]=49&dls[]=false&dls[]=0.5&dls[]=43&dls[]=false&dls[]=0.5&dls[]=79&dls[]=false&dls[]=0.5&dls[]=80&dls[]=false&dls[]=0.5&dls[]=81&dls[]=false&dls[]=0.5&dls[]=82&dls[]=false&dls[]=0.5&dls[]=25&dls[]=false&dls[]=0.5&dls[]=24&dls[]=false&dls[]=0.5&dls[]=23&dls[]=false&dls[]=0.5&dls[]=22&dls[]=false&dls[]=0.5&dls[]=28&dls[]=false&dls[]=0.5&dls[]=29&dls[]=false&dls[]=0.5&dls[]=26&dls[]=false&dls[]=0.5&dls[]=30&dls[]=false&dls[]=0.5&dls[]=36&dls[]=false&dls[]=0.5&dls[]=37&dls[]=false&dls[]=0.5&dls[]=38&dls[]=false&dls[]=0.5&dls[]=39&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Model</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-75.72&y=32.27&z=6&logo=true&dls[]=true&dls[]=0.5&dls[]=58&dls[]=true&dls[]=0.5&dls[]=57&dls[]=true&dls[]=0.5&dls[]=61&dls[]=true&dls[]=0.5&dls[]=60&dls[]=0.5&dls[]=59&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Satellite</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=52&dls[]=false&dls[]=0.5&dls[]=53&dls[]=false&dls[]=0.5&dls[]=54&dls[]=false&dls[]=0.5&dls[]=55&dls[]=false&dls[]=0.5&dls[]=56&dls[]=false&dls[]=0.5&dls[]=73&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>HF Radar</strong></a>
+    </li>
+    </div>
+
+    <div class="col-md-6">
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=13&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Glider</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-73.85&y=31.93&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=67&dls[]=false&dls[]=0.5&dls[]=66&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Drifter</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=69&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Station</strong></a>
+    </li>
+    </div>
+
+</ul>
+
+</div>
+
+<!-- ============================================================= -->
+<div class="col-md-12" style="background-color:#0099ff; border-style: solid; padding-bottom: 25px">
+<h2>Theme</h2>
+<ul style="list-style: none;">
+    <div class="col-md-6">
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=59&dls[]=false&dls[]=0.5&dls[]=60&dls[]=false&dls[]=0.5&dls[]=44&dls[]=false&dls[]=0.5&dls[]=45&dls[]=false&dls[]=0.5&dls[]=43&dls[]=false&dls[]=0.5&dls[]=49&dls[]=0.5&dls[]=1&dls[]=0.5&dls[]=3&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Air</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=76&dls[]=false&dls[]=0.5&dls[]=75&dls[]=false&dls[]=0.5&dls[]=72&dls[]=false&dls[]=0.5&dls[]=74&dls[]=false&dls[]=0.5&dls[]=71&dls[]=false&dls[]=0.5&dls[]=13&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Water Quality</strong></a>
+    </li>
+<!--
+    <li>
+      <a href="#" class="list-group-item"><strong>Ocean</strong></a>
+    </li>
+-->
+    </div>
+
+    <div class="col-md-6">
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=20&dls[]=false&dls[]=0.5&dls[]=15&dls[]=false&dls[]=0.5&dls[]=19&dls[]=false&dls[]=0.5&dls[]=17&basemap=ESRI+Ocean&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Hazards</strong></a>
+    </li>
+    <li>
+      <a href="http://129.252.37.120/visualize/#x=-72.64&y=34.32&z=6&logo=true&dls[]=false&dls[]=0.5&dls[]=77&dls[]=false&dls[]=0.5&dls[]=52&dls[]=false&dls[]=0.5&dls[]=53&dls[]=false&dls[]=0.5&dls[]=54&dls[]=false&dls[]=0.5&dls[]=55&dls[]=false&dls[]=0.5&dls[]=56&dls[]=false&dls[]=0.5&dls[]=73&basemap=Nautical+Charts&themes[ids][]=1&tab=active&legends=false&layers=true" class="list-group-item"><strong>Marine Operations</strong></a>
+    </li>
+
+    </div>
+
+</ul>
+
+</div>
+
+<!-- ============================================================= -->
+</div>
+
+<!-- ============================================================= -->
+<div class="col-md-6">
+
+<h3>All Map Layers</h3>
+<br/>
+<a href="http://129.252.37.120/visualize"><img class="col-md-12" src="{{MEDIA_URL}}/secoora/img/vis_map.png"></a>
+
+<p>&nbsp;<p>
+<h3>Catalog - General Search</h3>
+<br/>
+<a href="http://catalog.secoora.org/explore/search_page.html"><img class="col-md-12" src="{{MEDIA_URL}}/secoora/img/cat_general.png"></a>
+
+<h3>&nbsp;</h3>
+<h3>Catalog - Services Search</h3>
+<br/>
+<a href="http://catalog.secoora.org/explore/csw_services"><img class="col-md-12" src="{{MEDIA_URL}}/secoora/img/cat_services.png"></a>
+
+</div>
+
+
+<!-- ============================================================= -->
+</div>
+
+
+</body>
+</html>
